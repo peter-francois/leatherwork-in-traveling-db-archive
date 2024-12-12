@@ -1,0 +1,141 @@
+body {
+    font-family: 'Uncial Antiqua', serif;
+    background-color: #f8f5e1;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+div.header {
+    background: #5c3b14;
+    color: #FFD700;
+    text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
+    padding: 20px;
+    text-align: center;
+    width: auto;
+}
+section.category{
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    grid-gap : 20px;
+    margin: 30px 25px;
+}
+div.produit-card{
+    padding: 15px;
+}
+.product-card {
+    border: 2px solid #8c6b4f;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+}
+a.linker{
+    text-decoration: none;
+    display: inline-block;
+}
+.product-card p {
+    font-size: 0.9em;
+}
+.half-grid-width{
+    grid-column: span 1;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+.full-grid-width{
+    grid-column: span 2;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns:0.313fr 1fr 0.313fr;
+}
+.product-title-and-description{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 25px;
+}
+img{
+    width: 275px;
+    border: solid 2px #8c6b4f;
+    border-radius: 5px;
+}
+img.image-float-right{
+    display: inline-block;
+    float: right;
+}
+
+.product-title {
+    font-size: 1.5em;
+    color: #8c6b4f;
+}
+
+
+
+
+button {
+    background-color: #8c6b4f;
+    font-size: 17px;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 1140px)
+{
+header {
+padding: 10px;
+}
+
+section.category{
+grid-template:1fr 1fr 1fr 1fr / 1fr;
+grid-gap : 10px;
+margin: 20px 15px;
+}
+.product-title-and-description{
+padding: 0 15px;
+}
+.product-card {
+padding: 12px;
+}
+
+.display-laptop{
+display: None;
+}
+.full-grid-width{
+grid-column: span 1;
+display: grid;
+justify-items: center;
+align-items: center;
+grid-template-columns: 1fr 1fr;
+}
+img.image-float-right{
+   width: 70%;
+}
+.image-full-span{
+width: 70%;
+}
+
+}
+@media only screen and (max-width: 592px)
+{
+h1{
+font-size: 22px;
+}
+h2.product-title{
+font-size: 15px;
+}
+div.product-card p{
+font-size: 8px;
+}
+img.image-float-right{
+width: 130px;
+}
+.image-full-span{
+width: 130px;
+}
+
+}
