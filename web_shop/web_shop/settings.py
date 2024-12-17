@@ -87,10 +87,7 @@ WSGI_APPLICATION = 'web_shop.wsgi.application'
 
 DATABASES = {
     'default': env.db(),
-    'extra': env.db_url(
-        'SQLITE_URL',
-        default='django.db.backends.sqlite3:///web_shop/db.sqlite3'
-    )
+
 }
 
 CACHES = {
