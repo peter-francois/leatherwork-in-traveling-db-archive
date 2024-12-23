@@ -11,6 +11,28 @@
 <body>
     <div class="header">
         <h1 >Bienvenue sur Ma <br>Boutique Artisanale</h1>
+        <div class="language-selector">
+            <!-- Drapeaux avec attribut de langue -->
+            <img 
+            src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" 
+            alt="English"
+            class="flag" 
+            data-lang="en">
+
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" 
+                alt="French" 
+                class="flag" 
+                data-lang="fr">
+        </div>
+        <div class="menu">
+            <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
+            <div class="menu-content">
+                <a href="#" onclick="displayHome(event)" id="menu_button_home">HOME</a>
+                <a href="#" onclick="displayPortfolio(event)" id="menu-button-portfolio">PORTFOLIO</a>
+                <a href="#" onclick="displayContact(event)" id="menu-button-contact">CONTACT</a>
+            </div> 
+        </div>
     </div>
     <section class="category">
         <a class="linker product-card " href="{% url 'boutique:macrames' %}">
@@ -58,5 +80,6 @@
         </a>
 
     </section>
+    <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>
