@@ -67,9 +67,10 @@ document.addEventListener('click', function(event) {
     const menuButton = document.querySelector('.menu button');
     const menuContent = document.querySelector('.menu-content');
     
-    // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu
-    if (!menuButton.contains(event.target) && !menuContent.contains(event.target)) {
+    // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le manu est actif
+    if (!menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
         menuContent.classList.remove('active');
+        menuButton.classList.remove('active');
     }
 });
 // Pour que le menu modifie son style en fonction de la scroll

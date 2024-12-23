@@ -1,3 +1,9 @@
+:root{
+    --color1: #FFD700;
+    --color2: #8c6b4f;
+
+}
+
 body {
     font-family: 'Uncial Antiqua', serif;
     background-color: #f8f5e1;
@@ -8,10 +14,10 @@ body {
 }
 div.header {
     background: #5c3b14;
-    color: #FFD700;
+    color: var(--color1);
     text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
     padding: 20px;
-    text-align: center;
+    text-align: center; 
     width: auto;
 }
 /* Style du conteneur des drapeaux */
@@ -38,7 +44,7 @@ div.header {
 
 /* Style pour la langue active */
 .flag.active {
-    border-color: #007bff; /* Bleu pour indiquer la sélection */
+    border-color: var(--color1);
     border-radius: 5px;
 }
 div.menu{
@@ -68,9 +74,10 @@ div.menu button{
     margin: 0;
     font-size: 20px;
     text-align: left;
-    color: #FFD700;
+    color: var(--color1);
     display: inline-block;
-
+    font-family: 'Uncial Antiqua', serif;
+    text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
 }
 .menu button.scrolled {
     background-color: #00000070;
@@ -118,15 +125,17 @@ div.menu i{
 }
 section.category{
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-    grid-gap : 20px;
+    align-items: stretch;
+    grid-template-rows: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     margin: 30px 25px;
+    gap: 20px;
 }
 div.produit-card{
     padding: 15px;
 }
 .product-card {
-    border: 2px solid #8c6b4f;
+    border: 2px solid var(--color2);
     border-radius: 10px;
     padding: 15px;
     background: #fff;
@@ -135,7 +144,8 @@ a.linker{
     text-decoration: none;
     display: inline-block;
     height: fit-content;
-    color: 8c6b4f;
+    color: var(--color2);
+
 }
 .product-card p {
     font-size: 0.9em;
@@ -178,70 +188,64 @@ img.image-float-right{
     color: #8c6b4f;
 }
 
-
-
-
-button {
-    background-color: #8c6b4f;
-    font-size: 17px;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-@media only screen and (max-width: 1140px)
+@media only screen and (max-width: 1182px)
 {
-header {
-padding: 10px;
-}
+    header {
+    padding: 10px;
+    }
 
-section.category{
-grid-template:1fr 1fr 1fr 1fr / 1fr;
-grid-gap : 10px;
-margin: 20px 15px;
-}
-.product-title-and-description{
-padding: 0 15px;
-}
-.product-card {
-padding: 12px;
-}
+    section.category{
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap : 10px;
+    margin: 20px 15px;
+    }
+    .product-title-and-description{
+    padding: 0 15px;
+    }
+    .product-card {
+    padding: 12px;
+    }
 
-.display-laptop{
-display: None;
-}
-.full-grid-width{
-grid-column: span 1;
-display: grid;
-justify-items: center;
-align-items: center;
-grid-template-columns: 1fr 1fr;
-}
-img.image-float-right{
-   width: 70%;
-}
-.image-full-span{
-width: 70%;
-}
+    .display-laptop{
+    display: None;
+    }
+    .full-grid-width{
+        grid-column: span 1;
+    }
+    .grid-width_2{
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 1fr 1fr;
 
+    }
+    img.image-float-right{
+        width: 70%;
+    }
+    .image-full-span{
+        width: 70%;
+    }
 }
 @media only screen and (max-width: 592px)
 {
-h1{
-font-size: 22px;
-}
-h2.product-title{
-font-size: 15px;
-}
-div.product-card p{
-font-size: 8px;
-}
-img.image-float-right{
-width: 130px;
-}
-.image-full-span{
-width: 130px;
-}
-
+    h1{
+    font-size: 22px;
+    }
+    h2.product-title{
+    font-size: 15px;
+    }
+    div.product-card p{
+    font-size: 8px;
+    }
+    section.category{
+        grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap : 5px;
+        margin: 10px 5px;
+        }
+    img.image-float-right{
+    width: 130px;
+    }
+    .image-full-span{
+    width: 130px;
+    }
 }
