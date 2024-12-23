@@ -68,7 +68,6 @@ img{
     border-radius: 5px;
 }
 img.image-float-right{
-    display: inline-block;
     float: right;
 }
 
