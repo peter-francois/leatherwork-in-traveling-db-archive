@@ -16,7 +16,7 @@ div.header {
 }
 section.category{
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    grid-template: 1fr 1fr / 1fr 1fr;
     grid-gap : 20px;
     margin: 30px 25px;
 }
@@ -32,6 +32,8 @@ div.produit-card{
 a.linker{
     text-decoration: none;
     display: inline-block;
+    height: fit-content;
+    color: 8c6b4f;
 }
 .product-card p {
     font-size: 0.9em;
@@ -45,10 +47,13 @@ a.linker{
 }
 .full-grid-width{
     grid-column: span 2;
-    display: grid;
     justify-items: center;
+}
+.grid-width_2{
+    display: grid;
     align-items: center;
     grid-template-columns:0.313fr 1fr 0.313fr;
+    width: 100%;
 }
 .product-title-and-description{
     display: flex;
