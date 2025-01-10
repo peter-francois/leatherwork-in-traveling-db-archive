@@ -31,6 +31,23 @@ def index(request):
 
 
 def macrames(request):
+    return render(request, 'page_vente/macrames.html')
+
+def tout_les_produits(request):
+    return render(request, 'page_vente/tout_les_produits.html')
+
+def maroquinerie(request):
+    return render(request, 'page_vente/maroquinerie.html')
+
+def creation_sur_mesure(request):
+    return render(request, 'page_vente/creation_sur_mesure.html')
+
+def autres_produits(request):
+    return render(request, 'page_vente/autres_produits.html')
+
+def contact(request):
+    return render(request, 'page_vente/contact.html')
+    """
     macrames_objects = Macrame.objects.all()
 
     # Collier
@@ -88,12 +105,12 @@ def macrames(request):
             macrames_bracelets_names_str,
             macrames_boucles_d_oreilles_names_str,
             macrames_divers_names_str]):
-        list_macrames_complette = f"""  Les colliers: {macrames_colliers_names_str}<br>
+        list_macrames_complette = f  Les colliers: {macrames_colliers_names_str}<br>
                                         Les bracelets: {macrames_bracelets_names_str}<br>
                                         Les murales: {macrames_murales_names_str}<br>
                                         Les boucles d'oreilles: {macrames_boucles_d_oreilles_names_str}<br>
-                                        Les divers: {macrames_divers_names_str}"""
+                                        Les divers: {macrames_divers_names_str}
     else:
         list_macrames_complette = "Désolé, il n'y a pas de macrames_objects en ce moment"
-    return HttpResponse("Les macramés:<br>" + list_macrames_complette)
+    return HttpResponse("Les macramés:<br>" + list_macrames_complette)"""
 

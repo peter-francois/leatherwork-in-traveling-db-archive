@@ -31,11 +31,11 @@
                 <a href="#" >ACCUEIL</a>
                 <a href="#" onclick="toggleMenuProduit(event)" id="menu-button-produit">PRODUIT</a>
                     <div class="menu-content-produit">
-                        <a href="/produits">TOUT LES PRODUITS</a>
-                        <a href="/produits/maroquinerie">MAROQUINERIE</a>
-                        <a href="/produits/macrames">MACRAMES</a>
-                        <a rhef="/création-sur-mesure">CREATION SUR MESURE</a>
-                        <a href="/produits/autres-produits">AUTRES PRODUITS</a>
+                        <a href="{% url 'boutique:tout-les-produits' %}">TOUT LES PRODUITS</a>
+                        <a href="{% url 'boutique:maroquinerie' %}">MAROQUINERIE</a>
+                        <a href="{% url 'boutique:macrames' %}">MACRAMES</a>
+                        <a href="{% url 'boutique:creation-sur-mesure' %}">CREATION SUR MESURE</a>
+                        <a href="{% url 'boutique:autres-produits' %}">AUTRES PRODUITS</a>
                     </div>
                 <a href="/panier">PANIER</a>
                 <a href="/a-propos">A PROPOS</a>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <section class="category">
-        <a class="linker product-card " href="{% url 'boutique:macrames' %}">
+        <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
             <div class="half-grid-width" >
                 <div class="product-title-and-description">
                     <h2 class="product-title"><i class="fas fa-wallet"></i> Espace Maroquinerie</h2>
