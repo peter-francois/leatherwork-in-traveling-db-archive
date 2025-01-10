@@ -47,6 +47,14 @@ def autres_produits(request):
 
 def contact(request):
     return render(request, 'page_vente/contact.html')
+
+def panier(request):
+    return render(request, 'page_vente/panier.html')
+
+def a_propos(request):
+    return render(request, 'page_vente/a_propos.html')
+
+
     """
     macrames_objects = Macrame.objects.all()
 
