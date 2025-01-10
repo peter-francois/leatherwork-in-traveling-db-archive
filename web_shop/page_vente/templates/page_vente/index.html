@@ -28,9 +28,18 @@
         <div class="menu">
             <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
             <div class="menu-content">
-                <a href="#" onclick="displayHome(event)" id="menu_button_home">HOME</a>
-                <a href="#" onclick="displayPortfolio(event)" id="menu-button-portfolio">PORTFOLIO</a>
-                <a href="#" onclick="displayContact(event)" id="menu-button-contact">CONTACT</a>
+                <a href="#" >ACCUEIL</a>
+                <a href="#" onclick="toggleMenuProduit(event)" id="menu-button-produit">PRODUIT</a>
+                    <div class="menu-content-produit">
+                        <a href="/produits">TOUT LES PRODUITS</a>
+                        <a href="/produits/maroquinerie">MAROQUINERIE</a>
+                        <a href="/produits/macrames">MACRAMES</a>
+                        <a rhef="/création-sur-mesure">CREATION SUR MESURE</a>
+                        <a href="/produits/autres-produits">AUTRES PRODUITS</a>
+                    </div>
+                <a href="/panier">PANIER</a>
+                <a href="/a-propos">A PROPOS</a>
+                <a href="/contact">CONTACT</a>
             </div> 
         </div>
     </div>
@@ -39,7 +48,7 @@
             <div class="half-grid-width" >
                 <div class="product-title-and-description">
                     <h2 class="product-title"><i class="fas fa-wallet"></i> Espace Maroquinerie</h2>
-                    <p>Collection de produit en <strong>Cuir</strong>.</p>
+                    <p>Collection de modèles en <strong>Cuir</strong>.</p>
                 </div>
                 <img class="image-float-right" src="{% static 'page_vente/images/smart-home-logo.jpeg' %}" alt="Atelier maroquinerie">
 

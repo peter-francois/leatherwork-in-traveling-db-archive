@@ -58,7 +58,10 @@ div.menu{
 .menu-content,
 .menu-content a,
 .menu button.scrolled,
-.menu button.active  {
+.menu button.active,
+.menu-content-product,
+.menu-content-product a,
+.menu-content-product.active{
     transition: all 0.3s ease;
 }
 div.menu button{
@@ -93,7 +96,7 @@ div.menu button:hover{
 div.menu i{
     margin-left: 10px;
 }
-.menu-content {
+.menu-content{
     display: none;
     position: fixed;
     min-width: 160px;
@@ -123,6 +126,17 @@ div.menu i{
     color: white;
 
 }
+.menu-content-produit{
+    display: none;
+
+}
+.menu-content-produit.active{
+    display: inline-block;
+    width: 100%;
+    padding-left: 32px;
+}
+
+
 section.category{
     display: grid;
     align-items: stretch;

@@ -66,13 +66,29 @@ function toggleMenu() {
 document.addEventListener('click', function(event) {
     const menuButton = document.querySelector('.menu button');
     const menuContent = document.querySelector('.menu-content');
+    const menuButtonProduit = document.getElementById('menu-button-produit');
+    const menuContentProduit = document.querySelector('.menu-content-produit');
     
     // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le manu est actif
     if (!menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
         menuContent.classList.remove('active');
         menuButton.classList.remove('active');
     }
+    else if (!menuButtonProduit.contains(event.target) && !menuContentProduit.contains(event.target) && menuContentProduit.classList.contains('active')) {
+        menuContentProduit.classList.remove('active');
+        menuButtonProduit.classList.remove('active');
+    }
 });
+
+// Fonction pour afficher le sous-menu "Produit"
+function toggleMenuProduit(event){
+    event.preventDefault();
+    const menuButtonProduit = document.getElementById('menu-button-produit');
+    const menuContentProduit = document.querySelector('.menu-content-produit');
+    menuContentProduit.classList.toggle('active');
+    menuButtonProduit.classList.toggle('active');
+}
+
 // Pour que le menu modifie son style en fonction de la scroll
 window.addEventListener('scroll', function() {
     const menuContent = document.querySelector('.menu-content');
