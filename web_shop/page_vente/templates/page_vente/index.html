@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="header">
-        <h1 >Bienvenue sur Ma <br>Boutique Artisanale</h1>
+        <h1 id="title">Bienvenue sur Ma <br>Boutique Artisanale</h1>
         <div class="language-selector">
             <!-- Drapeaux avec attribut de langue -->
             <img 
@@ -28,17 +28,17 @@
         <div class="menu">
             <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
             <div class="menu-content">
-                <a href="#" >ACCUEIL</a>
-                <a href="#" onclick="toggleMenuProduit(event)" id="menu-button-produit">PRODUIT</a>
+                <a href="#" id="menu_button_home" >ACCUEIL</a>
+                <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUIT</a>
                     <div class="menu-content-produit">
-                        <a href="{% url 'boutique:tout-les-produits' %}">TOUT LES PRODUITS</a>
-                        <a href="{% url 'boutique:maroquinerie' %}">MAROQUINERIE</a>
-                        <a href="{% url 'boutique:macrames' %}">MACRAMES</a>
-                        <a href="{% url 'boutique:creation-sur-mesure' %}">CREATION SUR MESURE</a>
-                        <a href="{% url 'boutique:autres-produits' %}">AUTRES PRODUITS</a>
+                        <a href="{% url 'boutique:tout-les-produits' %}" id="menu_button_tout_les_produits">TOUT LES PRODUITS</a>
+                        <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
+                        <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">MACRAMES</a>
+                        <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">CREATION SUR MESURE</a>
+                        <a href="{% url 'boutique:autres-produits' %}" id="menu_button_autres_produits">AUTRES PRODUITS</a>
                     </div>
-                <a href="/panier">PANIER</a>
-                <a href="/a-propos">A PROPOS</a>
+                <a href="/panier" id="menu_button_panier">PANIER</a>
+                <a href="/a-propos" id="menu_button_a_propos">A PROPOS</a>
                 <a href="/contact">CONTACT</a>
             </div> 
         </div>

@@ -3,7 +3,7 @@ const flags = document.querySelectorAll('.flag');
 // Fonction pour changer la langue
 function changeLanguage(lang) {
     // Mettre à jour le contenu de la page grace au fichier translations.JSON
-    fetch('translations.json')
+    fetch('/static/page_vente/translations.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -19,7 +19,16 @@ function changeLanguage(lang) {
             
             // Liste des éléments à traduire
             const elementsToTranslate = {
-                'description': translations.description,
+                'title': translations.title,
+                'menu_button_home':translations.menu_button_home,
+                'menu_button_produit':translations.menu_button_produit,
+                'menu_button_panier':translations.menu_button_panier,
+                'menu_button_a_propos':translations.menu_button_a_propos,
+                'menu_button_tout_les_produits':translations.menu_button_tout_les_produits,
+                'menu_button_maroquinerie':translations.menu_button_maroquinerie,
+                'menu_button_macrames':translations.menu_button_macrames,
+                'menu_button_creation_sur_mesure':translations.menu_button_creation_sur_mesure,
+                'menu_button_autres_produits':translations.menu_button_autres_produits
 
             };
 
@@ -43,7 +52,7 @@ function changeLanguage(lang) {
 
 // Définir la langue par défaut au chargement
 document.addEventListener('DOMContentLoaded', () => {
-    changeLanguage('en'); // Langue par défaut
+    changeLanguage('fr'); // Langue par défaut
 });
 
 // Écouteurs d'événements pour les clics sur les drapeaux

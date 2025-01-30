@@ -1,47 +1,29 @@
 {
     "en": {
-      "description": "| Web Developer | Software Developer | Developer Full Stack |",
-      "menu_button_home": "HOME",
-      "hook": "I design and develop your <b>Websites</b> or <b>Software</b> for iOS/Android, from the initial idea to their launch.",
-      "learn_more": "Learn more",
-      "about_introduction": "Fascinated by new technologies from a young age, I chose to realize my dream of becoming <b>computer programmer</b>. <br><br> I began my journey by learning the <b>C language</b>, an imperative programming language. This choice, though challenging, proved to be strategic: when discovering the world of programming, it is not always easy to know where to start. Learning <b>C</b> first allowed me to build a solid understanding of programming logic and fundamentals.",
-    "about_python_formation": "Following that, I completed comprehensive training in <b>Python</b>, a language that is now essential across numerous fields. This training provided me with a broad range of skills, including <b>object-oriented programming</b>, <b>graphical interface</b> design, and <b>version control</b>—an essential aspect of teamwork.",
-    "about_ai_learning": "Recently, I decided to expand my skill set by undertaking training in <b>artificial intelligence</b>, a fascinating field that is revolutionizing software development. Understanding <b>AI</b> is now mandatory, as it has become an integral part of developers' daily work and profoundly influences current and future technologies.",
-    "about_experience": "With years of experience in various industries, I stand out for my <b>adaptability</b> and ability to <b>respond effectively</b> to challenges. I am skilled at making swift decisions to achieve <b>high-quality results</b> while meeting <b>project requirements</b> and <b>priorities</b>.",
-    "about_closing": "Attentive and inventive, I will be the ideal partner to bring your project to life.",
-    "learn_more_about_my_profile": "Learn more about my profile",
-    "mr_beat_description": "Drum machine application",
-    "galaxy_description": "Fast-paced game set in space",
-    "pizza_mama_description": "Website for a restaurant",
-    "portfolio": "Portfolio",
-    "contact": "Contact",
-    "contact_description": "I would love to hear from you! Whether you have a question, want to work together, or just want to say hello, I'm always open to new opportunities and collaborations.",
-    "contact_closing": "Thank you for visiting my portfolio. I hope to hear from you soon!",
-    "frame_title": "Let's talk about your project.",
-    "frame_text": "Need to discuss your project or get a quote?",
-    "frame_email": "Contact me by email",
-    "frame_phone": " or directly by phone at "
+    "title": "Welcome to My <br> Artisan Boutique",
+    "menu_button_home": "HOME",
+    "menu_button_produit": "PRODUCTS",
+    "menu_button_panier": "CART",
+    "menu_button_a_propos": "ABOUT",
+    "menu_button_tout_les_produits": "ALL PRODUCTS",
+    "menu_button_maroquinerie": "LEATHERCRAFT",
+    "menu_button_macrames": "MACRAME",
+    "menu_button_creation_sur_mesure": "CUSTOM CREATION",
+    "menu_button_autres_produits": "OTHERS PRODUCTS"
+
+
     },
     "fr": {
-      "description": "| Développeur Web | Développeur Logiciel Android / iOS | Developpeur Full Stack |",
+      "title": "Bienvenue sur Ma <br>Boutique Artisanale",
       "menu_button_home": "ACCUEIL",
-      "hook": "Je conçois et réalise vos <b>sites internet</b> ou <b>applications mobiles</b> sur iOS/Android, de l'idée initiale jusqu'à leur mise en ligne.",
-      "learn_more": "En savoir plus",
-      "about_introduction": "Fasciné par les nouvelles technologies depuis mon plus jeune âge, j'ai choisi de réaliser mon rêve de devenir <b>programmeur informatique</b>. <br><br> J'ai commencé mon parcours en apprenant le <b>langage C</b>, un langage de programmation impératif. Ce choix, bien que difficile, s'est avéré stratégique : lorsqu'on découvre le monde de la programmation, il n'est pas évident de savoir par où commencer. Apprendre le <b>langage C</b> en premier m'a permis de développer une solide compréhension de la logique et des bases de la programmation.",
-    "about_python_formation": "Par la suite, j'ai suivi une formation complète sur le langage <b>Python</b>, qui est aujourd'hui incontournable dans de nombreux domaines. Cette formation m'a apporté un large éventail de compétences, notamment en <b>programmation orientée objet</b>, en création d'<b>interfaces graphiques</b>, et en <b>gestion des versions</b>, un aspect essentiel pour le travail en équipe.",
-    "about_ai_learning": "Récemment, j'ai choisi d'élargir mes compétences en suivant une formation sur l'<b>intelligence artificielle</b>, un domaine fascinant qui révolutionne le développement logiciel. Comprendre l'<b>IA</b> est désormais indispensable, car elle fait partie intégrante du quotidien des développeurs et influence profondément les technologies actuelles et futures.",
-    "about_experience": "Fort de mes années d'expérience dans diverses industries, je me distingue par ma <b>capacité d'adaptation</b> et ma <b>réactivité</b> face aux défis. Je sais prendre des décisions rapidement afin d'obtenir des résultats de <b>qualité</b> tout en respectant les <b>exigences</b> et les <b>priorités</b> des projets.",
-    "about_closing": "À l'écoute et inventif, je serai le partenaire idéal pour concrétiser votre projet.",
-    "learn_more_about_my_profile": "En savoir plus sur mon profile",
-    "mr_beat_description": "Application de boîte à rythme",
-    "galaxy_description": "Jeu rapide se déroulant dans l'espace",
-    "pizza_mama_description": "Site web pour un restaurant",
-    "contact_description": "Je vous remercie de m'avoir contacté! Que vous ayez besoin de m'aider, de m'entraîner ou simplement de me dire bonjour, je suis toujours ouvert à de nouvelles opportunités et collaborations.",
-    "contact_closing": "Merci d'avoir visité mon portfolio. Je vous remercie de m'envoyer un message bientôt!",
-    "frame_title": "Parlons de votre projet.",
-    "frame_text": "Besoin d'un devis ou d'une demande de contact?",
-    "frame_email": "Contactez-moi par email",
-    "frame_phone": "ou par téléphone au"
+      "menu_button_produit": "PRODUITS",
+      "menu_button_panier": "PANIER",
+      "menu_button_a_propos": "A PROPOS",
+      "menu_button_tout_les_produits": "TOUTS NOS PRODUITS",
+      "menu_button_maroquinerie": "MAROQUINERIE",
+      "menu_button_macrames": "MACRAMES",
+      "menu_button_creation_sur_mesure": "CREATION SUR MESURE",
+      "menu_button_autres_produits": "AUTRES PRODUITS"
     
   }
     
