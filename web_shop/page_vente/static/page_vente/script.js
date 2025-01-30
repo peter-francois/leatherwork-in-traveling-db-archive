@@ -28,7 +28,15 @@ function changeLanguage(lang) {
                 'menu_button_maroquinerie':translations.menu_button_maroquinerie,
                 'menu_button_macrames':translations.menu_button_macrames,
                 'menu_button_creation_sur_mesure':translations.menu_button_creation_sur_mesure,
-                'menu_button_autres_produits':translations.menu_button_autres_produits
+                'menu_button_autres_produits':translations.menu_button_autres_produits,
+                'macrames_title':translations.macrames_title,
+                'macrames_description':translations.macrames_description,
+                'creation_sur_mesure_title':translations.creation_sur_mesure_title,
+                'creation_sur_mesure_description':translations.creation_sur_mesure_description,
+                'maroquinerie_title':translations.maroquinerie_title,
+                'maroquinerie_description':translations.maroquinerie_description,
+                'autres_produits_title':translations.autres_produits_title,
+                'autres_produits_description':translations.autres_produits_description
 
             };
 
