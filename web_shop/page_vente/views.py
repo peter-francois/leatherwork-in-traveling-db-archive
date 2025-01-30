@@ -5,7 +5,8 @@ from . models import *
 
 # Create your views here.
 def index(request):
-    return render(request, 'page_vente/index.html')
+    macrames = Macrame.objects.all()
+    return render(request, 'page_vente/index.html', {'macrames': macrames})
 
 
     """macrames_objects = Macrame.objects.all()

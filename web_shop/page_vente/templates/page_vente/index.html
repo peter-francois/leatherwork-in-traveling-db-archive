@@ -43,6 +43,17 @@
             </div> 
         </div>
     </div>
+
+    {% for macrame in macrames %}
+        {% if macrame.lien_image != "" %}
+        <img src={{ macrame.lien_image }} alt={{ macrame.nom }}>
+
+        {% endif %}
+    {% endfor %}
+
+    <img src="https://previews.dropbox.com/p/thumb/AChvo55UC3R1GgrfCPCXxzlrT-qW5kcZoljx40V3dyC6en97DpwOobTgyKVYD5HFhDomtWcFmZ2uFXLfGA4CVyS5L5xpbLZY6hCr_sJ5qMtFs935IpNJ1Ly9KEaErKvpwjif9XVXphtl2ZsIf_Sswl0c3DaWrpwb5BRNyQZyZrbFj_3WfVaeQpgKQzaMUBzt2ACxDLi4iOCJbZu0jmZgE7Dnv-aK6hw6ZxNs7r3uR2XDKKj2QUrt3SfJf9L7xbx_CYT8HlRlbcd6Z4qXbxJ3-kPpiv_fXRRboWRTAhAW0FNWNMvXa6Z7U1vVTiIhzOI-VDw/p.jpeg" alt="Atelier maroquinerie">
+
+
     <section class="category">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
             <div class="half-grid-width" >

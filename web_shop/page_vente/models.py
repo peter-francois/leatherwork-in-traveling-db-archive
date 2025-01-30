@@ -14,6 +14,7 @@ class Macrame(models.Model):
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     ornement = models.CharField(max_length=200)
     prix = models.FloatField(default=0.0)
+    lien_image = models.URLField(default='', max_length=20000)
     disponible = models.BooleanField(default=False)
 
     def __str__(self):
