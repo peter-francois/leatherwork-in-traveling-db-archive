@@ -206,12 +206,12 @@ a.linker{
     text-align: center;
     padding: 0 25px;
 }
-img{
+.category img{
     width: 275px;
     border: solid 2px #8c6b4f;
     border-radius: 5px;
 }
-img.image-float-right{
+.float-right{
     float: right;
 }
 
@@ -251,7 +251,7 @@ img.image-float-right{
         grid-template-columns: 1fr 1fr;
 
     }
-    img.image-float-right{
+    .category img{
         width: 70%;
     }
     .image-full-span{
@@ -274,7 +274,7 @@ img.image-float-right{
         grid-gap : 5px;
         margin: 10px 5px;
         }
-    img.image-float-right{
+    .category img{
     width: 130px;
     }
     .image-full-span{
