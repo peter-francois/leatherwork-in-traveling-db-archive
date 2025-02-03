@@ -20,6 +20,24 @@ div.header {
     text-align: center; 
     width: auto;
 }
+
+
+
+.grid-container{
+    display: grid;
+}
+
+div.title_and_logo{
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.logo{
+    justify-self: center;
+    border: none;
+    height: 200px;
+    width: 200px;
+}
 /* Style du conteneur des drapeaux */
 .language-selector {
     position: fixed;

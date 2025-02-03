@@ -2,7 +2,7 @@
     "en": {
     "title": "Welcome to My <br> Artisan Boutique",
     "menu_button_home": "HOME",
-    "menu_button_produit": "PRODUCTS",
+    "menu_button_produit": "PRODUCTS  <i class='fa-solid fa-arrow-down'></i>",
     "menu_button_panier": "CART",
     "menu_button_a_propos": "ABOUT",
     "menu_button_tout_les_produits": "ALL PRODUCTS",
@@ -24,7 +24,7 @@
     "fr": {
       "title": "Bienvenue sur Ma <br>Boutique Artisanale",
       "menu_button_home": "ACCUEIL",
-      "menu_button_produit": "PRODUITS",
+      "menu_button_produit": "PRODUITS  <i class='fa-solid fa-arrow-down'></i>",
       "menu_button_panier": "PANIER",
       "menu_button_a_propos": "A PROPOS",
       "menu_button_tout_les_produits": "TOUTS NOS PRODUITS",

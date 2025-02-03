@@ -10,7 +10,11 @@
 </head>
 <body>
     <div class="header">
-        <h1 id="title">Bienvenue sur Ma <br>Boutique Artisanale</h1>
+        <div class="title_and_logo grid-container">
+            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+            <h1 id="title">Bienvenue sur Ma <br>Boutique Artisanale</h1>
+            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+        </div>
         <div class="language-selector">
             <!-- Drapeaux avec attribut de langue -->
             <img 
@@ -29,7 +33,7 @@
             <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
             <div class="menu-content">
                 <a href="#" id="menu_button_home" >ACCUEIL</a>
-                <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUIT</a>
+                <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
                     <div class="menu-content-produit">
                         <a href="{% url 'boutique:tout-les-produits' %}" id="menu_button_tout_les_produits">TOUT LES PRODUITS</a>
                         <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
