@@ -127,6 +127,7 @@ let nombreArticles = panier.length;
 document.addEventListener('DOMContentLoaded', function() {
     
     const textCartButton = document.getElementById('text-cart-button');
+    const listeArticles = document.getElementById('liste-articles');
     // Fonction pour ajouter un article au panier
     window.ajouterAuPanier = function ajouterAuPanier(article) {
         panier.push(article);
@@ -144,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fonction pour afficher les articles du panier
 function afficherPanier() {
-    const listeArticles = document.getElementById('liste-articles');
+    if (listeArticles === null) return;
     listeArticles.innerHTML = '';
     panier.forEach((article, index) => {
         const li = document.createElement('li');
@@ -154,12 +155,13 @@ function afficherPanier() {
 }
 
 // Fonction pour vider le panier
+if (listeArticles !=null){
 document.getElementById('vider-panier').addEventListener('click', function() {
     localStorage.removeItem('panier');
     nombreArticles = 0;
     location.reload();
 });
-
+};
 
 });
 
