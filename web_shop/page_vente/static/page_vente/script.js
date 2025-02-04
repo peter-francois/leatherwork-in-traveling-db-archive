@@ -93,7 +93,7 @@ document.addEventListener('click', function(event) {
         menuButton.classList.remove('active');
         if (menuContentProduit.classList.contains('active')) {
             menuContentProduit.classList.remove('active');
-             }
+        }
     }
 });
 
@@ -124,8 +124,10 @@ window.addEventListener('scroll', function() {
 // Fonction pour ajouter un article au panier
 function ajouterAuPanier(article) {
     let panier = JSON.parse(localStorage.getItem('panier')) || [];
+    const cartButton = document.getElementById('cart-button');
     panier.push(article);
     localStorage.setItem('panier', JSON.stringify(panier));
+    cartButton.textContent = panier.length;
     afficherPanier();
 }
 

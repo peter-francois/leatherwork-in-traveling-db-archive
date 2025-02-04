@@ -48,16 +48,13 @@
         </div>
     </div>
 
-    {% for macrame in macrames %}
-        {% if macrame.lien_image != "" %}
-        <img src={{ macrame.lien_image }} alt={{ macrame.nom }}>
-
-        {% endif %}
-    {% endfor %}
-
     <div id="panier">
         <h2>Mon Panier</h2>
-        <ul id="liste-articles"></ul>
+        <ul id="liste-articles">
+            {% for article in panier %}
+                <li>{{ article }}</li>
+            {% endfor %}
+        </ul>
         <button id="vider-panier">Vider le Panier</button>
     </div>
     <script src="{% static 'page_vente/script.js'%}"></script>

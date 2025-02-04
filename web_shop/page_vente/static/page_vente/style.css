@@ -30,6 +30,7 @@ div.header {
 div.title_and_logo{
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    margin-top: 55px;
 }
 
 .logo{
@@ -42,7 +43,7 @@ div.title_and_logo{
 .language-selector {
     position: fixed;
     top: 12px; 
-    right: 32px; 
+    right: 1%; 
     display: flex;
     gap: 10px;
     align-items: center;
@@ -152,6 +153,24 @@ div.menu i{
     display: inline-block;
     width: 100%;
     padding-left: 32px;
+}
+#cart-button{
+    background-color: #00000080 ;
+    border: 3px solid var(--color1);
+    color: var(--color1);
+    padding: 13px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: fixed;
+    top: 5px;
+    right: 30%;
+    font-size: 16px;
+    margin: 0px 0px;
+    z-index: 11;
+}
+#cart-button:hover{
+    color: white;
 }
 
 
