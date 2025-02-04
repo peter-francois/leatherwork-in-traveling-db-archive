@@ -85,7 +85,6 @@ function toggleMenu() {
 document.addEventListener('click', function(event) {
     const menuButton = document.querySelector('.menu button');
     const menuContent = document.querySelector('.menu-content');
-    const menuButtonProduit = document.getElementById('menu-button-produit');
     const menuContentProduit = document.querySelector('.menu-content-produit');
     
     // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le manu est actif
@@ -101,10 +100,8 @@ document.addEventListener('click', function(event) {
 // Fonction pour afficher le sous-menu "Produit"
 function toggleMenuProduit(event){
     event.preventDefault();
-    const menuButtonProduit = document.getElementById('menu-button-produit');
     const menuContentProduit = document.querySelector('.menu-content-produit');
     menuContentProduit.classList.toggle('active');
-    menuButtonProduit.classList.toggle('active');
 }
 
 // Pour que le menu modifie son style en fonction de la scroll
