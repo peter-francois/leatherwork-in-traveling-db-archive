@@ -157,20 +157,32 @@ div.menu i{
 #cart-button{
     background-color: #00000080 ;
     border: 3px solid var(--color1);
+    border-radius: 10px;
     color: var(--color1);
-    padding: 13px 28px;
+    padding: 5px 25px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     position: fixed;
-    top: 5px;
+    top: 10px;
     right: 30%;
     font-size: 16px;
     margin: 0px 0px;
     z-index: 11;
+    cursor: pointer;
+    display: flex; 
+    align-items: center;
+    
 }
 #cart-button:hover{
     color: white;
+    border-color: white;
+}
+
+#cart-button i{
+    margin-right: 7px;
+}
+.flex_item_cart_button{
+    margin: 0px 0px;
 }
 
 

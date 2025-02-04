@@ -46,6 +46,10 @@
                 <a href="/contact">CONTACT</a>
             </div> 
         </div>
+        <a href="#" id="cart-button">
+            <i class="fas fa-shopping-cart flex_item_cart_button" ></i>
+            <p id="text-cart-button" class="flex_item_cart_button"></p>
+        </a>
     </div>
 
     <div id="panier">
@@ -57,6 +61,7 @@
         </ul>
         <button id="vider-panier">Vider le Panier</button>
     </div>
+    <button id="add_article" onclick="ajouterAuPanier('Article 1')">Ajouter un article</button>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>

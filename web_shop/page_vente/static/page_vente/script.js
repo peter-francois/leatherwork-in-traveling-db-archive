@@ -119,21 +119,31 @@ window.addEventListener('scroll', function() {
     }
 });
 
+// Initialiser la variable locale pour le panier
 
+let panier = JSON.parse(localStorage.getItem('panier')) ||[];
+let nombreArticles = panier.length;
 
-// Fonction pour ajouter un article au panier
-function ajouterAuPanier(article) {
-    let panier = JSON.parse(localStorage.getItem('panier')) || [];
-    const cartButton = document.getElementById('cart-button');
-    panier.push(article);
-    localStorage.setItem('panier', JSON.stringify(panier));
-    cartButton.textContent = panier.length;
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const textCartButton = document.getElementById('text-cart-button');
+    // Fonction pour ajouter un article au panier
+    window.ajouterAuPanier = function ajouterAuPanier(article) {
+        panier.push(article);
+        localStorage.setItem('panier', JSON.stringify(panier)); 
+        nombreArticles = panier.length;   
+        textCartButton.textContent = nombreArticles;  
+        console.log(nombreArticles);  
+        afficherPanier();
+    };
+
+    // Appeler afficherPanier au chargement de la page
+    textCartButton.textContent = nombreArticles;
     afficherPanier();
-}
 
-// Fonction pour afficher les articles du panier
+
+    // Fonction pour afficher les articles du panier
 function afficherPanier() {
-    let panier = JSON.parse(localStorage.getItem('panier')) || [];
     const listeArticles = document.getElementById('liste-articles');
     listeArticles.innerHTML = '';
     panier.forEach((article, index) => {
@@ -146,8 +156,12 @@ function afficherPanier() {
 // Fonction pour vider le panier
 document.getElementById('vider-panier').addEventListener('click', function() {
     localStorage.removeItem('panier');
-    afficherPanier();
+    nombreArticles = 0;
+    location.reload();
 });
 
-// Appeler afficherPanier au chargement de la page
-window.onload = afficherPanier;
+
+});
+
+
+
