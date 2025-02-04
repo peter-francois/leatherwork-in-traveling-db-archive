@@ -88,12 +88,13 @@ WSGI_APPLICATION = 'web_shop.wsgi.application'
 DATABASES = {
     'default': env.db(),
 
+
 }
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
-        'LOCATION': '127.0.0.1:11211',
+        'BACKEND': env('CACHE_BACKEND'),
+        'LOCATION': env('CACHE_LOCATION'),
     }
 }
 # Password validation
