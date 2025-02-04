@@ -136,3 +136,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
+CSRF_COOKIE_SECURE = True     # Assure que le cookie CSRF est aussi sécurisé
+
+SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
+SECURE_HSTS_SECONDS = 31536000    # Active HTTP Strict Transport Security (1 an)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_SSL_REDIRECT = True
+
+
+if env('DJANGO_ENV') == 'development':  
+    print("Development ok")
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_SECONDS = 0
