@@ -220,6 +220,40 @@ a.linker{
     color: #8c6b4f;
 }
 
+/*Panier*/
+
+#panier {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 20px;
+}
+
+#panier h2 {
+    font-size: 24px;
+}
+
+#liste-articles {
+    list-style-type: none;
+    padding: 0;
+}
+
+#liste-articles li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+#vider-panier {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#vider-panier:hover {
+    background-color: #d32f2f;
+}
+
 @media only screen and (max-width: 1182px)
 {
     header {

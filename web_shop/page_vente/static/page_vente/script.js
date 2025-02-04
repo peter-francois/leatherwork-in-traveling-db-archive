@@ -19,7 +19,8 @@ function changeLanguage(lang) {
             
             // Liste des éléments à traduire
             const elementsToTranslate = {
-                'title': translations.title,
+                'title_page_index': translations.title_page_index,
+                'title_index': translations.title_index,
                 'menu_button_home':translations.menu_button_home,
                 'menu_button_produit':translations.menu_button_produit,
                 'menu_button_panier':translations.menu_button_panier,
@@ -36,7 +37,8 @@ function changeLanguage(lang) {
                 'maroquinerie_title':translations.maroquinerie_title,
                 'maroquinerie_description':translations.maroquinerie_description,
                 'autres_produits_title':translations.autres_produits_title,
-                'autres_produits_description':translations.autres_produits_description
+                'autres_produits_description':translations.autres_produits_description,
+                'title_page_cart':translations.title_page_cart
 
             };
 
@@ -90,10 +92,9 @@ document.addEventListener('click', function(event) {
     if (!menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
         menuContent.classList.remove('active');
         menuButton.classList.remove('active');
-    }
-    else if (!menuButtonProduit.contains(event.target) && !menuContentProduit.contains(event.target) && menuContentProduit.classList.contains('active')) {
-        menuContentProduit.classList.remove('active');
-        menuButtonProduit.classList.remove('active');
+        if (menuContentProduit.classList.contains('active')) {
+            menuContentProduit.classList.remove('active');
+             }
     }
 });
 
@@ -120,3 +121,34 @@ window.addEventListener('scroll', function() {
         menuButton.classList.remove('scrolled');
     }
 });
+
+
+
+// Fonction pour ajouter un article au panier
+function ajouterAuPanier(article) {
+    let panier = JSON.parse(localStorage.getItem('panier')) || [];
+    panier.push(article);
+    localStorage.setItem('panier', JSON.stringify(panier));
+    afficherPanier();
+}
+
+// Fonction pour afficher les articles du panier
+function afficherPanier() {
+    let panier = JSON.parse(localStorage.getItem('panier')) || [];
+    const listeArticles = document.getElementById('liste-articles');
+    listeArticles.innerHTML = '';
+    panier.forEach((article, index) => {
+        const li = document.createElement('li');
+        li.textContent = article;
+        listeArticles.appendChild(li);
+    });
+}
+
+// Fonction pour vider le panier
+document.getElementById('vider-panier').addEventListener('click', function() {
+    localStorage.removeItem('panier');
+    afficherPanier();
+});
+
+// Appeler afficherPanier au chargement de la page
+window.onload = afficherPanier;
