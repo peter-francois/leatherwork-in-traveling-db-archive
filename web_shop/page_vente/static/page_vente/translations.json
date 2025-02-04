@@ -1,6 +1,7 @@
 {
     "en": {
-    "title": "Welcome to My <br> Artisan Boutique",
+    "title_page_index": "My shop",
+    "title_index": "Welcome to My <br> Artisan Store",
     "menu_button_home": "HOME",
     "menu_button_produit": "PRODUCTS  <i class='fa-solid fa-arrow-down'></i>",
     "menu_button_panier": "CART",
@@ -17,12 +18,13 @@
     "maroquinerie_title": "Leathercraft Area",
     "maroquinerie_description": "Collection of models in <strong>leather</strong>.",
     "autres_produits_title": "Other Products",
-    "autres_produits_description": "Mix of <strong>different techniques and materials</strong>."
-
+    "autres_produits_description": "Mix of <strong>different techniques and materials</strong>.",
+    "title_page_cart":"Cart"
 
     },
     "fr": {
-      "title": "Bienvenue sur Ma <br>Boutique Artisanale",
+      "title_page_index": "Ma boutique",
+      "title_index": "Bienvenue sur Ma <br>Boutique Artisanale",
       "menu_button_home": "ACCUEIL",
       "menu_button_produit": "PRODUITS  <i class='fa-solid fa-arrow-down'></i>",
       "menu_button_panier": "PANIER",
@@ -39,8 +41,8 @@
       "maroquinerie_title": "Espace Maroquinerie",
       "maroquinerie_description": "Collection de modèles en <strong>Cuir</strong>.",
       "autres_produits_title": "Autres Produits",
-      "autres_produits_description": "Mix de <strong>différentes techniques et matériaux</strong>."
-
+      "autres_produits_description": "Mix de <strong>différentes techniques et matériaux</strong>.",
+      "title_page_cart":"Panier"
     
   }
     
