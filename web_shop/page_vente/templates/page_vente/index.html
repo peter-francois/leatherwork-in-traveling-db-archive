@@ -11,9 +11,9 @@
 <body>
     <div class="header">
         <div class="title_and_logo grid-container">
-            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+            <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
             <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
-            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+            <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
         <div class="language-selector">
             <!-- Drapeaux avec attribut de langue -->
@@ -52,23 +52,17 @@
         </a>
     </div>
 
-    {% for macrame in macrames %}
-        {% if macrame.lien_image != "" %}
-        <img src={{ macrame.lien_image }} alt={{ macrame.nom }}>
-
-        {% endif %}
-    {% endfor %}
-
-
 
     <section class="category">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
             <div class="half-grid-width" >
                 <div class="product-title-and-description">
                     <h2 class="product-title" id="maroquinerie_title"><i class="fas fa-wallet"></i> Espace Maroquinerie</h2>
-                    <p id="maroquinerie_description">Collection de modèles en <strong>Cuir</strong>.</p>
+                    <p class="product-description" id="maroquinerie_description" >Collection de modèles en <strong>Cuir</strong>.</p>
                 </div>
-                <img class="float-right" src="{% static 'page_vente/images/sac_bandouliere2.jpeg' %}" alt="Atelier maroquinerie">
+                <img class="float-right display-laptop" src="{% static 'page_vente/images/sac_bandouliere2.jpeg' %}" alt="Atelier maroquinerie">
+                <img class="float-right display-mobile" src="{% static 'page_vente/images/sac_bandouliere_paysage.jpeg' %}" alt="Atelier maroquinerie">
+
 
             </div>
         </a>
@@ -76,31 +70,32 @@
             <div class="half-grid-width" >
                 <div class="product-title-and-description">
                     <h2 class="product-title" id="macrames_title"><i class="fas fa-feather-pointed"></i> Espace Macramé</h2>
-                    <p id="macrames_description">Création sur une base de <strong>tissage de fils</strong>. </p>
+                    <p class="product-description" id="macrames_description" >Création sur une base de <strong>tissage de fils</strong>. </p>
                 </div>
-                <img class="float-right" src="{% static 'page_vente/images/macrame.jpeg' %}" alt="Atelier macramé">
+                <img class="float-right display-laptop" src="{% static 'page_vente/images/macrame.jpeg' %}" alt="Atelier macramé">
+                <img class="float-right display-mobile" src="{% static 'page_vente/images/macrame_paysage.jpeg' %}" alt="Atelier macramé">
     
             </div>
         </a>
         <a class="linker product-card full-grid-width" href="{% url 'boutique:creation-sur-mesure' %}">
             <div class="grid-width_2" >
-                <img id="img4" class="image-full-span display-laptop" src="{% static 'page_vente/images/atelier_maroquinerie.jpeg' %}" alt="Atelier maroquinerie">
+                <img class="image-full-span display-laptop" src="{% static 'page_vente/images/porte_feuille.jpeg' %}" alt="Atelier maroquinerie">
                 <div class="product-title-and-description">
                     <h2 class="product-title" id="creation_sur_mesure_title"><i class="fas fa-scissors"></i> Création sur Mesure</h2>
-                    <p id="creation_sur_mesure_description" style="text-align: center;"><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
+                    <p class="product-description" id="creation_sur_mesure_description"  style="text-align: center;"><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
                         <strong>entièrement personnalisés</strong>
                         pour mes clients.</span><br>N'hésitez pas à me contacter, je serai ravi de <strong>donner vie à vos idées !</strong></p>
                 </div>
-                <img class="image-full-span " src="{% static 'page_vente/images/porte_feuille.jpeg' %}" alt="Atelier maroquinerie">
+                <img class="image-full-span " src="{% static 'page_vente/images/atelier_maroquinerie.jpeg' %}" alt="Atelier maroquinerie">
     
             </div>
             </a>
         <a class="linker product-card full-grid-width" href="{% url 'boutique:autres-produits' %}">
             <div class="grid-width_2" >
-                <img id="img3" class="image-full-span display-laptop" src="{% static 'page_vente/images/mix_maro_macra.jpeg' %}" alt="Outils maroquinerie">
+                <img class="image-full-span display-laptop" src="{% static 'page_vente/images/mix_maro_macra.jpeg' %}" alt="Outils maroquinerie">
                 <div class="product-title-and-description">
                     <h2 class="product-title" id="autres_produits_title"><i class="fas fa-gift"></i> Autre Produit Fait Main</h2>
-                    <p id="autres_produits_description">Mix de <strong>différentes techniques et matériaux</strong>.</p>
+                    <p class="product-description" id="autres_produits_description">Mix de <strong>différentes techniques et matériaux</strong>.</p>
                 </div>
                 <img class="image-full-span " src="{% static 'page_vente/images/mix_maro_macra2.jpeg' %}" alt="Outils macramé">
             </div>

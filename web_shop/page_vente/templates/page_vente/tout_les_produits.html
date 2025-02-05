@@ -22,6 +22,13 @@
             <img class="image-float-right" src="{% static 'page_vente/images/smart-home-logo.jpeg' %}" alt="Atelier maroquinerie">
 
         </div>
+
+        {% for macrame in macrames %}
+        {% if macrame.lien_image != "" %}
+        <img src={{ macrame.lien_image }} alt={{ macrame.nom }}>
+
+        {% endif %}
+    {% endfor %}
         <div class="product-card half-grid-width">
 
             <div class="product-title-and-description">
