@@ -77,8 +77,12 @@ flags.forEach(flag => {
 function toggleMenu() {
     const menuContent = document.querySelector('.menu-content');
     const menuButton = document.querySelector('.menu button');
+    const menuContentProduit = document.querySelector('.menu-content-produit');
     menuContent.classList.toggle('active');
     menuButton.classList.toggle('active');
+    if (menuContentProduit.classList.contains('active')) {
+        menuContentProduit.classList.remove('active');
+    }
 }
 
 // Fermer le menu si on clique en dehors
