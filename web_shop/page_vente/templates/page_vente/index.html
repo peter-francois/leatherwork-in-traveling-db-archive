@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
 </head>
 <body>
-    <div class="header">
+    <div class="header text-center">
         <div class="title_and_logo grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
             <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
@@ -30,11 +30,11 @@
                 data-lang="fr">
         </div>
         <div class="menu">
-            <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
-            <div class="menu-content">
+            <button class="smooth-transition" onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
+            <div class="menu-content smooth-transition">
                 <a href="#" id="menu_button_home" >ACCUEIL</a>
                 <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
-                    <div class="menu-content-produit">
+                    <div class="menu-content-produit smooth-transition">
                         <a href="{% url 'boutique:tout-les-produits' %}" id="menu_button_tout_les_produits">TOUT LES PRODUITS</a>
                         <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
                         <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">MACRAMES</a>
@@ -46,7 +46,7 @@
                 <a href="/contact">CONTACT</a>
             </div> 
         </div>
-        <a href="/panier" id="cart-button">
+        <a class="text-center" href="/panier" id="cart-button">
             <i class="fas fa-shopping-cart flex_item_cart_button" ></i>
             <p id="text-cart-button" class="flex_item_cart_button"></p>
         </a>
@@ -56,7 +56,7 @@
     <section class="category">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
             <div class="half-grid-width" >
-                <div class="product-title-and-description">
+                <div class="product-title-and-description text-center">
                     <h2 class="product-title" id="maroquinerie_title"><i class="fas fa-wallet"></i> Espace Maroquinerie</h2>
                     <p class="product-description" id="maroquinerie_description" >Collection de modèles en <strong>Cuir</strong>.</p>
                 </div>
@@ -68,7 +68,7 @@
         </a>
         <a class="linker product-card " href="{% url 'boutique:macrames' %}">
             <div class="half-grid-width" >
-                <div class="product-title-and-description">
+                <div class="product-title-and-description text-center">
                     <h2 class="product-title" id="macrames_title"><i class="fas fa-feather-pointed"></i> Espace Macramé</h2>
                     <p class="product-description" id="macrames_description" >Création sur une base de <strong>tissage de fils</strong>. </p>
                 </div>
@@ -80,9 +80,9 @@
         <a class="linker product-card full-grid-width" href="{% url 'boutique:creation-sur-mesure' %}">
             <div class="grid-width_2" >
                 <img class="image-full-span display-laptop" src="{% static 'page_vente/images/porte_feuille.jpeg' %}" alt="Atelier maroquinerie">
-                <div class="product-title-and-description">
+                <div class="product-title-and-description text-center">
                     <h2 class="product-title" id="creation_sur_mesure_title"><i class="fas fa-scissors"></i> Création sur Mesure</h2>
-                    <p class="product-description" id="creation_sur_mesure_description"  style="text-align: center;"><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
+                    <p class="product-description text-center" id="creation_sur_mesure_description" ><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
                         <strong>entièrement personnalisés</strong>
                         pour mes clients.</span><br>N'hésitez pas à me contacter, je serai ravi de <strong>donner vie à vos idées !</strong></p>
                 </div>
@@ -93,7 +93,7 @@
         <a class="linker product-card full-grid-width" href="{% url 'boutique:autres-produits' %}">
             <div class="grid-width_2" >
                 <img class="image-full-span display-laptop" src="{% static 'page_vente/images/mix_maro_macra.jpeg' %}" alt="Outils maroquinerie">
-                <div class="product-title-and-description">
+                <div class="product-title-and-description text-center">
                     <h2 class="product-title" id="autres_produits_title"><i class="fas fa-gift"></i> Autre Produit Fait Main</h2>
                     <p class="product-description" id="autres_produits_description">Mix de <strong>différentes techniques et matériaux</strong>.</p>
                 </div>
