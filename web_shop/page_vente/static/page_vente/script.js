@@ -113,8 +113,8 @@ window.addEventListener('scroll', function() {
     const menuContent = document.querySelector('.menu-content');
     const menuButton = document.querySelector('.menu button');
     const headerDiv = document.querySelector('div.header');
-    const headerBottom = headerDiv.offsetTop + headerDiv.offsetHeight -30;
-    if (window.scrollY >= headerBottom) { // quand on dépasse la div.header
+    const headerTop = headerDiv.offsetTop + 40;
+    if (window.scrollY >= headerTop) { // quand on dépasse la div.header
         menuContent.classList.add('scrolled');
         menuButton.classList.add('scrolled');
     } else {
