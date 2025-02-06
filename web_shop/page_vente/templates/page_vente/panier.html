@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
 </head>
 <body>
-    <div class="header">
+    <div class="header text-center">
         <div class="title_and_logo grid-container">
-            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+            <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
             <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
-            <img src="{% static 'page_vente/images/logo.png' %}" alt="Logo" class="logo">
+            <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
         <div class="language-selector">
             <!-- Drapeaux avec attribut de langue -->
@@ -30,11 +30,11 @@
                 data-lang="fr">
         </div>
         <div class="menu">
-            <button onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
-            <div class="menu-content">
-                <a href="{% url 'boutique:index' %}" id="menu_button_home" >ACCUEIL</a>
+            <button class="smooth-transition" onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
+            <div class="menu-content smooth-transition">
+                <a href="#" id="menu_button_home" >ACCUEIL</a>
                 <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
-                    <div class="menu-content-produit">
+                    <div class="menu-content-produit smooth-transition">
                         <a href="{% url 'boutique:tout-les-produits' %}" id="menu_button_tout_les_produits">TOUT LES PRODUITS</a>
                         <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
                         <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">MACRAMES</a>
@@ -46,7 +46,7 @@
                 <a href="/contact">CONTACT</a>
             </div> 
         </div>
-        <a href="#" id="cart-button">
+        <a class="text-center" href="/panier" id="cart-button">
             <i class="fas fa-shopping-cart flex_item_cart_button" ></i>
             <p id="text-cart-button" class="flex_item_cart_button"></p>
         </a>
