@@ -22,7 +22,9 @@
     "title_page_cart":"Cart",
     "title_panier":"Shopping cart",
     "vider_panier":"Empty cart",
-    "panier_vide":"Your cart is empty"
+    "panier_vide":"Your cart is empty",
+    "title_page_all_products":"All products",
+    "title_all_products":"All products"
 
     },
     "fr": {
@@ -48,7 +50,9 @@
       "title_page_cart":"Panier",
       "title_panier":"Mon Panier",
       "vider_panier":"Vider le panier",
-      "panier_vide":"Votre panier est vide"
+      "panier_vide":"Votre panier est vide",
+      "title_page_all_products":"Tous les produits",
+      "title_all_products":"Tous les produits"
     
   }
     
