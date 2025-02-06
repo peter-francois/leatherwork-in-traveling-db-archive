@@ -149,7 +149,6 @@ SECURE_SSL_REDIRECT = True
 
 
 if env('DJANGO_ENV') == 'development':  
-    print("Development ok")
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
