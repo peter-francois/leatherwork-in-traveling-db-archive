@@ -6,7 +6,7 @@
     "menu_button_produit": "PRODUCTS  <i class='fa-solid fa-arrow-down'></i>",
     "menu_button_panier": "CART",
     "menu_button_a_propos": "ABOUT",
-    "menu_button_tout_les_produits": "ALL PRODUCTS",
+    "menu_button_tous_les_produits": "ALL PRODUCTS",
     "menu_button_maroquinerie": "LEATHERCRAFT",
     "menu_button_macrames": "MACRAME",
     "menu_button_creation_sur_mesure": "CUSTOM CREATION",
@@ -19,7 +19,10 @@
     "maroquinerie_description": "Collection of models in <strong>leather</strong>.",
     "autres_produits_title": "Other Products",
     "autres_produits_description": "Mix of <strong>different techniques and materials</strong>.",
-    "title_page_cart":"Cart"
+    "title_page_cart":"Cart",
+    "title_panier":"Shopping cart",
+    "vider_panier":"Empty cart",
+    "panier_vide":"Your cart is empty"
 
     },
     "fr": {
@@ -29,7 +32,7 @@
       "menu_button_produit": "PRODUITS  <i class='fa-solid fa-arrow-down'></i>",
       "menu_button_panier": "PANIER",
       "menu_button_a_propos": "A PROPOS",
-      "menu_button_tout_les_produits": "TOUTS NOS PRODUITS",
+      "menu_button_tous_les_produits": "TOUS LES PRODUITS",
       "menu_button_maroquinerie": "MAROQUINERIE",
       "menu_button_macrames": "MACRAMES",
       "menu_button_creation_sur_mesure": "CREATION SUR MESURE",
@@ -42,7 +45,10 @@
       "maroquinerie_description": "Collection de modèles en <strong>Cuir</strong>.",
       "autres_produits_title": "Autres Produits",
       "autres_produits_description": "Mix de <strong>différentes techniques et matériaux</strong>.",
-      "title_page_cart":"Panier"
+      "title_page_cart":"Panier",
+      "title_panier":"Mon Panier",
+      "vider_panier":"Vider le panier",
+      "panier_vide":"Votre panier est vide"
     
   }
     

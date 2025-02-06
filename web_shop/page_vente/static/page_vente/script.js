@@ -25,7 +25,7 @@ function changeLanguage(lang) {
                 'menu_button_produit':translations.menu_button_produit,
                 'menu_button_panier':translations.menu_button_panier,
                 'menu_button_a_propos':translations.menu_button_a_propos,
-                'menu_button_tout_les_produits':translations.menu_button_tout_les_produits,
+                'menu_button_tous_les_produits':translations.menu_button_tous_les_produits,
                 'menu_button_maroquinerie':translations.menu_button_maroquinerie,
                 'menu_button_macrames':translations.menu_button_macrames,
                 'menu_button_creation_sur_mesure':translations.menu_button_creation_sur_mesure,
@@ -38,7 +38,10 @@ function changeLanguage(lang) {
                 'maroquinerie_description':translations.maroquinerie_description,
                 'autres_produits_title':translations.autres_produits_title,
                 'autres_produits_description':translations.autres_produits_description,
-                'title_page_cart':translations.title_page_cart
+                'title_page_cart':translations.title_page_cart,
+                'title_panier':translations.title_panier,
+                'vider_panier':translations.vider_panier,
+                'panier_vide':translations.panier_vide
 
             };
 
@@ -124,8 +127,7 @@ window.addEventListener('scroll', function() {
 });
 
 // Initialiser la variable locale pour le panier
-
-let panier = JSON.parse(localStorage.getItem('panier')) ||[];
+let panier = JSON.parse(localStorage.getItem('panier'))||[];
 let nombreArticles = panier.length;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -160,7 +162,7 @@ function afficherPanier() {
 
 // Fonction pour vider le panier
 if (listeArticles !=null){
-document.getElementById('vider-panier').addEventListener('click', function() {
+document.getElementById('vider_panier').addEventListener('click', function() {
     localStorage.removeItem('panier');
     nombreArticles = 0;
     location.reload();
