@@ -36,7 +36,15 @@ def macrames(request):
     return render(request, 'page_vente/macrames.html')
 
 def tous_les_produits(request):
-    return render(request, 'page_vente/tous_les_produits.html')
+    macrames = Macrame.objects.all()
+    maroquinerie = Maroquinerie.objects.all()
+    together = Together.objects.all()
+    all_products = []
+    all_products.extend(macrames)
+    all_products.extend(maroquinerie)
+    all_products.extend(together)
+
+    return render(request, 'page_vente/tous_les_produits.html', {'all_products': all_products})
 
 def maroquinerie(request):
     return render(request, 'page_vente/maroquinerie.html')

@@ -41,7 +41,9 @@ function changeLanguage(lang) {
                 'title_page_cart':translations.title_page_cart,
                 'title_panier':translations.title_panier,
                 'vider_panier':translations.vider_panier,
-                'panier_vide':translations.panier_vide
+                'panier_vide':translations.panier_vide,
+                'title_page_all_products':translations.title_page_all_products,
+                'title_all_products':translations.title_all_products
 
             };
 

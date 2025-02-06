@@ -275,6 +275,19 @@ body {
         background-color: #d32f2f;
     }
 
+    /*Tous les produits*/
+    .tous_les_produits{
+        align-items: stretch;
+        grid-template-rows: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
+        margin: 30px 25px;
+        gap: 20px;
+    }
+    .tous_les_produits img{
+        width: 220px;
+        height: 220px;
+    }
+
 @media only screen and (max-width: 1182px)
 {   
     /*Common*/
