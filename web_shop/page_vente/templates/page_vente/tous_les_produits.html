@@ -54,21 +54,24 @@
 
     <section>
         <nav>
-            <!--search-->
-            <form action="">
-                <input type="text" name="" id="">
-                <button type="submit" ><i class="fas fa-search"></i></button>
-                <!--filter-->
-                <button type="button"><i class="fas fa-filter"></i></button>
+            <form method="GET">
+                {{ form.as_p }}
+                <button type="submit">Filtrer</button>
             </form>
         </nav>
     </section>
     <section class="grid-container tous_les_produits">
-        {% for all_product in all_products %}
-            {% if all_product.disponible %}
-            <img src="{{ all_product.lien_image }}" alt="{{ all_product.nom }}">
-            {% endif %}
-        {% endfor %}
+        <ul>
+            {% for all_product in all_products %}
+                {% if all_product.disponible %}
+                <li>{{ all_product.nom }} - {{ all_product.type }} - {{ all_product.prix }}€
+                    <img src="{{ all_product.lien_image1 }}" alt="{{ all_product.nom }}">
+                </li>
+                {% endif %}
+                {% empty %}
+                <li>Aucun produit trouvé.</li>
+            {% endfor %}
+        </ul>
     </section>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>

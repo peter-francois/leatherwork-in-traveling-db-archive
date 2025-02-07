@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from . models import *
+from .models import *
+from .forms import ProductFilterForm
 
 
 # Create your views here.
-def index(request):
-    macrames = Macrame.objects.all()
-    
-    return render(request, 'page_vente/index.html', {'macrames': macrames})
+def index(request):    
+    return render(request, 'page_vente/index.html')
 
 
     """macrames_objects = Macrame.objects.all()
@@ -36,15 +35,26 @@ def macrames(request):
     return render(request, 'page_vente/macrames.html')
 
 def tous_les_produits(request):
-    macrames = Macrame.objects.all()
-    maroquinerie = Maroquinerie.objects.all()
-    together = Together.objects.all()
-    all_products = []
-    all_products.extend(macrames)
-    all_products.extend(maroquinerie)
-    all_products.extend(together)
+    all_products = AllProducts.objects.all()
+    form = ProductFilterForm(request.GET)
+    if form.is_valid():
+        search = form.cleaned_data.get('search')
+        category = form.cleaned_data.get('category')
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
 
-    return render(request, 'page_vente/tous_les_produits.html', {'all_products': all_products})
+        if search:
+            all_products = all_products.filter(nom__icontains=search)
+        if category:
+            all_products = all_products.filter(categorie__icontains=category)
+        if min_price is not None:
+            all_products = all_products.filter(prix__gte=min_price)
+        if max_price is not None:
+            all_products = all_products.filter(prix__lte=max_price)
+    
+    
+
+    return render(request, 'page_vente/tous_les_produits.html', {'all_products': all_products, 'form': form})
 
 def maroquinerie(request):
     return render(request, 'page_vente/maroquinerie.html')
