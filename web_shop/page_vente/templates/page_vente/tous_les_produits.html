@@ -46,33 +46,35 @@
                 <a href="/contact">CONTACT</a>
             </div> 
         </div>
-        <a class="text-center" href="/panier" id="cart-button">
+        <a class="text-center page-button" href="/panier" id="cart-button">
             <i class="fas fa-shopping-cart flex_item_cart_button" ></i>
             <p id="text-cart-button" class="flex_item_cart_button"></p>
         </a>
     </div>
+    <main>
+        <section class="tous_les_produits">
+            <h2>TOUS LES PRODUITS</h2>
+            <p>Choisissez vos produits</p>
+                <form class="filter-form grid-container" method="GET">
+                    {{ form.as_p }}
+                    <button class="page-button" type="submit" >Filtrer</button>
+                </form>
+        </section>
 
-    <section>
-        <nav>
-            <form method="GET">
-                {{ form.as_p }}
-                <button type="submit">Filtrer</button>
-            </form>
-        </nav>
-    </section>
-    <section class="grid-container tous_les_produits">
-        <ul>
-            {% for all_product in all_products %}
-                {% if all_product.disponible %}
-                <li>{{ all_product.nom }} - {{ all_product.type }} - {{ all_product.prix }}€
-                    <img src="{{ all_product.lien_image1 }}" alt="{{ all_product.nom }}">
-                </li>
-                {% endif %}
-                {% empty %}
-                <li>Aucun produit trouvé.</li>
-            {% endfor %}
-        </ul>
-    </section>
+        <section class="grid-container tous_les_produits">
+            <ul>
+                {% for all_product in all_products %}
+                    {% if all_product.disponible %}
+                    <li>{{ all_product.nom }} - {{ all_product.type }} - {{ all_product.prix }}€
+                        <img src="{{ all_product.lien_image1 }}" alt="{{ all_product.nom }}">
+                    </li>
+                    {% endif %}
+                    {% empty %}
+                    <li>Aucun produit trouvé.</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>
