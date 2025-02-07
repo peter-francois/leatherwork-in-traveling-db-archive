@@ -39,14 +39,17 @@ def tous_les_produits(request):
     form = ProductFilterForm(request.GET)
     if form.is_valid():
         search = form.cleaned_data.get('search')
-        category = form.cleaned_data.get('category')
+        type = form.cleaned_data.get('type')
         min_price = form.cleaned_data.get('min_price')
         max_price = form.cleaned_data.get('max_price')
 
         if search:
             all_products = all_products.filter(nom__icontains=search)
-        if category:
-            all_products = all_products.filter(categorie__icontains=category)
+        if type:
+            if type == '---':
+                type = None
+            else:
+                all_products = all_products.filter(type__icontains=type)
         if min_price is not None:
             all_products = all_products.filter(prix__gte=min_price)
         if max_price is not None:
