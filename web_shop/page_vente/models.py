@@ -5,8 +5,8 @@ class AllProducts(models.Model):
     CATEGORY_CHOICES = [
         ('Macrame', 'Macrame'),
         ('Maroquinerie', 'Maroquinerie'),
-        ('hybride', 'hybride'),
-        ('entretien', 'entretien')
+        ('Hybride', 'Hybride'),
+        ('Entretien', 'Entretien')
     ]
     TYPE_CHOICES = [
         ('Murale', 'Murale'),
