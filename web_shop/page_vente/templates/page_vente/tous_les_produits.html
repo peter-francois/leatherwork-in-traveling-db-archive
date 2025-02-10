@@ -15,42 +15,11 @@
             <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
-        <div class="language-selector">
-            <!-- Drapeaux avec attribut de langue -->
-            <img 
-            src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" 
-            alt="English"
-            class="flag" 
-            data-lang="en">
-
-            <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" 
-                alt="French" 
-                class="flag" 
-                data-lang="fr">
-        </div>
-        <div class="menu">
-            <button class="smooth-transition" onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
-            <div class="menu-content smooth-transition">
-                <a href="/" id="menu_button_home" >ACCUEIL</a>
-                <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
-                    <div class="menu-content-produit smooth-transition">
-                        <a href="#" id="menu_button_tous_les_produits">TOUS LES PRODUITS</a>
-                        <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
-                        <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">MACRAMES</a>
-                        <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">CREATION SUR MESURE</a>
-                        <a href="{% url 'boutique:autres-produits' %}" id="menu_button_autres_produits">AUTRES PRODUITS</a>
-                    </div>
-                <a href="/panier" id="menu_button_panier">PANIER</a>
-                <a href="/a-propos" id="menu_button_a_propos">A PROPOS</a>
-                <a href="/contact">CONTACT</a>
-            </div> 
-        </div>
-        <a class="text-center page-button" href="/panier" id="cart-button">
-            <i class="fas fa-shopping-cart flex_item_cart_button" ></i>
-            <p id="text-cart-button" class="flex_item_cart_button"></p>
-        </a>
+        
+    <!-- Include Navbar component -->
+    {% include 'page_vente/navbar.html' %}
     </div>
+    
     <main>
         <section class="tous_les_produits">
             <h2>TOUS LES PRODUITS</h2>
