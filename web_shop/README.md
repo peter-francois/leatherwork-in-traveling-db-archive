@@ -17,7 +17,6 @@ As a beginner developer, this project is particularly challenging, as I am build
 - **Backend:** Django (Python)
 - **Frontend:** HTML, CSS, JavaScript
 - **Database:** SQLite
-- **Authentication:** Django's built-in authentication system
 <!-- - **Deployment:** (To be decided) -->
 
 ## 🚀 Installation
