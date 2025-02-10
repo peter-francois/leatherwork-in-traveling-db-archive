@@ -65,8 +65,8 @@ def maroquinerie(request):
 def creation_sur_mesure(request):
     return render(request, 'page_vente/creation_sur_mesure.html')
 
-def autres_produits(request):
-    return render(request, 'page_vente/autres_produits.html')
+def hybride(request):
+    return render(request, 'page_vente/hybride.html')
 
 def contact(request):
     return render(request, 'page_vente/contact.html')
