@@ -1,10 +1,22 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import ProductFilterForm
 from django.core.paginator import Paginator
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_protect
 
 
+@require_POST
+@csrf_protect
+def rendre_indisponible(request, product_id):
+    try:
+        product = AllProducts.objects.get(id=product_id)
+        product.disponible = False
+        product.save()
+        return JsonResponse({'status': 'success'})
+    except AllProducts.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
 # Create your views here.
 def index(request):    
     return render(request, 'page_vente/index.html')
@@ -68,7 +80,7 @@ def tous_les_produits(request):
         'products': page_obj,
         'form': form
     }
-    
+
     return render(request, 'page_vente/tous_les_produits.html', context)
 
 def maroquinerie(request):

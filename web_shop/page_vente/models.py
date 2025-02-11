@@ -21,6 +21,7 @@ class AllProducts(models.Model):
         ('Collier chien', 'Collier chien'),
         ('Divers', 'Divers'),
     ]
+    id = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=200)
     categorie = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)

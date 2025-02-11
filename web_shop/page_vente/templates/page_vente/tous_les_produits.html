@@ -26,20 +26,25 @@
             <p>Choisissez vos produits</p>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
-                    <button class="page-button" type="submit" >Filtrer</button>
                 </form>
+                <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
         </section>
 
         <section>
             <div class="grid-container tous_les_produits">
                 {% for product in products %}
-                    <div class="product">
-                        <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€</p>
-                        <img src="{{ product.lien_image1 }}" alt="{{ product.nom }}">
-                    </div>
-                {% empty %}
-                    <div>Aucun produit trouvé.</div>
-                {% endfor %}
+                <div class="product" data-product-id="{{ product.id }}">
+                    <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€</p>
+                    <img src="{{ product.lien_image1 }}" alt="{{ product.nom }}">
+                    {% if product.disponible %}
+                    <button type="button" id="add_article" onclick="ajouterAuPanier('{{ product.id }}')">Ajouter au panier</button>
+                {% else %}
+                    <button type="button" disabled>Indisponible</button>
+                {% endif %}
+                </div>
+            {% empty %}
+                <div>Aucun produit trouvé.</div>
+            {% endfor %}
                 </div>
 
             <!-- Pagination Links -->

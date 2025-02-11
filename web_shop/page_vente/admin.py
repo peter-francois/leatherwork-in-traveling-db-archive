@@ -6,7 +6,6 @@ class AllProductsAdmin(admin.ModelAdmin):
     list_display = ('nom','categorie','disponible', 'type', 'ornement', 'prix')
     search_fields = ['nom','categorie', 'type']
     list_filter = ['categorie', 'disponible']
-    
 
     def rendre_disponible(self,  request, queryset):
         queryset.update(disponible=True)

@@ -137,41 +137,85 @@ document.addEventListener('DOMContentLoaded', function() {
     const textCartButton = document.getElementById('text-cart-button');
     const listeArticles = document.getElementById('liste-articles');
     // Fonction pour ajouter un article au panier
-    window.ajouterAuPanier = function ajouterAuPanier(article) {
-        panier.push(article);
-        localStorage.setItem('panier', JSON.stringify(panier)); 
-        nombreArticles = panier.length;   
-        textCartButton.textContent = nombreArticles;  
-        console.log(nombreArticles);  
-        afficherPanier();
-    };
+    window.ajouterAuPanier = function ajouterAuPanier(articleId) {
+        // Send AJAX request to mark product as unavailable
+        fetch(`/rendre_indisponible/${articleId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log(response);
+            if (response.ok) {
+                // Find the product element to get full product details
+                const productElement = document.querySelector(`[data-product-id="${articleId}"]`);
+                if (productElement) {
+                    const productDetails = {
+                        id: articleId,
+                        nom: productElement.querySelector('p').textContent.split(' - ')[0],
+                        prix: productElement.querySelector('p').textContent.split(' - ')[1],
+                    };
+                    
+                    panier.push(productDetails);
+                    localStorage.setItem('panier', JSON.stringify(panier)); 
+                    nombreArticles = panier.length;   
+                    textCartButton.textContent = nombreArticles;
+                    afficherPanier();
+            } else {
+                console.error('Failed to update product availability');
+            }
+        }})
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    // Helper function to get CSRF token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+        //panier.push(article);
+        //localStorage.setItem('panier', JSON.stringify(panier)); 
+        //nombreArticles = panier.length;   
+       // textCartButton.textContent = nombreArticles;
+     //   afficherPanier();
+   // };
 
     // Appeler afficherPanier au chargement de la page
     textCartButton.textContent = nombreArticles;
     afficherPanier();
 
-
     // Fonction pour afficher les articles du panier
-function afficherPanier() {
-    if (listeArticles === null) return;
-    listeArticles.innerHTML = '';
-    panier.forEach((article, index) => {
-        const li = document.createElement('li');
-        li.textContent = article;
-        listeArticles.appendChild(li);
+    function afficherPanier() {
+        if (listeArticles === null) return;
+        listeArticles.innerHTML = '';
+        panier.forEach((article, index) => {
+            const li = document.createElement('li');
+            li.textContent = article;
+            listeArticles.appendChild(li);
+        });
+    }
+
+    // Fonction pour vider le panier
+    if (listeArticles !=null){
+    document.getElementById('vider_panier').addEventListener('click', function() {
+        localStorage.removeItem('panier');
+        nombreArticles = 0;
+        location.reload();
     });
-}
-
-// Fonction pour vider le panier
-if (listeArticles !=null){
-document.getElementById('vider_panier').addEventListener('click', function() {
-    localStorage.removeItem('panier');
-    nombreArticles = 0;
-    location.reload();
-});
-};
+    };
 
 });
-
-
-
