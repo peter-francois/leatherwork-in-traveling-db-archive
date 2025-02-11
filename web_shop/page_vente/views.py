@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
 from .forms import ProductFilterForm
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -37,6 +38,9 @@ def macrames(request):
 def tous_les_produits(request):
     all_products = AllProducts.objects.all()
     form = ProductFilterForm(request.GET)
+
+    all_products = [product for product in all_products if product.disponible]
+
     if form.is_valid():
         search = form.cleaned_data.get('search')
         type = form.cleaned_data.get('type')
@@ -44,20 +48,28 @@ def tous_les_produits(request):
         max_price = form.cleaned_data.get('max_price')
 
         if search:
-            all_products = all_products.filter(nom__icontains=search)
+            all_products = [product for product in all_products if search.lower() in product.nom.lower()]
         if type:
             if type == '---':
                 type = None
             else:
-                all_products = all_products.filter(type__icontains=type)
+                all_products = [product for product in all_products if product.type == type]
         if min_price is not None:
-            all_products = all_products.filter(prix__gte=min_price)
+            all_products = [product for product in all_products if product.prix >= min_price]
         if max_price is not None:
-            all_products = all_products.filter(prix__lte=max_price)
-    
-    
+            all_products = [product for product in all_products if product.prix <= max_price]
 
-    return render(request, 'page_vente/tous_les_produits.html', {'all_products': all_products, 'form': form})
+    # Pagination
+    paginator = Paginator(all_products, 20)  # 20 articles per page
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'products': page_obj,
+        'form': form
+    }
+    
+    return render(request, 'page_vente/tous_les_produits.html', context)
 
 def maroquinerie(request):
     return render(request, 'page_vente/maroquinerie.html')

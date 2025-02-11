@@ -30,18 +30,34 @@
                 </form>
         </section>
 
-        <section class="grid-container tous_les_produits">
-            <ul>
-                {% for all_product in all_products %}
-                    {% if all_product.disponible %}
-                    <li>{{ all_product.nom }} - {{ all_product.type }} - {{ all_product.prix }}€
-                        <img src="{{ all_product.lien_image1 }}" alt="{{ all_product.nom }}">
-                    </li>
-                    {% endif %}
-                    {% empty %}
-                    <li>Aucun produit trouvé.</li>
+        <section>
+            <div class="grid-container tous_les_produits">
+                {% for product in products %}
+                    <div class="product">
+                        <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€</p>
+                        <img src="{{ product.lien_image1 }}" alt="{{ product.nom }}">
+                    </div>
+                {% empty %}
+                    <div>Aucun produit trouvé.</div>
                 {% endfor %}
-            </ul>
+                </div>
+
+            <!-- Pagination Links -->
+            <div class="pagination">
+                {% if products.has_previous %}
+                    <a href="?page=1">&laquo; First</a>
+                    <a href="?page={{ products.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <span class="current-page">
+                    Page {{ products.number }} of {{ products.paginator.num_pages }}
+                </span>
+
+                {% if products.has_next %}
+                    <a href="?page={{ products.next_page_number }}">Next</a>
+                    <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
+            </div>
         </section>
     </main>
     <script src="{% static 'page_vente/script.js'%}"></script>
