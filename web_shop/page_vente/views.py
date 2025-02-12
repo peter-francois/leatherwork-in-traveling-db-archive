@@ -3,9 +3,23 @@ from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import ProductFilterForm
 from django.core.paginator import Paginator
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_protect
 
+
+
+@require_GET
+def get_product_details(request, article_id):
+    try:
+        product = AllProducts.objects.get(id=article_id)
+        return JsonResponse({'status': 'success', 'data': {
+            'id': product.id,
+            'nom': product.nom,
+            'prix': product.prix,
+            'disponible': product.disponible
+        }})
+    except AllProducts.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
 
 @require_POST
 @csrf_protect
@@ -18,6 +32,8 @@ def rendre_indisponible(request, product_id):
     except AllProducts.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
 
+@require_POST
+@csrf_protect
 def rendre_disponible(request, product_id):
     try:
         product = AllProducts.objects.get(id=product_id)

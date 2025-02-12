@@ -40,7 +40,7 @@
             <div class="grid-container tous_les_produits">
                 {% for product in products %}
                 <div class="product" data-product-id="{{ product.id }}">
-                    <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€</p>
+                    <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€ - {{ product.disponible }}</p>
                     <img src="{{ product.lien_image1 }}" alt="{{ product.nom }}">
                     {% if product.disponible %}
                     <button type="button" id="add_article" onclick="ajouterAuPanier('{{ product.id }}')">Ajouter au panier</button>

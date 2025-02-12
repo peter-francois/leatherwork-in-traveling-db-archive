@@ -137,39 +137,57 @@ document.addEventListener('DOMContentLoaded', function() {
     const textCartButton = document.getElementById('text-cart-button');
     const listeArticles = document.getElementById('liste-articles');
     // Fonction pour ajouter un article au panier
-    window.ajouterAuPanier = function ajouterAuPanier(articleId) {
-        // Send AJAX request to mark product as unavailable
-        fetch(`/rendre_indisponible/${articleId}/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Find the product element to get full product details
-                const productElement = document.querySelector(`[data-product-id="${articleId}"]`);
-                if (productElement) {
-                    const productDetails = {
-                        id: articleId,
-                        nom: productElement.querySelector('p').textContent.split(' - ')[0],
-                        prix: productElement.querySelector('p').textContent.split(' - ')[2],
-                    };
-                    panier.push(productDetails);
-                    localStorage.setItem('panier', JSON.stringify(panier)); 
-                    nombreArticles = panier.length;   
-                    textCartButton.textContent = nombreArticles;
-                    afficherPanier();
-                    location.reload();
-            } else {
-                console.error('Failed to update product availability');
-            }
-        }})
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+
+        window.ajouterAuPanier = function ajouterAuPanier(articleId) {
+            // First, fetch the product details to check availability
+            fetch(`/get_product_details/${articleId}/`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(product => {
+                    // Check if the product is available
+                    if (!product.data.disponible) {
+                        alert("Le produit est indisponible.");
+                        return; // Exit the function if the product is not available
+                    }
+        
+                    // If available, proceed to mark the product as unavailable
+                    return fetch(`/rendre_indisponible/${articleId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': getCookie('csrftoken'),
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                })
+                .then(response => {
+                    if (response && response.ok) {
+                        const productElement = document.querySelector(`[data-product-id="${articleId}"]`);
+                        if (productElement) {
+                            const productDetails = {
+                                id: articleId,
+                                nom: productElement.querySelector('p').textContent.split(' - ')[0],
+                                prix: productElement.querySelector('p').textContent.split(' - ')[2]
+                            };
+                            panier.push(productDetails);
+                            localStorage.setItem('panier', JSON.stringify(panier)); 
+                            nombreArticles = panier.length;   
+                            textCartButton.textContent = nombreArticles;
+                            afficherPanier(); // Refresh the cart display
+                            location.reload();
+                        }
+                    } else {
+                        console.error('Failed to update product availability');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    
     // Helper function to get CSRF token from cookies
     function getCookie(name) {
         let cookieValue = null;
