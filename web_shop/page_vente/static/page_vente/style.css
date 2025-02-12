@@ -16,6 +16,9 @@ body {
 /*Common*/
     section{
         margin: 30px 25px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 20px;
     }
     .page-button{
         background-color: #00000080 ;
@@ -249,11 +252,6 @@ body {
 
 /*Panier*/
 
-    #panier {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin: 20px;
-    }
     #panier h2 {
         font-size: 24px;
     }
@@ -277,20 +275,33 @@ body {
     }
 
     /*Tous les produits*/
+    .tous_les_produits_header{
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-items: center;
+
+    }
+    #creation-sur-mesure{
+        text-align: center;
+    }
     .tous_les_produits{
         align-items: stretch;
         grid-template-rows: repeat(auto-fit, minmax(220px, 1fr));
         grid-template-columns: repeat(4, 1fr);
         margin: 30px 25px;
         gap: 40px;
-    }
+
+}
     .tous_les_produits img{
         width: 220px;
         height: 220px;
     }
     .filter-form{
         grid-template-columns: 1fr 1fr;
+        gap: 20px 50px;
         width: 50%;
+        align-content: center;
+        justify-content: center;
     }
     .filter-form p{
         margin: 0px 0px;
