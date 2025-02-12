@@ -21,13 +21,19 @@
     </div>
     
     <main>
-        <section class="tous_les_produits">
+        <section class="grid-container tous_les_produits_header">
+            <div>
             <h2>TOUS LES PRODUITS</h2>
             <p>Choisissez vos produits</p>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
                 </form>
                 <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
+            </div>
+            <div id="creation-sur-mesure">
+                <p>Envie d'un article personnalisés?</p>
+                <a href="{% url 'boutique:creation-sur-mesure' %}">Cliquez ici</a>
+            </div>
         </section>
 
         <section>

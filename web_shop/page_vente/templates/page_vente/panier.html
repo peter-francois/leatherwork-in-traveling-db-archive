@@ -20,21 +20,21 @@
     {% include 'page_vente/navbar.html' %}
     </div>
 
-    <div id="panier">
+    <section id="panier">
         <h2 id="title_panier">Mon Panier</h2>
         
         <ul id="liste-articles">
             {% if panier|length == 0 %}
                 <p id="panier_vide">Votre panier est vide</p>
-                <pre>{{ panier }}</pre>
             {% else %}
                 {% for article in panier %}
-                    <li>{{ article }}</li>
+                    <li>{{ article.nom }} - {{ article.prix }}</li>
                 {% endfor %}
             {% endif %}
         </ul>
-        <button type="button" id="vider_panier">Vider le Panier</button>
-    </div>
+        <button type="button" id="vider_panier" onclick="viderPanier()">Vider le Panier</button>
+
+    </section>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>

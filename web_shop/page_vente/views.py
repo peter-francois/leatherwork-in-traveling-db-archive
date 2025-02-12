@@ -17,6 +17,16 @@ def rendre_indisponible(request, product_id):
         return JsonResponse({'status': 'success'})
     except AllProducts.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
+
+def rendre_disponible(request, product_id):
+    try:
+        product = AllProducts.objects.get(id=product_id)
+        product.disponible = True
+        product.save()
+        return JsonResponse({'status': 'success'})
+    except AllProducts.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
+
 # Create your views here.
 def index(request):    
     return render(request, 'page_vente/index.html')

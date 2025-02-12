@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from page_vente.views import rendre_indisponible
+from page_vente.views import rendre_indisponible, rendre_disponible
 
 app_name = 'boutique'
 
@@ -15,4 +15,5 @@ urlpatterns = [
     path('panier/', views.panier, name="panier"),
     path('a-propos/', views.a_propos, name="a-propos"),
     path('rendre_indisponible/<int:product_id>/', rendre_indisponible, name='rendre_indisponible'),
+    path('rendre_disponible/<int:product_id>/', rendre_disponible, name='rendre_disponible'),
 ]
