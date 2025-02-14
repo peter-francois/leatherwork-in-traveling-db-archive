@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from .models import *
 from .forms import ProductFilterForm
@@ -6,7 +6,66 @@ from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_protect
 
+def add_to_cart(request, product_id):
+    product = get_object_or_404(AllProducts, id=product_id)
 
+    if not product.disponible:
+        return JsonResponse({'success': False, 'message': 'Produit déjà pris'}, status=400)
+
+    # Récupérer l'ID de session unique de Django
+    session_id = request.session.session_key
+    if not session_id:
+        request.session.create()
+        session_id = request.session.session_key
+
+    # Vérifier si un panier existe pour cette session
+    cart, created = Cart.objects.get_or_create(session_id=session_id)
+
+    # Ajouter le produit au panier
+    cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
+    if not item_created:
+        cart_item.quantity += 1
+        cart_item.save()
+
+    # Marquer le produit comme indisponible
+    product.disponible = False
+    product.save()
+
+    return JsonResponse({'success': True, 'message': f'{product.nom} ajouté au panier'})
+
+def cart_detail(request):
+    session_id = request.session.session_key
+    if not session_id:
+        return JsonResponse({'cart': []})  # Aucun panier trouvé
+
+    cart = Cart.objects.filter(session_id=session_id).first()
+    if not cart:
+        return JsonResponse({'cart': []})  
+
+    cart_items = CartItem.objects.filter(cart=cart).select_related('product')
+    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity} for item in cart_items]
+
+    return JsonResponse({'cart': data})
+
+# Vider le panier et rendre les produits à nouveau disponibles
+def vider_panier(request):
+    session_id = request.session.session_key
+    if not session_id:
+        return JsonResponse({'success': False, 'message': 'Aucun panier trouvé'})
+
+    cart = Cart.objects.filter(session_id=session_id).first()
+    if not cart:
+        return JsonResponse({'success': False, 'message': 'Le panier est déjà vide'})
+
+    cart_items = CartItem.objects.filter(cart=cart)
+    for item in cart_items:
+        item.product.is_available = True  # Rendre le produit disponible
+        item.product.save()
+        item.delete()
+
+    cart.delete()  # Supprimer le panier après suppression des articles
+
+    return JsonResponse({'success': True, 'message': 'Le panier a été vidé'})
 
 @require_GET
 def get_product_details(request, article_id):
@@ -106,6 +165,25 @@ def tous_les_produits(request):
         'products': page_obj,
         'form': form
     }
+    
+    def update_lien(lien_image):
+        if "www.dropbox.com" in lien_image:
+            lien_image = lien_image.replace("www.dropbox.com", "dl.dropboxusercontent.com")
+        if "st=" in lien_image:  
+            lien_image = lien_image.split("&st=")[0].rstrip("&")
+        return lien_image
+
+    for product in all_products:
+        if product.lien_image1:
+            product.lien_image1 = update_lien(product.lien_image1)
+        if product.lien_image2:
+            product.lien_image2 = update_lien(product.lien_image2)
+        if product.lien_image3:
+            product.lien_image3 = update_lien(product.lien_image3)
+        if product.lien_image4:
+            product.lien_image4 = update_lien(product.lien_image4)
+        product.save()
+
 
     return render(request, 'page_vente/tous_les_produits.html', context)
 
@@ -193,5 +271,5 @@ def a_propos(request):
                                         Les divers: {macrames_divers_names_str}
     else:
         list_macrames_complette = "Désolé, il n'y a pas de macrames_objects en ce moment"
-    return HttpResponse("Les macramés:<br>" + list_macrames_complette)"""
-
+    return HttpResponse("Les macramés:<br>" + list_macrames_complette)
+    """

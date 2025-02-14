@@ -128,6 +128,58 @@ window.addEventListener('scroll', function() {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    afficherPanier();  // Charger les articles du panier au démarrage
+});
+// Fonction pour afficher les articles du panier
+function afficherPanier() {
+    fetch('/cart_detail/')
+        .then(response => response.json())
+        .then(data => {
+            let listeArticles = document.getElementById('liste-articles');
+            listeArticles.innerHTML = ''; 
+
+            data.cart.forEach(article => {
+                let li = document.createElement('li');
+                li.textContent = `${article.name} - ${article.price} € (x${article.quantity})`;
+                listeArticles.appendChild(li);
+            });
+        });
+}
+
+// Ajouter un produit au panier
+function ajouterAuPanier(articleId) {
+    fetch(`/add_to_cart/${articleId}/`, { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                afficherPanier(); // Mettre à jour l'affichage du panier
+                location.reload(); // Rafraîchir pour mettre à jour la disponibilité
+            } else {
+                alert("Erreur : " + data.message);
+            }
+        });
+}
+
+// Fonction pour vider le panier
+function viderPanier() {
+    fetch('/vider_panier/', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                afficherPanier();
+                location.reload();
+            } else {
+                alert("Erreur lors de la suppression du panier.");
+            }
+        });
+}
+
+
+/*
 // Initialiser la variable locale pour le panier
 let panier = JSON.parse(localStorage.getItem('panier'))||[];
 let nombreArticles = panier.length;
@@ -270,4 +322,4 @@ window.viderPanier = function viderPanier(){
             // Afficher le message de confirmation
             event.returnValue = 'Vous avez des articles dans votre panier. Êtes-vous sûr de vouloir quitter ?';
         }
-    });
+    });*/

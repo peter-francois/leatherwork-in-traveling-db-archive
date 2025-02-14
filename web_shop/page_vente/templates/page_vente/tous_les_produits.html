@@ -37,6 +37,30 @@
         </section>
 
         <section>
+        <div id="liste-produits" class="grid-container tous_les_produits">
+            {% for produit in products %}
+                <div class="produit" data-product-id="{{ produit.id }}">
+                    <h3>{{ produit.nom }}</h3>
+                    <p>Prix : {{ produit.prix }} €</p>
+                    <img src="{{ produit.lien_image1 }}" alt="{{ produit.nom }}">
+        
+                    {% if produit.disponible %}
+                        <button onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
+                    {% else %}
+                        <button disabled>Indisponible</button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        </section>
+        <section>
+            <h2>Votre Panier</h2>
+            <ul id="liste-articles"></ul>
+            
+            <button onclick="viderPanier()">Vider le panier</button>
+
+        </section>
+        <!--<section>
             <div class="grid-container tous_les_produits">
                 {% for product in products %}
                 <div class="product" data-product-id="{{ product.id }}">
@@ -52,8 +76,10 @@
                 <div>Aucun produit trouvé.</div>
             {% endfor %}
                 </div>
+            
+                
 
-            <!-- Pagination Links -->
+             Pagination Links
             <div class="pagination">
                 {% if products.has_previous %}
                     <a href="?page=1">&laquo; First</a>
@@ -70,6 +96,7 @@
                 {% endif %}
             </div>
         </section>
+    -->
     </main>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
