@@ -32,7 +32,7 @@ class AllProducts(models.Model):
     lien_image2 = models.URLField(default='', max_length=20000, blank=True, null=True)
     lien_image3 = models.URLField(default='', max_length=20000, blank=True, null=True)
     lien_image4 = models.URLField(default='', max_length=20000, blank=True, null=True)
-    disponible = models.BooleanField(default=False)
+    disponible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nom
