@@ -38,7 +38,7 @@ class AllProducts(models.Model):
         return self.nom
     
 class Cart(models.Model):
-    section_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
+    session_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class CartItem(models.Model):

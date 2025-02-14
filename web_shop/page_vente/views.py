@@ -59,7 +59,7 @@ def vider_panier(request):
 
     cart_items = CartItem.objects.filter(cart=cart)
     for item in cart_items:
-        item.product.is_available = True  # Rendre le produit disponible
+        item.product.disponible = True  # Rendre le produit disponible
         item.product.save()
         item.delete()
 
@@ -165,7 +165,7 @@ def tous_les_produits(request):
         'products': page_obj,
         'form': form
     }
-    
+
     def update_lien(lien_image):
         if "www.dropbox.com" in lien_image:
             lien_image = lien_image.replace("www.dropbox.com", "dl.dropboxusercontent.com")
