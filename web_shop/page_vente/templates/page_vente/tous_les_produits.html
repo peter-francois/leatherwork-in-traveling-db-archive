@@ -27,8 +27,9 @@
             <p>Choisissez vos produits</p>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
+                    <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
                 </form>
-                <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
+                
             </div>
             <div id="creation-sur-mesure">
                 <p>Envie d'un article personnalisés?</p>
@@ -53,13 +54,10 @@
             {% endfor %}
         </div>
         </section>
-        <section>
-            <h2>Votre Panier</h2>
-            <ul id="liste-articles"></ul>
-            
-            <button onclick="viderPanier()">Vider le panier</button>
-
+        <section style="display: none;">
+            <ul id="liste-articles"></ul>    
         </section>
+
         <!--<section>
             <div class="grid-container tous_les_produits">
                 {% for product in products %}
@@ -78,8 +76,8 @@
                 </div>
             
                 
-
-             Pagination Links
+            -->
+             <!--Pagination Links-->
             <div class="pagination">
                 {% if products.has_previous %}
                     <a href="?page=1">&laquo; First</a>
@@ -96,7 +94,7 @@
                 {% endif %}
             </div>
         </section>
-    -->
+    
     </main>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
