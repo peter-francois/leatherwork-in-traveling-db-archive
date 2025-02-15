@@ -43,7 +43,7 @@ def cart_detail(request):
         return JsonResponse({'cart': []})  
 
     cart_items = CartItem.objects.filter(cart=cart).select_related('product')
-    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity} for item in cart_items]
+    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'lien_image1': item.product.lien_image1} for item in cart_items]
 
     return JsonResponse({'cart': data})
 

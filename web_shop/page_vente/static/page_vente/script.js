@@ -142,7 +142,10 @@ function afficherPanier() {
 
             data.cart.forEach(article => {
                 let li = document.createElement('li');
-                li.textContent = `${article.name} - ${article.price} € (x${article.quantity})`;
+                let img = document.createElement('img');
+                li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
+                img.src = `${article.lien_image1}`;
+                li.appendChild(img);
                 listeArticles.appendChild(li);
             });
         });
@@ -189,10 +192,9 @@ function ajouterAuPanier(articleId) {
 function viderPanier() {
     fetch('/vider_panier/', { 
         method: 'POST',
-        
         headers: {
             'X-CSRFToken': getCookie('csrftoken'),
-            'Content-Type': 'application/json' 
+            'Content-Type': 'application/json'
         }
     })
         .then(response => response.json())

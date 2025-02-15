@@ -259,6 +259,10 @@ body {
         list-style-type: none;
         padding: 0;
     }
+    #liste-articles img{
+        width: 70px;
+        height: 70px;
+    }
     #liste-articles li {
         padding: 5px;
         border-bottom: 1px solid #eee;
