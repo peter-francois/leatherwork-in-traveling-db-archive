@@ -129,6 +129,9 @@ window.addEventListener('scroll', function() {
 });
 
 
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     afficherPanier();  // Charger les articles du panier au démarrage
 });
@@ -138,8 +141,9 @@ function afficherPanier() {
         .then(response => response.json())
         .then(data => {
             let listeArticles = document.getElementById('liste-articles');
+            const textCartButton = document.getElementById('text-cart-button');
+            if (listeArticles) {
             listeArticles.innerHTML = ''; 
-
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
@@ -147,8 +151,13 @@ function afficherPanier() {
                 img.src = `${article.lien_image1}`;
                 li.appendChild(img);
                 listeArticles.appendChild(li);
+                textCartButton.textContent = data.cart.length;
             });
-        });
+        } else {
+            console.error("L'élément avec l'ID 'liste-articles' n'existe pas.");
+        }
+        })
+        .catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
 
 // Helper function to get CSRF token from cookies
