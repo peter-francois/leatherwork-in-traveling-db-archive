@@ -147,9 +147,13 @@ function afficherPanier() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
+                let button = document.createElement('button');
                 li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
                 img.src = `${article.lien_image1}`;
+                button.textContent = 'Supprimer';
+                button.onclick = () => remove_from_cart(article.id);
                 li.appendChild(img);
+                li.appendChild(button);
                 listeArticles.appendChild(li);
                 textCartButton.textContent = data.cart.length;
             });
@@ -218,6 +222,26 @@ function viderPanier() {
         });
 }
 
+// Fonction pour supprimer un article du panier
+function remove_from_cart(articleId) {
+    fetch(`/remove_from_cart/${articleId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                afficherPanier();
+                location.reload();
+            } else {
+                alert("Erreur lors de la suppression de l'article.");
+            }
+        });
+}
 
 /*
 // Initialiser la variable locale pour le panier
