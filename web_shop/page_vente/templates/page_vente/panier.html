@@ -22,10 +22,18 @@
 
     <section>
         <h2>Votre Panier</h2>
+        {% if items %}
         <ul id="liste-articles"></ul>
         
         <button onclick="viderPanier()">Vider le panier</button>
-
+        {% if expiration_date %}
+            <p>⚠️ Votre panier expirera le {{ expiration_date|date:"d/m/Y H:i" }}.</p>
+        {% else %}
+            <p>⚠️ Votre panier expirera bientôt.</p>
+        {% endif %}
+        {% else %}
+            <p>Votre panier est vide.</p>
+        {% endif %}
     </section>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
