@@ -209,3 +209,11 @@ def panier(request):
 
 def a_propos(request):
     return render(request, 'page_vente/a_propos.html')
+
+def get_product_images(request, article_id):
+    try:
+        product = AllProducts.objects.get(id=article_id)
+        images = [product.lien_image1, product.lien_image2, product.lien_image3, product.lien_image4]
+        return JsonResponse({'images': images})
+    except AllProducts.DoesNotExist:
+        return JsonResponse({'error': 'Product not found'}, status=404)

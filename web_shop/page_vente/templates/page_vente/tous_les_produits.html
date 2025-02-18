@@ -48,6 +48,15 @@
             <ul id="liste-articles"></ul>    
         </section>
 
+        <div id="modal" style="display:none;">
+            <img id="current-image" src="" alt="Image du produit">
+            <div>
+                <button id="prev-button" onclick="changeImage(-1)">Précédent</button>
+                <button id="next-button" onclick="changeImage(1)">Suivant</button>
+            </div>
+            <button onclick="fermerModal()">Fermer</button>
+        </div>
+
         <!--<section>
             <div class="grid-container tous_les_produits">
                 {% for product in products %}

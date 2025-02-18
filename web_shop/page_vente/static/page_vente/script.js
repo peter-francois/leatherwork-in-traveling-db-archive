@@ -133,11 +133,20 @@ window.addEventListener('scroll', function() {
 
 
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
+    // Ecouteur d'evenement sur les images pour afficher une div avec toute les images
+    const produits = document.querySelectorAll('.produit');
+    produits.forEach(produit => {
+        const img = produit.querySelector('img'); // Sélectionner l'image principale
+        img.addEventListener('click', () => {
+            const articleId = produit.getAttribute('data-product-id');
+            afficherImages(articleId);
+        });
+    });
     afficherPanier();  // Charger les articles du panier au démarrage
 });
+
+
 // Fonction pour afficher les articles du panier
 function afficherPanier() {
     fetch('/cart_detail/')
@@ -246,147 +255,35 @@ function remove_from_cart(articleId) {
         });
 }
 
-/*
-// Initialiser la variable locale pour le panier
-let panier = JSON.parse(localStorage.getItem('panier'))||[];
-let nombreArticles = panier.length;
-const textCartButton = document.getElementById('text-cart-button');
-const listeArticles = document.getElementById('liste-articles');
+let currentImageIndex = 0; // Index de l'image actuelle
+let images = []; // Tableau pour stocker les images
 
-document.addEventListener('DOMContentLoaded', function() {
-    
 
-    // Fonction pour ajouter un article au panier
-
-        window.ajouterAuPanier = function ajouterAuPanier(articleId) {
-            // First, fetch the product details to check availability
-            fetch(`/get_product_details/${articleId}/`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(product => {
-                    // Check if the product is available
-                    if (!product.data.disponible) {
-                        alert("Le produit est indisponible.");
-                        return; // Exit the function if the product is not available
-                    }
-        
-                    // If available, proceed to mark the product as unavailable
-                    return fetch(`/rendre_indisponible/${articleId}/`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRFToken': getCookie('csrftoken'),
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                })
-                .then(response => {
-                    if (response && response.ok) {
-                        const productElement = document.querySelector(`[data-product-id="${articleId}"]`);
-                        if (productElement) {
-                            const productDetails = {
-                                id: articleId,
-                                nom: productElement.querySelector('p').textContent.split(' - ')[0],
-                                prix: productElement.querySelector('p').textContent.split(' - ')[2]
-                            };
-                            panier.push(productDetails);
-                            localStorage.setItem('panier', JSON.stringify(panier)); 
-                            nombreArticles = panier.length;   
-                            textCartButton.textContent = nombreArticles;
-                            afficherPanier(); // Refresh the cart display
-                            location.reload();
-                        }
-                    } else {
-                        console.error('Failed to update product availability');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        }
-    
-    
-
-    // Appeler afficherPanier au chargement de la page
-    textCartButton.textContent = nombreArticles;
-    afficherPanier();
-
-    
-        
-        
-});
-// Fonction pour afficher les articles du panier
-function afficherPanier() {
-    if (listeArticles === null) return;
-    listeArticles.innerHTML = '';
-    panier.forEach((article, index) => {
-        const li = document.createElement('li');
-        li.textContent = `${article.nom} - ${article.prix}`;
-        listeArticles.appendChild(li);
-    });
-} 
-// Helper function to get CSRF token from cookies
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
+// Fonction pour afficher les images d'un article
+function afficherImages(articleId) {
+    fetch(`/get_product_images/${articleId}/`)
+        .then(response => response.json())
+        .then(data => {
+            images = data.images; // Charger les images dans le tableau
+            currentImageIndex = 0; // Réinitialiser l'index
+            document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
+            const modal = document.getElementById('modal');
+            modal.style.display = 'block'; // Afficher la modale
+        });
+}
+// Fonction pour changer d'image
+function changeImage(direction) {
+    currentImageIndex += direction; // Changer l'index
+    if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1; // Revenir à la dernière image
+    } else if (currentImageIndex >= images.length) {
+        currentImageIndex = 0; // Revenir à la première image
     }
-    return cookieValue;
+    document.getElementById('current-image').src = images[currentImageIndex]; // Mettre à jour l'image affichée
 }
 
-// Fonction pour vider le panier
-window.viderPanier = function viderPanier(){
-
-    if (panier.length === 0) {
-        alert("Votre panier est déjà vide.");
-        return;
-    }
-
-    // Create an array of promises for each AJAX request
-    const requests = panier.map(article => {
-        return fetch(`/rendre_disponible/${article.id}/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': getCookie('csrftoken'),
-                'Content-Type': 'application/json'
-            }
-        });
-    });
-
-    // Wait for all requests to complete
-    Promise.all(requests)
-        .then(responses => {
-            // Check if all responses are ok
-            const allSuccessful = responses.every(response => response.ok);
-            if (allSuccessful) {
-                // Clear the local storage and the panier array
-                localStorage.removeItem('panier');
-                panier.length = 0; // Clear the array
-                afficherPanier(); // Refresh the cart display
-                location.reload();
-            } else {
-                console.error('Une erreur est survenue lors de la mise à jour des articles.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    window.addEventListener('beforeunload', function (event) {
-        // Vérifiez si le panier contient des articles
-        if (panier.length > 0) {
-            // Afficher le message de confirmation
-            event.returnValue = 'Vous avez des articles dans votre panier. Êtes-vous sûr de vouloir quitter ?';
-        }
-    });*/
+// Fonction pour fermer la modale
+function fermerModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+}
