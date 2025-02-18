@@ -12,28 +12,23 @@
     <div class="header text-center">
         <div class="title_and_logo grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-            <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
+            <h1 id="title_page_all_products">TOUS LES PRODUITS</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
+        <p id="description_page_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant <a id = "contact-link" href="{% url 'boutique:contact' %}">ici</a>.</p>
         
     <!-- Include Navbar component -->
     {% include 'page_vente/navbar.html' %}
     </div>
     
     <main>
-        <section class="grid-container tous_les_produits_header">
+        <section>
             <div>
-            <h2>TOUS LES PRODUITS</h2>
-            <p>Choisissez vos produits</p>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
                     <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
                 </form>
                 
-            </div>
-            <div id="creation-sur-mesure">
-                <p>Envie d'un article personnalisés?</p>
-                <a href="{% url 'boutique:creation-sur-mesure' %}">Cliquez ici</a>
             </div>
         </section>
 
@@ -44,12 +39,7 @@
                     <h3>{{ produit.nom }}</h3>
                     <p>Prix : {{ produit.prix }} €</p>
                     <img src="{{ produit.lien_image1 }}" alt="{{ produit.nom }}">
-        
-                    {% if produit.disponible %}
-                        <button onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
-                    {% else %}
-                        <button disabled>Indisponible</button>
-                    {% endif %}
+                    <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
                 </div>
             {% endfor %}
         </div>
