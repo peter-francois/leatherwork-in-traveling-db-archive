@@ -1,7 +1,14 @@
 const flags = document.querySelectorAll('.flag');
 
+// Initialisation de la langue par défaut
+let currentLanguage = localStorage.getItem('language') || 'fr';
+changeLanguage(currentLanguage);
+
 // Fonction pour changer la langue
 function changeLanguage(lang) {
+    currentLanguage = lang;
+    localStorage.setItem('language', currentLanguage); // Mettre à jour la langue dans le stockage local
+
     // Mettre à jour le contenu de la page grace au fichier translations.JSON
     fetch('/static/page_vente/translations.json')
         .then(response => {
@@ -65,10 +72,6 @@ function changeLanguage(lang) {
         });
 }
 
-// Définir la langue par défaut au chargement
-document.addEventListener('DOMContentLoaded', () => {
-    changeLanguage('fr'); // Langue par défaut
-});
 
 // Écouteurs d'événements pour les clics sur les drapeaux
 flags.forEach(flag => {
