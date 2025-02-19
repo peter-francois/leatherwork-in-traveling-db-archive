@@ -264,6 +264,10 @@ function afficherImages(articleId) {
     fetch(`/get_product_images/${articleId}/`)
         .then(response => response.json())
         .then(data => {
+            if (!data.images) {
+                console.error("Aucune image trouvé pour l'article");
+                return;
+            }
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image

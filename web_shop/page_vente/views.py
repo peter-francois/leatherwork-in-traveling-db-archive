@@ -213,7 +213,8 @@ def a_propos(request):
 def get_product_images(request, article_id):
     try:
         product = AllProducts.objects.get(id=article_id)
-        images = [product.lien_image1, product.lien_image2, product.lien_image3, product.lien_image4]
+        images = [product.lien_image1 , product.lien_image2, product.lien_image3, product.lien_image4]
+        images = [image for image in images if image]
         return JsonResponse({'images': images})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
