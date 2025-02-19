@@ -138,13 +138,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const produits = document.querySelectorAll('.produit');
     produits.forEach(produit => {
         const img = produit.querySelector('img'); // Sélectionner l'image principale
-        img.addEventListener('click', () => {
-            const articleId = produit.getAttribute('data-product-id');
-            afficherImages(articleId);
-        });
+        if (img) {
+            img.addEventListener('click', () => {
+                const articleId = produit.getAttribute('data-product-id');
+                if (!articleId) return;
+                afficherImages(articleId);
+            });
+        }
     });
     afficherPanier();  // Charger les articles du panier au démarrage
 });
+
 
 
 // Fonction pour afficher les articles du panier
@@ -161,10 +165,12 @@ function afficherPanier() {
                 let img = document.createElement('img');
                 let button = document.createElement('button');
                 li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
-                img.src = `${article.lien_image1}`;
+                if (article.lien_image1) {
+                    img.src = `${article.lien_image1}`;
+                    li.appendChild(img);
+                }
                 button.textContent = 'Supprimer';
                 button.onclick = () => remove_from_cart(article.id);
-                li.appendChild(img);
                 li.appendChild(button);
                 listeArticles.appendChild(li);
                 textCartButton.textContent = data.cart.length;
@@ -262,18 +268,23 @@ let images = []; // Tableau pour stocker les images
 // Fonction pour afficher les images d'un article
 function afficherImages(articleId) {
     fetch(`/get_product_images/${articleId}/`)
-        .then(response => response.json())
-        .then(data => {
-            if (!data.images) {
-                console.error("Aucune image trouvé pour l'article");
-                return;
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json()
+        })
+        .then(data => {
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
             const modal = document.getElementById('modal');
             modal.style.display = 'block'; // Afficher la modale
-        });
+        }).catch(error => {
+        }).catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        })
+        ;
 }
 // Fonction pour changer d'image
 function changeImage(direction) {

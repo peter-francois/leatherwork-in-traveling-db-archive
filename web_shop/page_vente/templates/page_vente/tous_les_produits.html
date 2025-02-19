@@ -38,7 +38,11 @@
                 <div class="produit" data-product-id="{{ produit.id }}">
                     <h3>{{ produit.nom }}</h3>
                     <p>Prix : {{ produit.prix }} €</p>
+                    {% if produit.lien_image1 %}
                     <img src="{{ produit.lien_image1 }}" alt="{{ produit.nom }}">
+                    {% else %}
+                    <p>Aucune image disponible</p>
+                    {% endif %}
                     <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
                 </div>
             {% endfor %}
@@ -92,7 +96,7 @@
                     <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
                 {% endif %}
             </div>
-        </section>
+
     
     </main>
     <script src="{% static 'page_vente/script.js'%}"></script>
