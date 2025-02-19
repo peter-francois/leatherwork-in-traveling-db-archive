@@ -15,23 +15,42 @@
             <h1 id="title_page_all_products">TOUS LES PRODUITS</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
-        <p id="description_page_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant <a id = "contact-link" href="{% url 'boutique:contact' %}">ici</a>.</p>
+        <p class ="text-center" id="description_page_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant <a id = "contact-link" href="{% url 'boutique:contact' %}">ici</a>.</p>
         
     <!-- Include Navbar component -->
     {% include 'page_vente/navbar.html' %}
     </div>
     
     <main>
-        <section>
+        <section class="display-laptop">
             <div>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
                     <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
                 </form>
+            
                 
             </div>
         </section>
 
+        <!--Pagination Links-->
+        <div class="pagination text-center">
+            {% if products.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ products.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}
+            </span>
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">Next</a>
+                <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </div>
+
+        <!--List of products-->
         <section>
         <div id="liste-produits" class="grid-container tous_les_produits">
             {% for produit in products %}
@@ -61,27 +80,8 @@
             <button onclick="fermerModal()">Fermer</button>
         </div>
 
-        <!--<section>
-            <div class="grid-container tous_les_produits">
-                {% for product in products %}
-                <div class="product" data-product-id="{{ product.id }}">
-                    <p>{{ product.nom }} - {{ product.type }} - {{ product.prix }}€ - {{ product.disponible }}</p>
-                    <img src="{{ product.lien_image1 }}" alt="{{ product.nom }}">
-                    {% if product.disponible %}
-                    <button type="button" id="add_article" onclick="ajouterAuPanier('{{ product.id }}')">Ajouter au panier</button>
-                {% else %}
-                    <button type="button" disabled>Indisponible</button>
-                {% endif %}
-                </div>
-            {% empty %}
-                <div>Aucun produit trouvé.</div>
-            {% endfor %}
-                </div>
-            
-                
-            -->
              <!--Pagination Links-->
-            <div class="pagination">
+            <div class="pagination text-center">
                 {% if products.has_previous %}
                     <a href="?page=1">&laquo; First</a>
                     <a href="?page={{ products.previous_page_number }}">Previous</a>

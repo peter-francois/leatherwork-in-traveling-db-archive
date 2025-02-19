@@ -176,7 +176,7 @@ function afficherPanier() {
                 textCartButton.textContent = data.cart.length;
             });
         } else {
-            console.error("L'élément avec l'ID 'liste-articles' n'existe pas.");
+            return;
         }
         })
         .catch(error => console.error('Erreur lors de la récupération du panier:', error));
