@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import *
 from django.contrib import messages
+from .forms import *
 
 class AllProductsAdmin(admin.ModelAdmin):
     actions = ['rendre_disponible', 'rendre_indisponible']
@@ -31,5 +32,10 @@ class AllProductsAdmin(admin.ModelAdmin):
             setattr(obj, link_field, validated_link if validated_link is not None else None)
         
         super().save_model(request, obj, form, change)
+
+    def on_save_model(self, request, obj, form, change):
+        super().on_save_model(request, obj, form, change)  # Appeler la méthode parente
+        forms.update_type(self)
+
     
 admin.site.register(AllProducts, AllProductsAdmin)
