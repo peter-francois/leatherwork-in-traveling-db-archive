@@ -25,7 +25,7 @@
         {% if items %}
         <ul class="grid-container" id="liste-articles"></ul>
         
-        <button class="page-button" onclick="viderPanier()">Vider le panier</button>
+        <button class="page-button" id="vider-panier" onclick="viderPanier()">Vider le panier</button>
         {% if expiration_date %}
             <p>⚠️ Votre panier expirera le {{ expiration_date|date:"d/m/Y H:i" }}.</p>
         {% else %}
@@ -35,7 +35,7 @@
             <p>Votre panier est vide.</p>
         {% endif %}
     </section>
-    
+
     <div id="modal">
         <h3 class="text-center" id="nom-article"></h3>
         <button class="page-button" id="close-button" type="button" onclick="fermerModal()">&times;</button>

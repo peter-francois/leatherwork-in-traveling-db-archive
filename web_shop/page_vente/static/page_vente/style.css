@@ -447,16 +447,16 @@ body {
         #description_page_all_products{
             font-size: 14px;
         }
-        .tous_les_produits{
+        .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(3, 1fr);
             margin: 15px 10px;
             gap: 14px;
         }
         
-        .produit{
+        .produit, #liste-articles li{
             padding: 10px;
         }
-        .produit button{
+        .produit button, #liste-articles button{
             margin-top: 10px;
         }
         #modal{
@@ -527,7 +527,10 @@ body {
         .image-full-span{
         width: 220px;
         }
-
+        #vider-panier{
+            margin-top: 15px;
+            margin-left: 15px;
+        }
     /*Tous les produits*/
 
         .filter-form{
@@ -539,16 +542,16 @@ body {
             width: 50%;
         }
 
-        .tous_les_produits{
+        .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(2, 1fr);
             margin: 0px 0px;
             gap: 5px;
         }
     
-        .produit{
+        .produit, #liste-articles li{
             padding: 5px;
         }
-        .produit button{
+        .produit button, #liste-articles button{
             margin-top: 5px;
         }
         #modal{
@@ -618,7 +621,7 @@ body {
         .filter-form{
             grid-template-columns: 1fr 1fr;
         }
-        .tous_les_produits img{
+        .tous_les_produits img, #liste-articles img{
             width: 7em;
             height: 7em;
 
