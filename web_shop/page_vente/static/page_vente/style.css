@@ -521,6 +521,15 @@ body {
 
     /*Tous les produits*/
 
+        .filter-form{
+            grid-template-columns: 1fr 1fr 1fr;
+            gap:10px;
+        }
+        .filter-form button{
+            margin-top: 5px;
+            width: 50%;
+        }
+
         .tous_les_produits{
             grid-template-columns: repeat(2, 1fr);
             margin: 0px 0px;
@@ -589,7 +598,9 @@ body {
         }
 
     /*Tous les produits*/
-
+        .filter-form{
+            grid-template-columns: 1fr 1fr;
+        }
         .tous_les_produits img{
             width: 7em;
             height: 7em;
