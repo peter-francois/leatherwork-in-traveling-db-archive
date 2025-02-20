@@ -322,6 +322,7 @@ body {
         border: 2px solid var(--color2);
         border-radius: 10px;
         display: block;
+        object-fit: cover;
     }
     .tous_les_produits img:hover{
         transform: scale(1.05);
@@ -374,11 +375,12 @@ body {
         padding: 0px;
     }
     #modal img{
-        width: 40em;
+        width: 30em;
         height: 30em;
         border: 2px solid var(--color2);
         border-radius: 10px;
         margin-top: 45px;
+        object-fit: cover;
     }
     #prev-button, #next-button{
         margin-top: 5px;
@@ -453,7 +455,9 @@ body {
             margin-top: 10px;
         }
         #modal{
+            transform: translate(270px, -50%);
             height: 450px;
+            width: 500px;
         }
         #modal img{
             height: 23em;
@@ -558,7 +562,7 @@ body {
             right: 35px;
         }
         #modal img{
-            width: 30em;
+            width: 28em;
             height: 28em;
             margin-top: 65px;
         }
@@ -607,16 +611,19 @@ body {
 
         }
         #modal h3{
-            top: 35px;
+            top: 55px;
         }
         #close-button{
-            top: 25px;
-            right: 25px;
+            top: 45px;
+            right: 45px;
         }
         #modal img{
-            width: 18em;
-            height: 30em;
-            margin-top: 55px;
+            width: 19em;
+            height: 19em;
+            margin-top: 155px;
+        }
+        #prev-button, #next-button{
+            margin-top: 30px;
         }
 
 
