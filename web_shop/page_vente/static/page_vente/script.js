@@ -50,7 +50,9 @@ function changeLanguage(lang) {
                 'vider_panier':translations.vider_panier,
                 'panier_vide':translations.panier_vide,
                 'title_page_all_products':translations.title_page_all_products,
-                'title_all_products':translations.title_all_products
+                'title_all_products':translations.title_all_products,
+                'description_all_products':translations.description_all_products,
+                'contact_link':translations.contact_link,         
 
             };
 
@@ -163,7 +165,10 @@ function afficherPanier() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
+                img.setAttribute('onclick', `afficherImages(${article.id})`);
+                img.setAttribute('on_', article.lien_image1);
                 let button = document.createElement('button');
+                button.classList.add('page-button');
                 li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
                 if (article.lien_image1) {
                     img.src = `${article.lien_image1}`;
