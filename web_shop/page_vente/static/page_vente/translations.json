@@ -24,9 +24,13 @@
     "vider_panier":"Empty cart",
     "panier_vide":"Your cart is empty",
     "title_page_all_products":"All products",
-    "title_all_products":"All products"
-
-    },
+    "title_all_products":"All products",
+    "description_all_products":"Here you will find all the products available.<br>If you have any questions, do not hesitate to contact me by clicking ",
+    "contact_link":"HERE",
+    "search":"search",
+    "min_price":"min_price",
+    "max_price":"max_price"
+  },
     "fr": {
       "title_page_index": "Ma boutique",
       "title_index": "Bienvenue sur Ma <br>Boutique Artisanale",
@@ -52,8 +56,12 @@
       "vider_panier":"Vider le panier",
       "panier_vide":"Votre panier est vide",
       "title_page_all_products":"Tous les produits",
-      "title_all_products":"Tous les produits"
-    
+      "title_all_products":"Tous les produits",
+      "description_all_products":"Ici vous trouverez tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant ",
+      "contact_link":"ICI",
+      "search":"Rechercher",
+      "min_price":"Prix minimum",
+      "max_price":"Prix maximum"
   }
     
 }

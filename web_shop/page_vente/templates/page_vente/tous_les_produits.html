@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -12,10 +13,10 @@
     <div class="header text-center">
         <div class="title_and_logo grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-            <h1 id="title_page_all_products">TOUS LES PRODUITS</h1>
+            <h1 id="title_all_products">TOUS LES PRODUITS</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
-        <p class ="text-center" id="description_page_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant <a id = "contact-link" href="{% url 'boutique:contact' %}">ici</a>.</p>
+        <p class ="text-center" id="description_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><a class="page-button" id = "contact_link" href="{% url 'boutique:contact' %}">ici</a>
         
     <!-- Include Navbar component -->
     {% include 'page_vente/navbar.html' %}
