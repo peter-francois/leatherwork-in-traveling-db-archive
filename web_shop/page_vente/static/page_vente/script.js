@@ -265,7 +265,7 @@ let currentImageIndex = 0; // Index de l'image actuelle
 let images = []; // Tableau pour stocker les images
 
 
-// Fonction pour afficher les images d'un article
+// Fonction pour afficher les images d'un article avec le nom de l'article
 function afficherImages(articleId) {
     fetch(`/get_product_images/${articleId}/`)
         .then(response => {
@@ -275,16 +275,16 @@ function afficherImages(articleId) {
             return response.json()
         })
         .then(data => {
+            document.getElementById('nom-article').textContent = data.nom;
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
             const modal = document.getElementById('modal');
             modal.style.display = 'block'; // Afficher la modale
-        }).catch(error => {
-        }).catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
         })
-        ;
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 }
 // Fonction pour changer d'image
 function changeImage(direction) {

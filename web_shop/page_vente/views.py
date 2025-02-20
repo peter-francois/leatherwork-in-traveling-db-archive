@@ -215,6 +215,6 @@ def get_product_images(request, article_id):
         product = AllProducts.objects.get(id=article_id)
         images = [product.lien_image1 , product.lien_image2, product.lien_image3, product.lien_image4]
         images = [image for image in images if image]
-        return JsonResponse({'images': images})
+        return JsonResponse({'images': images, 'nom': product.nom})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)

@@ -71,13 +71,15 @@
             <ul id="liste-articles"></ul>    
         </section>
 
-        <div id="modal" style="display:none;">
+        <div id="modal">
+            <h3 class="text-center" id="nom-article"></h3>
+            <button class="page-button" id="close-button" onclick="fermerModal()">&times;</button>
             <img id="current-image" src="" alt="Image du produit">
             <div>
-                <button id="prev-button" onclick="changeImage(-1)">Précédent</button>
-                <button id="next-button" onclick="changeImage(1)">Suivant</button>
+                <button class="page-button" id="prev-button" onclick="changeImage(-1)">Précédent</button>
+                <button class="page-button" id="next-button" onclick="changeImage(1)">Suivant</button>
             </div>
-            <button onclick="fermerModal()">Fermer</button>
+            
         </div>
 
              <!--Pagination Links-->

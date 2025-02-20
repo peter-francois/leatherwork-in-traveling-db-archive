@@ -341,21 +341,47 @@ body {
         margin-top: 15px;
     }
     #modal{
-        position: fixed;
-        top: 70px;
-        left: 70px;
-        right: 70px;
-        bottom: 70px;
         background-color: #fff;
         border: 2px solid var(--color2);
         border-radius: 10px;
-        padding: 15px;
+        display: none;
+        z-index: 12;
+        position: fixed;
+        top: 55%;
+        right: 50%;
+        transform: translate(350px, -50%);
+        padding: 20px;
+        width: 700px;
+        height: 550px;
+        justify-items: center;
+    }
+    #modal h3{
+        display: inline-block;
+        margin: 0px;
+        position: absolute;
+        left:50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+    }
+    #close-button{
+        display: inline-block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        padding: 0px;
     }
     #modal img{
         width: 40em;
         height: 30em;
         border: 2px solid var(--color2);
         border-radius: 10px;
+        margin-top: 45px;
+    }
+    #prev-button, #next-button{
+        margin-top: 5px;
+        display: inline-block;
     }
     
     
