@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from cloudinary.models import CloudinaryField
 
 class AllProducts(models.Model):
 
@@ -28,10 +29,10 @@ class AllProducts(models.Model):
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     ornement = models.CharField(max_length=200, blank=True, null=True)
     prix = models.FloatField(default=0.0)
-    lien_image1 = models.URLField(default='', max_length=20000, blank=True, null=True)
-    lien_image2 = models.URLField(default='', max_length=20000, blank=True, null=True)
-    lien_image3 = models.URLField(default='', max_length=20000, blank=True, null=True)
-    lien_image4 = models.URLField(default='', max_length=20000, blank=True, null=True)
+    image1 = CloudinaryField(default='', blank=True, null=True)
+    image2 = CloudinaryField(default='', blank=True, null=True)
+    image3 = CloudinaryField(default='', blank=True, null=True)
+    image4 = CloudinaryField(default='', blank=True, null=True)
     disponible = models.BooleanField(default=True)
 
     def __str__(self):

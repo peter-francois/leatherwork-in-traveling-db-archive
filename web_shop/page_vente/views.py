@@ -48,7 +48,8 @@ def cart_detail(request):
         return JsonResponse({'cart': []})  
 
     cart_items = CartItem.objects.filter(cart=cart).select_related('product')
-    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'lien_image1': item.product.lien_image1, 'id': item.product.id} for item in cart_items]
+    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url, 
+            'image2': item.product.image2.url, 'image3': item.product.image3.url, 'image4': item.product.image4.url, 'id': item.product.id} for item in cart_items]
 
     return JsonResponse({'cart': data})
 
@@ -162,25 +163,6 @@ def tous_les_produits(request):
         'form': form
     }
 
-    def update_lien(lien_image):
-        if "www.dropbox.com" in lien_image:
-            lien_image = lien_image.replace("www.dropbox.com", "dl.dropboxusercontent.com")
-        if "st=" in lien_image:  
-            lien_image = lien_image.split("&st=")[0].rstrip("&")
-        return lien_image
-
-    for product in all_products:
-        if product.lien_image1:
-            product.lien_image1 = update_lien(product.lien_image1)
-        if product.lien_image2:
-            product.lien_image2 = update_lien(product.lien_image2)
-        if product.lien_image3:
-            product.lien_image3 = update_lien(product.lien_image3)
-        if product.lien_image4:
-            product.lien_image4 = update_lien(product.lien_image4)
-        product.save()
-
-
     return render(request, 'page_vente/tous_les_produits.html', context)
 
 def maroquinerie(request):
@@ -213,7 +195,7 @@ def a_propos(request):
 def get_product_images(request, article_id):
     try:
         product = AllProducts.objects.get(id=article_id)
-        images = [product.lien_image1 , product.lien_image2, product.lien_image3, product.lien_image4]
+        images = [product.image1.url , product.image2.url, product.image3.url, product.image4.url]
         images = [image for image in images if image]
         return JsonResponse({'images': images, 'nom': product.nom})
     except AllProducts.DoesNotExist:

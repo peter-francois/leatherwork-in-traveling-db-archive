@@ -166,12 +166,12 @@ function afficherPanier() {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
                 img.setAttribute('onclick', `afficherImages(${article.id})`);
-                img.setAttribute('on_', article.lien_image1);
+                img.setAttribute('on_', article.image1);
                 let button = document.createElement('button');
                 button.classList.add('page-button');
                 li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
-                if (article.lien_image1) {
-                    img.src = `${article.lien_image1}`;
+                if (article.image1) {
+                    img.src = `${article.image1}`;
                     li.appendChild(img);
                 }
                 button.textContent = 'Supprimer';
