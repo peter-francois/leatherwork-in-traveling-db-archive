@@ -96,10 +96,20 @@ DATABASES = {
 
 CACHES = {
     'default': {
-        'BACKEND': env('CACHE_BACKEND'),
-        'LOCATION': env('CACHE_LOCATION'),
+         # Config en dev
+        'BACKEND': env('CACHE_BACKEND'), # last config with pymemecache that don't work for pythonanywhere
+        'LOCATION': env('CACHE_LOCATION'), # last config with pymemecache that don't work for pythonanywhere
+
+        # Config en production
+        # 'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        # 'LOCATION': '/home/ton_utilisateur/django_cache',  Remplace par ton dossier sur PythonAnywhere
+        # 'TIMEOUT': 300,  # 5 minutes (ajuste selon tes besoins)
+        # 'OPTIONS': {
+        #     'MAX_ENTRIES': 1000  # Nombre max d'entrées en cache
+        # }
     }
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -144,7 +154,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+SESSION_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
+CSRF_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
 SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
 CSRF_COOKIE_SECURE = True     # Assure que le cookie CSRF est aussi sécurisé
 
@@ -160,6 +171,8 @@ if env('DJANGO_ENV') == 'development':
     CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
     SECURE_HSTS_SECONDS = 0
+    SESSION_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
+    CSRF_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
 
 
 # Cloudinary configuration
@@ -167,6 +180,9 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': env('CLOUDINARY_API_KEY'),
     'API_SECRET': env('CLOUDINARY_API_SECRET'),
+    'SECURE': True,  # Active le HTTPS
+    'RESOURCE_TYPE': 'image'
+
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
