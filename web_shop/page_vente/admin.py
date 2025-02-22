@@ -16,11 +16,12 @@ class AllProductsForm(forms.ModelForm):
         cleaned_data = super().clean()
         for field in ['image1', 'image2', 'image3', 'image4']:
             image_file = cleaned_data.get(field)
-            if image_file and image_file.size > 10 * 1024 * 1024:  # 10 Mo
-                raise ValidationError({field: _('Le fichier est trop volumineux. La taille maximale est de 10 Mo.')})
+            if image_file:
+                if hasattr(image_file, 'size') and image_file.size > 10 * 1024 * 1024:  # 10 Mo
+                    raise ValidationError({field: _('Le fichier est trop volumineux. La taille maximale est de 10 Mo.')})
         return cleaned_data
 
-        
+
 class AllProductsAdmin(admin.ModelAdmin):
     actions = ['rendre_disponible', 'rendre_indisponible']
     list_display = ('nom','categorie','disponible', 'type', 'ornement', 'prix')
