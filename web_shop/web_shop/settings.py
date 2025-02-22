@@ -181,8 +181,10 @@ CLOUDINARY_STORAGE = {
     'API_KEY': env('CLOUDINARY_API_KEY'),
     'API_SECRET': env('CLOUDINARY_API_SECRET'),
     'SECURE': True,  # Active le HTTPS
-    'RESOURCE_TYPE': 'image'
-
+    'RESOURCE_TYPE': 'image',
+    'DEFAULT_TRANSFORMATION': [
+        {'fetch_format': 'auto', 'quality': 'auto', 'dpr': 'auto'}
+    ]
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
