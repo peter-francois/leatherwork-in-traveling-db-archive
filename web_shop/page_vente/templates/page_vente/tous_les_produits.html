@@ -58,11 +58,20 @@
                 <div class="produit" data-product-id="{{ produit.id }}">
                     <h3>{{ produit.nom }}</h3>
                     <p>Prix : {{ produit.prix }} €</p>
-                    {% if produit.image1 %}
-                    <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
+                    {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
+                        {% if produit.image1 %}
+                                <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
+                        {% elif produit.image2 %}
+                                <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
+                        {% elif produit.image3 %}
+                                <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
+                        {% elif produit.image4 %}
+                            <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
+                        {% endif %}
                     {% else %}
-                    <p>Aucune image disponible</p>
+                        <p>Aucune image disponible</p>
                     {% endif %}
+                    <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
                     <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
                 </div>
             {% endfor %}

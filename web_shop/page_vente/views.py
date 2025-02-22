@@ -132,7 +132,7 @@ def macrames(request):
 def tous_les_produits(request):
     all_products = AllProducts.objects.all()
     form = ProductFilterForm(request.GET)
-
+    images = []
     all_products = [product for product in all_products if product.disponible]
 
     if form.is_valid():
@@ -154,13 +154,13 @@ def tous_les_produits(request):
             all_products = [product for product in all_products if product.prix <= max_price]
 
     # Pagination
-    paginator = Paginator(all_products, 20)  # 20 articles per page
+    paginator = Paginator(all_products, 20)  # 20 articles par page
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
         'products': page_obj,
-        'form': form
+        'form': form,
     }
 
     return render(request, 'page_vente/tous_les_produits.html', context)
