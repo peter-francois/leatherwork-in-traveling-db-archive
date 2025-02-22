@@ -53,7 +53,6 @@ def cart_detail(request):
 
     return JsonResponse({'cart': data})
 
-# Vider le panier et rendre les produits à nouveau disponibles
 def vider_panier(request):
     session_id = request.session.session_key
     if not session_id:
@@ -86,48 +85,6 @@ def remove_from_cart(request, product_id):
         return JsonResponse({'success': True, 'message': 'Article retiré du panier'})
     else:
         return JsonResponse({'success': False, 'message': 'Article non trouvé dans le panier'})
-
-@require_GET
-def get_product_details(request, article_id):
-    try:
-        product = AllProducts.objects.get(id=article_id)
-        return JsonResponse({'status': 'success', 'data': {
-            'id': product.id,
-            'nom': product.nom,
-            'prix': product.prix,
-            'disponible': product.disponible
-        }})
-    except AllProducts.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
-
-@require_POST
-@csrf_protect
-def rendre_indisponible(request, product_id):
-    try:
-        product = AllProducts.objects.get(id=product_id)
-        product.disponible = False
-        product.save()
-        return JsonResponse({'status': 'success'})
-    except AllProducts.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
-
-@require_POST
-@csrf_protect
-def rendre_disponible(request, product_id):
-    try:
-        product = AllProducts.objects.get(id=product_id)
-        product.disponible = True
-        product.save()
-        return JsonResponse({'status': 'success'})
-    except AllProducts.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Product not found'}, status=404)
-
-# Create your views here.
-def index(request):    
-    return render(request, 'page_vente/index.html')
-
-def macrames(request):
-    return render(request, 'page_vente/macrames.html')
 
 def tous_les_produits(request):
     all_products = AllProducts.objects.all()
@@ -165,18 +122,6 @@ def tous_les_produits(request):
 
     return render(request, 'page_vente/tous_les_produits.html', context)
 
-def maroquinerie(request):
-    return render(request, 'page_vente/maroquinerie.html')
-
-def creation_sur_mesure(request):
-    return render(request, 'page_vente/creation_sur_mesure.html')
-
-def hybride(request):
-    return render(request, 'page_vente/hybride.html')
-
-def contact(request):
-    return render(request, 'page_vente/contact.html')
-
 def panier(request):
     session_key = request.session.session_key
     cart = Cart.objects.filter(session_id=session_key).first()
@@ -189,9 +134,6 @@ def panier(request):
         "items": items
     })
 
-def a_propos(request):
-    return render(request, 'page_vente/a_propos.html')
-
 def get_product_images(request, article_id):
     try:
         product = AllProducts.objects.get(id=article_id)
@@ -200,3 +142,24 @@ def get_product_images(request, article_id):
         return JsonResponse({'images': images, 'nom': product.nom})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
+
+def index(request):    
+    return render(request, 'page_vente/index.html')
+
+def macrames(request):
+    return render(request, 'page_vente/macrames.html')
+
+def a_propos(request):
+    return render(request, 'page_vente/a_propos.html')
+
+def maroquinerie(request):
+    return render(request, 'page_vente/maroquinerie.html')
+
+def creation_sur_mesure(request):
+    return render(request, 'page_vente/creation_sur_mesure.html')
+
+def hybride(request):
+    return render(request, 'page_vente/hybride.html')
+
+def contact(request):
+    return render(request, 'page_vente/contact.html')
