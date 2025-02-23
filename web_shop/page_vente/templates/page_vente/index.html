@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="header text-center">
-        <div class="title_and_logo grid-container">
+        <div class="title_and_logo align-items-center grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
             <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
@@ -23,8 +23,8 @@
 
     <section class="category grid-container">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
-            <div class="half-grid-width" >
-                <div class="product-title-and-description text-center">
+            <div class="grid-container align-items-center half-grid-width" >
+                <div class="product-title-and-description align-items-center text-center">
                     <h2 class="product-title" id="maroquinerie_title"><i class="fas fa-wallet"></i> Espace Maroquinerie</h2>
                     <p class="product-description" id="maroquinerie_description" >Collection de modèles en <strong>Cuir</strong>.</p>
                 </div>
@@ -35,8 +35,8 @@
             </div>
         </a>
         <a class="linker product-card " href="{% url 'boutique:macrames' %}">
-            <div class="half-grid-width" >
-                <div class="product-title-and-description text-center">
+            <div class="grid-container align-items-center half-grid-width" >
+                <div class="product-title-and-description align-items-center text-center">
                     <h2 class="product-title" id="macrames_title"><i class="fas fa-feather-pointed"></i> Espace Macramé</h2>
                     <p class="product-description" id="macrames_description" >Création sur une base de <strong>tissage de fils</strong>. </p>
                 </div>
@@ -46,9 +46,9 @@
             </div>
         </a>
         <a class="linker product-card full-grid-width" href="{% url 'boutique:creation-sur-mesure' %}">
-            <div class="grid-width_2" >
+            <div class="grid-container align-items-center grid-width_2" >
                 <img class="image-full-span display-laptop" src="{% static 'page_vente/images/porte_feuille.jpeg' %}" alt="Atelier maroquinerie">
-                <div class="product-title-and-description text-center">
+                <div class="product-title-and-description align-items-center text-center">
                     <h2 class="product-title" id="creation_sur_mesure_title"><i class="fas fa-scissors"></i> Création sur Mesure</h2>
                     <p class="product-description text-center" id="creation_sur_mesure_description" ><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
                         <strong>entièrement personnalisés</strong>
@@ -59,9 +59,9 @@
             </div>
             </a>
         <a class="linker product-card full-grid-width" href="{% url 'boutique:hybride' %}">
-            <div class="grid-width_2" >
+            <div class="grid-container align-items-center grid-width_2" >
                 <img class="image-full-span display-laptop" src="{% static 'page_vente/images/mix_maro_macra.jpeg' %}" alt="Outils maroquinerie">
-                <div class="product-title-and-description text-center">
+                <div class="product-title-and-description align-items-center text-center">
                     <h2 class="product-title" id="hybride_title"><i class="fas fa-gift"></i> Hybride</h2>
                     <p class="product-description" id="autres_produits_description">Mix de <strong>différentes techniques et matériaux</strong>.</p>
                 </div>

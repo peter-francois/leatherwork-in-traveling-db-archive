@@ -11,12 +11,12 @@
 </head>
 <body>
     <div class="header text-center">
-        <div class="title_and_logo grid-container">
+        <div class="title_and_logo align-items-center grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
             <h1 id="title_all_products">TOUS LES PRODUITS</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
-        <p class ="text-center" id="description_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><a class="page-button" id = "contact_link" href="{% url 'boutique:contact' %}">ici</a>
+        <p class ="text-center" id="description_all_products">Retrouvez ci-dessous tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><a class="align-items-center page-button" id = "contact_link" href="{% url 'boutique:contact' %}">ici</a>
         
     <!-- Include Navbar component -->
     {% include 'page_vente/navbar.html' %}
@@ -27,7 +27,7 @@
             <div>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
-                    <button class="page-button" id ="filter-button" type="submit" >Filtrer</button>
+                    <button class="align-items-center page-button" id ="filter-button" type="submit" >Filtrer</button>
                 </form>
             
                 
@@ -71,8 +71,7 @@
                     {% else %}
                         <p>Aucune image disponible</p>
                     {% endif %}
-                    <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
-                    <button class="page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
+                    <button class="align-items-center page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
                 </div>
             {% endfor %}
         </div>
@@ -83,11 +82,11 @@
 
         <div id="modal">
             <h3 class="text-center" id="nom-article"></h3>
-            <button class="page-button" id="close-button" type="button" onclick="fermerModal()">&times;</button>
+            <button class="align-items-center page-button" id="close-button" type="button" onclick="fermerModal()">&times;</button>
             <img id="current-image" src="" alt="Image du produit">
             <div>
-                <button class="page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
-                <button class="page-button" id="next-button" type="button" onclick="changeImage(1)">Suivant</button>
+                <button class="align-items-center page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
+                <button class="align-items-center page-button" id="next-button" type="button" onclick="changeImage(1)">Suivant</button>
             </div>
             
         </div>

@@ -30,7 +30,6 @@ body {
         margin: 0px 0px;
         cursor: pointer;
         display: flex; 
-        align-items: center;
     }
     .page-button:hover{
         color: white;
@@ -43,6 +42,9 @@ body {
     }
     .grid-container{
         display: grid;
+    }
+    .align-items-center{
+        align-items: center;
     }
     .smooth-transition{
         transition: all 0.3s ease;
@@ -143,7 +145,6 @@ body {
             right: 1%; 
             display: flex;
             gap: 10px;
-            align-items: center;
             justify-content: center;
             margin: 0px;
             z-index: 11;
@@ -166,7 +167,6 @@ body {
 
         .title_and_logo{
             grid-template-columns: 1fr 1fr 1fr;
-            align-items: center;
             margin-top: 55px;
         }
 
@@ -217,9 +217,7 @@ body {
     }
     .half-grid-width{
         grid-column: span 1;
-        display: grid;
         justify-items: center;
-        align-items: center;
         grid-template-columns: 1fr 1fr;
     }
     .full-grid-width{
@@ -227,14 +225,10 @@ body {
         justify-items: center;
     }
     .grid-width_2{
-        display: grid;
-        align-items: center;
         grid-template-columns:0.313fr 1fr 0.313fr;
         width: 100%;
     }
     .product-title-and-description{
-        display: flex;
-        align-items: center;
         flex-direction: column;
         padding: 0 25px;
     }
@@ -264,9 +258,16 @@ body {
         width: 70px;
         height: 70px;
     }
-    #liste-articles li {
-        padding: 5px;
-        border-bottom: 1px solid #eee;
+    .produit, #liste-articles li{ 
+        justify-items: center;
+        border: 2px solid var(--color2);
+        border-radius: 10px;
+        padding: 15px;
+        background: #fff;
+        color: var(--color2);
+    }
+    .produit button, #liste-articles button{
+        margin-top: 15px;
     }
     #vider-panier {
         background-color: #f44336;
@@ -279,7 +280,8 @@ body {
         background-color: #d32f2f;
     }
 
-    /*Tous les produits*/
+/*Tous les produits*/
+
     #description_page_all_products{
         color: #f8f5e1;
     }
@@ -309,10 +311,8 @@ body {
     .filter-form p{
         margin: 0px 0px;
     }
-    .filter-form button{
-        margin-top: 10px;
-    }
     #filter-button{
+        margin-top: 10px;
         justify-content: center;        
     }
     .tous_les_produits, #liste-articles{
@@ -333,18 +333,6 @@ body {
         transform: scale(1.05);
         cursor: pointer;
 
-    }
-    
-    .produit, #liste-articles li{ 
-        justify-items: center;
-        border: 2px solid var(--color2);
-        border-radius: 10px;
-        padding: 15px;
-        background: #fff;
-        color: var(--color2);
-    }
-    .produit button, #liste-articles button{
-        margin-top: 15px;
     }
     #modal{
         background-color: #fff;
@@ -537,7 +525,7 @@ body {
             grid-template-columns: 1fr 1fr 1fr;
             gap:10px;
         }
-        .filter-form button{
+        #filter-button{
             margin-top: 5px;
             width: 50%;
         }
