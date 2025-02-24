@@ -300,12 +300,18 @@ body {
     #contact_link:hover{
         color: white;
     }
-    section input, section select{
+    section input, section select, label{
         display: block;
-        width: 75%;
+        width: 70%;
+        justify-self: center;
+    }
+    section input, section select{
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 2px solid var(--color2);
     }
     .filter-form{
-        grid-template-columns: 1fr 1fr 1fr 1fr .5fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         align-items: stretch;
         gap: 20px;
         align-content: center;
@@ -325,7 +331,10 @@ body {
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        transition: background 0.3s ease;
+        transition: 0.3s ease;
+        grid-column: span 4;
+        width: 7em;
+        justify-self: center;
     }
     #filter-button:hover {
         background: #FFD700; 
@@ -342,7 +351,7 @@ body {
         border-radius: 50px;
         cursor: pointer;
         margin: 0 5px;
-        transition: background 0.3s ease;
+        transition: 0.3s ease;
     }
     .pagination-button:hover {
         background-color: #8c6b4f; 
@@ -563,12 +572,12 @@ body {
     /*Tous les produits*/
 
         .filter-form{
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap:10px;
         }
         #filter-button{
             margin-top: 5px;
-            width: 50%;
+            grid-column: span 2;
         }
         .pagination-button{
             font-size: 14px;
@@ -659,7 +668,7 @@ body {
         }
 
 
-        }
+        
         .tous_les_produits img, #liste-articles img{
             width: 7em;
             height: 7em;
