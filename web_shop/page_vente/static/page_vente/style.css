@@ -348,6 +348,9 @@ body {
         background-color: #8c6b4f; 
         color: #f8f5e1;
     }
+    #br-pagination{
+        display: none;
+    }
     .current-page{
         display: block;
         margin-top: 10px;
@@ -367,7 +370,8 @@ body {
         object-fit: cover;
     }
     .tous_les_produits img:hover, #liste-articles img:hover{
-        transform: scale(1.05);
+        transform: scale(1.07);
+        transition: all 0.3s ease;
         cursor: pointer;
 
     }
@@ -566,7 +570,14 @@ body {
             margin-top: 5px;
             width: 50%;
         }
-
+        .pagination-button{
+            font-size: 14px;
+            padding: 5px 15px;
+            margin: 5px 5px;
+        }
+        #br-pagination{
+            display: block;
+        }
         .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(2, 1fr);
             margin: 0px 0px;
@@ -645,6 +656,9 @@ body {
     /*Tous les produits*/
         .filter-form{
             grid-template-columns: 1fr 1fr;
+        }
+
+
         }
         .tous_les_produits img, #liste-articles img{
             width: 7em;

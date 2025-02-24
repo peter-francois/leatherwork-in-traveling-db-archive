@@ -39,7 +39,7 @@
                 <a class="pagination-button" href="?page=1">&laquo; First</a>
                 <a class="pagination-button" href="?page={{ products.previous_page_number }}">Previous</a>
             {% endif %}
-
+            <br id="br-pagination">
             {% if products.has_next %}
                 <a class="pagination-button" href="?page={{ products.next_page_number }}">Next</a>
                 <a class="pagination-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
