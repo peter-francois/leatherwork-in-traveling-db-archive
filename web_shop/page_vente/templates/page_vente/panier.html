@@ -24,7 +24,8 @@
         <h2>Votre Panier</h2>
         {% if items %}
         <ul class="grid-container" id="liste-articles"></ul>
-        
+        <p>Total : {{ total | floatformat:2 }} €</p>
+        <a class="align-items-center page-button" href="">Commander</a>
         <button class="align-items-center page-button" id="vider-panier" onclick="viderPanier()">Vider le panier</button>
         {% if expiration_date %}
             <p>⚠️ Votre panier expirera le {{ expiration_date|date:"d/m/Y H:i" }}.</p>

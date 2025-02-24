@@ -126,12 +126,14 @@ def panier(request):
     session_key = request.session.session_key
     cart = Cart.objects.filter(session_id=session_key).first()
     items = CartItem.objects.filter(cart=cart)
+    total = sum(item.product.prix * item.quantity for item in items)
     expiration_date = get_session_expiration(request)
 
 
     return render(request, "page_vente/panier.html", {
         "expiration_date": expiration_date,
-        "items": items
+        "items": items,
+        "total": total
     })
 
 def get_product_images(request, article_id):
