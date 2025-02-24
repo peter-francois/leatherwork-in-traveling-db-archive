@@ -26,7 +26,7 @@
             <div>
                 <form class="filter-form grid-container" method="GET">
                     {{ form.as_p }}
-                    <button class="align-items-center page-button" id ="filter-button" type="submit" >Filtrer</button>
+                    <button class="align-items-center" id ="filter-button" type="submit" >Filtrer</button>
                 </form>
             
                 
@@ -36,18 +36,18 @@
         <!--Pagination Links-->
         <div class="pagination text-center">
             {% if products.has_previous %}
-                <a href="?page=1">&laquo; First</a>
-                <a href="?page={{ products.previous_page_number }}">Previous</a>
+                <a class="pagination-button" href="?page=1">&laquo; First</a>
+                <a class="pagination-button" href="?page={{ products.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% if products.has_next %}
+                <a class="pagination-button" href="?page={{ products.next_page_number }}">Next</a>
+                <a class="pagination-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
             {% endif %}
 
             <span class="current-page">
                 Page {{ products.number }} of {{ products.paginator.num_pages }}
             </span>
-
-            {% if products.has_next %}
-                <a href="?page={{ products.next_page_number }}">Next</a>
-                <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
-            {% endif %}
         </div>
 
         <!--List of products-->
@@ -93,18 +93,16 @@
              <!--Pagination Links-->
             <div class="pagination text-center">
                 {% if products.has_previous %}
-                    <a href="?page=1">&laquo; First</a>
-                    <a href="?page={{ products.previous_page_number }}">Previous</a>
+                    <a class="pagination-button" href="?page=1">&laquo; First</a>
+                    <a class="pagination-button" href="?page={{ products.previous_page_number }}">Previous</a>
                 {% endif %}
-
+                {% if products.has_next %}
+                    <a class="pagination-button" href="?page={{ products.next_page_number }}">Next</a>
+                    <a class="pagination-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+                {% endif %}
                 <span class="current-page">
                     Page {{ products.number }} of {{ products.paginator.num_pages }}
                 </span>
-
-                {% if products.has_next %}
-                    <a href="?page={{ products.next_page_number }}">Next</a>
-                    <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
-                {% endif %}
             </div>
 
     
