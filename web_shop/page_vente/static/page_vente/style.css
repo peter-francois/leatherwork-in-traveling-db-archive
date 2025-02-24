@@ -258,6 +258,8 @@ body {
         padding: 0;
     }
     #liste-articles img{
+        margin-top: 20px;
+        margin-bottom: 20px;
         width: 70px;
         height: 70px;
     }
@@ -272,7 +274,28 @@ body {
     .produit button, #liste-articles button{
         margin-top: 15px;
     }
+    #total{
+        margin-top: 60px;
+        padding: 0px;
+    }
+    #buy-button{
+        width: 13em;
+        background-color: #4CAF50;
+        font-size: 18px;
+        color: white; 
+        transition: box-shadow 0.3s ease;
+        border: none;
+        justify-items: center;
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+    }
+    #buy-button:hover {
+        box-shadow: 0 0 12px rgba(76, 175, 80, 0.7);
+        background: #45a049; 
+        }
     #vider-panier {
+        margin-top: 0px;
         background-color: #f44336;
         color: white;
         border: none;
@@ -294,7 +317,7 @@ body {
         color: var(--color1);
         text-decoration: none;
         width: 60px;
-        height: 40px;
+        height: 25px;
         padding: 0px;
     }
     #contact_link:hover{
@@ -565,10 +588,7 @@ body {
         .image-full-span{
         width: 220px;
         }
-        #vider-panier{
-            margin-top: 15px;
-            margin-left: 15px;
-        }
+
     /*Tous les produits*/
 
         .filter-form{
@@ -661,14 +681,18 @@ body {
         .image-full-span{
         width: 120px;
         }
-
+    /*Panier*/
+        #buy-button{
+            width: 9em;
+            font-size: 14px;
+        }
+        #vider-panier {
+            font-size: 13px;
+        }
     /*Tous les produits*/
         .filter-form{
             grid-template-columns: 1fr 1fr;
-        }
-
-
-        
+        }        
         .tous_les_produits img, #liste-articles img{
             width: 7em;
             height: 7em;
