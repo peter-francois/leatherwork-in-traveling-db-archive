@@ -165,13 +165,28 @@ function afficherPanier() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
-                img.setAttribute('onclick', `afficherImages(${article.id})`);
-                img.setAttribute('on_', article.image1);
+                img.onclick = () => afficherImages(article.id);
                 let button = document.createElement('button');
                 button.classList.add('page-button');
                 li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
                 if (article.image1) {
                     img.src = `${article.image1}`;
+                    li.appendChild(img);
+                }
+                else if (article.image2) {
+                    img.src = `${article.image2}`;
+                    li.appendChild(img);
+                }
+                else if (article.image3) {
+                    img.src = `${article.image3}`;
+                    li.appendChild(img);
+                }
+                else if (article.image4) {
+                    img.src = `${article.image4}`;
+                    li.appendChild(img);
+                }
+                else {
+                    img.src = ''; // Aucune image disponible
                     li.appendChild(img);
                 }
                 button.textContent = 'Supprimer';
