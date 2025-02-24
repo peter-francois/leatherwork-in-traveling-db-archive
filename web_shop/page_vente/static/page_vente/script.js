@@ -168,21 +168,25 @@ function afficherPanier() {
                 img.onclick = () => afficherImages(article.id);
                 let button = document.createElement('button');
                 button.classList.add('page-button');
-                li.textContent = `${article.nom} - ${article.prix} € (x${article.quantity})`;
+                li.textContent = `${article.nom} - ${article.prix.toFixed(2)} € (x${article.quantity})`;
                 if (article.image1) {
                     img.src = `${article.image1}`;
+                    img.alt = `${article.nom}`;
                     li.appendChild(img);
                 }
                 else if (article.image2) {
                     img.src = `${article.image2}`;
+                    img.alt = `${article.nom}`;
                     li.appendChild(img);
                 }
                 else if (article.image3) {
                     img.src = `${article.image3}`;
+                    img.alt = `${article.nom}`;
                     li.appendChild(img);
                 }
                 else if (article.image4) {
                     img.src = `${article.image4}`;
+                    img.alt = `${article.nom}`;
                     li.appendChild(img);
                 }
                 else {

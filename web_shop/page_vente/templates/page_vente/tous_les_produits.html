@@ -56,7 +56,7 @@
             {% for produit in products %}
                 <div class="produit" data-product-id="{{ produit.id }}">
                     <h3>{{ produit.nom }}</h3>
-                    <p>Prix : {{ produit.prix }} €</p>
+                    <p>Prix : {{ produit.prix | floatformat:2 }} €</p>
                     {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
                         {% if produit.image1 %}
                                 <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
