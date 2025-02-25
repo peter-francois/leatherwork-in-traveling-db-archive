@@ -1,12 +1,11 @@
 /db.sqlite3
-/.env
-/MDP.TXT
 __pycache__/
 *.pyc
 *.pyo
 *.log
 .idea/
-/ameliorations_dams.TXT
 /staticfiles/
 /.gitignore
 cache/
+/pythonanywhere.txt
+.gitignore

@@ -8,6 +8,9 @@ from django.views.decorators.csrf import csrf_protect
 from django.utils.timezone import now
 from .utils import get_session_expiration
 
+# pour résoudre le problème de CSRF token
+from django.views.decorators.csrf import ensure_csrf_cookie
+
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
 
@@ -145,7 +148,12 @@ def get_product_images(request, article_id):
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
 
+# Pour Forcer l’envoi du cookie CSRF
+# @ensure_csrf_cookie
 def index(request):    
+
+
+    # return JsonResponse({"message": "CSRF Cookie Set"})
     return render(request, 'page_vente/index.html')
 
 def macrames(request):
