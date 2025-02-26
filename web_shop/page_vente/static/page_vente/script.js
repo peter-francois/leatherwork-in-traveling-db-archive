@@ -144,17 +144,17 @@ document.addEventListener('DOMContentLoaded', function () {
             img.addEventListener('click', () => {
                 const articleId = produit.getAttribute('data-product-id');
                 if (!articleId) return;
-                afficherImages(articleId);
+                displayProductImages(articleId);
             });
         }
     });
-    afficherPanier();  // Charger les articles du panier au démarrage
+    displayCart();  // Charger les articles du panier au démarrage
 });
 
 
 
 // Fonction pour afficher les articles du panier
-function afficherPanier() {
+function displayCart() {
     fetch('/cart_detail/')
         .then(response => response.json())
         .then(data => {
@@ -165,7 +165,7 @@ function afficherPanier() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
-                img.onclick = () => afficherImages(article.id);
+                img.onclick = () => displayProductImages(article.id);
                 let button = document.createElement('button');
                 button.classList.add('page-button');
                 li.textContent = `${article.nom} - ${article.prix.toFixed(2)} € (x${article.quantity})`;
@@ -223,7 +223,7 @@ function getCookie(name) {
 }
 
 // Ajouter un produit au panier
-function ajouterAuPanier(articleId) {
+function addToCart(articleId) {
     fetch(`/add_to_cart/${articleId}/`, { 
         method: 'POST',
         headers: {
@@ -235,7 +235,7 @@ function ajouterAuPanier(articleId) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                afficherPanier(); // Mettre à jour l'affichage du panier
+                displayCart(); // Mettre à jour l'affichage du panier
                 location.reload(); // Rafraîchir pour mettre à jour la disponibilité
             } else {
                 alert("Erreur : " + data.message);
@@ -244,7 +244,7 @@ function ajouterAuPanier(articleId) {
 }
 
 // Fonction pour vider le panier
-function viderPanier() {
+function clearCart() {
     fetch('/vider_panier/', { 
         method: 'POST',
         headers: {
@@ -256,7 +256,7 @@ function viderPanier() {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                afficherPanier();
+                displayCart();
                 location.reload();
             } else {
                 alert("Erreur lors de la suppression du panier.");
@@ -277,7 +277,7 @@ function remove_from_cart(articleId) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                afficherPanier();
+                displayCart();
                 location.reload();
             } else {
                 alert("Erreur lors de la suppression de l'article.");
@@ -290,7 +290,7 @@ let images = []; // Tableau pour stocker les images
 
 
 // Fonction pour afficher les images d'un article avec le nom de l'article
-function afficherImages(articleId) {
+function displayProductImages(articleId) {
     fetch(`/get_product_images/${articleId}/`)
         .then(response => {
             if (!response.ok) {
@@ -322,7 +322,7 @@ function changeImage(direction) {
 }
 
 // Fonction pour fermer la modale
-function fermerModal() {
+function closeModal() {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
 }

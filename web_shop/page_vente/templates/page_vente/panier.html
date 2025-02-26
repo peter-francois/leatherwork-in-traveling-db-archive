@@ -25,7 +25,7 @@
         {% if items %}
         <ul class="grid-container" id="liste-articles"></ul>
         <p id="total">Total : {{ total | floatformat:2 }} €</p>
-        <button class="align-items-center page-button float-right" id="vider-panier" onclick="viderPanier()">Vider le panier</button>
+        <button class="align-items-center page-button float-right" id="vider-panier" onclick="clearCart()">Vider le panier</button>
         {% if expiration_date %}
         <a class="align-items-center page-button" id="buy-button" href="">Commander</a>
             <p>⚠️ Votre panier expirera le {{ expiration_date|date:"d/m/Y H:i" }}.</p>
@@ -39,7 +39,7 @@
 
     <div id="modal">
         <h3 class="text-center" id="nom-article"></h3>
-        <button class="align-items-center page-button" id="close-button" type="button" onclick="fermerModal()">&times;</button>
+        <button class="align-items-center page-button" id="close-button" type="button" onclick="closeModal()">&times;</button>
         <img id="current-image" src="" alt="Image du produit">
         <div>
             <button class="align-items-center page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>

@@ -71,7 +71,7 @@
                     {% else %}
                         <p>Aucune image disponible</p>
                     {% endif %}
-                    <button class="align-items-center page-button" onclick="ajouterAuPanier('{{ produit.id }}')">Ajouter au panier</button>
+                    <button class="align-items-center page-button" onclick="addToCart('{{ produit.id }}')">Ajouter au panier</button>
                 </div>
             {% endfor %}
         </div>
@@ -82,7 +82,7 @@
 
         <div id="modal">
             <h3 class="text-center" id="nom-article"></h3>
-            <button class="align-items-center page-button" id="close-button" type="button" onclick="fermerModal()">&times;</button>
+            <button class="align-items-center page-button" id="close-button" type="button" onclick="closeModal()">&times;</button>
             <img id="current-image" src="" alt="Image du produit">
             <div>
                 <button class="align-items-center page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
