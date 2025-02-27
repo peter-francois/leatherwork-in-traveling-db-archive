@@ -44,7 +44,10 @@
     "empty_cart":"Your cart is empty",
     "checkout":"Checkout",
     "clear_cart":"Clear Cart",
-    "delete_button":"Delete"
+    "delete_button":"Delete",
+    "title_page_leathercraft":"Leathercraft",
+    "title_leathercraft":"Leathercraft Area",
+    "description_leathercraft":"<strong>Leathercraft</strong> is my main speciality.<br> Here you can find all the <strong>Leather</strong> available products.<br>If you have questions, do not hesitate to contact me by clicking "
 
   },
     "fr": {
@@ -77,8 +80,8 @@
       "contact_link":"ICI",
       "search_field":"Recherche...",
       "search_label":"Rechercher",
-      "min_price":"Prix minimum",
-      "max_price":"Prix maximum",
+      "min_price":"Prix min",
+      "max_price":"Prix max",
       "filter_button":"Filtrer",
       "of":"sur",
       "price":"Prix",
@@ -92,7 +95,10 @@
       "empty_cart":"Votre panier est vide",
       "checkout":"Commander",
       "clear_cart":"Vider le panier",
-      "delete_button":"Supprimer"
+      "delete_button":"Supprimer",
+      "title_page_leathercraft":"Maroquinerie",
+      "title_leathercraft":"Espace Maroquinerie",
+      "description_leathercraft":"La <strong>Maroquinerie</strong> est ma principale specialité.<br>Ici vous trouverez tous les produits en <strong>Cuir</strong> disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant "
   }
     
 }

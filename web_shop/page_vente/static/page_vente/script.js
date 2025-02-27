@@ -61,6 +61,10 @@ function changeLanguage(lang) {
                 'empty_cart':translations.empty_cart,
                 'checkout':translations.checkout,
                 'clear_cart':translations.clear_cart,
+                'title_page_leathercraft':translations.title_page_leathercraft,
+                'title_leathercraft':translations.title_leathercraft,
+                'description_leathercraft':translations.description_leathercraft,
+                
 
             };
 
