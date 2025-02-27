@@ -39,7 +39,12 @@
     "previous_button":"Previous",
     "next_button":"Next",
     "first_button":"First",
-    "last_button":"Last"
+    "last_button":"Last",
+    "title_cart":"Your cart",
+    "empty_cart":"Your cart is empty",
+    "checkout":"Checkout",
+    "clear_cart":"Clear Cart",
+    "delete_button":"Delete"
 
   },
     "fr": {
@@ -82,7 +87,12 @@
       "previous_button":"Prédécedent",
       "next_button":"Suivant",
       "first_button":"Première",
-      "last_button":"Dernière"
+      "last_button":"Dernière",
+      "title_cart":"Votre panier",
+      "empty_cart":"Votre panier est vide",
+      "checkout":"Commander",
+      "clear_cart":"Vider le panier",
+      "delete_button":"Supprimer"
   }
     
 }

@@ -12,7 +12,7 @@
     <div class="header text-center">
         <div class="title_and_logo align-items-center grid-container">
             <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-            <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
+            <h1 id="title_cart">Votre panier</h1>
             <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
         </div>
         
@@ -21,19 +21,18 @@
     </div>
 
     <section>
-        <h2>Votre Panier</h2>
         {% if items %}
         <ul class="grid-container" id="liste-articles"></ul>
         <p id="total">Total : {{ total | floatformat:2 }} €</p>
-        <button class="align-items-center page-button float-right" id="vider-panier" onclick="clearCart()">Vider le panier</button>
+        <button class="align-items-center page-button float-right" id="clear_cart" onclick="clearCart()">Vider le panier</button>
         {% if expiration_date %}
-        <a class="align-items-center page-button" id="buy-button" href="">Commander</a>
+        <a class="align-items-center page-button" id="checkout" href="">Commander</a>
             <p>⚠️ Votre panier expirera le {{ expiration_date|date:"d/m/Y H:i" }}.</p>
         {% else %}
             <p>⚠️ Votre panier expirera bientôt.</p>
         {% endif %}
         {% else %}
-            <p>Votre panier est vide.</p>
+            <p id="empty_cart">Votre panier est vide.</p>
         {% endif %}
     </section>
 

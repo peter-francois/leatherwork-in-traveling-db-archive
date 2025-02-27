@@ -278,7 +278,7 @@ body {
         margin-top: 60px;
         padding: 0px;
     }
-    #buy-button{
+    #checkout{
         width: 13em;
         background-color: #4CAF50;
         font-size: 18px;
@@ -290,11 +290,11 @@ body {
         justify-content: center; 
         align-items: center;
     }
-    #buy-button:hover {
+    #checkout:hover {
         box-shadow: 0 0 12px rgba(76, 175, 80, 0.7);
         background: #45a049; 
         }
-    #vider-panier {
+    #clear_cart {
         margin-top: 0px;
         background-color: #f44336;
         color: white;
@@ -302,7 +302,7 @@ body {
         padding: 10px;
         cursor: pointer;
     }
-    #vider-panier:hover {
+    #clear_cart:hover {
         background-color: #d32f2f;
     }
 
@@ -678,11 +678,11 @@ body {
         width: 120px;
         }
     /*Panier*/
-        #buy-button{
+        #checkout{
             width: 9em;
             font-size: 14px;
         }
-        #vider-panier {
+        #clear_cart {
             font-size: 13px;
         }
     /*Tous les produits*/
