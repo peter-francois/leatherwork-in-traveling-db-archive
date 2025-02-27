@@ -365,7 +365,7 @@ body {
     }
     .pagination-button{
         display: inline-block;
-        width: 5em;
+        width: 8em;
         text-decoration: none;
         background: transparent; 
         border: 2px solid #8c6b4f; 
@@ -638,10 +638,7 @@ body {
             height: 28em;
             margin-top: 65px;
         }
-        #prev-button, #next-button{
-            margin-top: 5px;
-            display: inline-block;
-        }
+
 
 }
 

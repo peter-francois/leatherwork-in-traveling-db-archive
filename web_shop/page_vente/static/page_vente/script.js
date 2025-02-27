@@ -97,6 +97,31 @@ function changeLanguage(lang) {
                     element.innerHTML = translations.add_to_cart_button;
                 });
             }
+            const previous_button = document.querySelectorAll('.prev-button');
+            if (previous_button) {
+                previous_button.forEach(element => {
+                    element.innerHTML = translations.previous_button;
+                });
+            }
+            const next_button = document.querySelectorAll('.next-button');
+            if (next_button) {
+                next_button.forEach(element => {
+                    element.innerHTML = translations.next_button;
+                });
+            }
+            const first_button = document.querySelectorAll('.first-button');
+            if (first_button) {
+                first_button.forEach(element => {
+                    element.innerHTML = translations.first_button;
+                });
+            }
+            const last_button = document.querySelectorAll('.last-button');
+            if (last_button) {
+                last_button.forEach(element => {
+                    element.innerHTML = translations.last_button;
+                });
+            }
+            
             
             // Met à jour l'état actif des drapeaux
             flags.forEach(flag => {

@@ -37,13 +37,13 @@
         <!--Pagination Links-->
         <div class="pagination text-center">
             {% if products.has_previous %}
-                <a class="pagination-button" href="?page=1">&laquo; First</a>
-                <a class="pagination-button" href="?page={{ products.previous_page_number }}">Previous</a>
+                <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
+                <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
             {% endif %}
             <br id="br-pagination">
             {% if products.has_next %}
-                <a class="pagination-button" href="?page={{ products.next_page_number }}">Next</a>
-                <a class="pagination-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+                <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
+                <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
             {% endif %}
 
             <span class="current-page">
@@ -94,12 +94,13 @@
              <!--Pagination Links-->
             <div class="pagination text-center">
                 {% if products.has_previous %}
-                    <a class="pagination-button" href="?page=1">&laquo; First</a>
-                    <a class="pagination-button" href="?page={{ products.previous_page_number }}">Previous</a>
+                    <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
+                    <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
                 {% endif %}
+                <br id="br-pagination">
                 {% if products.has_next %}
-                    <a class="pagination-button" href="?page={{ products.next_page_number }}">Next</a>
-                    <a class="pagination-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+                    <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
+                    <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
                 {% endif %}
                 <span class="current-page">
                     Page {{ products.number }} <span id="of2">of</span> {{ products.paginator.num_pages }}

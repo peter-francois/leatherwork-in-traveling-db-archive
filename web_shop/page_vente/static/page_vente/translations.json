@@ -35,7 +35,11 @@
     "of":"of",
     "price":"Price",
     "add_to_cart_button":"Add to cart",
-    "no_image":"No image available"
+    "no_image":"No image available",
+    "previous_button":"Previous",
+    "next_button":"Next",
+    "first_button":"First",
+    "last_button":"Last"
 
   },
     "fr": {
@@ -74,7 +78,11 @@
       "of":"sur",
       "price":"Prix",
       "add_to_cart_button":"Ajouter au panier",
-      "no_image":"Aucune image disponible"
+      "no_image":"Aucune image disponible",
+      "previous_button":"Prédécedent",
+      "next_button":"Suivant",
+      "first_button":"Première",
+      "last_button":"Dernière"
   }
     
 }
