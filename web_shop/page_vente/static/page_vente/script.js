@@ -191,7 +191,9 @@ function displayCart() {
                 }
                 else {
                     img.src = ''; // Aucune image disponible
-                    li.appendChild(img);
+                    let p = document.createElement('p');    
+                    p.textContent = 'Aucune image disponible';
+                    li.appendChild(p);
                 }
                 button.textContent = 'Supprimer';
                 button.onclick = () => remove_from_cart(article.id);
