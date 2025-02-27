@@ -52,7 +52,11 @@ function changeLanguage(lang) {
                 'title_page_all_products':translations.title_page_all_products,
                 'title_all_products':translations.title_all_products,
                 'description_all_products':translations.description_all_products,
-                'contact_link':translations.contact_link,         
+                'filter_button':translations.filter_button,
+                'contact_link':translations.contact_link,     
+                'of':translations.of,
+                'of2':translations.of,
+                'no_image':translations.no_image
 
             };
 
@@ -62,6 +66,36 @@ function changeLanguage(lang) {
                 if (element) {
                     element.innerHTML = text;
                 }
+            }
+            // Met à jour le placeholder du champ de recherche
+            const searchField = document.getElementById('search_field');
+            if (searchField) {
+                searchField.placeholder = translations.search_field;
+            }
+            // Met à jour le label du champ de recherche
+            const searchLabel = document.querySelector('label[for="search_field"]');
+            if (searchLabel) {
+                searchLabel.innerHTML = translations.search_label;
+            }
+            const minPriceLabel = document.querySelector('label[for="id_min_price"]');
+            if (minPriceLabel) {
+                minPriceLabel.innerHTML = translations.min_price;
+            }
+            const maxPriceLabel = document.querySelector('label[for="id_max_price"]');
+            if (maxPriceLabel) {
+                maxPriceLabel.innerHTML = translations.max_price;
+            }
+            const price = document.querySelectorAll('.prices');
+            if (price) {
+                price.forEach(element => {
+                    element.innerHTML = translations.price;
+                });
+            }
+            const add_to_cart_button = document.querySelectorAll('.add_to_cart_button');
+            if (add_to_cart_button) {
+                add_to_cart_button.forEach(element => {
+                    element.innerHTML = translations.add_to_cart_button;
+                });
             }
             
             // Met à jour l'état actif des drapeaux

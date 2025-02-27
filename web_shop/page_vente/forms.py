@@ -10,7 +10,7 @@ class ProductFilterForm(forms.Form):
         update_type(self)
         self.fields['type'].widget.choices = [('---', '---')] + [(type, type) for type in AllProducts.objects.values_list('type', flat=True).distinct()]
 
-    search = forms.CharField(required=False, label="Recherche", widget=forms.TextInput(attrs={'placeholder': 'Rechercher...'}))
+    search = forms.CharField(required=False, label="Recherche", widget=forms.TextInput(attrs={'placeholder': 'Rechercher...', 'id': 'search_field'}))
     type = forms.CharField(required=False, label="Type", widget=forms.Select(choices= [('---', '---')]))
     min_price = forms.DecimalField(required=False, label="Prix min", min_value=0)
     max_price = forms.DecimalField(required=False, label="Prix max", min_value=0)

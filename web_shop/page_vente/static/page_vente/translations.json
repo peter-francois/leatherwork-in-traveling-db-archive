@@ -21,15 +21,22 @@
     "autres_produits_description": "Mix of <strong>different techniques and materials</strong>.",
     "title_page_cart":"Cart",
     "title_panier":"Shopping cart",
-    "vider_panier":"Empty cart",
+    "vider_panier":"Clear Cart",
     "panier_vide":"Your cart is empty",
     "title_page_all_products":"All products",
     "title_all_products":"All products",
-    "description_all_products":"Here you will find all the products available.<br>If you have any questions, do not hesitate to contact me by clicking ",
+    "description_all_products":"Here you can find all the available products.<br>If you have questions, do not hesitate to contact me by clicking ",
     "contact_link":"HERE",
-    "search":"search",
-    "min_price":"min_price",
-    "max_price":"max_price"
+    "search_field":"Search...",
+    "search_label":"Search",
+    "min_price":"Min price",
+    "max_price":"Max price",
+    "filter_button":"Filter",
+    "of":"of",
+    "price":"Price",
+    "add_to_cart_button":"Add to cart",
+    "no_image":"No image available"
+
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -59,9 +66,15 @@
       "title_all_products":"Tous les produits",
       "description_all_products":"Ici vous trouverez tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant ",
       "contact_link":"ICI",
-      "search":"Rechercher",
+      "search_field":"Recherche...",
+      "search_label":"Rechercher",
       "min_price":"Prix minimum",
-      "max_price":"Prix maximum"
+      "max_price":"Prix maximum",
+      "filter_button":"Filtrer",
+      "of":"sur",
+      "price":"Prix",
+      "add_to_cart_button":"Ajouter au panier",
+      "no_image":"Aucune image disponible"
   }
     
 }
