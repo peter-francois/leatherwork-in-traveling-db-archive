@@ -13,9 +13,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import environ
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
+
+
 
 env = environ.Env(
     DEBUG=(bool, False)  # Par défaut, DEBUG sera False
@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'page_vente.apps.PageVenteConfig',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -157,7 +159,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-if env('DJANGO_ENV') == 'development':  
+if env('DJANGO_ENV') == 'development':
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
@@ -179,6 +181,10 @@ else:
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 
 
+
+import cloudinary
+# Cloudinary configuration
+
 cloudinary.config(
     cloud_name = env('CLOUDINARY_CLOUD_NAME'),
     api_key = env('CLOUDINARY_API_KEY'),
@@ -187,9 +193,6 @@ cloudinary.config(
     upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
 )
 
-CLOUDINARY_UNSIGNED_PRESET = env('CLOUDINARY_UPLOAD_PRESET')
-# Cloudinary configuration
-
 # Configurer le proxy sur PythonAnywhere uniquement
 if 'PYTHONANYWHERE_DOMAIN' in os.environ:
     print("On est sur PythonAnywhere")
@@ -197,7 +200,8 @@ if 'PYTHONANYWHERE_DOMAIN' in os.environ:
 else:
     print("On n'est pas sur PythonAnywhere")
 
-
+import cloudinary.uploader
+import cloudinary.api
 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
