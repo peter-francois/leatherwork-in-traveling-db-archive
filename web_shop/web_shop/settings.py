@@ -179,16 +179,25 @@ else:
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 
 
+cloudinary.config(
+    cloud_name = env('CLOUDINARY_CLOUD_NAME'),
+    api_key = env('CLOUDINARY_API_KEY'),
+    api_secret = env('CLOUDINARY_API_SECRET'),
+    secure = True,
+    upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
+)
+
+CLOUDINARY_UNSIGNED_PRESET = env('CLOUDINARY_UPLOAD_PRESET')
 # Cloudinary configuration
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': env('CLOUDINARY_API_KEY'),
-    'API_SECRET': env('CLOUDINARY_API_SECRET'),
-    'SECURE': True,  # Active le HTTPS
-    'RESOURCE_TYPE': 'image',
-    'DEFAULT_TRANSFORMATION': [
-        {'fetch_format': 'auto', 'quality': 'auto', 'dpr': 'auto'}
-    ]
-}
+
+# Configurer le proxy sur PythonAnywhere uniquement
+if 'PYTHONANYWHERE_DOMAIN' in os.environ:
+    print("On est sur PythonAnywhere")
+    cloudinary.config(api_proxy='http://proxy.server:3128')
+else:
+    print("On n'est pas sur PythonAnywhere")
+
+
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
