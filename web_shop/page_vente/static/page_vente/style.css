@@ -271,6 +271,12 @@ body {
         background: #fff;
         color: var(--color2);
     }
+    .produit h3, #liste-articles li h3{
+        font-size: 18px;
+    }
+    .produit p, #liste-articles li p{
+        font-size: 16px;
+    }
     .produit button, #liste-articles button{
         margin-top: 15px;
     }
@@ -414,12 +420,12 @@ body {
         display: none;
         z-index: 12;
         position: fixed;
-        top: 55%;
+        top: 50%;
         right: 50%;
-        transform: translate(370px, -50%);
+        transform: translate(50%, -50%);
         padding: 20px;
-        width: 700px;
-        height: 550px;
+        width: 40%;
+        height: 90%;
         justify-items: center;
     }
     #modal h3{
@@ -441,8 +447,10 @@ body {
         padding: 0px;
     }
     #modal img{
-        width: 30em;
-        height: 30em;
+        display: flex;
+        width: 90%;
+        height: 85%;
+        justify-items: center;
         border: 2px solid var(--color2);
         border-radius: 10px;
         margin-top: 45px;
@@ -466,8 +474,8 @@ body {
 
     /*header*/
 
-        header {
-        padding: 10px;
+        .header {
+        padding: 1px;
         }
         .title_and_logo{
             grid-template-columns: .4fr 1fr;
@@ -520,13 +528,9 @@ body {
             margin-top: 10px;
         }
         #modal{
-            transform: translate(270px, -50%);
-            height: 450px;
-            width: 500px;
+            width: 60%;
         }
-        #modal img{
-            height: 23em;
-        }
+
 }
 
 
@@ -574,6 +578,7 @@ body {
         .product-title{
             margin:5px 0;
         }
+        
         h2.product-title{
         font-size: 15px;
         }
@@ -587,7 +592,16 @@ body {
         .image-full-span{
         width: 220px;
         }
-
+    /*Panier*/
+        .produit h3, #liste-articles li h3{
+            font-size: 15px;
+        }
+        .produit p, #liste-articles li p{
+            font-size: 14px;
+        }
+        .produit button, #liste-articles button{
+            margin-top: 13px;
+        }
     /*Tous les produits*/
 
         .filter-form{
@@ -634,8 +648,8 @@ body {
             right: 35px;
         }
         #modal img{
-            width: 28em;
-            height: 28em;
+            width: 90%;
+            height: 80%;
             margin-top: 65px;
         }
 
@@ -696,14 +710,15 @@ body {
         }
         #modal h3{
             top: 55px;
+            font-size: 18px;
         }
         #close-button{
-            top: 45px;
-            right: 45px;
+            top: 25px;
+            right: 25px;
         }
         #modal img{
-            width: 19em;
-            height: 19em;
+
+            height: 60%;
             margin-top: 155px;
         }
         #prev-button, #next-button{

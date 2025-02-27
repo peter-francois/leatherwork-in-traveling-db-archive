@@ -92,7 +92,6 @@ def remove_from_cart(request, product_id):
 def tous_les_produits(request):
     all_products = AllProducts.objects.all()
     form = ProductFilterForm(request.GET)
-    images = []
     all_products = [product for product in all_products if product.disponible]
 
     if form.is_valid():
@@ -149,7 +148,7 @@ def get_product_images(request, article_id):
         return JsonResponse({'error': 'Product not found'}, status=404)
 
 # Pour Forcer l’envoi du cookie CSRF
-# @ensure_csrf_cookie
+@ensure_csrf_cookie
 def index(request):    
 
 
@@ -163,7 +162,39 @@ def a_propos(request):
     return render(request, 'page_vente/a_propos.html')
 
 def maroquinerie(request):
-    return render(request, 'page_vente/maroquinerie.html')
+    all_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
+    form = ProductFilterForm(request.GET)
+    all_products = [product for product in all_products if product.disponible]
+
+    if form.is_valid():
+        search = form.cleaned_data.get('search')
+        type = form.cleaned_data.get('type')
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
+
+        if search:
+            all_products = [product for product in all_products if search.lower() in product.nom.lower()]
+        if type:
+            if type == '---':
+                type = None
+            else:
+                all_products = [product for product in all_products if product.type == type]
+        if min_price is not None:
+            all_products = [product for product in all_products if product.prix >= min_price]
+        if max_price is not None:
+            all_products = [product for product in all_products if product.prix <= max_price]
+
+    # Pagination
+    paginator = Paginator(all_products, 20)  # 20 articles par page
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'products': page_obj,
+        'form': form,
+    }
+
+    return render(request, 'page_vente/maroquinerie.html', context)
 
 def creation_sur_mesure(request):
     return render(request, 'page_vente/creation_sur_mesure.html')
