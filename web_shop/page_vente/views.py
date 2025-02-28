@@ -70,7 +70,19 @@ def macrames(request):
     return render(request, 'page_vente/macrames.html', context)
 
 def hybride(request):
-    return render(request, 'page_vente/hybride.html')
+    all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
+    all_hybride_products = [product for product in all_hybride_products if product.disponible]
+
+    all_hybride_products, form = use_filter(request, all_hybride_products, is_all_products=False)
+
+    page_obj = pagination(request,all_hybride_products)
+
+    context = {
+        'products': page_obj,
+        'form': form,
+    }
+
+    return render(request, 'page_vente/hybride.html', context)
 
 def creation_sur_mesure(request):
     return render(request, 'page_vente/creation_sur_mesure.html')

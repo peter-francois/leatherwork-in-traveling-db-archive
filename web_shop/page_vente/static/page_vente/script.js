@@ -67,7 +67,10 @@ function changeLanguage(lang) {
                 'description_leathercraft':translations.description_leathercraft,
                 'title_page_macrame':translations.title_page_macrame,
                 'title_macrame':translations.title_macrame,
-                'description_macrame':translations.description_macrame
+                'description_macrame':translations.description_macrame,
+                'title_page_hybride':translations.title_page_hybride,
+                'title_hybride':translations.title_hybride,
+                'description_hybride':translations.description_hybride
 
             };
 

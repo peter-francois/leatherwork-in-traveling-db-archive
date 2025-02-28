@@ -51,7 +51,10 @@
     "description_leathercraft":"<strong>Leathercraft</strong> is my main speciality.<br> Here you can find all the <strong>Leather</strong> available products.",
     "title_page_macrame":"Macrame",
     "title_macrame":"Macrame Area",
-    "description_macrame":"Here you can find all the <strong>Macrame</strong> available products."
+    "description_macrame":"Here you can find all the <strong>Macrame</strong> available products.",
+    "title_page_hybride":"Hybride",
+    "title_hybride":"Hybride Area",
+    "description_hybride":"<strong>Hybride</strong> is mix of <strong>different techniques and materials</strong>.<br>Here you can find all the <strong>Hybride</strong> available products."
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -108,10 +111,7 @@
       "description_macrame":"Ici vous trouverez tous les produits en <strong>Macramé</strong> disponibles.",
       "title_page_hybride":"Hybride",
       "title_hybride":"Espace Hybride",
-      "description_hybride":"Le <strong>Hybride</strong> est ma troisième specialité.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles.",
-      "title_page_autres_produits":"Autres produits",
-      "title_autres_produits":"Espace Autres produits",
-      "description_autres_produits":"Ici vous trouverez tous les produits en <strong>Autres produits</strong> disponibles."
+      "description_hybride":"<strong>Hybride</strong> est un mix de <strong>differentes techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles."
     }
     
 }
