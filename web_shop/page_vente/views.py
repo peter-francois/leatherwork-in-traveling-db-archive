@@ -97,10 +97,7 @@ def tous_les_produits(request):
 
     all_products, form = use_filter(request, all_products, is_all_products=True )
 
-    # Pagination
-    paginator = Paginator(all_products, 20)  # 20 articles par page
-    page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
+    page_obj = pagination(request,all_products)
 
     context = {
         'products': page_obj,
@@ -108,6 +105,69 @@ def tous_les_produits(request):
     }
 
     return render(request, 'page_vente/tous_les_produits.html', context)
+
+
+def panier(request):
+    session_key = request.session.session_key
+    cart = Cart.objects.filter(session_id=session_key).first()
+    items = CartItem.objects.filter(cart=cart)
+    total = sum(item.product.prix * item.quantity for item in items)
+    expiration_date = get_session_expiration(request)
+
+
+    return render(request, "page_vente/panier.html", {
+        "expiration_date": expiration_date,
+        "items": items,
+        "total": total
+    })
+
+def get_product_images(request, article_id):
+    try:
+        product = AllProducts.objects.get(id=article_id)
+        images = [product.image1.url , product.image2.url, product.image3.url, product.image4.url]
+        images = [image for image in images if image]
+        return JsonResponse({'images': images, 'nom': product.nom})
+    except AllProducts.DoesNotExist:
+        return JsonResponse({'error': 'Product not found'}, status=404)
+
+# Pour Forcer l’envoi du cookie CSRF
+@ensure_csrf_cookie
+def index(request):    
+
+
+    # return JsonResponse({"message": "CSRF Cookie Set"})
+    return render(request, 'page_vente/index.html')
+
+def macrames(request):
+    return render(request, 'page_vente/macrames.html')
+
+def a_propos(request):
+    return render(request, 'page_vente/a_propos.html')
+
+def maroquinerie(request):
+
+    all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
+    all_leather_products = [product for product in all_leather_products if product.disponible]
+
+    all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
+
+    page_obj = pagination(request,all_leather_products)
+
+    context = {
+        'products': page_obj,
+        'form': form,
+    }
+
+    return render(request, 'page_vente/maroquinerie.html', context)
+
+def creation_sur_mesure(request):
+    return render(request, 'page_vente/creation_sur_mesure.html')
+
+def hybride(request):
+    return render(request, 'page_vente/hybride.html')
+
+def contact(request):
+    return render(request, 'page_vente/contact.html')
 
 def use_filter(request, product_views, is_all_products):
     if not product_views:
@@ -159,67 +219,7 @@ def use_filter(request, product_views, is_all_products):
         
         return product_views, form
 
-def panier(request):
-    session_key = request.session.session_key
-    cart = Cart.objects.filter(session_id=session_key).first()
-    items = CartItem.objects.filter(cart=cart)
-    total = sum(item.product.prix * item.quantity for item in items)
-    expiration_date = get_session_expiration(request)
-
-
-    return render(request, "page_vente/panier.html", {
-        "expiration_date": expiration_date,
-        "items": items,
-        "total": total
-    })
-
-def get_product_images(request, article_id):
-    try:
-        product = AllProducts.objects.get(id=article_id)
-        images = [product.image1.url , product.image2.url, product.image3.url, product.image4.url]
-        images = [image for image in images if image]
-        return JsonResponse({'images': images, 'nom': product.nom})
-    except AllProducts.DoesNotExist:
-        return JsonResponse({'error': 'Product not found'}, status=404)
-
-# Pour Forcer l’envoi du cookie CSRF
-@ensure_csrf_cookie
-def index(request):    
-
-
-    # return JsonResponse({"message": "CSRF Cookie Set"})
-    return render(request, 'page_vente/index.html')
-
-def macrames(request):
-    return render(request, 'page_vente/macrames.html')
-
-def a_propos(request):
-    return render(request, 'page_vente/a_propos.html')
-
-def maroquinerie(request):
-
-    all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
-    all_leather_products = [product for product in all_leather_products if product.disponible]
-
-    all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
-
-    # Pagination
-    paginator = Paginator(all_leather_products, 20)  # 20 articles par page
+def pagination(request,product_views):
+    paginator = Paginator(product_views, 20)  # 20 articles par page
     page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        'products': page_obj,
-        'form': form,
-    }
-
-    return render(request, 'page_vente/maroquinerie.html', context)
-
-def creation_sur_mesure(request):
-    return render(request, 'page_vente/creation_sur_mesure.html')
-
-def hybride(request):
-    return render(request, 'page_vente/hybride.html')
-
-def contact(request):
-    return render(request, 'page_vente/contact.html')
+    return paginator.get_page(page_number)
