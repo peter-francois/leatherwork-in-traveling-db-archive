@@ -90,27 +90,12 @@ def remove_from_cart(request, product_id):
         return JsonResponse({'success': False, 'message': 'Article non trouvé dans le panier'})
 
 def tous_les_produits(request):
+
     all_products = AllProducts.objects.all()
-    form = ProductFilterForm(request.GET)
+    
     all_products = [product for product in all_products if product.disponible]
 
-    if form.is_valid():
-        search = form.cleaned_data.get('search')
-        type = form.cleaned_data.get('type')
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
-
-        if search:
-            all_products = [product for product in all_products if search.lower() in product.nom.lower()]
-        if type:
-            if type == '---':
-                type = None
-            else:
-                all_products = [product for product in all_products if product.type == type]
-        if min_price is not None:
-            all_products = [product for product in all_products if product.prix >= min_price]
-        if max_price is not None:
-            all_products = [product for product in all_products if product.prix <= max_price]
+    all_products, form = use_filter(request, all_products, is_all_products=True )
 
     # Pagination
     paginator = Paginator(all_products, 20)  # 20 articles par page
@@ -123,6 +108,56 @@ def tous_les_produits(request):
     }
 
     return render(request, 'page_vente/tous_les_produits.html', context)
+
+def use_filter(request, product_views, is_all_products):
+    if not product_views:
+        return product_views, None
+
+    if is_all_products:
+        form = ProductFilterForm(request.GET, categorie=None)
+        if form.is_valid():
+            search = form.cleaned_data.get('search')
+            type = form.cleaned_data.get('type')
+            min_price = form.cleaned_data.get('min_price')
+            max_price = form.cleaned_data.get('max_price')
+
+            if search:
+                product_views = [product for product in product_views if search.lower() in product.nom.lower()]
+            if type:
+                if type == '---':
+                    type = None
+                else:
+                    product_views = [product for product in product_views if product.type == type]
+            if min_price is not None:
+                product_views = [product for product in product_views if product.prix >= min_price]
+            if max_price is not None:
+                product_views = [product for product in product_views if product.prix <= max_price]
+        
+        return product_views, form
+    else:
+        categorie = product_views[0].categorie if hasattr(product_views[0], 'categorie') else None
+        if not categorie:
+            return product_views, None
+        form = ProductFilterForm(request.GET, categorie=categorie)
+        if form.is_valid():
+            search = form.cleaned_data.get('search')
+            type = form.cleaned_data.get('type')
+            min_price = form.cleaned_data.get('min_price')
+            max_price = form.cleaned_data.get('max_price')
+
+            if search:
+                product_views = [product for product in product_views if search.lower() in product.nom.lower()]
+            if type:
+                if type == '---':
+                    type = None
+                else:
+                    product_views = [product for product in product_views if product.type == type]
+            if min_price is not None:
+                product_views = [product for product in product_views if product.prix >= min_price]
+            if max_price is not None:
+                product_views = [product for product in product_views if product.prix <= max_price]
+        
+        return product_views, form
 
 def panier(request):
     session_key = request.session.session_key
@@ -162,30 +197,14 @@ def a_propos(request):
     return render(request, 'page_vente/a_propos.html')
 
 def maroquinerie(request):
-    all_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
-    form = ProductFilterForm(request.GET)
-    all_products = [product for product in all_products if product.disponible]
 
-    if form.is_valid():
-        search = form.cleaned_data.get('search')
-        type = form.cleaned_data.get('type')
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
+    all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
+    all_leather_products = [product for product in all_leather_products if product.disponible]
 
-        if search:
-            all_products = [product for product in all_products if search.lower() in product.nom.lower()]
-        if type:
-            if type == '---':
-                type = None
-            else:
-                all_products = [product for product in all_products if product.type == type]
-        if min_price is not None:
-            all_products = [product for product in all_products if product.prix >= min_price]
-        if max_price is not None:
-            all_products = [product for product in all_products if product.prix <= max_price]
+    all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
 
     # Pagination
-    paginator = Paginator(all_products, 20)  # 20 articles par page
+    paginator = Paginator(all_leather_products, 20)  # 20 articles par page
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
 
