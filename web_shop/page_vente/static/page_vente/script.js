@@ -49,6 +49,7 @@ function changeLanguage(lang) {
                 'title_panier':translations.title_panier,
                 'vider_panier':translations.vider_panier,
                 'panier_vide':translations.panier_vide,
+                'any_question':translations.any_question,
                 'title_page_all_products':translations.title_page_all_products,
                 'title_all_products':translations.title_all_products,
                 'description_all_products':translations.description_all_products,
@@ -64,7 +65,9 @@ function changeLanguage(lang) {
                 'title_page_leathercraft':translations.title_page_leathercraft,
                 'title_leathercraft':translations.title_leathercraft,
                 'description_leathercraft':translations.description_leathercraft,
-                
+                'title_page_macrame':translations.title_page_macrame,
+                'title_macrame':translations.title_macrame,
+                'description_macrame':translations.description_macrame
 
             };
 

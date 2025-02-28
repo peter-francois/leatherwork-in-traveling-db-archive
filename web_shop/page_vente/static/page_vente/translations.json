@@ -22,10 +22,11 @@
     "title_page_cart":"Cart",
     "title_panier":"Shopping cart",
     "vider_panier":"Clear Cart",
+    "any_question":"If you have questions, do not hesitate to contact me by clicking ",
     "panier_vide":"Your cart is empty",
     "title_page_all_products":"All products",
     "title_all_products":"All products",
-    "description_all_products":"Here you can find all the available products.<br>If you have questions, do not hesitate to contact me by clicking ",
+    "description_all_products":"Here you can find all the available products.",
     "contact_link":"HERE",
     "search_field":"Search...",
     "search_label":"Search",
@@ -47,8 +48,10 @@
     "delete_button":"Delete",
     "title_page_leathercraft":"Leathercraft",
     "title_leathercraft":"Leathercraft Area",
-    "description_leathercraft":"<strong>Leathercraft</strong> is my main speciality.<br> Here you can find all the <strong>Leather</strong> available products.<br>If you have questions, do not hesitate to contact me by clicking "
-
+    "description_leathercraft":"<strong>Leathercraft</strong> is my main speciality.<br> Here you can find all the <strong>Leather</strong> available products.",
+    "title_page_macrame":"Macrame",
+    "title_macrame":"Macrame Area",
+    "description_macrame":"Here you can find all the <strong>Macrame</strong> available products."
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -73,10 +76,11 @@
       "title_page_cart":"Panier",
       "title_panier":"Mon Panier",
       "vider_panier":"Vider le panier",
+      "any_question":"Si vous avez des questions, n'hésitez pas à me contacter en cliquant ",
       "panier_vide":"Votre panier est vide",
       "title_page_all_products":"Tous les produits",
       "title_all_products":"Tous les produits",
-      "description_all_products":"Ici vous trouverez tous les produits disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant ",
+      "description_all_products":"Ici vous trouverez tous les produits disponibles.",
       "contact_link":"ICI",
       "search_field":"Recherche...",
       "search_label":"Rechercher",
@@ -98,7 +102,16 @@
       "delete_button":"Supprimer",
       "title_page_leathercraft":"Maroquinerie",
       "title_leathercraft":"Espace Maroquinerie",
-      "description_leathercraft":"La <strong>Maroquinerie</strong> est ma principale specialité.<br>Ici vous trouverez tous les produits en <strong>Cuir</strong> disponibles.<br>Si vous avez des questions, n'hésitez pas à me contacter en cliquant "
-  }
+      "description_leathercraft":"La <strong>Maroquinerie</strong> est ma principale specialité.<br>Ici vous trouverez tous les produits en <strong>Cuir</strong> disponibles.",
+      "title_page_macrame":"Macramé",
+      "title_macrame":"Espace Macramé",
+      "description_macrame":"Ici vous trouverez tous les produits en <strong>Macramé</strong> disponibles.",
+      "title_page_hybride":"Hybride",
+      "title_hybride":"Espace Hybride",
+      "description_hybride":"Le <strong>Hybride</strong> est ma troisième specialité.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles.",
+      "title_page_autres_produits":"Autres produits",
+      "title_autres_produits":"Espace Autres produits",
+      "description_autres_produits":"Ici vous trouverez tous les produits en <strong>Autres produits</strong> disponibles."
+    }
     
 }
