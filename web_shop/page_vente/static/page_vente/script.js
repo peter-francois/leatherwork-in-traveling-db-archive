@@ -70,8 +70,9 @@ function changeLanguage(lang) {
                 'description_macrame':translations.description_macrame,
                 'title_page_hybride':translations.title_page_hybride,
                 'title_hybride':translations.title_hybride,
-                'description_hybride':translations.description_hybride
-
+                'description_hybride':translations.description_hybride,
+                'expiration_date':translations.expiration_date,
+                'expiration_soon':translations.expiration_soon
             };
 
             // Mettre à jour chaque élément s'il existe
@@ -139,6 +140,12 @@ function changeLanguage(lang) {
             if (delete_button) {
                 delete_button.forEach(element => {
                     element.innerHTML = translations.delete_button;
+                });
+            }
+            const no_image = document.querySelectorAll('.no-image');
+            if (no_image) {
+                no_image.forEach(element => {
+                    element.innerHTML = translations.no_image;
                 });
             }
             

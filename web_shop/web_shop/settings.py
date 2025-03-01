@@ -191,14 +191,17 @@ cloudinary.config(
     api_secret = env('CLOUDINARY_API_SECRET'),
     secure = True,
     upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
+    transformation=[{
+        'fetch_format': "auto",
+        'quality': "auto"
+    }]
 )
 
 # Configurer le proxy sur PythonAnywhere uniquement
 if 'PYTHONANYWHERE_DOMAIN' in os.environ:
-    print("On est sur PythonAnywhere")
     cloudinary.config(api_proxy='http://proxy.server:3128')
 else:
-    print("On n'est pas sur PythonAnywhere")
+    pass
 
 import cloudinary.uploader
 import cloudinary.api

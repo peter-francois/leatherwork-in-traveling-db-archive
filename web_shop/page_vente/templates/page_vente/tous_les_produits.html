@@ -70,7 +70,7 @@
                             <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
                         {% endif %}
                     {% else %}
-                        <p id="no_image">Aucune image disponible</p>
+                        <p class="no-image">Aucune image disponible</p>
                     {% endif %}
                     <button class="align-items-center page-button add_to_cart_button" onclick="addToCart('{{ produit.id }}')">Ajouter au panier</button>
                 </div>

@@ -54,7 +54,9 @@
     "description_macrame":"Here you can find all the <strong>Macrame</strong> available products.",
     "title_page_hybride":"Hybride",
     "title_hybride":"Hybride Area",
-    "description_hybride":"<strong>Hybride</strong> is mix of <strong>different techniques and materials</strong>.<br>Here you can find all the <strong>Hybride</strong> available products."
+    "description_hybride":"<strong>Hybride</strong> is mix of <strong>different techniques and materials</strong>.<br>Here you can find all the <strong>Hybride</strong> available products.",
+    "expiration_date":"⚠️ Your cart will expire on ",
+    "expiration_soon":"⚠️ Your cart will expire soon."
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -111,7 +113,10 @@
       "description_macrame":"Ici vous trouverez tous les produits en <strong>Macramé</strong> disponibles.",
       "title_page_hybride":"Hybride",
       "title_hybride":"Espace Hybride",
-      "description_hybride":"<strong>Hybride</strong> est un mix de <strong>differentes techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles."
+      "description_hybride":"<strong>Hybride</strong> est un mix de <strong>differentes techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles.",
+      "expiration_date":"⚠️ Votre panier expirera le ",
+      "expiration_soon":"⚠️ Votre panier expirera bientôt."
+    
     }
     
 }
