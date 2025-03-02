@@ -22,8 +22,8 @@ As a beginner developer, this project is particularly challenging, as I am build
 ## 🚀 Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Peter-Francois/E-shopping_Damien.git
-   cd E-shopping_Damien
+   git clone https://github.com/Peter-Francois/E-shopping_Mr_Betsch.git
+   cd E-shopping_Mr_Betsch
    ```
 2. Create a virtual environment and activate it:
    ```sh
