@@ -9,100 +9,10 @@
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
 </head>
 <body>
-    <div class="header text-center">
-        {% block content %}
-    <!-- Content for each page goes here -->
-        {% endblock %}
-
-    <!-- Include Navbar component -->
-    {% include 'page_vente/navbar.html' %}
-    </div>
-
-    <main>
-        <section id="filter-section">
-            <div>
-                <form class="filter-form grid-container" method="GET">
-                    {{ form.as_p }}
-                    <button class="align-items-center" id ="filter_button" type="submit" >Filtrer</button>
-                </form>   
-            </div>
-        </section>
-
-        <!--Pagination Links-->
-        <div class="pagination text-center">
-            {% if products.has_previous %}
-                <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
-                <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
-            {% endif %}
-            <br id="br-pagination">
-            {% if products.has_next %}
-                <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
-                <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
-            {% endif %}
-
-            <span class="current-page">
-                Page {{ products.number }} <span id="of">of</span> {{ products.paginator.num_pages }}
-            </span>
-        </div>
-
-        <!--List of products-->
-        <section>
-        <div id="liste-produits" class="grid-container tous_les_produits">
-            {% for produit in products %}
-                <div class="produit" data-product-id="{{ produit.id }}">
-                    <h3>{{ produit.nom }}</h3>
-                    <p><span class="prices">Prix</span> : {{ produit.prix | floatformat:2 }} €</p>
-                    {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
-                        {% if produit.image1 %}
-                                <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
-                        {% elif produit.image2 %}
-                                <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
-                        {% elif produit.image3 %}
-                                <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
-                        {% elif produit.image4 %}
-                            <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
-                        {% endif %}
-                    {% else %}
-                        <p class="no-image">Aucune image disponible</p>
-                    {% endif %}
-                    <button class="align-items-center page-button add_to_cart_button" onclick="addToCart('{{ produit.id }}')">Ajouter au panier</button>
-                </div>
-            {% endfor %}
-        </div>
-        </section>
-        <section style="display: none;">
-            <ul id="liste-articles"></ul>    
-        </section>
-
-        <div id="modal">
-            <h3 class="text-center" id="nom-article"></h3>
-            <button class="align-items-center page-button" id="close-button" type="button" onclick="closeModal()">&times;</button>
-            <img id="current-image" src="" alt="Image du produit">
-            <div>
-                <button class="align-items-center page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
-                <button class="align-items-center page-button" id="next-button" type="button" onclick="changeImage(1)">Suivant</button>
-            </div>
-            
-        </div>
-
-             <!--Pagination Links-->
-            <div class="pagination text-center">
-                {% if products.has_previous %}
-                    <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
-                    <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
-                {% endif %}
-                <br id="br-pagination">
-                {% if products.has_next %}
-                    <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
-                    <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
-                {% endif %}
-                <span class="current-page">
-                    Page {{ products.number }} <span id="of2">of</span> {{ products.paginator.num_pages }}
-                </span>
-            </div>
-
-    
-    </main>
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>
