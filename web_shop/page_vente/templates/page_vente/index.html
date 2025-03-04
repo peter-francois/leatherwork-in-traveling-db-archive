@@ -1,16 +1,7 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
 {% block header %}
-    <div class="header text-center">
-        <div class="title_and_logo align-items-center grid-container">
-            <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-            <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
-            <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-        </div>
-        
-        <!-- Include Navbar component -->
-        {% include 'page_vente/navbar.html' %}
-    </div>
+    <h1 id="title_index">Bienvenue sur Ma <br>Boutique Artisanale</h1>
 {% endblock %}
 {% block content%}
     <section class="category grid-container">

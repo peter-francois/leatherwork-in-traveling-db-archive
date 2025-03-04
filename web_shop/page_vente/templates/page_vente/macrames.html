@@ -1,15 +1,9 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
 {% block header %}
-<div class="header text-center">
-    <div class="title_and_logo align-items-center grid-container">
-        <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-        <h1 id="title_macrame">MACRAMES</h1>
-        <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
-    </div>
-    <p class ="text-center" id="description_macrame">Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits disponibles.</p>
-    <p class ="text-center" id="any_question">Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><a class="align-items-center page-button" id = "contact_link" href="{% url 'boutique:contact' %}">ici</a>
-    {% include 'page_vente/navbar.html' %}
-</div>
+    <h1 id="title_macrame">MACRAMES</h1>
 {% endblock %}
-       
+
+{% block description %}
+    <p class ="text-center" id="description_macrame">Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits disponibles.</p>
+{% endblock %}

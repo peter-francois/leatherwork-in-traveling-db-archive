@@ -9,8 +9,18 @@
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
 </head>
 <body>
-    {% block header %}
-    {% endblock %}
+    <div class="header text-center">
+        <div class="title_and_logo align-items-center grid-container">
+            <img class="logo" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
+            {% block header %}
+            {% endblock %}
+            <img class="logo display-laptop" src="{% static 'page_vente/images/logo.png' %}" alt="Logo" >
+        </div>
+        {% block description %}
+        {% endblock %}
+        <p class ="text-center" id="any_question">Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><a class="align-items-center page-button" id = "contact_link" href="{% url 'boutique:contact' %}">ici</a>
+        {% include 'page_vente/navbar.html' %}
+    </div>
     {% block content %}
     {% endblock %}
     <script src="{% static 'page_vente/script.js'%}"></script>
