@@ -26,6 +26,8 @@ def tous_les_produits(request):
     
     all_products = [product for product in all_products if product.disponible]
 
+    all_products.sort(key=lambda product: product.id, reverse=True)
+
     all_products, form = use_filter(request, all_products, is_all_products=True )
 
     page_obj = pagination(request,all_products)
@@ -41,6 +43,8 @@ def maroquinerie(request):
 
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
     all_leather_products = [product for product in all_leather_products if product.disponible]
+    
+    all_leather_products.sort(key=lambda product: product.id, reverse=True)
 
     all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
 
@@ -58,6 +62,8 @@ def macrames(request):
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
     all_macrame_products = [product for product in all_macrame_products if product.disponible]
 
+    all_macrame_products.sort(key=lambda product: product.id, reverse=True)
+
     all_macrame_products, form = use_filter(request, all_macrame_products, is_all_products=False)
 
     page_obj = pagination(request,all_macrame_products)
@@ -72,6 +78,8 @@ def macrames(request):
 def hybride(request):
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
     all_hybride_products = [product for product in all_hybride_products if product.disponible]
+
+    all_hybride_products.sort(key=lambda product: product.id, reverse=True)
 
     all_hybride_products, form = use_filter(request, all_hybride_products, is_all_products=False)
 
