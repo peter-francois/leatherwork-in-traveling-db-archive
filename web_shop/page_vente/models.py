@@ -5,29 +5,32 @@ from cloudinary.models import CloudinaryField
 class AllProducts(models.Model):
 
     CATEGORY_CHOICES = [
+        ('Hybride', 'Hybride'),
         ('Macrame', 'Macrame'),
         ('Maroquinerie', 'Maroquinerie'),
-        ('Hybride', 'Hybride'),
-        ('Entretien', 'Entretien')
     ]
     TYPE_CHOICES = [
-        ('Murale', 'Murale'),
-        ('Collier', 'Collier'),
-        ('Bracelet', 'Bracelet'),
-        ('Boucles d\'oreilles', 'Boucles d\'oreilles'),
-        ('Portefeuille, Porte carte', 'Portefeuille, Porte carte'),
+
         ('Blague à tabac', 'Blague à tabac'),
-        ('Sac divers', 'Sac divers'),
+        ('Boucles d\'oreilles', 'Boucles d\'oreilles'),
+        ('Bracelet', 'Bracelet'),
         ('Ceinture', 'Ceinture'),
-        ('Bijoux', 'Bijoux'),
+        ('Chaine de corps', 'Chaine de corps'),
+        ('Chevillère', 'Chevillère'),
+        ('Collier', 'Collier'),
         ('Collier chien', 'Collier chien'),
         ('Divers', 'Divers'),
+        ('Entretien', 'Entretien'),
+        ('Murale', 'Murale'),
+        ('Portefeuille, Porte carte', 'Portefeuille, Porte carte'),
+        ('Sac divers', 'Sac divers'),
     ]
     id = models.AutoField(primary_key=True)
     nom = models.CharField(max_length=200)
     categorie = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     ornement = models.CharField(max_length=200, blank=True, null=True)
+    description = models.CharField(max_length=200, blank=True, null=True)
     prix = models.FloatField(default=0.0)
     image1 = CloudinaryField(default='', blank=True, null=True)
     image2 = CloudinaryField(default='', blank=True, null=True)
