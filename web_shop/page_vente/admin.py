@@ -24,7 +24,7 @@ class AllProductsForm(forms.ModelForm):
 
 class AllProductsAdmin(admin.ModelAdmin):
     actions = ['rendre_disponible', 'rendre_indisponible']
-    list_display = ('nom','categorie','disponible', 'type', 'ornement', 'prix')
+    list_display = ('nom','categorie','disponible', 'type', 'description', 'prix')
     search_fields = ['nom','categorie', 'type']
     list_filter = ['categorie', 'disponible']
     form = AllProductsForm

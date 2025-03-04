@@ -29,7 +29,6 @@ class AllProducts(models.Model):
     nom = models.CharField(max_length=200)
     categorie = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
-    ornement = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
     prix = models.FloatField(default=0.0)
     image1 = CloudinaryField(default='', blank=True, null=True)
