@@ -1,6 +1,7 @@
 :root{
     --color1: #FFD700;
     --color2: #8c6b4f;
+    --color3: #5c3b14;
 
 }
 
@@ -62,7 +63,7 @@ body {
 /*header*/
 
     .header {
-        background: #5c3b14;
+        background: var(--color3);
         color: var(--color1);
         text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
         padding: 20px;
@@ -461,6 +462,58 @@ body {
         margin-top: 5px;
         display: inline-block;
     }
+/*Footer*/
+footer {
+    background: var(--color3);
+    color: var(--color1);
+    padding: 40px 20px;
+    text-align: center;
+    text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.footer-section h4 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section a {
+    color: var(--color1);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    padding-top: 10px;
+}
     
 @media only screen and (max-width: 1182px)
 {   

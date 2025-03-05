@@ -23,6 +23,45 @@
     </div>
     {% block content %}
     {% endblock %}
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>À propos</h4>
+                <ul>
+                    <li><a href="/a-propos">Notre histoire</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h4>Informations légales</h4>
+                <ul>
+                    <li><a href="/mentions-legales">Mentions légales</a></li>
+                    <li><a href="/cgv">Conditions Générales de Vente (CGV)</a></li>
+                    <li><a href="/politique-confidentialite">Politique de Confidentialité</a></li>
+                    <li><a href="/cookies">Gestion des Cookies</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/tonentreprise" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tonentreprise" target="_blank">Instagram</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section">
+                <h4>Paiements sécurisés</h4>
+                <p>Transactions sécurisées avec <strong>Stripe</strong>.</p>
+                <img src="/static/images/stripe-logo.png" alt="Paiement sécurisé via Stripe" width="120">
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>© 2024 TonNomEntreprise. Tous droits réservés.</p>
+        </div>
+    </footer>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
 </html>
