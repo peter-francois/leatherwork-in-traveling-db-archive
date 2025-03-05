@@ -56,7 +56,18 @@
     "title_hybride":"Hybride Area",
     "description_hybride":"<strong>Hybride</strong> is mix of <strong>different techniques and materials</strong>.<br>Here you can find all the <strong>Hybride</strong> available products.",
     "expiration_date":"⚠️ Your cart will expire on ",
-    "expiration_soon":"⚠️ Your cart will expire soon."
+    "expiration_soon":"⚠️ Your cart will expire soon.",
+    "footer_about":"About",
+    "footer_history":"History",
+    "footer_legal":"Legal informations",
+    "footer_mention":"Legal mentions",
+    "footer_cgv":"Terms and Conditions of Sale",
+    "footer_policy":"Privacy Policy",
+    "footer_cookie":"Cookie Management",
+    "footer_payment":"Payment Secure",
+    "footer_payment_description":"Secure transactions with <strong>Stripe</strong>.",
+    "footer_copyright":"© 2025 Leather work in traveling DB. All rights reserved.",
+    "footer_social":"Follow us"
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -115,7 +126,18 @@
       "title_hybride":"Espace Hybride",
       "description_hybride":"<strong>Hybride</strong> est un mix de <strong>differentes techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles.",
       "expiration_date":"⚠️ Votre panier expirera le ",
-      "expiration_soon":"⚠️ Votre panier expirera bientôt."
+      "expiration_soon":"⚠️ Votre panier expirera bientôt.",
+      "footer_about":"A propos",
+      "footer_history":"Notre histoire",
+      "footer_legal":"Informations légales",
+      "footer_mention":"Mentions légales",
+      "footer_cgv":"Conditions générales de vente",
+      "footer_policy":"Politique de confidentialité",
+      "footer_cookie":"Gestion des cookies",
+      "footer_payment":"Paiement securisé",
+      "footer_payment_description":"Paiement securisé avec <strong>Stripe</strong>.",
+      "footer_copyright":"© 2025 Leather work in traveling DB. Tous droits reservés.",
+      "footer_social":"Suivez-nous"
     
     }
     

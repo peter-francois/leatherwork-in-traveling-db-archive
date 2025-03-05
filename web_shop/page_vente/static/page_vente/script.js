@@ -72,7 +72,18 @@ function changeLanguage(lang) {
                 'title_hybride':translations.title_hybride,
                 'description_hybride':translations.description_hybride,
                 'expiration_date':translations.expiration_date,
-                'expiration_soon':translations.expiration_soon
+                'expiration_soon':translations.expiration_soon,
+                'footer_about':translations.footer_about,
+                'footer_history':translations.footer_history,
+                'footer_legal':translations.footer_legal,
+                'footer_mention':translations.footer_mention,
+                'footer_cgv':translations.footer_cgv,
+                'footer_policy':translations.footer_policy,
+                'footer_cookie':translations.footer_cookie,
+                'footer_social':translations.footer_social,
+                'footer_payment':translations.footer_payment,
+                'footer_payment_description':translations.footer_payment_description,
+                'footer_copyright':translations.footer_copyright
             };
 
             // Mettre à jour chaque élément s'il existe
