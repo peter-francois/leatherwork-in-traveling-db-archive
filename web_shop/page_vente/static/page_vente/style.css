@@ -243,6 +243,7 @@ body {
         width: 275px;
         border: solid 2px #8c6b4f;
         border-radius: 5px;
+        justify-self: center;
     }
     .product-description {
         font-size: 0.9em;
