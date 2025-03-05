@@ -394,6 +394,7 @@ body {
     .current-page{
         display: block;
         margin-top: 10px;
+        margin-bottom: 15px;
     }
     .tous_les_produits, #liste-articles{
         align-items: stretch;
@@ -529,7 +530,11 @@ footer {
     /*header*/
 
         .header {
-        padding: 1px;
+        padding-top: 1px;
+        padding-bottom: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+
         }
         .title_and_logo{
             grid-template-columns: .4fr 1fr;
