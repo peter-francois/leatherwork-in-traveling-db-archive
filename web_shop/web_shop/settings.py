@@ -157,26 +157,31 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'  # Peut permettre certaines interactions externes
+SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'  # Permet de charger des ressources locales
 
 if env('DJANGO_ENV') == 'development':
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
     SECURE_SSL_REDIRECT = False
     SECURE_HSTS_SECONDS = 0
-    SESSION_COOKIE_SAMESITE = 'Lax' #permet les cookies cross-site
-    CSRF_COOKIE_SAMESITE = 'Lax' #permet les cookies cross-site
+    SESSION_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
+    CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
+    SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
+    SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
 
 else:
     # Pour la production (avec HTTPS)
     SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
     CSRF_COOKIE_SECURE = True     # Assure que le cookie CSRF est aussi sécurisé
-    SESSION_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
-    CSRF_COOKIE_SAMESITE = 'None' #permet les cookies cross-site
+    SESSION_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
+    CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000    # Active HTTP Strict Transport Security (1 an)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
+    SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
+    SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
 
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 
@@ -191,10 +196,6 @@ cloudinary.config(
     api_secret = env('CLOUDINARY_API_SECRET'),
     secure = True,
     upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
-    transformation=[{
-        'fetch_format': "auto",
-        'quality': "auto"
-    }]
 )
 
 # Configurer le proxy sur PythonAnywhere uniquement

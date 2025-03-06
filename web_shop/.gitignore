@@ -5,9 +5,5 @@ __pycache__/
 *.log
 .idea/
 /staticfiles/
-/.gitignore
 cache/
-/pythonanywhere.txt
-/Conditions Générales de Vente.RTF
-/politique de confidentialité.RTF
-/Gestion des cookies.RTF
+.gitignore
