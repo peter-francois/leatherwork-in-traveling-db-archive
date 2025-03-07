@@ -184,7 +184,7 @@ else:
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
 
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
-
+CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 
 
 import cloudinary
