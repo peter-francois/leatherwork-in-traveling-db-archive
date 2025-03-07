@@ -32,6 +32,7 @@
     <!--List of products-->
     <section>
     <div id="liste-produits" class="grid-container tous_les_produits">
+        {% if products %}
         {% for produit in products %}
             <div class="produit" data-product-id="{{ produit.id }}">
                 <h3>{{ produit.nom }}</h3>
@@ -52,6 +53,9 @@
                 <button class="align-items-center page-button add_to_cart_button" onclick="addToCart('{{ produit.id }}')">Ajouter au panier</button>
             </div>
         {% endfor %}
+        {% else %}
+            <p id="no_products">Aucun produit disponible</p>
+        {% endif %}
     </div>
     </section>
     <section style="display: none;">
