@@ -515,6 +515,10 @@ footer {
     border-top: 1px solid #333;
     padding-top: 10px;
 }
+#stripe_logo{
+    width: 130px;
+    height: auto;
+}
     
 @media only screen and (max-width: 1182px)
 {   
@@ -736,6 +740,7 @@ footer {
             font-size: 0.85em;
         }
 
+
 }
 
 @media only screen and (max-width: 500px)
@@ -805,6 +810,9 @@ footer {
         }
         #prev-button, #next-button{
             margin-top: 30px;
+        }
+        #stripe_logo{
+            width: 100px;
         }
 
 
