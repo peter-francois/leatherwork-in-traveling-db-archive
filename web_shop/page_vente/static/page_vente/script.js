@@ -58,6 +58,7 @@ function changeLanguage(lang) {
                 'of':translations.of,
                 'of2':translations.of,
                 'no_image':translations.no_image,
+                'no_products':translations.no_products,
                 'title_cart':translations.title_cart,
                 'empty_cart':translations.empty_cart,
                 'checkout':translations.checkout,
@@ -197,9 +198,10 @@ document.addEventListener('click', function(event) {
     const menuButton = document.querySelector('.menu button');
     const menuContent = document.querySelector('.menu-content');
     const menuContentProduit = document.querySelector('.menu-content-produit');
+    const contactButton = document.querySelector('#contact_button');
     
-    // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le manu est actif
-    if (!menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
+    // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le menu est actif
+    if (contactButton.contains(event.target) || !menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
         menuContent.classList.remove('active');
         menuButton.classList.remove('active');
         if (menuContentProduit.classList.contains('active')) {
@@ -214,6 +216,7 @@ function toggleMenuProduit(event){
     const menuContentProduit = document.querySelector('.menu-content-produit');
     menuContentProduit.classList.toggle('active');
 }
+
 
 // Pour que le menu modifie son style en fonction de la scroll
 window.addEventListener('scroll', function() {
@@ -230,7 +233,22 @@ window.addEventListener('scroll', function() {
     }
 });
 
+//fonction pour afficher le contact
+function displayContact(event) {
 
+    const ContactDiv = document.querySelector('#contact-form');
+    const overlay = document.querySelector('#overlay');
+    ContactDiv.style.display = 'block';
+    overlay.style.display = 'block'; // Affiche l'overlay
+}
+
+// Fonction pour masquer le contact
+function hideContact() {
+    const ContactDiv = document.querySelector('#contact-form');
+    const overlay = document.querySelector('#overlay');
+    overlay.style.display = 'none'; // Masque l'overlay
+    ContactDiv.style.display = 'none';
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     // Ecouteur d'evenement sur les images pour afficher une div avec toute les images

@@ -24,6 +24,15 @@
     </div>
     {% block content %}
     {% endblock %}
+    <div id="contact-form">
+        <button type="button" id="close-btn" onclick="hideContact()">&times;</button>
+        <h2 class="center">Besoin de renseignements ou de prendre contact pour un produit sur mesure ?</h2>
+        <p>Je me tiens a votre disposition pour tout information complémentaire. Que se soit sur le procédé de fabrication ou les matiere premiere utilisées.</p>
+        <p>Vous avez envie d'un produit 100% sur mesure ou vous voulez personalisé un produit existant ?</p>
+        <p>Contactez-moi dés maintenant pour discuter et obtenir un devis personnalisé.</p>
+        <p>Je suis joignable soit par télephone:<br> <i class="fa-solid fa-phone"></i> <a href="tel:+33778953973" style="text-decoration: none;">0778953973</a><br><br>soit par email:<br> <i class="fa-solid fa-envelope"></i> <a href="mailto:andy.delhaye511@gmail.com?subject=Contact%20depuis%20andydelhaye-elec-plus.com" style="text-decoration: none;">andy.delhaye511@gmail.com</a>.<br><br>À très bientôt</p>
+    </div>
+
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -65,4 +74,5 @@
     </footer>
     <script src="{% static 'page_vente/script.js'%}"></script>
 </body>
+<div id="overlay" style="display:none;"></div>
 </html>
