@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import environ
 import os
+from django.conf import settings
 
 
 
@@ -68,6 +69,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'web_shop.urls'
 
+CLIENT_PHONE_NUMBER = env('CLIENT_PHONE_NUMBER', default='Non disponible')
+CLIENT_EMAIL=env('CLIENT_EMAIL',default='Non disponible')
+
+def global_variables(request):
+    return {
+        'CLIENT_PHONE_NUMBER': settings.CLIENT_PHONE_NUMBER,
+        'CLIENT_EMAIL': settings.CLIENT_EMAIL,  
+    }
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -79,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'web_shop.settings.global_variables', # rendre les variables de .env disponibles dans les templates
             ],
         },
     },
@@ -210,3 +220,5 @@ import cloudinary.api
 
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
