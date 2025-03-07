@@ -196,6 +196,7 @@ cloudinary.config(
     api_secret = env('CLOUDINARY_API_SECRET'),
     secure = True,
     upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
+    analytics=False,
 )
 
 # Configurer le proxy sur PythonAnywhere uniquement
