@@ -322,12 +322,18 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Helper function to get CSRF token from meta tag
+function getCSRFTokenFromMeta() {
+    const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
+    return csrfTokenMeta ? csrfTokenMeta.getAttribute('content') : '';
+}
+
 // Ajouter un produit au panier
 function addToCart(articleId) {
     fetch(`/add_to_cart/${articleId}/`, { 
         method: 'POST',
         headers: {
-            'X-CSRFToken': getCookie('csrftoken'),
+            'X-CSRFToken': getCSRFTokenFromMeta(),
             'Content-Type': 'application/json'
         }
     })
@@ -348,7 +354,7 @@ function clearCart() {
     fetch('/vider_panier/', { 
         method: 'POST',
         headers: {
-            'X-CSRFToken': getCookie('csrftoken'),
+            'X-CSRFToken': getCSRFTokenFromMeta(),
             'Content-Type': 'application/json'
         }
     })
@@ -369,7 +375,7 @@ function remove_from_cart(articleId) {
     fetch(`/remove_from_cart/${articleId}/`, {
         method: 'POST',
         headers: {
-            'X-CSRFToken': getCookie('csrftoken'),
+            'X-CSRFToken': getCSRFTokenFromMeta(),
             'Content-Type': 'application/json'
         }
     })
