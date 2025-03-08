@@ -249,6 +249,14 @@ function hideContact() {
     overlay.style.display = 'none'; // Masque l'overlay
     ContactDiv.style.display = 'none';
 }
+// Fonction pour fermer le contact et le modal si on clique sur l'overlay
+document.addEventListener('click', function(event) {
+    const overlay = document.querySelector('#overlay');
+    if (overlay.contains(event.target)) {
+        hideContact();
+        closeModal();
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     // Ecouteur d'evenement sur les images pour afficher une div avec toute les images
@@ -428,6 +436,8 @@ function displayProductImages(articleId) {
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
             const modal = document.getElementById('modal');
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'block'; // Affiche l'overlay
             modal.style.display = 'block'; // Afficher la modale
         })
         .catch(error => {
@@ -448,5 +458,7 @@ function changeImage(direction) {
 // Fonction pour fermer la modale
 function closeModal() {
     const modal = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none'; // Masque l'overlay
     modal.style.display = 'none';
 }
