@@ -176,6 +176,9 @@ body {
             margin-top: 15px;
             margin-bottom: 15px;
         }
+        #contact-form i {
+            padding-right: 10px;
+        }
 
         #close-btn {
             padding: 10px;
@@ -628,6 +631,13 @@ footer {
             }
             #contact-form p {
                 padding:0 30px;
+                font-size: .85em;
+            }
+            #contact-form i {
+                padding-left: 30px;
+                font-size: .85em;
+            }
+            #contact-form a {
                 font-size: .85em;
             }
             #close-btn {

@@ -26,11 +26,17 @@
     {% endblock %}
     <div id="contact-form">
         <button type="button" id="close-btn" onclick="hideContact()">&times;</button>
-        <h2 class="center">Besoin de renseignements ou de prendre contact pour un produit sur mesure ?</h2>
-        <p>Je suis à votre disposition pour toute information complémentaire, que ce soit sur le procédé de fabrication ou les matières premières utilisées.</p>
-        <p>Vous souhaitez un produit <strong>100 % sur mesure</strong> ou personnaliser un produit existant ?</p>
-        <p>Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé.</p>
-        <p>Je suis joignable soit par télephone:<br> <i class="fa-solid fa-phone"></i> <a href="tel:+33682246670" style="text-decoration: none;">{{ CLIENT_PHONE_NUMBER }}</a><br><br>soit par email:<br> <i class="fa-solid fa-envelope"></i> <a href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20andydelhaye-elec-plus.com" style="text-decoration: none;">{{ CLIENT_EMAIL }}</a>.<br><br>À très bientôt</p>
+        <h2 class="center" id="contact_title">Besoin de renseignements ou de prendre contact pour un produit sur mesure ?</h2>
+        <p id="contact_description1">Je suis à votre disposition pour toute information complémentaire, que ce soit sur le procédé de fabrication ou les matières premières utilisées.</p>
+        <p id="contact_description2">Vous souhaitez un produit <strong>100 % sur mesure</strong> ou personnaliser un produit existant ?</p>
+        <p id="contact_description3">Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé.</p>
+        <p id="contact_description4">Je suis joignable soit par télephone:</p>
+        <i class="fa-solid fa-phone"></i> <a href="tel:{{ CLIENT_PHONE_NUMBER }}" style="text-decoration: none;">{{ CLIENT_PHONE_NUMBER }}</a>
+        <br>
+        <p id="contact_description5">soit par email:</p>
+        <i class="fa-solid fa-envelope"></i> <a href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com" style="text-decoration: none;">{{ CLIENT_EMAIL }}</a>
+        <br>
+        <p id="contact_description6">À très bientôt</p>
     </div>
 
     <footer>

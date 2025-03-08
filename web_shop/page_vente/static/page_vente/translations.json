@@ -68,7 +68,14 @@
     "footer_payment":"Payment Secure",
     "footer_payment_description":"Secure transactions with <strong>Stripe</strong>.",
     "footer_copyright":"© 2025 Leather work in traveling DB. All rights reserved.",
-    "footer_social":"Follow us"
+    "footer_social":"Follow us",
+    "contact_title":"You need information or want to contact for a custom product ?",
+    "contact_description1":"I am available to provide additional information, whether it is about the production process or the raw materials used.",
+    "contact_description2":"You want a product <strong>100 % custom</strong> or to personalise an existing product ?",
+    "contact_description3":"Contact me now to discuss and get a personalised quote.",
+    "contact_description4":"I am available either by phone:",
+    "contact_description5":"or by email:",
+    "contact_description6":"See you soon"
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -139,8 +146,14 @@
       "footer_payment":"Paiement securisé",
       "footer_payment_description":"Paiement securisé avec <strong>Stripe</strong>.",
       "footer_copyright":"© 2025 Leather work in traveling DB. Tous droits reservés.",
-      "footer_social":"Suivez-nous"
-    
+      "footer_social":"Suivez-nous",
+      "contact_title":"Besoin de renseignements ou de prendre contact pour un produit sur mesure ?",
+      "contact_description1":"Je suis à votre disposition pour toute information complémentaire, que ce soit sur le procédé de fabrication ou les matières premières utilisées.",
+      "contact_description2":"Vous souhaitez un produit <strong>100 % sur mesure</strong> ou personnaliser un produit existant ?",
+      "contact_description3":"Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé.",
+      "contact_description4":"Je suis joignable soit par télephone:",
+      "contact_description5":"soit par email:",
+      "contact_description6":"À très bientôt"
     }
     
 }

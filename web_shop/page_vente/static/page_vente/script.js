@@ -84,7 +84,14 @@ function changeLanguage(lang) {
                 'footer_social':translations.footer_social,
                 'footer_payment':translations.footer_payment,
                 'footer_payment_description':translations.footer_payment_description,
-                'footer_copyright':translations.footer_copyright
+                'footer_copyright':translations.footer_copyright,
+                'contact_title':translations.contact_title,
+                'contact_description1':translations.contact_description1,
+                'contact_description2':translations.contact_description2,
+                'contact_description3':translations.contact_description3,
+                'contact_description4':translations.contact_description4,
+                'contact_description5':translations.contact_description5,
+                'contact_description6':translations.contact_description6
             };
 
             // Mettre à jour chaque élément s'il existe
