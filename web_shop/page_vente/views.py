@@ -201,9 +201,6 @@ def get_product_images(request, article_id):
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
 
-def contact(request):
-    return render(request, 'page_vente/contact.html')
-
 def use_filter(request, product_views, is_all_products):
     if not product_views:
         return product_views, None
