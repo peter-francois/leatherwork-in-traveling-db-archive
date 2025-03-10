@@ -265,6 +265,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// Fontion au chargement de la page
 document.addEventListener('DOMContentLoaded', function () {
     // Ecouteur d'evenement sur les images pour afficher une div avec toute les images
     const produits = document.querySelectorAll('.produit');
@@ -278,10 +279,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     });
-    displayCart();  // Charger les articles du panier au démarrage
+    displayCart();
+    updateInsurance();  // Charger les articles du panier au démarrage
+    updateTotal();
 });
-
-
 
 // Fonction pour afficher les articles du panier
 function displayCart() {
@@ -295,10 +296,13 @@ function displayCart() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
+                let p = document.createElement('p');
+                p.textContent = `${article.prix.toFixed(2)} € (x${article.quantity})`;
                 img.onclick = () => displayProductImages(article.id);
                 let button = document.createElement('button');
                 button.classList.add('page-button', 'delete_button');
-                li.textContent = `${article.nom} - ${article.prix.toFixed(2)} € (x${article.quantity})`;
+                li.textContent = `${article.nom}`;
+                li.appendChild(p);
                 if (article.image1) {
                     img.src = `${article.image1}`;
                     img.alt = `${article.nom}`;
@@ -339,23 +343,7 @@ function displayCart() {
         .catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
 
-// Helper function to get CSRF token from cookies
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-// Helper function to get CSRF token from meta tag
+// Fonction pour récupérer le token CSRF depuis le meta tag
 function getCSRFTokenFromMeta() {
     const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     return csrfTokenMeta ? csrfTokenMeta.getAttribute('content') : '';
@@ -469,3 +457,82 @@ function closeModal() {
     overlay.style.display = 'none'; // Masque l'overlay
     modal.style.display = 'none';
 }
+// Fonction pour mettre à jour l'assurance
+
+function updateInsurance() {
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
+    const insuranceOption = document.getElementById('insurance-option'); // Checkbox assurance optionnelle
+    const mandatoryInsurance = document.getElementById('mandatory-insurance'); // Assurance obligatoire
+    const insuranceCostSpan = document.getElementById('insurance-cost'); // Prix assurance optionnelle
+    const mandatoryInsuranceCostSpan = document.getElementById('mandatory-insurance-cost'); // Prix assurance obligatoire
+    const insurance25Euros = document.getElementById('insurance_25_euros'); // Message pour 25€ d'assurance incluse
+    const insurance25Euros2 = document.getElementById('insurance_25_euros_2'); // Message pour 25€ d'assurance incluse
+
+    // Cacher toutes les options par défaut
+    insuranceOption.classList.add('hidden');
+    mandatoryInsurance.classList.add('hidden');
+    insurance25Euros.classList.remove('hidden');
+    insurance25Euros2.classList.remove('hidden');
+
+    // 1. Gestion de l'assurance optionnelle entre 25 € et 50 €
+    if (orderTotal > 25 && orderTotal <= 50) {
+        insuranceOption.classList.remove('hidden'); // Afficher l'option d'assurance
+        if (insuranceOption.checked){
+        insuranceCostSpan.textContent = "2,00"; // Coût fixe pour cette tranche
+        }
+    }
+
+    // 2. Gestion de l'assurance obligatoire au-delà de 50 €
+    if (orderTotal > 50) {
+        insurance25Euros.classList.add('hidden');
+        insurance25Euros2.classList.add('hidden');
+        mandatoryInsurance.classList.remove('hidden');
+
+        // Définir le coût de l'assurance obligatoire en fonction du total
+        if (orderTotal > 375) {
+            mandatoryInsuranceCostSpan.textContent = "8.00";
+            insuranceCostSpan.textContent = "8.00";
+        } else if (orderTotal > 250) {
+            mandatoryInsuranceCostSpan.textContent = "6.50";
+            insuranceCostSpan.textContent = "6.50";
+        } else if (orderTotal > 125) {
+            mandatoryInsuranceCostSpan.textContent = "5.00";
+            insuranceCostSpan.textContent = "5.00";
+        } else {
+            mandatoryInsuranceCostSpan.textContent = "3.50";
+            insuranceCostSpan.textContent = "3.50";
+        }
+    }
+
+}
+// Fonction pour mettre à jour le total
+function updateTotal() {
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
+    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent);
+    // Checkbox assurance optionnelle
+    const addInsurance = document.getElementById('add-insurance').checked;
+    let totalAmount = orderTotal + 5 + insuranceCost;
+    if (addInsurance) {
+        totalAmount += 2;
+    }
+
+    document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+}
+// Fonction pour gérer le checkout
+function handleCheckout() {
+    const acceptCGV = document.getElementById('accept-cgv').checked;
+    const addInsurance = document.getElementById('add-insurance').checked;
+    const errorMessage = document.getElementById('error-message');
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
+
+    if (!acceptCGV) {
+      errorMessage.classList.remove('hidden');
+      return;
+    }
+
+    errorMessage.classList.add('hidden');
+
+    // Redirige vers Stripe avec le montant total
+    window.location.href = `/checkout/?orderTotal=${orderTotal}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+  }
+  

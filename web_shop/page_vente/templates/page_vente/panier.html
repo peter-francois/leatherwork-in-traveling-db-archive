@@ -8,11 +8,44 @@
 {% block content %}
 <section>
     {% if items %}
-    <ul class="grid-container" id="liste-articles"></ul>
-    <p id="total">Total : {{ total | floatformat:2 }} €</p>
     <button class="align-items-center page-button float-right" id="clear_cart" onclick="clearCart()">Vider le panier</button>
     {% if expiration_date %}
-    <a class="align-items-center page-button" id="checkout" href="">Commander</a>
+        <p ><span id="expiration_date">⚠️ Votre panier expirera le </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
+        {% else %}
+        <p id="expiration_soon">⚠️ Votre panier expirera bientôt.</p>
+        {% endif %}
+    <div class="grid-container" style="grid-template-columns: 75% 25%;">
+        
+        <ul class="product-list-cart" id="liste-articles"></ul>
+        <aside class="text-center">
+            <h2>Paiement sécurisé</h2>
+
+            <p>✅ Les frais de port sont fixes à 5 € <span id="insurance_25_euros">et incluent une assurance jusqu'à 25 € </span>via notre partenaire Mondial Relay.</p>
+          
+            <p id="mandatory-insurance" class="hidden">🚨 Une assurance obligatoire de <span id="mandatory-insurance-cost">0</span> € (montant variable selon le montant de la commande. Plus d'information sur la page <a href="/cgv" target="_blank">CGV</a>) sera ajoutée pour les commandes supérieures à 50 €.</p>
+            <div class="separator"></div>
+            <p>Total des articles : <span id="order-total">{{total | floatformat:2 }}</span> €</p>
+            <p>Frais de port : <span id="shipping-cost">5.00 €</span></p>
+            
+            <p>Assurance : <span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>Inclue (jusqu'à 25 €)</span></p>
+            <div id="insurance-option" class="hidden">
+                <input type="checkbox" id="add-insurance" onchange="updateTotal()"> 
+                <label for="add-insurance">Assurer la totalité de la valeur des produits (+2,00 €)</label>
+            </div>
+            <div class="separator"></div>
+            <p>Total de la commande : <span id="total-amount">0</span> €</p>
+            <div>
+              <input type="checkbox" id="accept-cgv"> 
+              <label for="accept-cgv">J'accepte les <a href="/cgv" target="_blank">conditions générales de vente</a>.</label>
+            </div>
+            <button class="align-items-center page-button" id="checkout" onclick="handleCheckout()">Payer via Stripe</button>
+          
+            <p id="error-message" class="error hidden">Vous devez accepter les CGV pour continuer.</p>
+        </aside>
+    
+    
+    </div>
+    {% if expiration_date %}
         <p ><span id="expiration_date">⚠️ Votre panier expirera le </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
     {% else %}
         <p id="expiration_soon">⚠️ Votre panier expirera bientôt.</p>

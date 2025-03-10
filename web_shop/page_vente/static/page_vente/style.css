@@ -322,7 +322,16 @@ body {
     }
 
 /*Panier*/
-
+    .product-list-cart{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .product-list-cart li{
+        width: 220px;
+        height: 320px;
+    }
     #panier h2 {
         font-size: 24px;
     }
@@ -384,7 +393,24 @@ body {
     #clear_cart:hover {
         background-color: #d32f2f;
     }
-
+    /*checkout modal*/    .hidden{
+        display: none;
+    }
+    .error { 
+        color: red; 
+    }
+    aside{
+        display: flex;height: fit-content; 
+        flex-direction: column;
+        background-color: white;
+        border: 3px solid var(--color1); 
+        padding:25px; 
+        border-radius: 10px;
+        
+    }
+    .separator{
+        border-bottom: 2px solid var(--color2); margin: 10px 0;
+    }
 /*Tous les produits*/
 
     #description_page_all_products{
