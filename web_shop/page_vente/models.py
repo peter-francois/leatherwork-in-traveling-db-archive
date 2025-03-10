@@ -42,7 +42,7 @@ class AllProducts(models.Model):
     
 class Cart(models.Model):
     session_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
-    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4,unique=True, editable=False)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
