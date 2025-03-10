@@ -110,7 +110,7 @@ def panier(request):
     return render(request, "page_vente/panier.html", {
         "expiration_date": expiration_date,
         "items": items,
-        "total": total
+        "total": total,
     })
 
 def a_propos(request):
@@ -124,15 +124,13 @@ def add_to_cart(request, product_id):
 
     # Récupérer l'ID de session unique de Django
     expiration_date = get_session_expiration(request)
-    session_id = request.session.session_key
     
-    if not session_id:
+    if not request.session.session_key:
         request.session.create()
-        session_id = request.session.session_key
+    session_id = request.session.session_key
 
-    
     # Vérifier si un panier existe pour cette session
-    cart, created = Cart.objects.get_or_create(session_id=session_id)
+    cart, created = Cart.objects.get_or_create(session_id=session_id,defaults={'uuid': uuid.uuid4()})
 
     # Ajouter le produit au panier
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -144,7 +142,11 @@ def add_to_cart(request, product_id):
     product.disponible = False
     product.save()
 
-    return JsonResponse({'success': True, 'message': f'{product.nom} ajouté au panier', "session_expiration": expiration_date.strftime('%Y-%m-%d %H:%M:%S') if expiration_date else None})
+    return JsonResponse({
+        'success': True, 
+        'message': f'{product.nom} ajouté au panier',
+        'cart_uuid': str(cart.uuid),
+        "session_expiration": expiration_date.strftime('%Y-%m-%d %H:%M:%S') if expiration_date else None})
 
 def cart_detail(request):
     session_id = request.session.session_key
@@ -260,14 +262,13 @@ def pagination(request,product_views):
     return paginator.get_page(page_number)
 
 def checkout(request):
+    
     session_id = request.session.session_key
     if not session_id:
-        logger.error("Aucun panier trouvé.")
         return JsonResponse({'error': 'Aucun panier trouvé'}, status=400)
     cart = Cart.objects.filter(session_id=session_id).first()
-    if not cart:
-        logger.error("Le panier est vide.")
-        return JsonResponse({'error': 'Le panier est vide'}, status=400)
+    cart_uuid = request.GET.get('cart_uuid')
+
     cart_items = CartItem.objects.filter(cart=cart)
     if not cart_items:
         logger.error("Le panier est vide.")
@@ -305,7 +306,7 @@ def checkout(request):
         return JsonResponse({'error': 'Montant invalide.'}, status=400)
     
 
-    return JsonResponse({'total': total, 'articles_quantity': articles_quantity, 'add_insurance': add_insurance, 'acceptCGV': acceptCGV})
+    return JsonResponse({'total': total,'articles_quantity': articles_quantity,'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
 
     # Créer la session de paiement Stripe
     """try:
@@ -316,6 +317,9 @@ def checkout(request):
                     'currency': 'eur',
                     'product_data': {
                         'name': f'Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}',
+                        'metadata': {
+                            'cart_uuid': str(cart_uuid)
+                        }
                     },
                     'unit_amount': int(total * 100),  # Stripe utilise des centimes
                 },

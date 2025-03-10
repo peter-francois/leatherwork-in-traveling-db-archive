@@ -302,6 +302,8 @@ function displayCart() {
                 p.textContent = `${article.prix.toFixed(2)} € (x${article.quantity})`;
                 img.onclick = () => displayProductImages(article.id);
                 let button = document.createElement('button');
+                button.textContent = 'Supprimer';
+                button.onclick = () => remove_from_cart(article.id);
                 button.classList.add('page-button', 'delete_button');
                 li.textContent = `${article.nom}`;
                 li.appendChild(p);
@@ -332,17 +334,16 @@ function displayCart() {
                     p.textContent = 'Aucune image disponible';
                     li.appendChild(p);
                 }
-                button.textContent = 'Supprimer';
-                button.onclick = () => remove_from_cart(article.id);
+
                 li.appendChild(button);
                 listeArticles.appendChild(li);
-                textCartButton.textContent = data.cart.length;
             });
-        } else {
-            return;
+         // Mettre à jour le nombre d'articles dans le panier
+         textCartButton.textContent = data.cart.length;
+
+
         }
-        })
-        .catch(error => console.error('Erreur lors de la récupération du panier:', error));
+    }).catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
 
 // Fonction pour récupérer le token CSRF depuis le meta tag
@@ -363,15 +364,37 @@ function addToCart(articleId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Sauvegarde dans le localStorage pour qu'il persiste entre les sessions
+                localStorage.setItem('cart_uuid', data.cart_uuid);
                 alert(data.message);
                 displayCart(); // Mettre à jour l'affichage du panier
-                location.reload(); // Rafraîchir pour mettre à jour la disponibilité
+                updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
             } else {
                 alert("Erreur : " + data.message);
             }
+        }).catch(error => {
+            console.error('Erreur lors de l\'ajout au panier:', error);
         });
 }
-
+function updateProductList(articleId) {
+    // Trouver l'élément HTML représentant cet article et le supprimer
+    const allProducts = Array.from(document.querySelectorAll('.produit')); 
+    const productElement = allProducts.find(product => product.getAttribute('data-product-id') === articleId);
+    
+    if (productElement) {
+        productElement.style.display = 'none';  // Masquer l'élément du DOM
+    }
+}
+// Au chargement de la page, vérifier si l'UUID du panier est dans localStorage
+window.onload = function() {
+    const cart_uuid = localStorage.getItem('cart_uuid'); // Récupère l'UUID depuis localStorage
+    if (cart_uuid) {
+        window.cart_uuid = cart_uuid; // Assigner à la variable globale pour usage ultérieur
+        console.log("UUID du panier récupéré depuis localStorage:", window.cart_uuid);
+    } else {
+        console.log("Aucun UUID trouvé dans localStorage.");
+    }
+};
 // Fonction pour vider le panier
 function clearCart() {
     fetch('/vider_panier/', { 
@@ -407,7 +430,7 @@ function remove_from_cart(articleId) {
             if (data.success) {
                 alert(data.message);
                 displayCart();
-                location.reload();
+                updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
             } else {
                 alert("Erreur lors de la suppression de l'article.");
             }
@@ -534,7 +557,15 @@ function handleCheckout() {
 
     errorMessage.classList.add('hidden');
 
+    // Récupérer l'UUID du panier depuis le localStorage
+    const cart_uuid = localStorage.getItem('cart_uuid');
+
+
+    if (!cart_uuid) {
+        console.error("L'UUID du panier est introuvable.");
+        return;
+    }
     // Redirige vers Stripe avec le montant total
-    window.location.href = `/checkout/?insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+    window.location.href = `/checkout/?cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
   
