@@ -18,4 +18,5 @@ urlpatterns = [
     path('vider_panier/', vider_panier, name='vider_panier'),
     path('remove_from_cart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
     path('get_product_images/<int:article_id>/', get_product_images, name='get_product_images'),
+    path('checkout/', views.checkout, name='checkout'),
 ]

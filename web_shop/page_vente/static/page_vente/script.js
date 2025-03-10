@@ -280,8 +280,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     displayCart();
-    updateInsurance();  // Charger les articles du panier au démarrage
-    updateTotal();
+    if(window.location.pathname.includes('panier')){
+        updateInsurance();  // Charger les articles du panier au démarrage
+        updateTotal();
+    }
 });
 
 // Fonction pour afficher les articles du panier
@@ -460,7 +462,8 @@ function closeModal() {
 // Fonction pour mettre à jour l'assurance
 
 function updateInsurance() {
-    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
+
     const insuranceOption = document.getElementById('insurance-option'); // Checkbox assurance optionnelle
     const mandatoryInsurance = document.getElementById('mandatory-insurance'); // Assurance obligatoire
     const insuranceCostSpan = document.getElementById('insurance-cost'); // Prix assurance optionnelle
@@ -507,15 +510,14 @@ function updateInsurance() {
 }
 // Fonction pour mettre à jour le total
 function updateTotal() {
-    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
-    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent);
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
+    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent.replace(',', '.'));
     // Checkbox assurance optionnelle
     const addInsurance = document.getElementById('add-insurance').checked;
-    let totalAmount = orderTotal + 5 + insuranceCost;
+    let totalAmount = orderTotal + 5.00 + insuranceCost;
     if (addInsurance) {
-        totalAmount += 2;
+        totalAmount += 2.00;
     }
-
     document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
 }
 // Fonction pour gérer le checkout
@@ -523,7 +525,7 @@ function handleCheckout() {
     const acceptCGV = document.getElementById('accept-cgv').checked;
     const addInsurance = document.getElementById('add-insurance').checked;
     const errorMessage = document.getElementById('error-message');
-    const orderTotal = parseFloat(document.getElementById('order-total').textContent);
+    const orderTotal = document.getElementById('total-amount').textContent;
 
     if (!acceptCGV) {
       errorMessage.classList.remove('hidden');
@@ -533,6 +535,6 @@ function handleCheckout() {
     errorMessage.classList.add('hidden');
 
     // Redirige vers Stripe avec le montant total
-    window.location.href = `/checkout/?orderTotal=${orderTotal}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+    window.location.href = `/checkout/?insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
   

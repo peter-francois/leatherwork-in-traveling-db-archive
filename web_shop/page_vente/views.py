@@ -7,11 +7,15 @@ from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_protect
 from django.utils.timezone import now
 from .utils import get_session_expiration
-
+import stripe
+import logging
+from django.conf import settings
 # pour résoudre le problème de CSRF token
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
 def index(request):    
@@ -112,8 +116,6 @@ def panier(request):
 def a_propos(request):
     return render(request, 'page_vente/a_propos.html')
 
-
-
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
 
@@ -157,7 +159,7 @@ def cart_detail(request):
     data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url, 
             'image2': item.product.image2.url, 'image3': item.product.image3.url, 'image4': item.product.image4.url, 'id': item.product.id} for item in cart_items]
 
-    return JsonResponse({'cart': data})
+    return JsonResponse({'cart': data,})
 
 def vider_panier(request):
     session_id = request.session.session_key
@@ -252,6 +254,83 @@ def use_filter(request, product_views, is_all_products):
         return product_views, form
 
 def pagination(request,product_views):
+
     paginator = Paginator(product_views, 20)  # 20 articles par page
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
+
+def checkout(request):
+    session_id = request.session.session_key
+    if not session_id:
+        logger.error("Aucun panier trouvé.")
+        return JsonResponse({'error': 'Aucun panier trouvé'}, status=400)
+    cart = Cart.objects.filter(session_id=session_id).first()
+    if not cart:
+        logger.error("Le panier est vide.")
+        return JsonResponse({'error': 'Le panier est vide'}, status=400)
+    cart_items = CartItem.objects.filter(cart=cart)
+    if not cart_items:
+        logger.error("Le panier est vide.")
+        return JsonResponse({'error': 'Le panier est vide'}, status=400)
+
+    # Récupérer les paramètres envoyés par le front
+    add_insurance = request.GET.get('insurance') == '1'
+    acceptCGV = request.GET.get('acceptCGV') == '1'
+    # Vérifier si l'utilisateur a accepté les conditions générales de vente
+    if not acceptCGV:
+        logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
+        return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
+    # Calcul du montant total sécurisé côté serveur
+    total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__session_id=request.session.session_key))
+    # Calcul du nombre d'articles
+    articles_quantity = sum(item.quantity for item in CartItem.objects.filter(cart__session_id=request.session.session_key))
+
+    # Ajouter l'assurance si nécessaire
+
+    if total > 50:
+        if total > 375:
+            total += 8.00
+        elif total > 250:
+            total += 6.50
+        elif total > 125:
+            total += 5.00
+        else:
+            total += 3.50
+    elif 25 < total <= 50 and add_insurance:
+        total += 2.00
+
+    # Appliquer les frais de port
+    total += 5
+    if total <= 0:
+        return JsonResponse({'error': 'Montant invalide.'}, status=400)
+    
+
+    return JsonResponse({'total': total, 'articles_quantity': articles_quantity, 'add_insurance': add_insurance, 'acceptCGV': acceptCGV})
+
+    # Créer la session de paiement Stripe
+    """try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'eur',
+                    'product_data': {
+                        'name': f'Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}',
+                    },
+                    'unit_amount': int(total * 100),  # Stripe utilise des centimes
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url='https://tonsite.com/success',
+            cancel_url='https://tonsite.com/cancel',
+        )
+        return redirect(checkout_session.url)
+    # Gestion des erreurs spécifiques à Stripe
+    except stripe.error.StripeError as e:
+        logger.error(f"Erreur Stripe : {e}")
+        return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
+    # Gestion des autres erreurs
+    except Exception as e:
+        logger.exception("Erreur inattendue lors de la création de la session Stripe.")
+        return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)"""
