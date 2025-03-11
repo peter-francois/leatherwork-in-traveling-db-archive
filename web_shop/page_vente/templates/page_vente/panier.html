@@ -18,25 +18,25 @@
         
         <ul class="product-list-cart" id="liste-articles"></ul>
         <aside class="text-center">
-            <h2>Paiement sécurisé</h2>
+            <h2 id="payment_title">Paiement sécurisé</h2>
 
-            <p>✅ Les frais de port sont fixes à 5 € <span id="insurance_25_euros">et incluent une assurance jusqu'à 25 € </span>via notre partenaire Mondial Relay.</p>
+            <p><span id="shipping_cost">✅ Les frais de port sont fixes à 5 €</span> <span id="insurance_25_euros">et incluent une assurance jusqu'à 25 € </span><span id="with_our_partner_mondial_relay">via notre partenaire Mondial Relay.</span></p>
           
-            <p id="mandatory-insurance" class="hidden">🚨 Une assurance obligatoire de <span id="mandatory-insurance-cost">0</span> € (montant variable selon le montant de la commande. Plus d'information sur la page <a href="/cgv" target="_blank">CGV</a>) sera ajoutée pour les commandes supérieures à 50 €.</p>
+            <p id="mandatory-insurance" class="hidden"><span id="mandatory_insurance_2">🚨 Une assurance obligatoire de </span><span id="mandatory-insurance-cost">0</span><span id="mandatory_insurance_3"> € (montant variable selon le montant de la commande. Plus d'information sur la page <a href="/cgv" target="_blank">CGV</a>) sera ajoutée pour les commandes supérieures à 50 €.</span></p>
             <div class="separator"></div>
-            <p>Total des articles : <span id="order-total">{{total | floatformat:2 }}</span> €</p>
-            <p>Frais de port : <span id="shipping-cost">5.00 €</span></p>
+            <p id="total_articles"><span id="total_articles_title">Total des articles : </span><span id="order-total">{{total | floatformat:2 }}</span> €</p>
+            <p id="shipping_cost_short">Frais de port : <span id="shipping-cost">5.00 €</span></p>
             
-            <p>Assurance : <span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>Inclue (jusqu'à 25 €)</span></p>
+            <p><span id="insurance_cost">Assurance : </span><span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>Inclue (jusqu'à 25 €)</span></p>
             <div id="insurance-option" class="hidden">
                 <input type="checkbox" id="add-insurance" onchange="updateTotal()"> 
-                <label for="add-insurance">Assurer la totalité de la valeur des produits (+2,00 €)</label>
+                <label for="add-insurance" id="add-insurance-label">Assurer la totalité de la valeur des produits (+2,00 €)</label>
             </div>
             <div class="separator"></div>
-            <p>Total de la commande : <span id="total-amount">0</span> €</p>
+            <p><span id="total_amount_title">Total de la commande : </span><span id="total-amount">0</span> €</p>
             <div>
               <input type="checkbox" id="accept-cgv"> 
-              <label for="accept-cgv">J'accepte les <a href="/cgv" target="_blank">conditions générales de vente</a>.</label>
+              <label for="accept-cgv" id="accept-cgv-label">J'accepte les <a href="/cgv" target="_blank">conditions générales de vente</a>.</label>
             </div>
             <button class="align-items-center page-button" id="checkout" onclick="handleCheckout()">Payer via Stripe</button>
           

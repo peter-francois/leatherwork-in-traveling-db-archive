@@ -75,7 +75,21 @@
     "contact_description3":"Contact me now to discuss and get a personalised quote.",
     "contact_description4":"I am available either by phone:",
     "contact_description5":"or by email:",
-    "contact_description6":"See you soon"
+    "contact_description6":"See you soon",
+    "payment_title":"Payment Secure",
+    "shipping_cost":"✅ The shipping cost is fixed at 5 € ",
+    "insurance_25_euros":"and includes an insurance up to 25 € ",
+    "with_our_partner_mondial_relay":"via our partner Mondial Relay.",
+    "mandatory_insurance_2":"🚨 An optional insurance of ",
+    "mandatory_insurance_3":" € (variable amount depending on the order amount. For more information see <a href='/cgv' target='_blank'>CGV</a>) will be added for orders over 50 €.",
+    "total_articles_title":"Total of the articles : ",
+    "shipping_cost_short":"Fees of shipping : <span id='shipping-cost'>5.00 €</span>",
+    "insurance_cost":"Insurance : ",
+    "insurance_25_euros_2":"<br>Included (up to 25 €)",
+    "add_insurance_label":"Add insurance for the total value of the products (+2,00 €)",
+    "total_amount_title":"Total of the order : ",
+    "accept_cgv_label":"I accept the <a href='/cgv' target='_blank'>CGV</a>",
+    "error_message":"You must accept the CGV to continue."
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -153,7 +167,21 @@
       "contact_description3":"Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé.",
       "contact_description4":"Je suis joignable soit par télephone:",
       "contact_description5":"soit par email:",
-      "contact_description6":"À très bientôt"
+      "contact_description6":"À très bientôt",
+      "payment_title":"Paiement securisé",
+      "shipping_cost":"✅ Les frais de port sont fixes à 5 € ",
+      "insurance_25_euros":"et inclue un assurance (jusqu'à 25 €)",
+      "with_our_partner_mondial_relay":"via notre partenaire Mondial Relay.",
+      "mandatory_insurance_2":"🚨 Une assurance obligatoire de ",
+      "mandatory_insurance_3":" € (montant variable selon le montant de la commande. Plus d'information sur la page <a href='/cgv' target='_blank'>CGV</a>) sera ajoutée pour les commandes supérieures à 50 €.",
+      "total_articles_title":"Total des articles : ",
+      "shipping_cost_short":"Frais de port : <span id='shipping-cost'>5.00 €</span>",
+      "insurance_cost":"Assurance : ",
+      "insurance_25_euros_2":"<br>Inclue (jusqu'à 25 €)",
+      "add_insurance_label":"Assurer la totalité de la valeur des produits (+2,00 €)",
+      "total_amount_title":"Total de la commande : ",
+      "accept_cgv_label":"J'accepte les <a href='/cgv' target='_blank'>conditions générales de vente</a>",
+      "error_message":"Vous devez accepter les CGV pour continuer."
     }
     
 }

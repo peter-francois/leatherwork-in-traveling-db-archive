@@ -61,8 +61,6 @@ function changeLanguage(lang) {
                 'no_products':translations.no_products,
                 'title_cart':translations.title_cart,
                 'empty_cart':translations.empty_cart,
-                'checkout':translations.checkout,
-                'clear_cart':translations.clear_cart,
                 'title_page_leathercraft':translations.title_page_leathercraft,
                 'title_leathercraft':translations.title_leathercraft,
                 'description_leathercraft':translations.description_leathercraft,
@@ -91,7 +89,24 @@ function changeLanguage(lang) {
                 'contact_description3':translations.contact_description3,
                 'contact_description4':translations.contact_description4,
                 'contact_description5':translations.contact_description5,
-                'contact_description6':translations.contact_description6
+                'contact_description6':translations.contact_description6,
+                'payment_title':translations.payment_title,
+                'shipping_cost':translations.shipping_cost,
+                'insurance_25_euros':translations.insurance_25_euros,
+                'with_our_partner_mondial_relay':translations.with_our_partner_mondial_relay,
+                'mandatory_insurance_2':translations.mandatory_insurance_2,
+                'mandatory_insurance_3':translations.mandatory_insurance_3,
+                'total_articles_title':translations.total_articles_title,
+                'shipping_cost_short':translations.shipping_cost_short,
+                'insurance_cost':translations.insurance_cost,
+                'insurance_25_euros_2':translations.insurance_25_euros_2,
+                'add-insurance-label':translations.add_insurance_label,
+                'total_amount_title':translations.total_amount_title,
+                'accept-cgv-label':translations.accept_cgv_label,
+                'checkout':translations.checkout,
+                'error-message':translations.error_message,
+                'clear_cart':translations.clear_cart,
+                
             };
 
             // Mettre à jour chaque élément s'il existe
