@@ -20,23 +20,28 @@ class Command(BaseCommand):
             return
 
         # Récupérer et supprimer les paniers correspondants
-        expired_session_keys = expiring_sessions.values_list('session_key', flat=True)
-        expired_carts = Cart.objects.filter(session_id__in=expired_session_keys)
+        expired_session_keys = list(expiring_sessions.values_list('session_key', flat=True))
 
+        # Récupérer les paniers correspondants avec prefetch_related() pour minimiser les requêtes en base (récupère tous les articles liés en une seule requête)
+        expired_carts = Cart.objects.filter(session_id__in=expired_session_keys).prefetch_related('cartitem_set__product')
+
+        total_products_liberated = 0
+        total_carts_deleted = 0
         # Libérer les produits de ces paniers
         for cart in expired_carts:
-            for item in CartItem.objects.filter(cart=cart):
+            # Libérer les produits
+            for item in cart.cartitem_set.all():
                 product = item.product
-                product.disponible = True  # Remettre l'article disponible
-                product.save()
-            cart.delete()  # Supprimer le panier après avoir libéré les produits
+                if not product.disponible:  # Évite de remettre en dispo un produit déjà en vente
+                    product.disponible = True
+                    product.save(update_fields=["disponible"])
+                    total_products_liberated += 1
 
-        # Supprimer les sessions expirées
+            # Supprimer le panier après avoir libéré les produits
+            cart.delete()
+            total_carts_deleted += 1
+
+        # Nettoyer les sessions expirées en une seule requête
         expiring_sessions.delete()
 
-        self.stdout.write("✔️ Produits des paniers bientôt expirés libérés")
-
-        # Supprimer les sessions expirées
-        for session_key in expired_session_keys:
-            settings.SESSION_ENGINE.SessionStore(session_key).delete()
-        
+        self.stdout.write(f"✔️ {total_products_liberated} produit(s) libéré(s) et {total_carts_deleted} panier(s) supprimé(s).")
