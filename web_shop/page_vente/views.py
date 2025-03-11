@@ -325,6 +325,8 @@ def checkout(request):
                         'name': f"Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}",
                         'metadata': {
                             'cart_uuid': str(cart_uuid),
+                            'acceptCGV': str(acceptCGV),
+                            'add_insurance': str(add_insurance),
                             'total_verified': int(total * 100)
                         }
                     },
