@@ -266,10 +266,16 @@ def checkout(request):
     session_id = request.session.session_key
     if not session_id:
         return JsonResponse({'error': 'Aucun panier trouvé'}, status=400)
-    cart = Cart.objects.filter(session_id=session_id).first()
-    cart_uuid = request.GET.get('cart_uuid')
 
-    cart_items = CartItem.objects.filter(cart=cart)
+    cart_uuid = request.GET.get('cart_uuid')
+    cart = Cart.objects.filter(session_id=session_id, uuid=cart_uuid).first()
+
+    if not cart:
+        return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
+
+    # select_for_update() lors de la récupération des articles pour verrouiller les lignes et éviter les conflits
+    cart_items = CartItem.objects.select_for_update().filter(cart=cart)
+
     if not cart_items:
         logger.error("Le panier est vide.")
         return JsonResponse({'error': 'Le panier est vide'}, status=400)
@@ -309,7 +315,7 @@ def checkout(request):
     return JsonResponse({'total': total,'articles_quantity': articles_quantity,'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
 
     # Créer la session de paiement Stripe
-    """try:
+    try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
@@ -318,7 +324,8 @@ def checkout(request):
                     'product_data': {
                         'name': f'Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}',
                         'metadata': {
-                            'cart_uuid': str(cart_uuid)
+                            'cart_uuid': str(cart_uuid),
+                            'total_verified': int(total * 100)
                         }
                     },
                     'unit_amount': int(total * 100),  # Stripe utilise des centimes
@@ -337,4 +344,4 @@ def checkout(request):
     # Gestion des autres erreurs
     except Exception as e:
         logger.exception("Erreur inattendue lors de la création de la session Stripe.")
-        return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)"""
+        return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
