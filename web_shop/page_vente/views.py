@@ -322,7 +322,7 @@ def checkout(request):
                 'price_data': {
                     'currency': 'eur',
                     'product_data': {
-                        'name': f'Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}',
+                        'name': f"Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}",
                         'metadata': {
                             'cart_uuid': str(cart_uuid),
                             'total_verified': int(total * 100)
