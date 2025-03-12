@@ -96,6 +96,7 @@ function changeLanguage(lang) {
                 'with_our_partner_mondial_relay':translations.with_our_partner_mondial_relay,
                 'mandatory_insurance_2':translations.mandatory_insurance_2,
                 'mandatory_insurance_3':translations.mandatory_insurance_3,
+                'mandatory_insurance_4':translations.mandatory_insurance_4,
                 'total_articles_title':translations.total_articles_title,
                 'shipping_cost_short':translations.shipping_cost_short,
                 'insurance_cost':translations.insurance_cost,
@@ -295,9 +296,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     displayCart();
+    initCart();
+    updateTextCartButton(); 
     if (window.location.pathname.includes('panier')){
-        updateInsurance();
-        updateTotal();
+        if(document.getElementById('order-total')){
+            updateInsurance();
+            updateTotal();
+            updateCartVisibility();
+            
+        }
     }
 });
 
@@ -308,7 +315,6 @@ function displayCart() {
         .then(data => {
 
             let listeArticles = document.getElementById('liste-articles');
-            const textCartButton = document.getElementById('text-cart-button');
             if (listeArticles) {
             listeArticles.innerHTML = ''; 
             data.cart.forEach(article => {
@@ -360,10 +366,6 @@ function displayCart() {
                 li.appendChild(button);
                 listeArticles.appendChild(li);
             });
-         // Mettre à jour le nombre d'articles dans le panier
-         textCartButton.textContent = data.cart.length;
-
-
         }
     }).catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
@@ -373,7 +375,11 @@ function getCSRFTokenFromMeta() {
     const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
     return csrfTokenMeta ? csrfTokenMeta.getAttribute('content') : '';
 }
-
+function initCart() {
+    if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify([]));
+    }
+}
 // Ajouter un produit au panier
 function addToCart(articleId) {
     fetch(`/add_to_cart/${articleId}/`, { 
@@ -388,13 +394,16 @@ function addToCart(articleId) {
             if (data.success) {
                 // Sauvegarde dans le localStorage pour qu'il persiste entre les sessions
                 localStorage.setItem('cart_uuid', data.cart_uuid);
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push({ id: articleId});
+                localStorage.setItem('cart', JSON.stringify(cart));
                 alert(data.message);
+                updateTextCartButton(); 
                 updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
             } else {
                 alert("Erreur : " + data.message);
             }
-        })
-        .catch(error => {
+        }).catch(error => {
             console.error('Erreur lors de l\'ajout au panier:', error);
         });
 }
@@ -407,6 +416,14 @@ function updateProductList(articleId) {
         productElement.style.display = 'none';  // Masquer l'élément du DOM
     }
 }
+
+function updateTextCartButton(){
+    const textCartButton = document.getElementById('text-cart-button');
+    if (!textCartButton) return;
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    textCartButton.textContent = cart.length;  // Nombre total d'articles
+}
 // Au chargement de la page, vérifier si l'UUID du panier est dans localStorage
 window.onload = function() {
     const cart_uuid = localStorage.getItem('cart_uuid'); // Récupère l'UUID depuis localStorage
@@ -417,6 +434,21 @@ window.onload = function() {
         console.log("Aucun UUID trouvé dans localStorage.");
     }
 };
+// Fonction pour mettre à jour l'affichage du panier
+function updateCartVisibility() {
+    const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
+    const cartSection = document.querySelector('.cart-container');
+    const emptyCartMessage = document.querySelector('#empty-section');
+
+    // Si le total est 0 ou indéfini, on considère le panier vide
+    if (orderTotal <= 0 || isNaN(orderTotal)) {
+        cartSection.style.display = 'none';
+        emptyCartMessage.style.display = 'block'; // Affiche le message "Votre panier est vide"
+    } else {
+        cartSection.style.display = 'block';
+        emptyCartMessage.style.display = 'none'; // Cache le message si le panier n'est pas vide
+    }
+}
 // Fonction pour vider le panier
 function clearCart() {
     fetch('/vider_panier/', { 
@@ -429,8 +461,15 @@ function clearCart() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Réinitialise le localStorage
+                localStorage.removeItem('cart');
+                const addInsurance = document.getElementById('add-insurance');
+                addInsurance.checked = false;
                 alert(data.message);
-                displayCart();
+                document.getElementById('order-total').textContent = '0.00';
+                document.getElementById('total-amount').textContent = '0.00';
+                updateCartVisibility();
+                updateTextCartButton();
             } else {
                 alert("Erreur lors de la suppression du panier.");
             }
@@ -449,24 +488,30 @@ function remove_from_cart(articleId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];                
+                cart = cart.filter(item => parseInt(item.id) !== parseInt(articleId));
+                localStorage.setItem('cart', JSON.stringify(cart));
                 const addInsurance = document.getElementById('add-insurance');
                 let orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
                 const priceArticle = parseFloat(data.article.prix.toFixed(2));
                 orderTotal -= priceArticle;
                 document.getElementById('order-total').textContent = orderTotal.toFixed(2);
-                console.log("addInsurance checked:", addInsurance.checked);
                 if (orderTotal<25) {
                     addInsurance.checked = false;
                 }
                 updateInsurance();
                 updateTotal();
+                updateTextCartButton();
                 alert(data.message);
                 
             } else {
                 alert("Erreur lors de la suppression de l'article.");
             }
         
-        }).then(() => displayCart());
+        }).finally(()=>{
+            displayCart();
+            updateCartVisibility();
+        });
 }
 
 let currentImageIndex = 0; // Index de l'image actuelle
@@ -525,6 +570,7 @@ function updateInsurance() {
     const insurance25Euros = document.getElementById('insurance_25_euros'); // Message pour 25€ d'assurance incluse
     const insurance25Euros2 = document.getElementById('insurance_25_euros_2'); // Message pour 25€ d'assurance incluse
     const insurance = document.getElementById('insurance');
+    const upTo500 = document.getElementById('mandatory_insurance_4');
 
     // Cacher toutes les options par défaut
     insuranceOption.classList.add('hidden');
@@ -532,11 +578,10 @@ function updateInsurance() {
     insurance25Euros.classList.remove('hidden');
     insurance25Euros2.classList.remove('hidden');
     insurance.classList.remove('hidden');
-    // Gestion de l'sassurance entre 0 et 25 €
-    if (orderTotal <= 25){
+    upTo500.classList.add('hidden');
     insuranceCostSpan.textContent = "0,00";
     mandatoryInsuranceCostSpan.textContent = "0,00";
-    }
+
 
     // 1. Gestion de l'assurance optionnelle entre 25 € et 50 €
     if (orderTotal > 25 && orderTotal <= 50) {
@@ -554,7 +599,11 @@ function updateInsurance() {
         mandatoryInsurance.classList.remove('hidden');
 
         // Définir le coût de l'assurance obligatoire en fonction du total
-        if (orderTotal > 375) {
+        if (orderTotal > 500) {
+            upTo500.classList.remove('hidden');
+            mandatoryInsuranceCostSpan.textContent = "8.00";
+            insuranceCostSpan.textContent = "8.00";
+        } else if (orderTotal > 375) {
             mandatoryInsuranceCostSpan.textContent = "8.00";
             insuranceCostSpan.textContent = "8.00";
         } else if (orderTotal > 250) {
@@ -610,7 +659,7 @@ function handleCheckout() {
         return;
     }
     // Redirige vers Stripe avec le montant total
-    window.location.href = `/checkout/?cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+    window.location.href = `/checkout/?front_total=${orderTotal}&cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
 // débug
   function debugElements() {
