@@ -264,6 +264,7 @@ def pagination(request,product_views):
 def checkout(request):
     
     session_id = request.session.session_key
+    front_total = float(request.GET.get('front_total'))
     if not session_id:
         return JsonResponse({'error': 'Aucun panier trouvé'}, status=400)
 
@@ -310,6 +311,10 @@ def checkout(request):
     total += 5
     if total <= 0:
         return JsonResponse({'error': 'Montant invalide.'}, status=400)
+    
+    # Vérifications de cohérance entre le montant envoyé par le front et le montant total sécurisé côté serveur
+    if front_total != total:
+        return JsonResponse({'error': 'Probleme de cohérence des montants', 'total': total, 'front_total': front_total}, status=400)
     
 
     return JsonResponse({'total': total,'articles_quantity': articles_quantity,'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
