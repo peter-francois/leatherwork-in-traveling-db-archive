@@ -367,14 +367,14 @@ body {
         padding: 0px;
     }
     #checkout{
-        width: 13em;
+        width: 100%;
         background-color: #4CAF50;
         font-size: 18px;
         color: white; 
         transition: box-shadow 0.3s ease;
         border: none;
-        justify-items: center;
         display: flex; 
+        margin:20px auto 15px auto;
         justify-content: center; 
         align-items: center;
     }
@@ -912,7 +912,6 @@ footer {
         }
     /*Panier*/
         #checkout{
-            width: 9em;
             font-size: 14px;
         }
         #clear_cart {
