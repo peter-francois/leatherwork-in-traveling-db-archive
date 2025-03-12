@@ -295,8 +295,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     displayCart();
-    if(window.location.pathname.includes('panier')){
-        updateInsurance();  // Charger les articles du panier au démarrage
+    if (window.location.pathname.includes('panier')){
+        updateInsurance();
         updateTotal();
     }
 });
@@ -306,6 +306,7 @@ function displayCart() {
     fetch('/cart_detail/')
         .then(response => response.json())
         .then(data => {
+
             let listeArticles = document.getElementById('liste-articles');
             const textCartButton = document.getElementById('text-cart-button');
             if (listeArticles) {
@@ -314,7 +315,13 @@ function displayCart() {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
                 let p = document.createElement('p');
-                p.textContent = `${article.prix.toFixed(2)} € (x${article.quantity})`;
+                let span = document.createElement('span');
+                let span2 = document.createElement('span');
+                span.classList.add('price_article');
+                span.textContent = `${article.prix.toFixed(2)}`;
+                span2.textContent = `€ (x${article.quantity})`;
+                p.appendChild(span);
+                p.appendChild(span2);
                 img.onclick = () => displayProductImages(article.id);
                 let button = document.createElement('button');
                 button.textContent = 'Supprimer';
@@ -382,12 +389,12 @@ function addToCart(articleId) {
                 // Sauvegarde dans le localStorage pour qu'il persiste entre les sessions
                 localStorage.setItem('cart_uuid', data.cart_uuid);
                 alert(data.message);
-                displayCart(); // Mettre à jour l'affichage du panier
                 updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
             } else {
                 alert("Erreur : " + data.message);
             }
-        }).catch(error => {
+        })
+        .catch(error => {
             console.error('Erreur lors de l\'ajout au panier:', error);
         });
 }
@@ -424,7 +431,6 @@ function clearCart() {
             if (data.success) {
                 alert(data.message);
                 displayCart();
-                location.reload();
             } else {
                 alert("Erreur lors de la suppression du panier.");
             }
@@ -443,13 +449,24 @@ function remove_from_cart(articleId) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                const addInsurance = document.getElementById('add-insurance');
+                let orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
+                const priceArticle = parseFloat(data.article.prix.toFixed(2));
+                orderTotal -= priceArticle;
+                document.getElementById('order-total').textContent = orderTotal.toFixed(2);
+                console.log("addInsurance checked:", addInsurance.checked);
+                if (orderTotal<25) {
+                    addInsurance.checked = false;
+                }
+                updateInsurance();
+                updateTotal();
                 alert(data.message);
-                displayCart();
-                updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
+                
             } else {
                 alert("Erreur lors de la suppression de l'article.");
             }
-        });
+        
+        }).then(() => displayCart());
 }
 
 let currentImageIndex = 0; // Index de l'image actuelle
@@ -501,23 +518,30 @@ function closeModal() {
 
 function updateInsurance() {
     const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
-
     const insuranceOption = document.getElementById('insurance-option'); // Checkbox assurance optionnelle
     const mandatoryInsurance = document.getElementById('mandatory-insurance'); // Assurance obligatoire
     const insuranceCostSpan = document.getElementById('insurance-cost'); // Prix assurance optionnelle
     const mandatoryInsuranceCostSpan = document.getElementById('mandatory-insurance-cost'); // Prix assurance obligatoire
     const insurance25Euros = document.getElementById('insurance_25_euros'); // Message pour 25€ d'assurance incluse
     const insurance25Euros2 = document.getElementById('insurance_25_euros_2'); // Message pour 25€ d'assurance incluse
+    const insurance = document.getElementById('insurance');
 
     // Cacher toutes les options par défaut
     insuranceOption.classList.add('hidden');
     mandatoryInsurance.classList.add('hidden');
     insurance25Euros.classList.remove('hidden');
     insurance25Euros2.classList.remove('hidden');
+    insurance.classList.remove('hidden');
+    // Gestion de l'sassurance entre 0 et 25 €
+    if (orderTotal <= 25){
+    insuranceCostSpan.textContent = "0,00";
+    mandatoryInsuranceCostSpan.textContent = "0,00";
+    }
 
     // 1. Gestion de l'assurance optionnelle entre 25 € et 50 €
     if (orderTotal > 25 && orderTotal <= 50) {
         insuranceOption.classList.remove('hidden'); // Afficher l'option d'assurance
+        insurance.classList.add('hidden');
         if (insuranceOption.checked){
         insuranceCostSpan.textContent = "2,00"; // Coût fixe pour cette tranche
         }
@@ -549,15 +573,20 @@ function updateInsurance() {
 // Fonction pour mettre à jour le total
 function updateTotal() {
     const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
-    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent.replace(',', '.'));
+    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent.replace(',', '.'))|| 0;
+
     // Checkbox assurance optionnelle
     const addInsurance = document.getElementById('add-insurance').checked;
     let totalAmount = orderTotal + 5.00 + insuranceCost;
     if (addInsurance) {
         totalAmount += 2.00;
     }
+    
+
     document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+
 }
+
 // Fonction pour gérer le checkout
 function handleCheckout() {
     const acceptCGV = document.getElementById('accept-cgv').checked;
@@ -583,4 +612,11 @@ function handleCheckout() {
     // Redirige vers Stripe avec le montant total
     window.location.href = `/checkout/?cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
-  
+// débug
+  function debugElements() {
+    console.log("🔍 Debug des éléments DOM :");
+    console.log("order-total :", document.getElementById('order-total'));
+    console.log("insurance-cost :", document.getElementById('insurance-cost'));
+    console.log("add-insurance :", document.getElementById('add-insurance'));
+    console.log("total-amount :", document.getElementById('total-amount'));
+}

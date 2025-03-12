@@ -192,7 +192,7 @@ def remove_from_cart(request, product_id):
         cart_item.delete()
         cart_item.product.disponible = True  # Rendre le produit disponible
         cart_item.product.save()
-        return JsonResponse({'success': True, 'message': 'Article retiré du panier'})
+        return JsonResponse({'success': True, 'message': 'Article retiré du panier', 'article': {"id": cart_item.product.id, "prix": cart_item.product.prix}})
     else:
         return JsonResponse({'success': False, 'message': 'Article non trouvé dans le panier'})
 
