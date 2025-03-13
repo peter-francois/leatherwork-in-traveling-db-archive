@@ -1,0 +1,12 @@
+{% extends 'page_vente/base.html' %}
+
+{% block content %}
+<section style="font-family: 'Western', sans-serif;padding: 20px;">
+    <h1 style="font-size: 30px;">Conditions Générales de Vente (v{{ cgv.version }})</h1>
+    <p>Publié le : {{ cgv.created_at|date:"d/m/Y" }}</p>
+
+    <div>
+        {{ cgv.content|safe }}
+    </div>
+</section>
+{% endblock %}

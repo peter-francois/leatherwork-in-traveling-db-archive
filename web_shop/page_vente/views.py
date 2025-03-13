@@ -15,6 +15,8 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
 logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
@@ -270,7 +272,7 @@ def checkout(request):
     
     cart_uuid = request.GET.get('cart_uuid')
     front_total = float(request.GET.get('front_total'))
-    cart = Cart.objects.filter(uuid=cart_uuid).first()
+    cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
 
     if not cart:
         return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
@@ -289,10 +291,19 @@ def checkout(request):
     if not acceptCGV:
         logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
         return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
+    
+    # Récupérer la dernière version des CGV
+    latest_cgv = CGV.objects.latest('created_at')
+
+    # Enregistrer l'acceptation des CGV
+    if not cart.cgv_accepted:
+        cart.cgv_accepted = latest_cgv
+        cart.cgv_accepted_at = now()
+        cart.save()
+    
     # Calcul du montant total sécurisé côté serveur
     total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
-    # Calcul du nombre d'articles
-    articles_quantity = sum(item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
+
 
     # Ajouter l'assurance si nécessaire
 
@@ -318,7 +329,7 @@ def checkout(request):
         return JsonResponse({'error': 'Probleme de cohérence des montants', 'total': total, 'front_total': front_total}, status=400)
     
 
-    return JsonResponse({'total': total,'articles_quantity': articles_quantity,'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
+    return JsonResponse({'versionCGV': latest_cgv.version,'cgv_accepted_at': cart.cgv_accepted_at, 'total': total,'articles_quantity': cart.cartitem_set.count(),'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
 
     # Créer la session de paiement Stripe
     try:
@@ -328,10 +339,11 @@ def checkout(request):
                 'price_data': {
                     'currency': 'eur',
                     'product_data': {
-                        'name': f"Commande de {articles_quantity} article{'s' if articles_quantity > 1 else ''}",
+                        'name': f"Commande de {cart.cartitem_set.count()} article{'s' if cart.cartitem_set.count() > 1 else ''}",
                         'metadata': {
                             'cart_uuid': str(cart_uuid),
                             'acceptCGV': str(acceptCGV),
+                            'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
                             'total_verified': int(total * 100)
                         }
@@ -341,8 +353,8 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='https://tonsite.com/success',
-            cancel_url='https://tonsite.com/cancel',
+            success_url=f'https://localhost:8001/success?cart_uuid={cart.uuid}' if settings.DEBUG else f'https://tonsite.com/success?cart_uuid={cart.uuid}',
+            cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://tonsite.com/cancel',
         )
         return redirect(checkout_session.url)
     # Gestion des erreurs spécifiques à Stripe
@@ -353,3 +365,17 @@ def checkout(request):
     except Exception as e:
         logger.exception("Erreur inattendue lors de la création de la session Stripe.")
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
+
+def success_view(request):
+    cart_uuid = request.GET.get('cart_uuid')
+    cart = get_object_or_404(Cart, uuid=cart_uuid)
+
+    # Marquer les articles comme "payés"
+    cart.paid = True
+    cart.save()
+
+    return render(request, 'page_vente/payment_success.html', {'cart': cart})
+
+def cgv_view(request):
+    latest_cgv = CGV.objects.latest('created_at')
+    return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv})

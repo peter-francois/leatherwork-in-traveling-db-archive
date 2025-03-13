@@ -43,7 +43,10 @@ class AllProducts(models.Model):
 class Cart(models.Model):
     session_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
     uuid = models.UUIDField(default=uuid.uuid4,unique=True, editable=False)
+    cgv_accepted = models.ForeignKey('CGV', on_delete=models.PROTECT, null=True, blank=True)
+    cgv_accepted_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    paid = models.BooleanField(default=False)
     
     def __str__(self):
         return f"Cart {self.uuid}"
@@ -52,3 +55,14 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(AllProducts, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
+class CGV(models.Model):
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    content = models.TextField(help_text="Texte complet des CGV")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"CGV {self.version}"
+
+    class Meta:
+        ordering = ['-created_at']

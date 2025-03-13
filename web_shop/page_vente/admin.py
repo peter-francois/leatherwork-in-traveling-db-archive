@@ -40,7 +40,10 @@ class AllProductsAdmin(admin.ModelAdmin):
         super().on_save_model(request, obj, form, change)  # Appeler la méthode parente
         forms.update_type(self)
 
-
+@admin.register(CGV)
+class CGVAdmin(admin.ModelAdmin):
+    list_display = ('version', 'created_at')
+    ordering = ('-created_at',)
 
     
 admin.site.register(AllProducts, AllProductsAdmin)
