@@ -362,6 +362,10 @@ body {
     .produit button, #liste-articles button{
         margin-top: 15px;
     }
+    section.cart-container div.grid-container{
+        grid-template-columns: 75% 25%
+        
+    }
     #total{
         margin-top: 60px;
         padding: 0px;
@@ -393,7 +397,8 @@ body {
     #clear_cart:hover {
         background-color: #d32f2f;
     }
-    /*checkout modal*/    .hidden{
+    /*checkout modal*/    
+    .hidden{
         display: none;
     }
     .error { 
@@ -757,7 +762,7 @@ footer {
         .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(3, 1fr);
             margin: 15px 10px;
-            gap: 14px;
+            gap: 10px;
         }
         
         .produit, #liste-articles li{
@@ -771,6 +776,14 @@ footer {
         }
         #modal img{
             height: 80%;
+        }
+        /*cart*/
+        .product-list-cart li {
+            width: 200px;
+            height: 320px;
+        }
+        section.cart-container div.grid-container{
+            grid-template-columns: 70% 30%;
         }
 
 }
@@ -835,7 +848,12 @@ footer {
         .image-full-span{
         width: 220px;
         }
-    /*Panier*/
+    /*Cart*/
+        section.cart-container div.grid-container{
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
         .produit h3, #liste-articles li h3{
             font-size: 15px;
         }
@@ -983,10 +1001,6 @@ footer {
         .filter-form{
             grid-template-columns: 1fr 1fr;
         }        
-        .tous_les_produits img, #liste-articles img{
-            width: 7em;
-            height: 7em;
-        }
         #modal h3{
             top: 35px;
             font-size: 18px;
