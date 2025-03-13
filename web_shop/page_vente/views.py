@@ -199,9 +199,14 @@ def remove_from_cart(request, product_id):
 def get_product_images(request, article_id):
     try:
         product = AllProducts.objects.get(id=article_id)
-        images = [product.image1.url , product.image2.url, product.image3.url, product.image4.url]
+        images = [
+            product.image1.url if product.image1 else None,
+            product.image2.url if product.image2 else None,
+            product.image3.url if product.image3 else None,
+            product.image4.url if product.image4 else None,
+            ]
         images = [image for image in images if image]
-        return JsonResponse({'images': images, 'nom': product.nom})
+        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
 
