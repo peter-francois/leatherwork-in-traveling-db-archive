@@ -59,19 +59,19 @@
 
 <div id="modal">
     <h3 class="text-center" id="nom-article"></h3>
-    <button class="align-items-center page-button" id="close-button" type="button" onclick="closeModal()">&times;</button>
+    <button id="close-button" type="button" onclick="closeModal()">&times;</button>
     <div class="grid-container">
         <div class="product-info">
-            <h4>Description:</h4>
+            <h4>Description :</h4>
             <p id="description-article"></p>
-            <h4>Prix:</h4>
+            <h4>Prix :</h4>
             <p id="prix-article"></p>
         </div>
-        <div>
+        <div class="image-container">
             <img id="current-image" src="" alt="Image du produit">
             <div class="image-buttons">
-                <button class="align-items-center page-button" id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
-                <button class="align-items-center page-button" id="next-button" type="button" onclick="changeImage(1)">Suivant</button>
+                <button id="prev-button" type="button" onclick="changeImage(-1)">Précédent</button>
+                <button id="next-button" type="button" onclick="changeImage(1)">Suivant</button>
             </div>
         </div>
     </div>
