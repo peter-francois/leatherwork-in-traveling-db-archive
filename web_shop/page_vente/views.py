@@ -268,13 +268,9 @@ def pagination(request,product_views):
 
 def checkout(request):
     
-    session_id = request.session.session_key
-    front_total = float(request.GET.get('front_total'))
-    if not session_id:
-        return JsonResponse({'error': 'Aucun panier trouvé'}, status=400)
-
     cart_uuid = request.GET.get('cart_uuid')
-    cart = Cart.objects.filter(session_id=session_id, uuid=cart_uuid).first()
+    front_total = float(request.GET.get('front_total'))
+    cart = Cart.objects.filter(uuid=cart_uuid).first()
 
     if not cart:
         return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
@@ -294,9 +290,9 @@ def checkout(request):
         logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
         return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
     # Calcul du montant total sécurisé côté serveur
-    total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__session_id=request.session.session_key))
+    total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
     # Calcul du nombre d'articles
-    articles_quantity = sum(item.quantity for item in CartItem.objects.filter(cart__session_id=request.session.session_key))
+    articles_quantity = sum(item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
 
     # Ajouter l'assurance si nécessaire
 
