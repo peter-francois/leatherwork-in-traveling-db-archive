@@ -90,7 +90,8 @@
     "add_insurance_label":"Add insurance for the total value of the products (+2,00 €)",
     "total_amount_title":"Total of the order : ",
     "accept_cgv_label":"I accept the <a href='/cgv' target='_blank'>CGV</a>",
-    "error_message":"You must accept the CGV to continue."
+    "error_message":"You must accept the CGV to continue.",
+    "info_price":"Price :"
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -183,7 +184,8 @@
       "add_insurance_label":"Assurer la totalité de la valeur des produits (+2,00 €)",
       "total_amount_title":"Total de la commande : ",
       "accept_cgv_label":"J'accepte les <a href='/cgv' target='_blank'>conditions générales de vente</a>",
-      "error_message":"Vous devez accepter les CGV pour continuer."
+      "error_message":"Vous devez accepter les CGV pour continuer.",
+      "info_price":"Prix :"
     }
     
 }

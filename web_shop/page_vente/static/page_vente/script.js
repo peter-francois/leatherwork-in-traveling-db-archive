@@ -107,6 +107,7 @@ function changeLanguage(lang) {
                 'checkout':translations.checkout,
                 'error-message':translations.error_message,
                 'clear_cart':translations.clear_cart,
+                'info-price':translations.info_price,
                 
             };
 
@@ -529,7 +530,14 @@ function displayProductImages(articleId) {
         })
         .then(data => {
             document.getElementById('nom-article').textContent = data.nom;
+            if (data.description){
             document.getElementById('description-article').textContent = data.description;
+            }else{
+                if (currentLanguage == 'en')
+                document.getElementById('description-article').textContent = 'No description available';
+                else
+                document.getElementById('description-article').textContent = 'Aucune description disponible';
+            }
             document.getElementById('prix-article').textContent = data.prix.toFixed(2).replace('.', ',') + ' €';
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
