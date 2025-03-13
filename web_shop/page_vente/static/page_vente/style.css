@@ -524,7 +524,7 @@ body {
         right: 50%;
         transform: translate(50%, -50%);
         padding: 20px;
-        width: 40%;
+        width: 60%;
         height: 90%;
         justify-items: center;
     }
@@ -546,15 +546,34 @@ body {
         height: 40px;
         padding: 0px;
     }
+    #modal .grid-container{
+        grid-template-columns: 20% 80%; 
+        gap: 10px; 
+        margin-top: 45px;
+    }
+    #modal .product-info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     #modal img{
         display: flex;
+        margin-left:auto;
+        margin-right:auto;
         width: 90%;
-        height: 85%;
+        height: 100%;
         justify-items: center;
         border: 2px solid var(--color2);
         border-radius: 10px;
-        margin-top: 45px;
         object-fit: cover;
+    }
+    #modal .image-buttons{
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    #modal h4{
+        margin-bottom: 0;
     }
     #prev-button, #next-button{
         margin-top: 5px;
@@ -722,7 +741,10 @@ footer {
             margin-top: 10px;
         }
         #modal{
-            width: 60%;
+            width: 80%;
+        }
+        #modal img{
+            height: 80%;
         }
 
 }
@@ -828,9 +850,6 @@ footer {
             margin-top: 5px;
         }
         #modal{
-            top: 50%;
-            right: 50%;
-            transform: translate(50%, -50%);
             margin: auto;
             width: 100%;
             height: 100%;
@@ -842,10 +861,24 @@ footer {
             top: 35px;
             right: 35px;
         }
-        #modal img{
-            width: 90%;
-            height: 80%;
+        #modal .grid-container{
+            grid-template-columns: 1fr; 
+            grid-template-rows: 15% 65%;
+            gap: 0px; 
             margin-top: 65px;
+        }
+        #modal .product-info{
+            display: grid;
+            grid-template-columns: .25fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            text-align: center;
+            margin:0 15px;
+        }
+        #modal h4, #modal p{
+            margin:0;
+        }
+        #modal img{
+            margin-top: 15px;
         }
         footer {
             padding: 20px 10px;
@@ -934,10 +967,12 @@ footer {
             top: 25px;
             right: 25px;
         }
+        #modal .grid-container{
+            grid-template-rows: 20% 80%;
+        }
         #modal img{
-
-            height: 60%;
-            margin-top: 155px;
+            height: 100%;
+            margin-top: 15px;
         }
         #prev-button, #next-button{
             margin-top: 30px;

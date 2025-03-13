@@ -529,6 +529,8 @@ function displayProductImages(articleId) {
         })
         .then(data => {
             document.getElementById('nom-article').textContent = data.nom;
+            document.getElementById('description-article').textContent = data.description;
+            document.getElementById('prix-article').textContent = data.prix.toFixed(2).replace('.', ',') + ' €';
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
