@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from page_vente.views import add_to_cart, cart_detail, vider_panier, remove_from_cart, get_product_images
+from page_vente.views import *
 
 app_name = 'boutique'
 
@@ -20,5 +20,7 @@ urlpatterns = [
     path('get_product_images/<int:article_id>/', get_product_images, name='get_product_images'),
     path('checkout/', views.checkout, name='checkout'),
     path('payment_success/', views.success_view, name='payment_success'),
+    path('payment_cancel/', views.cancel_view, name='payment_cancel'),
     path('cgv/', views.cgv_view, name='cgv'),
+
 ]

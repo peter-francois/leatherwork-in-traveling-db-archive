@@ -103,6 +103,7 @@ def creation_sur_mesure(request):
 
 def panier(request):
     session_key = request.session.session_key
+    latest_cgv = CGV.objects.latest('created_at')
     cart = Cart.objects.filter(session_id=session_key).first()
     items = CartItem.objects.filter(cart=cart)
     total = sum(item.product.prix * item.quantity for item in items)
@@ -113,6 +114,7 @@ def panier(request):
         "expiration_date": expiration_date,
         "items": items,
         "total": total,
+        "latest_cgv": latest_cgv,
     })
 
 def a_propos(request):
@@ -375,6 +377,9 @@ def success_view(request):
     cart.save()
 
     return render(request, 'page_vente/payment_success.html', {'cart': cart})
+
+def cancel_view(request):
+    return render(request, 'page_vente/payment_cancel.html')
 
 def cgv_view(request):
     latest_cgv = CGV.objects.latest('created_at')
