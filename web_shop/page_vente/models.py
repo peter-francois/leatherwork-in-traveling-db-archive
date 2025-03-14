@@ -67,3 +67,14 @@ class CGV(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+class CookiesPolicy(models.Model):
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    content = models.TextField(help_text="Texte complet des cookies")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Cookies Policy {self.version}"
+
+    class Meta:
+        ordering = ['-created_at']

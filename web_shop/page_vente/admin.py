@@ -62,5 +62,10 @@ class CGVAdmin(admin.ModelAdmin):
     list_display = ('version', 'created_at')
     ordering = ('-created_at',)
 
+@admin.register(CookiesPolicy)
+class CookiesPolicyAdmin(admin.ModelAdmin):
+    list_display = ('version', 'created_at')
+    ordering = ('-created_at',)
+
     
 admin.site.register(AllProducts, AllProductsAdmin)

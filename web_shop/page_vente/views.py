@@ -387,6 +387,10 @@ def cgv_view(request):
     latest_cgv = CGV.objects.latest('created_at')
     return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv})
 
+def cookies_view(request):
+    latest_cookies = CookiesPolicy.objects.latest('created_at')
+    return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies})
+
 def get_number_of_products_in_cart(request):
     session_key = request.session.session_key
 

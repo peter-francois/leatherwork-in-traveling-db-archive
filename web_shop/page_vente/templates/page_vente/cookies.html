@@ -1,0 +1,12 @@
+{% extends 'page_vente/base.html' %}
+
+{% block content %}
+<section style="font-family: 'Western', sans-serif;padding: 20px;">
+    <h1 style="font-size: 30px;">Gestion des cookies (v{{ cookies.version }})</h1>
+    <p>Publié le : {{ cookies.created_at|date:"d/m/Y" }}</p>
+
+    <div>
+        {{ cookies.content|safe }}
+    </div>
+</section>
+{% endblock %}
