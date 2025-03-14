@@ -5,6 +5,7 @@ from .forms import *
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from django.db import transaction
 
 
 class AllProductsForm(forms.ModelForm):
@@ -23,8 +24,8 @@ class AllProductsForm(forms.ModelForm):
 
 
 class AllProductsAdmin(admin.ModelAdmin):
-    actions = ['rendre_disponible', 'rendre_indisponible']
-    list_display = ('nom','categorie','disponible', 'type', 'description', 'prix')
+    actions = ['rendre_disponible', 'rendre_indisponible','retirer_du_panier']
+    list_display = ('nom','categorie','disponible','en_attente_dans_panier', 'type', 'description', 'prix')
     search_fields = ['nom','categorie', 'type']
     list_filter = ['categorie', 'disponible']
     form = AllProductsForm
@@ -34,7 +35,20 @@ class AllProductsAdmin(admin.ModelAdmin):
 
     def rendre_indisponible(self, request, queryset):
         queryset.update(disponible=False)
-    
+
+    def retirer_du_panier(self, request, queryset):
+        articles_id = queryset.values_list('id', flat=True)
+
+        with transaction.atomic():
+            # Suppression des articles du panier liés aux produits
+            deleted_count, _ = CartItem.objects.filter(product__in=articles_id).delete()
+
+            # Mise à jour du statut en attente
+            queryset.update(en_attente_dans_panier=False)
+
+        # Message pour l’utilisateur
+        if deleted_count > 0:
+            messages.success(request, f"{deleted_count} article(s) n'est plus disponible dans votre panier.")    
 
     def on_save_model(self, request, obj, form, change):
         super().on_save_model(request, obj, form, change)  # Appeler la méthode parente
