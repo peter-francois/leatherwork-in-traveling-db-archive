@@ -30,7 +30,7 @@ def tous_les_produits(request):
 
     all_products = AllProducts.objects.all()
     
-    all_products = [product for product in all_products if product.disponible]
+    all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
 
     all_products.sort(key=lambda product: product.id, reverse=True)
 
@@ -48,7 +48,7 @@ def tous_les_produits(request):
 def maroquinerie(request):
 
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
-    all_leather_products = [product for product in all_leather_products if product.disponible]
+    all_leather_products = [product for product in all_leather_products if product.disponible and not product.en_attente_dans_panier]
     
     all_leather_products.sort(key=lambda product: product.id, reverse=True)
 
@@ -66,7 +66,7 @@ def maroquinerie(request):
 def macrames(request):
 
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
-    all_macrame_products = [product for product in all_macrame_products if product.disponible]
+    all_macrame_products = [product for product in all_macrame_products if product.disponible and not product.en_attente_dans_panier]
 
     all_macrame_products.sort(key=lambda product: product.id, reverse=True)
 
@@ -83,7 +83,7 @@ def macrames(request):
 
 def hybride(request):
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
-    all_hybride_products = [product for product in all_hybride_products if product.disponible]
+    all_hybride_products = [product for product in all_hybride_products if product.disponible and not product.en_attente_dans_panier]
 
     all_hybride_products.sort(key=lambda product: product.id, reverse=True)
 
@@ -123,7 +123,7 @@ def a_propos(request):
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
 
-    if not product.disponible:
+    if not product.disponible or product.en_attente_dans_panier:
         return JsonResponse({'success': False, 'message': 'Produit déjà pris'}, status=400)
 
     # Récupérer l'ID de session unique de Django
@@ -142,8 +142,8 @@ def add_to_cart(request, product_id):
         cart_item.quantity += 1
         cart_item.save()
 
-    # Marquer le produit comme indisponible
-    product.disponible = False
+    # Marquer le produit comme en attente dans le panier
+    product.en_attente_dans_panier = True
     product.save()
 
     return JsonResponse({
@@ -178,7 +178,7 @@ def vider_panier(request):
 
     cart_items = CartItem.objects.filter(cart=cart)
     for item in cart_items:
-        item.product.disponible = True  # Rendre le produit disponible
+        item.product.en_attente_dans_panier = False
         item.product.save()
         item.delete()
 
@@ -193,7 +193,7 @@ def remove_from_cart(request, product_id):
     cart = Cart.objects.filter(session_id=session_id).first()
     cart_item = CartItem.objects.filter(cart=cart, product_id=product_id).first()
     if cart_item:
-        cart_item.product.disponible = True  # Rendre le produit disponible
+        cart_item.product.en_attente_dans_panier = False
         cart_item.product.save()
         cart_item.delete()
         return JsonResponse({'success': True, 'message': 'Article retiré du panier', 'article': {"id": cart_item.product.id, "prix": cart_item.product.prix}})
@@ -374,6 +374,8 @@ def success_view(request):
 
     # Marquer les articles comme "payés"
     cart.paid = True
+    # Marquer les produits comme indisponibles
+    cart.cartitem_set.update(product__disponible=False, product__en_attente_dans_panier=False)
     cart.save()
 
     return render(request, 'page_vente/payment_success.html', {'cart': cart})
