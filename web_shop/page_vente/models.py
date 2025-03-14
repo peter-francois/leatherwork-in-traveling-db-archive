@@ -89,3 +89,14 @@ class LegalMention(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+class PrivacyPolicy(models.Model):
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    content = models.TextField(help_text="Texte complet de la politique de confidentialité")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Privacy Policy {self.version}"
+
+    class Meta:
+        ordering = ['-created_at']

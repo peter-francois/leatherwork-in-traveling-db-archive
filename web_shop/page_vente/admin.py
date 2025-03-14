@@ -72,5 +72,10 @@ class LegalMentionAdmin(admin.ModelAdmin):
     list_display = ('version', 'created_at')
     ordering = ('-created_at',)
 
+@admin.register(PrivacyPolicy)
+class PrivacyPolicyAdmin(admin.ModelAdmin):
+    list_display = ('version', 'created_at')
+    ordering = ('-created_at',)
+
     
 admin.site.register(AllProducts, AllProductsAdmin)
