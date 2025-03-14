@@ -32,9 +32,9 @@ class Command(BaseCommand):
             # Libérer les produits
             for item in cart.cartitem_set.all():
                 product = item.product
-                if not product.disponible:  # Évite de remettre en dispo un produit déjà en vente
-                    product.disponible = True
-                    product.save(update_fields=["disponible"])
+                if not product.en_attente_dans_panier:  # Évite de remettre en dispo un produit déjà en vente
+                    product.en_attente_dans_panier = False
+                    product.save(update_fields=["en_attente_dans_panier"])
                     total_products_liberated += 1
 
             # Supprimer le panier après avoir libéré les produits
