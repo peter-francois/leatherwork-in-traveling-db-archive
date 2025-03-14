@@ -12,6 +12,7 @@ import logging
 from django.conf import settings
 # pour résoudre le problème de CSRF token
 from django.views.decorators.csrf import ensure_csrf_cookie
+from datetime import timedelta
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -301,8 +302,9 @@ def checkout(request):
     if not cart.cgv_accepted:
         cart.cgv_accepted = latest_cgv
         cart.cgv_accepted_at = now()
+        cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
         cart.save()
-    
+        
     # Calcul du montant total sécurisé côté serveur
     total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
 

@@ -46,6 +46,7 @@ class Cart(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4,unique=True, editable=False)
     cgv_accepted = models.ForeignKey('CGV', on_delete=models.PROTECT, null=True, blank=True)
     cgv_accepted_at = models.DateTimeField(null=True, blank=True)
+    cgv_expires_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     paid = models.BooleanField(default=False)
     
