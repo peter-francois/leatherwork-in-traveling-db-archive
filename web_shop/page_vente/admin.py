@@ -8,6 +8,8 @@ from django.utils.translation import gettext_lazy as _
 from django.db import transaction
 
 
+
+
 class AllProductsForm(forms.ModelForm):
     class Meta:
         model = AllProducts
@@ -37,7 +39,7 @@ class AllProductsAdmin(admin.ModelAdmin):
         queryset.update(disponible=False)
 
     def retirer_du_panier(self, request, queryset):
-        articles_id = queryset.values_list('id', flat=True)
+        articles_id = list(queryset.values_list('id', flat=True))
 
         with transaction.atomic():
             # Suppression des articles du panier liés aux produits
@@ -49,6 +51,7 @@ class AllProductsAdmin(admin.ModelAdmin):
         # Message pour l’utilisateur
         if deleted_count > 0:
             messages.success(request, f"{deleted_count} article(s) n'est plus disponible dans votre panier.")    
+        
 
     def on_save_model(self, request, obj, form, change):
         super().on_save_model(request, obj, form, change)  # Appeler la méthode parente
