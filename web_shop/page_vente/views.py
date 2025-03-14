@@ -386,3 +386,27 @@ def cancel_view(request):
 def cgv_view(request):
     latest_cgv = CGV.objects.latest('created_at')
     return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv})
+
+def get_number_of_products_in_cart(request):
+    session_key = request.session.session_key
+
+    # Vérifie si le session_key est valide
+    if not session_key:
+        return JsonResponse({'success': False, 'number_of_products': 0})
+
+    try:
+        # Récupère le panier lié à la session
+        cart = Cart.objects.filter(session_id=session_key).first()
+
+        # Si aucun panier n'est trouvé
+        if not cart:
+            return JsonResponse({'success': False, 'number_of_products': 0})
+
+        # Comptage des articles dans le panier
+        cart_items = CartItem.objects.filter(cart=cart)
+        cart_items_count = cart_items.count()
+        return JsonResponse({'success': True, 'number_of_products': cart_items_count})
+
+    except ObjectDoesNotExist:
+        # Si une erreur se produit avec l'accès aux objets, retourner une réponse vide
+        return JsonResponse({'success': False, 'number_of_products': 0})

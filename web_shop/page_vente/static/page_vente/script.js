@@ -418,13 +418,40 @@ function updateProductList(articleId) {
     }
 }
 
-function updateTextCartButton(){
+// Fonction pour obtenir le nombre d'articles dans le panier
+async function getNumberOfProductsInCart() {
+    const response = await fetch(`/get_number_of_products_in_cart/`, { 
+        method: 'GET',
+        headers: {
+            'X-CSRFToken': getCSRFTokenFromMeta(),
+            'Content-Type': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+    // Retourne directement le nombre d'articles
+    if (data.success) {
+        console.log("data success", data.number_of_products);
+        return data.number_of_products;
+    } else {
+        console.log("data error", data);
+        return 0; // Retourne 0 si il y a une erreur
+    }
+}
+
+// Fonction pour mettre à jour l'affichage du nombre d'articles dans le panier
+async function updateTextCartButton() {
     const textCartButton = document.getElementById('text-cart-button');
     if (!textCartButton) return;
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    textCartButton.textContent = cart.length;  // Nombre total d'articles
+    // Récupérer le nombre d'articles dans le panier
+    const numberOfProducts = await getNumberOfProductsInCart();
+    
+    // Mettre à jour l'affichage du bouton
+    textCartButton.textContent = numberOfProducts;
+
 }
+
 // Au chargement de la page, vérifier si l'UUID du panier est dans localStorage
 window.onload = function() {
     const cart_uuid = localStorage.getItem('cart_uuid'); // Récupère l'UUID depuis localStorage
@@ -470,6 +497,7 @@ function clearCart() {
                 document.getElementById('order-total').textContent = '0.00';
                 document.getElementById('total-amount').textContent = '0.00';
                 updateCartVisibility();
+                initCart();
                 updateTextCartButton();
             } else {
                 alert("Erreur lors de la suppression du panier.");
