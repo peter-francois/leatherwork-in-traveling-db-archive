@@ -78,3 +78,14 @@ class CookiesPolicy(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+class LegalMention(models.Model):
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    content = models.TextField(help_text="Texte complet des mentions légales")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Legal Mentions {self.version}"
+
+    class Meta:
+        ordering = ['-created_at']

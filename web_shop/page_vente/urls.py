@@ -23,5 +23,6 @@ urlpatterns = [
     path('payment_cancel/', views.cancel_view, name='payment_cancel'),
     path('cgv/', views.cgv_view, name='cgv'),
     path('cookies/', views.cookies_view, name='cookies'),
+    path('mentions-legales/', views.legal_mentions_view, name='legal_mentions'),
     path('get_number_of_products_in_cart/', views.get_number_of_products_in_cart, name='get_number_of_products_in_cart'),
 ]

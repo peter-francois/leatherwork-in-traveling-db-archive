@@ -391,6 +391,10 @@ def cookies_view(request):
     latest_cookies = CookiesPolicy.objects.latest('created_at')
     return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies})
 
+def legal_mentions_view(request):
+    latest_legal_mentions = LegalMention.objects.latest('created_at')
+    return render(request, 'page_vente/mentions-legales.html', {'legal_mentions': latest_legal_mentions})
+
 def get_number_of_products_in_cart(request):
     session_key = request.session.session_key
 
