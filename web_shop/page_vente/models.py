@@ -48,6 +48,7 @@ class Cart(models.Model):
     cgv_accepted_at = models.DateTimeField(null=True, blank=True)
     cgv_expires_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    cart_expires_at = models.DateTimeField(null=True, blank=True)
     paid = models.BooleanField(default=False)
     
     def __str__(self):

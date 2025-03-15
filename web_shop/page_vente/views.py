@@ -127,8 +127,10 @@ def add_to_cart(request, product_id):
     if not product.disponible or product.en_attente_dans_panier:
         return JsonResponse({'success': False, 'message': 'Produit déjà pris'}, status=400)
 
-    # Récupérer l'ID de session unique de Django
+    # Récupérer l'expiration de la session
     expiration_date = get_session_expiration(request)
+
+
     
     if not request.session.session_key:
         request.session.create()
@@ -136,6 +138,11 @@ def add_to_cart(request, product_id):
 
     # Vérifier si un panier existe pour cette session
     cart, created = Cart.objects.get_or_create(session_id=session_id,defaults={'uuid': uuid.uuid4()})
+
+    if created:
+        # Si le panier est nouveau, initialiser l'expiration
+        cart.cart_expires_at = cart.created_at + timedelta(days=10*365)
+        cart.save()
 
     # Ajouter le produit au panier
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
