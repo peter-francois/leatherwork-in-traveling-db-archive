@@ -1,14 +1,14 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 from page_vente.models import Cart
-from datetime import timedelta
+
 
 class Command(BaseCommand):
     help = "Libère les acceptations des CGV après 5 ans"
 
     def handle(self, *args, **kwargs):
-        # Seuil de libération des cgv
-        expiration_date = timezone.now() - timedelta(days=5*365)
+        # Seuil de libération des cgv_Acceptation
+        expiration_date = timezone.now()
 
         # Trouver les paniers dont les CGV ont expiré
         expired_cgv_cart = Cart.objects.filter(cgv_expires_at__lt=expiration_date)
