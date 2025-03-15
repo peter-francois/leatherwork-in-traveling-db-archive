@@ -139,11 +139,6 @@ def add_to_cart(request, product_id):
     # Vérifier si un panier existe pour cette session
     cart, created = Cart.objects.get_or_create(session_id=session_id,defaults={'uuid': uuid.uuid4()})
 
-    if created:
-        # Si le panier est nouveau, initialiser l'expiration
-        cart.cart_expires_at = cart.created_at + timedelta(days=10*365)
-        cart.save()
-
     # Ajouter le produit au panier
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
     if not item_created:
@@ -378,16 +373,20 @@ def checkout(request):
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
 def success_view(request):
+    order_id  = request.GET.get('order_id')
     cart_uuid = request.GET.get('cart_uuid')
     cart = get_object_or_404(Cart, uuid=cart_uuid)
-
+    total_amount = request.GET.get('total_verified')
+    payment_date = now()
     # Marquer les articles comme "payés"
     cart.paid = True
+    # enregistrer la date d'expiration du panier
+    cart.cart_expires_at = cart.created_at + timedelta(days=10*365)
     # Marquer les produits comme indisponibles
     cart.cartitem_set.update(product__disponible=False, product__en_attente_dans_panier=False)
     cart.save()
 
-    return render(request, 'page_vente/payment_success.html', {'cart': cart})
+    return render(request, 'page_vente/payment_success.html', {'order_id': order_id, 'total_amount': total_amount, 'payment_date': payment_date})
 
 def cancel_view(request):
     return render(request, 'page_vente/payment_cancel.html')
