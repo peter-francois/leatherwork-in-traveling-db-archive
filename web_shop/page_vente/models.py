@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 from cloudinary.models import CloudinaryField
+from django.core.validators import RegexValidator
 
 class AllProducts(models.Model):
 
@@ -62,7 +63,8 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
 class CGV(models.Model):
-    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
     content = models.TextField(help_text="Texte complet des CGV")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -73,7 +75,8 @@ class CGV(models.Model):
         ordering = ['-created_at']
 
 class CookiesPolicy(models.Model):
-    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
     content = models.TextField(help_text="Texte complet des cookies")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -84,7 +87,8 @@ class CookiesPolicy(models.Model):
         ordering = ['-created_at']
 
 class LegalMention(models.Model):
-    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
     content = models.TextField(help_text="Texte complet des mentions légales")
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -95,7 +99,8 @@ class LegalMention(models.Model):
         ordering = ['-created_at']
 
 class PrivacyPolicy(models.Model):
-    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01")
+    version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
+    version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
     content = models.TextField(help_text="Texte complet de la politique de confidentialité")
     created_at = models.DateTimeField(auto_now_add=True)
 
