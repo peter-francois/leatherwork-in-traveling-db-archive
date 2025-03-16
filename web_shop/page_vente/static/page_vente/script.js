@@ -431,10 +431,8 @@ async function getNumberOfProductsInCart() {
     const data = await response.json();
     // Retourne directement le nombre d'articles
     if (data.success) {
-        console.log("data success", data.number_of_products);
         return data.number_of_products;
     } else {
-        console.log("data error", data);
         return 0; // Retourne 0 si il y a une erreur
     }
 }
