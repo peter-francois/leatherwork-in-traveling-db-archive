@@ -4,10 +4,11 @@ from .models import *
 from .forms import ProductFilterForm
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST, require_GET
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.timezone import now
 from .utils import get_session_expiration
 import stripe
+import json
 import logging
 from django.conf import settings
 # pour résoudre le problème de CSRF token
@@ -359,7 +360,7 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'https://localhost:8001/success?cart_uuid={cart.uuid}' if settings.DEBUG else f'https://tonsite.com/success?cart_uuid={cart.uuid}',
+            success_url=f'https://localhost:8001/success?session_id={checkout_session.id}' if settings.DEBUG else f'https://tonsite.com/success?session_id={checkout_session.id}',
             cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://tonsite.com/cancel',
         )
         return redirect(checkout_session.url)
@@ -373,23 +374,62 @@ def checkout(request):
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
 def success_view(request):
-    order_id  = request.GET.get('order_id')
-    cart_uuid = request.GET.get('cart_uuid')
-    cart = get_object_or_404(Cart, uuid=cart_uuid)
-    total_amount = request.GET.get('total_verified')
-    payment_date = now()
-    # Marquer les articles comme "payés"
-    cart.paid = True
-    # enregistrer la date d'expiration du panier
-    cart.cart_expires_at = cart.created_at + timedelta(days=10*365)
-    # Marquer les produits comme indisponibles
-    cart.cartitem_set.update(product__disponible=False, product__en_attente_dans_panier=False)
-    cart.save()
+    session_id = request.GET.get('session_id')
+    if not session_id:
+        return redirect('/')
 
-    return render(request, 'page_vente/payment_success.html', {'order_id': order_id, 'total_amount': total_amount, 'payment_date': payment_date})
+    try:
+        session = stripe.checkout.Session.retrieve(session_id)
+        if session.payment_status != 'paid':
+            return redirect('/')
+
+        # Récupérer le panier via metadata
+        cart_uuid = session.metadata.get('cart_uuid')
+        cart = get_object_or_404(Cart, uuid=cart_uuid)
+
+        # Vérifier que le total correspond bien
+        total_verified = int(session.unit_amount) / 100
+        if total_verified != cart.get_total():
+            return redirect('/')
+
+        return render(request, 'page_vente/payment_success.html', {
+            'order_id': cart.id,
+            'total_amount': total_verified,
+            'payment_date': cart.paid_at
+        })
+
+    except stripe.error.StripeError:
+        return redirect('/')
 
 def cancel_view(request):
     return render(request, 'page_vente/payment_cancel.html')
+
+@csrf_exempt  # Désactive la protection CSRF pour recevoir les requêtes Stripe
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.headers.get('Stripe-Signature', '')
+    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+    try:
+        event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
+    except (ValueError, stripe.error.SignatureVerificationError):
+        return JsonResponse({'error': 'Invalid signature'}, status=400)
+
+    # 🎯 Si un paiement est réussi
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        cart_uuid = session.get('metadata', {}).get('cart_uuid')
+
+        if cart_uuid:
+            cart = get_object_or_404(Cart, uuid=cart_uuid)
+            if not cart.paid:  # Vérifier que le panier n'a pas déjà été traité
+                cart.paid = True
+                cart.paid_at = now()
+                cart.cart_expires_at = cart.paid_at + timedelta(days=10*365)
+                cart.cartitem_set.update(product__disponible=False, product__en_attente_dans_panier=False)
+                cart.save()
+
+    return JsonResponse({'status': 'success'}, status=200)
 
 def cgv_view(request):
     latest_cgv = CGV.objects.latest('created_at')

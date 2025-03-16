@@ -19,6 +19,7 @@ urlpatterns = [
     path('remove_from_cart/<int:product_id>/', remove_from_cart, name='remove_from_cart'),
     path('get_product_images/<int:article_id>/', get_product_images, name='get_product_images'),
     path('checkout/', views.checkout, name='checkout'),
+    path('stripe_webhook/', views.stripe_webhook, name='stripe_webhook'),
     path('payment_success/', views.success_view, name='payment_success'),
     path('payment_cancel/', views.cancel_view, name='payment_cancel'),
     path('cgv/', views.cgv_view, name='cgv'),
