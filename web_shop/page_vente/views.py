@@ -14,7 +14,7 @@ from django.conf import settings
 # pour résoudre le problème de CSRF token
 from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import timedelta
-from django.utils.safestring import mark_safe
+from django.urls import reverse
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -473,19 +473,34 @@ def get_number_of_products_in_cart(request):
         return JsonResponse({'success': False, 'number_of_products': 0})
 
 def get_document_content(request, document_type, lang):
-    if document_type == 'CGV':
-        latest_cgv = CGV.objects.latest('created_at')
-        content = latest_cgv.content_fr if lang == 'fr' else latest_cgv.content_en
-    elif document_type == 'Cookies':
-        latest_cookies = CookiesPolicy.objects.latest('created_at')
-        content = latest_cookies.content_fr if lang == 'fr' else latest_cookies.content_en
-    elif document_type == 'LegalMentions':
-        latest_legal_mentions = LegalMention.objects.latest('created_at')
-        content = latest_legal_mentions.content_fr if lang == 'fr' else latest_legal_mentions.content_en
-    elif document_type == 'PrivacyPolicy':
-        latest_privacy_policy = PrivacyPolicy.objects.latest('created_at')
-        content = latest_privacy_policy.content_fr if lang == 'fr' else latest_privacy_policy.content_en
-    else:
-        return JsonResponse({'error': 'Invalid document type'}, status=400)
+    try:
+        if document_type == 'CGV':
+            latest_cgv = CGV.objects.latest('created_at')
+            content = latest_cgv.content_fr if lang == 'fr' else latest_cgv.content_en
+            cookies_url = reverse('boutique:cookies')
+            privacy_policy_url = reverse('boutique:privacy_policy')
+            content = content.replace("cookies_url", cookies_url)
+            content = content.replace("privacy_policy_url", privacy_policy_url)
+        elif document_type == 'Cookies':
+            latest_cookies = CookiesPolicy.objects.latest('created_at')
+            content = latest_cookies.content_fr if lang == 'fr' else latest_cookies.content_en
+        elif document_type == 'LegalMentions':
+            latest_legal_mentions = LegalMention.objects.latest('created_at')
+            content = latest_legal_mentions.content_fr if lang == 'fr' else latest_legal_mentions.content_en
+            cookies_url = reverse('boutique:cookies')
+            cgv_url = reverse('boutique:cgv')
+            privacy_policy_url = reverse('boutique:privacy_policy')
+            content = content.replace("cookies_url", cookies_url)
+            content = content.replace("cgv_url", cgv_url)
+            content = content.replace("privacy_policy_url", privacy_policy_url)
 
-    return JsonResponse({'content': mark_safe(content)})
+        elif document_type == 'PrivacyPolicy':
+            latest_privacy_policy = PrivacyPolicy.objects.latest('created_at')
+            content = latest_privacy_policy.content_fr if lang == 'fr' else latest_privacy_policy.content_en
+        else:
+            return JsonResponse({'error': 'Invalid document type'}, status=400)
+
+        return HttpResponse(content, content_type="text/html")
+
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

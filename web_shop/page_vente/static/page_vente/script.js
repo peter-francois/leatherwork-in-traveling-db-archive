@@ -4,20 +4,16 @@ const flags = document.querySelectorAll('.flag');
 let currentLanguage = localStorage.getItem('language') || 'fr';
 changeLanguage(currentLanguage);
 
-async function getDocumentContent(document, lang) {
+async function getDocumentContent(documentType, lang) {
     try {
-        const response = await fetch(`/get_document_content/${document}/${lang}`);
-        const data = await response.json();
-
-        if (data.error) {
-            console.error(data.error);
-            return ''; // Retourne une chaîne vide en cas d'erreur
+        const response = await fetch(`/get_document_content/${documentType}/${lang}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-
-        return data.content;
+        return await response.text();  // Récupérer le HTML en tant que texte
     } catch (error) {
-        console.error('Error fetching document content:', error);
-        return '';
+        console.error("Error fetching document content:", error);
+        return "";
     }
 }
 
@@ -27,19 +23,22 @@ async function changeLanguage(lang) {
     let currentLanguage = lang;
     localStorage.setItem('language', currentLanguage); // Mettre à jour la langue dans le stockage local
 
-    // Mise à jour des documents dynamiques
-    const elements = {
-        cgv_content: 'CGV',
-        cookies_content: 'Cookies',
-        legal_mentions_content: 'LegalMentions',
-        privacy_policy_content: 'PrivacyPolicy'
-    };
+    const CGV_content = document.getElementById('cgv_content');
+    const Cookies_content = document.getElementById('cookies_content');
+    const LegalMentions_content = document.getElementById('legal_mentions_content');
+    const PrivacyPolicy_content = document.getElementById('privacy_policy_content');
 
-    for (const [id, doc] of Object.entries(elements)) {
-        const element = document.getElementById(id);
-        if (element) {
-            element.innerHTML = await getDocumentContent(doc, currentLanguage);
-        }
+    if (CGV_content) {
+        CGV_content.innerHTML = await getDocumentContent('CGV', lang);
+    }
+    if (Cookies_content) {
+        Cookies_content.innerHTML = await getDocumentContent('Cookies', lang);
+    }
+    if (LegalMentions_content) {
+        LegalMentions_content.innerHTML = await getDocumentContent('LegalMentions', lang);
+    }
+    if (PrivacyPolicy_content) {
+        PrivacyPolicy_content.innerHTML = await getDocumentContent('PrivacyPolicy', lang);
     }
 
     // Mise à jour du contenu statique depuis translations.json
