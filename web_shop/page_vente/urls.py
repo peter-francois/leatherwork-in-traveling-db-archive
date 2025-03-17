@@ -27,4 +27,5 @@ urlpatterns = [
     path('mentions-legales/', views.legal_mentions_view, name='legal_mentions'),
     path('politique-confidentialite/', views.privacy_policy_view, name='privacy_policy'),
     path('get_number_of_products_in_cart/', views.get_number_of_products_in_cart, name='get_number_of_products_in_cart'),
+    path('get_document_content/<str:document_type>/<str:lang>/', views.get_document_content, name='get_document_content'),
 ]

@@ -5,8 +5,7 @@
     <h1 style="font-size: 30px;">Politique de Confidentialité (v{{ privacy_policy.version }})</h1>
     <p>Publié le : {{ privacy_policy.created_at|date:"d/m/Y" }}</p>
 
-    <div>
-        {{ privacy_policy.content|safe }}
+    <div id="privacy_policy_content">
     </div>
 </section>
 {% endblock %}

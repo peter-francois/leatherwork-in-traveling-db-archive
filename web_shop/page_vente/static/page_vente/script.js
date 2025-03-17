@@ -4,29 +4,60 @@ const flags = document.querySelectorAll('.flag');
 let currentLanguage = localStorage.getItem('language') || 'fr';
 changeLanguage(currentLanguage);
 
+async function getDocumentContent(document, lang) {
+    try {
+        const response = await fetch(`/get_document_content/${document}/${lang}`);
+        const data = await response.json();
+
+        if (data.error) {
+            console.error(data.error);
+            return ''; // Retourne une chaîne vide en cas d'erreur
+        }
+
+        return data.content;
+    } catch (error) {
+        console.error('Error fetching document content:', error);
+        return '';
+    }
+}
+
 // Fonction pour changer la langue
-function changeLanguage(lang) {
-    currentLanguage = lang;
+
+async function changeLanguage(lang) {
+    let currentLanguage = lang;
     localStorage.setItem('language', currentLanguage); // Mettre à jour la langue dans le stockage local
 
-    // Mettre à jour le contenu de la page grace au fichier translations.JSON
-    fetch('/static/page_vente/translations.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (!data[lang]) {
-                console.error(`Language ${lang} not found in translations`);
-                return;
-            }
-            const translations = data[lang];
-            
-            // Liste des éléments à traduire
-            const elementsToTranslate = {
-                'title_page_index': translations.title_page_index,
+    // Mise à jour des documents dynamiques
+    const elements = {
+        cgv_content: 'CGV',
+        cookies_content: 'Cookies',
+        legal_mentions_content: 'LegalMentions',
+        privacy_policy_content: 'PrivacyPolicy'
+    };
+
+    for (const [id, doc] of Object.entries(elements)) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.innerHTML = await getDocumentContent(doc, currentLanguage);
+        }
+    }
+
+    // Mise à jour du contenu statique depuis translations.json
+    try {
+        const response = await fetch('/static/page_vente/translations.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        const data = await response.json();
+        if (!data[lang]) {
+            console.error(`Language ${lang} not found in translations`);
+            return;
+        }
+
+        const translations = data[lang];
+
+        // Mise à jour des éléments statiques
+        const elementsToTranslate = {
+            'title_page_index': translations.title_page_index,
                 'title_index': translations.title_index,
                 'menu_button_home':translations.menu_button_home,
                 'menu_button_produit':translations.menu_button_produit,
@@ -108,94 +139,60 @@ function changeLanguage(lang) {
                 'error-message':translations.error_message,
                 'clear_cart':translations.clear_cart,
                 'info-price':translations.info_price,
-                
-            };
+        };
 
-            // Mettre à jour chaque élément s'il existe
-            for (const [id, text] of Object.entries(elementsToTranslate)) {
-                const element = document.getElementById(id);
+        for (const [id, text] of Object.entries(elementsToTranslate)) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.innerHTML = text;
+            }
+        }
+
+        // Mise à jour du placeholder du champ de recherche
+        const searchField = document.getElementById('search_field');
+        if (searchField) searchField.placeholder = translations.search_field;
+
+        // Mise à jour des labels
+        const labels = {
+            'label[for="search_field"]': translations.search_label,
+            'label[for="id_min_price"]': translations.min_price,
+            'label[for="id_max_price"]': translations.max_price
+        };
+
+        for (const [selector, text] of Object.entries(labels)) {
+            const element = document.querySelector(selector);
+            if (element) element.innerHTML = text;
+        }
+
+        // Mise à jour des éléments multiples (boutons, prix, images...)
+        const multipleElements = {
+            '.prices': translations.price,
+            '.add_to_cart_button': translations.add_to_cart_button,
+            '.prev-button': translations.previous_button,
+            '.next-button': translations.next_button,
+            '.first-button': translations.first_button,
+            '.last-button': translations.last_button,
+            '.delete_button': translations.delete_button,
+            '.no-image': translations.no_image
+        };
+
+        for (const [selector, text] of Object.entries(multipleElements)) {
+            document.querySelectorAll(selector).forEach(element => {
                 if (element) {
                     element.innerHTML = text;
                 }
-            }
-            // Met à jour le placeholder du champ de recherche
-            const searchField = document.getElementById('search_field');
-            if (searchField) {
-                searchField.placeholder = translations.search_field;
-            }
-            // Met à jour le label du champ de recherche
-            const searchLabel = document.querySelector('label[for="search_field"]');
-            if (searchLabel) {
-                searchLabel.innerHTML = translations.search_label;
-            }
-            const minPriceLabel = document.querySelector('label[for="id_min_price"]');
-            if (minPriceLabel) {
-                minPriceLabel.innerHTML = translations.min_price;
-            }
-            const maxPriceLabel = document.querySelector('label[for="id_max_price"]');
-            if (maxPriceLabel) {
-                maxPriceLabel.innerHTML = translations.max_price;
-            }
-            const price = document.querySelectorAll('.prices');
-            if (price) {
-                price.forEach(element => {
-                    element.innerHTML = translations.price;
-                });
-            }
-            const add_to_cart_button = document.querySelectorAll('.add_to_cart_button');
-            if (add_to_cart_button) {
-                add_to_cart_button.forEach(element => {
-                    element.innerHTML = translations.add_to_cart_button;
-                });
-            }
-            const previous_button = document.querySelectorAll('.prev-button');
-            if (previous_button) {
-                previous_button.forEach(element => {
-                    element.innerHTML = translations.previous_button;
-                });
-            }
-            const next_button = document.querySelectorAll('.next-button');
-            if (next_button) {
-                next_button.forEach(element => {
-                    element.innerHTML = translations.next_button;
-                });
-            }
-            const first_button = document.querySelectorAll('.first-button');
-            if (first_button) {
-                first_button.forEach(element => {
-                    element.innerHTML = translations.first_button;
-                });
-            }
-            const last_button = document.querySelectorAll('.last-button');
-            if (last_button) {
-                last_button.forEach(element => {
-                    element.innerHTML = translations.last_button;
-                });
-            }
-            const delete_button = document.querySelectorAll('.delete_button');
-            if (delete_button) {
-                delete_button.forEach(element => {
-                    element.innerHTML = translations.delete_button;
-                });
-            }
-            const no_image = document.querySelectorAll('.no-image');
-            if (no_image) {
-                no_image.forEach(element => {
-                    element.innerHTML = translations.no_image;
-                });
-            }
-            
-            
-            // Met à jour l'état actif des drapeaux
-            flags.forEach(flag => {
-                flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
             });
-        })
-        .catch(error => {
-            console.error('Error fetching translations:', error);
-        });
-}
+        }
 
+        // Mise à jour de l'état actif des drapeaux
+        flags.forEach(flag => {
+            flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
+        });
+
+    } catch (error) {
+        console.error('Error fetching translations:', error);
+    }
+}
 
 // Écouteurs d'événements pour les clics sur les drapeaux
 flags.forEach(flag => {

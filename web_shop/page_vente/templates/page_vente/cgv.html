@@ -5,8 +5,7 @@
     <h1 style="font-size: 30px;">Conditions Générales de Vente (v{{ cgv.version }})</h1>
     <p>Publié le : {{ cgv.created_at|date:"d/m/Y" }}</p>
 
-    <div>
-        {{ cgv.content|safe }}
+    <div id="cgv_content">
     </div>
 </section>
 {% endblock %}
