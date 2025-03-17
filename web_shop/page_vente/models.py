@@ -65,7 +65,6 @@ class CartItem(models.Model):
 class CGV(models.Model):
     version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
     version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
-    content = models.TextField(help_text="Texte complet des CGV", blank= True, null=True)
     content_fr = models.TextField(default='', help_text="Texte complet des CGV en français")
     content_en = models.TextField(default='', help_text="Texte complet des CGV en anglais")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -79,7 +78,6 @@ class CGV(models.Model):
 class CookiesPolicy(models.Model):
     version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
     version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
-    content = models.TextField(help_text="Texte complet des cookies", blank= True, null=True)
     content_fr = models.TextField(default='', help_text="Texte complet des cookies en français")
     content_en = models.TextField(default='', help_text="Texte complet des cookies en anglais")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -93,7 +91,6 @@ class CookiesPolicy(models.Model):
 class LegalMention(models.Model):
     version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
     version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
-    content = models.TextField(help_text="Texte complet des mentions légales", blank= True, null=True)
     content_fr = models.TextField(default='', help_text="Texte complet des mentions légales en français")
     content_en = models.TextField(default='', help_text="Texte complet des mentions légales en anglais")
     created_at = models.DateTimeField(auto_now_add=True)
@@ -107,7 +104,6 @@ class LegalMention(models.Model):
 class PrivacyPolicy(models.Model):
     version_validator = RegexValidator(regex=r'^\d{4}-\d{2}-\d{2}$', message="Format de version incorrect, utilisez YYYY-MM-DD.")
     version = models.CharField(max_length=20, unique=True, help_text="Ex : 2024-06-01", validators=[version_validator])
-    content = models.TextField(help_text="Texte complet de la politique de confidentialité", blank= True, null=True)
     content_fr = models.TextField(default='', help_text="Texte complet de la politique de confidentialité en français")
     content_en = models.TextField(default='', help_text="Texte complet de la politique de confidentialité en anglais")
     created_at = models.DateTimeField(auto_now_add=True)
