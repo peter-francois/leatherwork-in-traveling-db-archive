@@ -2,8 +2,8 @@
 
 {% block content %}
 <section style="font-family: 'Western', sans-serif;padding: 20px;">
-    <h1 style="font-size: 30px;">Politique de Confidentialité (v{{ privacy_policy.version }})</h1>
-    <p>Publié le : {{ privacy_policy.created_at|date:"d/m/Y" }}</p>
+    <h1 style="font-size: 30px;"><span id="privacy_policy_title">Politique de Confidentialité</span> (version: {{ privacy_policy.version }})</h1>
+    <p><span id="publish_on">Publié le : </span>{{ privacy_policy.created_at|date:"d/m/Y" }}</p>
 
     <div id="privacy_policy_content">
     </div>

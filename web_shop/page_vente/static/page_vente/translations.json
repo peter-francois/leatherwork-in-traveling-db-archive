@@ -91,7 +91,12 @@
     "total_amount_title":"Total of the order : ",
     "accept_cgv_label":"I accept the <a href='/cgv' target='_blank'>CGV</a>",
     "error_message":"You must accept the CGV to continue.",
-    "info_price":"Price :"
+    "info_price":"Price :",
+    "publish_on":"Published on :",
+    "cgv_title": "Terms and Conditions of Sale",
+    "cookies_title": "Cookie Management",
+    "legal_mentions_title": "Legal Mentions",
+    "privacy_policy_title": "Privacy Policy"
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -185,7 +190,12 @@
       "total_amount_title":"Total de la commande : ",
       "accept_cgv_label":"J'accepte les <a href='/cgv' target='_blank'>conditions générales de vente</a>",
       "error_message":"Vous devez accepter les CGV pour continuer.",
-      "info_price":"Prix :"
+      "info_price":"Prix :",
+      "publish_on":"Publié le :",
+      "cgv_title": "Conditions Générales de Vente",
+      "cookies_title": "Gestion des cookies",
+      "legal_mentions_title": "Mentions légales",
+      "privacy_policy_title": "Politique de Confidentialité"
     }
     
 }

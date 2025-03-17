@@ -139,6 +139,11 @@ async function changeLanguage(lang) {
                 'error-message':translations.error_message,
                 'clear_cart':translations.clear_cart,
                 'info-price':translations.info_price,
+                'cgv_title': translations.cgv_title,
+                'cookies_title': translations.cookies_title,
+                'legal_mentions_title': translations.legal_mentions_title,
+                'privacy_policy_title': translations.privacy_policy_title,
+                'publish_on': translations.publish_on
         };
 
         for (const [id, text] of Object.entries(elementsToTranslate)) {
@@ -173,7 +178,7 @@ async function changeLanguage(lang) {
             '.first-button': translations.first_button,
             '.last-button': translations.last_button,
             '.delete_button': translations.delete_button,
-            '.no-image': translations.no_image
+            '.no-image': translations.no_image,
         };
 
         for (const [selector, text] of Object.entries(multipleElements)) {
