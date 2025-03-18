@@ -358,7 +358,7 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'https://localhost:8001/success?session_id={CHECKOUT_SESSION_ID}' if settings.DEBUG else f'https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}',
+            success_url=("https://localhost:8001/success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
             cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://betschdamien.pythonanywhere.com/payment_cancel',
         )
         return redirect(checkout_session.url)
@@ -368,7 +368,6 @@ def checkout(request):
         return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
     # Gestion des autres erreurs
     except Exception as e:
-        print
         logger.exception("Erreur inattendue lors de la création de la session Stripe.")
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
