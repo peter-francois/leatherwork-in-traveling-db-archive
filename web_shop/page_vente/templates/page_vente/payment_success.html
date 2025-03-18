@@ -8,7 +8,7 @@
     <div style="margin-top: 20px;">
         <p><strong>Numéro de commande :</strong> {{ order_id }}</p>
         <p><strong>Date :</strong> {{ payment_date }}</p>
-        <p><strong>Montant total :</strong> {{ total_amount }} €</p>
+        <p><strong>Montant total :</strong> {{ total_amount | floatformat:2 }} €</p>
     </div>
     
     <div style="margin-top: 30px;">
