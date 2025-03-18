@@ -433,16 +433,24 @@ def stripe_webhook(request):
     # 🎯 Si un paiement est réussi
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
-        cart_uuid = session.get('metadata', {}).get('cart_uuid')
+        # 🔹 Vérifier si `metadata` existe avant d'accéder à `cart_uuid`
+        metadata = session.get("metadata", {})
+        cart_uuid = metadata.get("cart_uuid")
 
-        if cart_uuid:
-            cart = get_object_or_404(Cart, uuid=cart_uuid)
-            if not cart.paid:  # Vérifier que le panier n'a pas déjà été traité
-                cart.paid = True
-                cart.paid_at = now()
-                cart.cart_expires_at = cart.paid_at + timedelta(days=10*365)
-                cart.cartitem_set.update(product__disponible=False, product__en_attente_dans_panier=False)
-                cart.save()
+        cart = get_object_or_404(Cart, uuid=cart_uuid)
+        if not cart.paid:  # Vérifier que le panier n'a pas déjà été traité
+            cart.paid = True
+            cart.paid_at = now()
+            cart.cart_expires_at = cart.paid_at + timedelta(days=10*365)
+            cart.save()
+        # 🔄 Mettre à jour la disponibilité des produits du panier
+            for item in cart.cartitem_set.all():
+                product = item.product
+                product.disponible = False
+                product.en_attente_dans_panier = False
+                product.save()
+
+            print(f"✅ Paiement reçu pour le panier {cart_uuid}")
 
     return JsonResponse({'status': 'success'}, status=200)
 
