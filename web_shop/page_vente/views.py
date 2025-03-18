@@ -336,9 +336,6 @@ def checkout(request):
     if front_total != total:
         return JsonResponse({'error': 'Probleme de cohérence des montants', 'total': total, 'front_total': front_total}, status=400)
     
-
-    return JsonResponse({'versionCGV': latest_cgv.version,'cgv_accepted_at': cart.cgv_accepted_at, 'total': total,'articles_quantity': cart.cartitem_set.count(),'add_insurance': add_insurance,'acceptCGV': acceptCGV,'cart_uuid': cart_uuid})
-
     # Créer la session de paiement Stripe
     try:
         checkout_session = stripe.checkout.Session.create(
@@ -361,7 +358,7 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'https://localhost:8001/success?session_id={checkout_session.id}' if settings.DEBUG else f'https://tonsite.com/success?session_id={checkout_session.id}',
+            success_url=f'https://localhost:8001/success?session_id={cart_uuid}' if settings.DEBUG else f'https://tonsite.com/success?session_id={cart_uuid}',
             cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://tonsite.com/cancel',
         )
         return redirect(checkout_session.url)
@@ -371,6 +368,7 @@ def checkout(request):
         return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
     # Gestion des autres erreurs
     except Exception as e:
+        print
         logger.exception("Erreur inattendue lors de la création de la session Stripe.")
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
