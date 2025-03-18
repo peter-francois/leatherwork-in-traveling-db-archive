@@ -358,8 +358,8 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'https://localhost:8001/success?session_id={cart_uuid}' if settings.DEBUG else f'https://tonsite.com/success?session_id={cart_uuid}',
-            cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://tonsite.com/cancel',
+            success_url=f'https://localhost:8001/success?session_id={cart_uuid}' if settings.DEBUG else f'https://betschdamien.pythonanywhere.com/success?session_id={cart_uuid}',
+            cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://betschdamien.pythonanywhere.com/cancel',
         )
         return redirect(checkout_session.url)
     # Gestion des erreurs spécifiques à Stripe
