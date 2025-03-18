@@ -276,39 +276,35 @@ def pagination(request,product_views):
     return paginator.get_page(page_number)
 
 def get_total(cart, add_insurance):
-    
-    # select_for_update() lors de la récupération des articles pour verrouiller les lignes et éviter les conflits
-    cart_items = CartItem.objects.select_for_update().filter(cart=cart)
-    if not cart_items:
-        logger.error("Le panier est vide.")
-        return JsonResponse({'error': 'Le panier est vide'}, status=400)
-        # Calcul du montant total sécurisé côté serveur
-    total = sum(item.product.prix * item.quantity for item in cart_items)
 
+    # Calculer le total en centimes
+    total = Cart.get_total(cart)
+    total_centimes = int(round(total * 100))
 
-    # Ajouter l'assurance si nécessaire
-
-    if total > 50:
-        if total > 375:
-            total += 8.00
-        elif total > 250:
-            total += 6.50
-        elif total > 125:
-            total += 5.00
+    # Ajouter l'assurance en centimes si nécessaire
+    if total_centimes > 5000:  
+        if total_centimes > 37500:  
+            total_centimes += 800 
+        elif total_centimes > 25000: 
+            total_centimes += 650 
+        elif total_centimes > 12500: 
+            total_centimes += 500 
         else:
-            total += 3.50
-    elif 25 < total <= 50 and add_insurance:
-        total += 2.00
+            total_centimes += 350 
+    elif 2500 < total_centimes <= 5000:
+        if add_insurance:
+            total_centimes += 200
 
-    # Appliquer les frais de port
-    total += 5
-    if total <= 0:
+    # Ajouter les frais de port en centimes
+    total_centimes += 500
+
+    # Vérification du total
+    if total_centimes <= 0:
         return JsonResponse({'error': 'Montant invalide.'}, status=400)
-    
-    return total
+
+    return total_centimes  # Total en centimes
 
 def checkout(request):
-    
     cart_uuid = request.GET.get('cart_uuid')
     cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
     front_total = float(request.GET.get('front_total'))
@@ -319,7 +315,6 @@ def checkout(request):
     # Récupérer les paramètres envoyés par le front
     add_insurance = request.GET.get('insurance') == '1'
     acceptCGV = request.GET.get('acceptCGV') == '1'
-    # Vérifier si l'utilisateur a accepté les conditions générales de vente
     if not acceptCGV:
         logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
         return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
@@ -333,13 +328,17 @@ def checkout(request):
         cart.cgv_accepted_at = now()
         cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
         cart.save()
-        
-    total = get_total(cart, add_insurance)
-    
-    # Vérifications de cohérance entre le montant envoyé par le front et le montant total sécurisé côté serveur
-    if front_total != total:
-        return JsonResponse({'error': 'Probleme de cohérence des montants', 'total': total, 'front_total': front_total}, status=400)
-    
+
+    # Calcul du total en centimes
+    total_centimes = get_total(cart, add_insurance)
+
+    # Convertir le montant du front-end en centimes pour la comparaison
+    front_total_centimes = int(round(front_total * 100))
+
+    # Comparaison en centimes
+    if front_total_centimes != total_centimes:
+        return JsonResponse({'error': 'Problème de cohérence des montants', 'total': total_centimes / 100, 'front_total': front_total}, status=400)
+
     # Créer la session de paiement Stripe
     try:
         checkout_session = stripe.checkout.Session.create(
@@ -350,7 +349,7 @@ def checkout(request):
                     'product_data': {
                         'name': f"Commande de {cart.cartitem_set.count()} article{'s' if cart.cartitem_set.count() > 1 else ''}",
                     },
-                    'unit_amount': int(total * 100),  # Stripe utilise des centimes
+                    'unit_amount': total_centimes,
                 },
                 'quantity': 1,
             }],
@@ -362,15 +361,13 @@ def checkout(request):
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
-                            'total_verified': int(total * 100)
+                            'total_verified': total_centimes
                         }
         )
         return redirect(checkout_session.url)
-    # Gestion des erreurs spécifiques à Stripe
     except stripe.error.StripeError as e:
         logger.error(f"Erreur Stripe : {e}")
         return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
-    # Gestion des autres erreurs
     except Exception as e:
         logger.exception("Erreur inattendue lors de la création de la session Stripe.")
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
@@ -391,7 +388,7 @@ def success_view(request):
             return redirect('/')
         
         cart_uuid = session.metadata["cart_uuid"]
-        add_insurance = session.metadata['add_insurance']
+        add_insurance = session.metadata['add_insurance'] == '1'
         
         # ✅ Convertir cart_uuid en format UUID
         try:
@@ -403,11 +400,12 @@ def success_view(request):
         cart = get_object_or_404(Cart, uuid=cart_uuid)
 
         # Vérifier que le total correspond bien
-        total_verified = session.amount_total / 100
-        if total_verified != get_total(cart, add_insurance):
-            logger.error(f"Montant invalide. Total vérifié: {total_verified}, Total du panier: {get_total(cart, add_insurance)}")
+        total_verified_centimes = session.amount_total
+        if total_verified_centimes != get_total(cart, add_insurance):
+            logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {get_total(cart, add_insurance)}")
             return redirect('/')
-
+        
+        total_verified = round(total_verified_centimes / 100, 2)
         return render(request, 'page_vente/payment_success.html', {
             'order_id': cart.id,
             'total_amount': total_verified,
