@@ -275,42 +275,15 @@ def pagination(request,product_views):
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
 
-def checkout(request):
+def get_total(cart, add_insurance):
     
-    cart_uuid = request.GET.get('cart_uuid')
-    front_total = float(request.GET.get('front_total'))
-    cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
-
-    if not cart:
-        return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
-
     # select_for_update() lors de la récupération des articles pour verrouiller les lignes et éviter les conflits
     cart_items = CartItem.objects.select_for_update().filter(cart=cart)
-
     if not cart_items:
         logger.error("Le panier est vide.")
         return JsonResponse({'error': 'Le panier est vide'}, status=400)
-
-    # Récupérer les paramètres envoyés par le front
-    add_insurance = request.GET.get('insurance') == '1'
-    acceptCGV = request.GET.get('acceptCGV') == '1'
-    # Vérifier si l'utilisateur a accepté les conditions générales de vente
-    if not acceptCGV:
-        logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
-        return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
-    
-    # Récupérer la dernière version des CGV
-    latest_cgv = CGV.objects.latest('created_at')
-
-    # Enregistrer l'acceptation des CGV
-    if not cart.cgv_accepted:
-        cart.cgv_accepted = latest_cgv
-        cart.cgv_accepted_at = now()
-        cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
-        cart.save()
-        
-    # Calcul du montant total sécurisé côté serveur
-    total = sum(item.product.prix * item.quantity for item in CartItem.objects.filter(cart__uuid=cart_uuid))
+        # Calcul du montant total sécurisé côté serveur
+    total = sum(item.product.prix * item.quantity for item in cart_items)
 
 
     # Ajouter l'assurance si nécessaire
@@ -332,6 +305,37 @@ def checkout(request):
     if total <= 0:
         return JsonResponse({'error': 'Montant invalide.'}, status=400)
     
+    return total
+
+def checkout(request):
+    
+    cart_uuid = request.GET.get('cart_uuid')
+    cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
+    front_total = float(request.GET.get('front_total'))
+
+    if not cart:
+        return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
+    
+    # Récupérer les paramètres envoyés par le front
+    add_insurance = request.GET.get('insurance') == '1'
+    acceptCGV = request.GET.get('acceptCGV') == '1'
+    # Vérifier si l'utilisateur a accepté les conditions générales de vente
+    if not acceptCGV:
+        logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
+        return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
+    
+    # Récupérer la dernière version des CGV
+    latest_cgv = CGV.objects.latest('created_at')
+
+    # Enregistrer l'acceptation des CGV
+    if not cart.cgv_accepted:
+        cart.cgv_accepted = latest_cgv
+        cart.cgv_accepted_at = now()
+        cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
+        cart.save()
+        
+    total = get_total(cart, add_insurance)
+    
     # Vérifications de cohérance entre le montant envoyé par le front et le montant total sécurisé côté serveur
     if front_total != total:
         return JsonResponse({'error': 'Probleme de cohérence des montants', 'total': total, 'front_total': front_total}, status=400)
@@ -345,21 +349,21 @@ def checkout(request):
                     'currency': 'eur',
                     'product_data': {
                         'name': f"Commande de {cart.cartitem_set.count()} article{'s' if cart.cartitem_set.count() > 1 else ''}",
-                        'metadata': {
-                            'cart_uuid': str(cart_uuid),
-                            'acceptCGV': str(acceptCGV),
-                            'cgv_version': str(cart.cgv_accepted.version),
-                            'add_insurance': str(add_insurance),
-                            'total_verified': int(total * 100)
-                        }
                     },
                     'unit_amount': int(total * 100),  # Stripe utilise des centimes
                 },
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=("https://localhost:8001/success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
-            cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://betschdamien.pythonanywhere.com/payment_cancel',
+            success_url=("https://localhost:8001/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
+            cancel_url=("https://localhost:8001/payment_cancel" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_cancel"),
+            metadata={
+                            'cart_uuid': str(cart_uuid),
+                            'acceptCGV': str(acceptCGV),
+                            'cgv_version': str(cart.cgv_accepted.version),
+                            'add_insurance': str(add_insurance),
+                            'total_verified': int(total * 100)
+                        }
         )
         return redirect(checkout_session.url)
     # Gestion des erreurs spécifiques à Stripe
@@ -374,6 +378,7 @@ def checkout(request):
 def success_view(request):
     session_id = request.GET.get('session_id')
     if not session_id:
+        logger.error("Session ID manquant.")
         return redirect('/')
 
     try:
@@ -381,22 +386,36 @@ def success_view(request):
         if session.payment_status != 'paid':
             return redirect('/')
 
-        # Récupérer le panier via metadata
-        cart_uuid = session.metadata.get('cart_uuid')
+       # 🔹 Vérifier si `metadata` existe avant d'accéder à `cart_uuid`
+        if not session.metadata or "cart_uuid" not in session.metadata:
+            return redirect('/')
+        
+        cart_uuid = session.metadata["cart_uuid"]
+        add_insurance = session.metadata['add_insurance']
+        
+        # ✅ Convertir cart_uuid en format UUID
+        try:
+            cart_uuid = uuid.UUID(cart_uuid)  # Transforme la string en UUID valide
+        except ValueError:
+            logger.error("UUID du panier invalide.")
+            return redirect('/')
+        
         cart = get_object_or_404(Cart, uuid=cart_uuid)
 
         # Vérifier que le total correspond bien
-        total_verified = int(session.unit_amount) / 100
-        if total_verified != cart.get_total():
+        total_verified = session.amount_total / 100
+        if total_verified != get_total(cart, add_insurance):
+            logger.error(f"Montant invalide. Total vérifié: {total_verified}, Total du panier: {get_total(cart, add_insurance)}")
             return redirect('/')
 
         return render(request, 'page_vente/payment_success.html', {
             'order_id': cart.id,
             'total_amount': total_verified,
-            'payment_date': cart.paid_at
+            'payment_date': cart.paid_at if cart.paid_at else "Non disponible"
         })
 
     except stripe.error.StripeError:
+        logger.error("Erreur Stripe lors de la récupération de la session.")
         return redirect('/')
 
 def cancel_view(request):
