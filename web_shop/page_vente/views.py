@@ -358,7 +358,7 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=f'https://localhost:8001/success?session_id={cart_uuid}' if settings.DEBUG else f'https://betschdamien.pythonanywhere.com/payment_success?session_id={cart_uuid}',
+            success_url=f'https://localhost:8001/success?session_id={CHECKOUT_SESSION_ID}' if settings.DEBUG else f'https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}',
             cancel_url='https://localhost:8001/cancel' if settings.DEBUG else 'https://betschdamien.pythonanywhere.com/payment_cancel',
         )
         return redirect(checkout_session.url)
