@@ -18,6 +18,7 @@ from django.urls import reverse
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
 
 logger = logging.getLogger(__name__)
@@ -426,13 +427,14 @@ def cancel_view(request):
 def stripe_webhook(request):
     payload = request.body
     sig_header = request.headers.get('Stripe-Signature', '')
-    endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
 
     try:
         event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
-    except (ValueError, stripe.error.SignatureVerificationError):
-        return JsonResponse({'error': 'Invalid signature'}, status=400)
-
+    except ValueError:
+        return HttpResponse("Invalid payload", status=400)
+    except stripe.error.SignatureVerificationError:
+        return HttpResponse("Invalid signature", status=400)
     # 🎯 Si un paiement est réussi
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
