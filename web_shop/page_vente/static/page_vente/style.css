@@ -2,7 +2,12 @@
     --color1: #FFD700;
     --color2: #8c6b4f;
     --color3: #5c3b14;
-
+}
+@font-face {
+    font-family: 'Uncial Antiqua';
+    src: url('/static/page_vente/fonts/UncialAntiqua-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
