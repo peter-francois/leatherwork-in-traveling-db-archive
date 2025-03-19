@@ -19,6 +19,7 @@ import base64
 import os
 
 
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
@@ -515,8 +516,8 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     send_mail(
         subject,
         message,
-        env('CLIENT_EMAIL'),  # Adresse email de l'expéditeur
-        [env('CLIENT_EMAIL')],
+        settings.CLIENT_EMAIL,  # Adresse email de l'expéditeur
+        [settings.CLIENT_EMAIL],
     )
 
 def cgv_view(request):
