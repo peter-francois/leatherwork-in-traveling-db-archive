@@ -54,10 +54,12 @@ INSTALLED_APPS = [
     'page_vente.apps.PageVenteConfig',
     'cloudinary',
     'cloudinary_storage',
+    'csp',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -179,6 +181,19 @@ if env('DJANGO_ENV') == 'development':
     CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
+    CONTENT_SECURITY_POLICY = {
+        'default-src': "'self'",
+        'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",  # Autorise les scripts inline pour le développement
+        'style-src': "'self' 'unsafe-inline'",  # Permet les styles inline pendant le développement
+        'img-src': "'self' data:",  # Permet les images en base64 pendant le développement
+        'font-src': "'self'",
+        'connect-src': "'self'",  # Peut autoriser plus de sources pour le débogage si nécessaire
+        'frame-src': "'none'",
+        'object-src': "'none'",
+        'media-src': "'self'",
+        'form-action': "'self'",
+        'upgrade-insecure-requests': True,
+    }
 
 else:
     # Pour la production (avec HTTPS)
@@ -192,14 +207,24 @@ else:
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
+    CONTENT_SECURITY_POLICY = {
+        'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
+        'script-src': "'self'",  # Autorise uniquement les scripts venant de la même origine
+        'style-src': "'self'",  # Autorise uniquement les styles venant de la même origine
+        'img-src': "'self' https://res.cloudinary.com",  # Permet les images venant de Cloudinary
+        'font-src': "'self'",  # Limite les polices aux sources locales
+        'connect-src': "'self'",  # Limite les connexions aux mêmes origines
+        'frame-src': "'none'",  # Interdit l'intégration de contenu dans des iframes
+        'object-src': "'none'",  # Interdit l'utilisation de plugins comme Flash
+        'media-src': "'self'",  # Limite les fichiers multimédia à la même origine
+        'form-action': "'self'",  # Autorise uniquement les soumissions de formulaire vers la même origine
+        'upgrade-insecure-requests': True,  # Force les requêtes HTTP à être envoyées en HTTPS
+    }
 
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 X_FRAME_OPTIONS = 'DENY'
-CONTENT_SECURITY_POLICY = {
-    'default-src': "'self'",
-    'script-src': "'self'",
-}
+
 
 import cloudinary
 # Cloudinary configuration
