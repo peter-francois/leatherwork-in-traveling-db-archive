@@ -17,6 +17,7 @@
     <div class="grid-container">
         
         <ul class="product-list-cart" id="liste-articles"></ul>
+        {% if items %}
         <aside class="text-center">
             <h2 id="payment_title">Paiement sécurisé</h2>
 
@@ -42,7 +43,7 @@
           
             <p id="error-message" class="error hidden">Vous devez accepter les CGV pour continuer.</p>
         </aside>
-    
+    {% endif %}    
     
     </div>
         {% if expiration_date %}

@@ -107,11 +107,10 @@ def creation_sur_mesure(request):
 def panier(request):
     session_key = request.session.session_key
     latest_cgv = CGV.objects.latest('created_at')
-    cart = Cart.objects.filter(session_id=session_key).first()
+    cart = Cart.objects.filter(session_id=session_key, paid=False).first()
     items = CartItem.objects.filter(cart=cart)
     total = sum(item.product.prix * item.quantity for item in items)
     expiration_date = get_session_expiration(request)
-
 
     return render(request, "page_vente/panier.html", {
         "expiration_date": expiration_date,
@@ -129,17 +128,21 @@ def add_to_cart(request, product_id):
     if not product.disponible or product.en_attente_dans_panier:
         return JsonResponse({'success': False, 'message': 'Produit déjà pris'}, status=400)
 
-    # Récupérer l'expiration de la session
-    expiration_date = get_session_expiration(request)
-
-
-    
     if not request.session.session_key:
         request.session.create()
     session_id = request.session.session_key
 
     # Vérifier si un panier existe pour cette session
     cart, created = Cart.objects.get_or_create(session_id=session_id,defaults={'uuid': uuid.uuid4()})
+
+    if cart.paid:
+        request.session.create()
+        session_id = request.session.session_key
+        cart = Cart.objects.create(session_id=session_id, uuid=uuid.uuid4())
+    
+    # Récupérer l'expiration de la session
+    expiration_date = get_session_expiration(request)
+
 
     # Ajouter le produit au panier
     cart_item, item_created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -162,7 +165,8 @@ def cart_detail(request):
     if not session_id:
         return JsonResponse({'cart': []})  # Aucun panier trouvé
 
-    cart = Cart.objects.filter(session_id=session_id).first()
+    cart = Cart.objects.filter(session_id=session_id, paid=False).first()
+
     if not cart:
         return JsonResponse({'cart': []})  
 
@@ -177,10 +181,9 @@ def vider_panier(request):
     if not session_id:
         return JsonResponse({'success': False, 'message': 'Aucun panier trouvé'})
 
-    cart = Cart.objects.filter(session_id=session_id).first()
+    cart = Cart.objects.filter(session_id=session_id, paid=False).first()
     if not cart:
         return JsonResponse({'success': False, 'message': 'Le panier est déjà vide'})
-
     cart_items = CartItem.objects.filter(cart=cart)
     for item in cart_items:
         item.product.en_attente_dans_panier = False
@@ -195,7 +198,7 @@ def remove_from_cart(request, product_id):
     session_id = request.session.session_key
     if not session_id:
         return JsonResponse({'success': False, 'message': 'Aucun panier trouvé'})
-    cart = Cart.objects.filter(session_id=session_id).first()
+    cart = Cart.objects.filter(session_id=session_id, paid=False).first()
     cart_item = CartItem.objects.filter(cart=cart, product_id=product_id).first()
     if cart_item:
         cart_item.product.en_attente_dans_panier = False
@@ -354,8 +357,8 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=("https://localhost:8001/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
-            cancel_url=("https://localhost:8001/payment_cancel" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_cancel"),
+            success_url=("http://localhost:8001/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
+            cancel_url=("http://localhost:8001/payment_cancel" if settings.DEBUG else "https://betschdamien.pythonanywhere.com/payment_cancel"),
             metadata={
                             'cart_uuid': str(cart_uuid),
                             'acceptCGV': str(acceptCGV),
@@ -483,6 +486,8 @@ def get_number_of_products_in_cart(request):
 
         # Si aucun panier n'est trouvé
         if not cart:
+            return JsonResponse({'success': False, 'number_of_products': 0})
+        if cart.paid:
             return JsonResponse({'success': False, 'number_of_products': 0})
 
         # Comptage des articles dans le panier
