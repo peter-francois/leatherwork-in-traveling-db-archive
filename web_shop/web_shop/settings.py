@@ -181,10 +181,6 @@ if env('DJANGO_ENV') == 'development':
     CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
-    # Contenu de la CSP
-    CSP_DEFAULT_SRC = ("'self'",)
-    CSP_SCRIPT_SRC = ("'self'",)
-    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 
 else:
     # Pour la production (avec HTTPS)
@@ -198,23 +194,10 @@ else:
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
-    CSP_DEFAULT_SRC = ("'self'",)
-    CSP_SCRIPT_SRC = ("'self'",)
-    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
-    """CONTENT_SECURITY_POLICY = {
-        'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
-        'script-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les scripts venant de la même origine
-        'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les styles venant de la même origine
-        'img-src': "'self' https://res.cloudinary.com https://upload.wikimedia.org https://*.wikipedia.org",  # Permet les images venant de Cloudinary
-        'font-src': "'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Limite les polices aux sources locales
-        'connect-src': "'self'",  # Limite les connexions aux mêmes origines
-        'frame-src': "'none'",  # Interdit l'intégration de contenu dans des iframes
-        'object-src': "'none'",  # Interdit l'utilisation de plugins comme Flash
-        'media-src': "'self'",  # Limite les fichiers multimédia à la même origine
-        'form-action': "'self'",  # Autorise uniquement les soumissions de formulaire vers la même origine
-        'upgrade-insecure-requests': True,  # Force les requêtes HTTP à être envoyées en HTTPS
-    }
-"""
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'",)
+CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 X_FRAME_OPTIONS = 'DENY'
