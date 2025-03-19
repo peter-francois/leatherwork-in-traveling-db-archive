@@ -198,11 +198,9 @@ else:
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
-    CONTENT_SECURITY_POLICY = {
-    'default-src': "'self'",
-    'script-src': "'self'",
-    'img-src': ("'self'", "https://res.cloudinary.com"),
-    }
+    CSP_DEFAULT_SRC = ("'self'",)
+    CSP_SCRIPT_SRC = ("'self'",)
+    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
     """CONTENT_SECURITY_POLICY = {
         'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
         'script-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les scripts venant de la même origine
