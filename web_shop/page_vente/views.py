@@ -358,6 +358,11 @@ def checkout(request):
         return JsonResponse({'error': 'Problème de cohérence des montants', 'total': total_centimes / 100, 'front_total': front_total}, status=400)
 
     # Créer la session de paiement Stripe
+    list_products = []
+    for item in cart.cartitem_set.all():
+        list_products.append({
+            'name': item.product.nom,
+        })
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -379,7 +384,8 @@ def checkout(request):
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
-                            'total_verified': total_centimes
+                            'total_verified': total_centimes,
+                            'list_products': str(list_products)
                         },
             shipping_address_collection={
                 'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
@@ -476,8 +482,42 @@ def stripe_webhook(request):
                 product.save()
 
             print(f"✅ Paiement reçu pour le panier {cart_uuid}")
+            
+            # Récupérer les informations du client
+            customer_email = session.get('customer_email')
+            customer_name = session['shipping']['name'] if 'shipping' in session else 'Nom inconnu'
+            shipping_address = session['shipping']['address'] if 'shipping' in session else 'Adresse inconnue'
+            list_products = metadata.get('list_products')
+
+            # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
+            send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
 
     return JsonResponse({'status': 'success'}, status=200)
+
+def send_email_to_owner(customer_email, customer_name, shipping_address, list_products):
+    # Exemple d'envoi d'email à l'administrateur du site (propriétaire du compte Stripe)
+    from django.core.mail import send_mail
+    
+    subject = 'Nouvelle commande reçue'
+    message = f"""
+    Une nouvelle commande a été passée par {customer_name}.
+    
+    Détails de la commande :
+    - Email client : {customer_email}
+    - Adresse de livraison : {shipping_address}
+    
+    Produits commandés :
+    {list_products}
+    
+    Merci de traiter la commande.
+    """
+    
+    send_mail(
+        subject,
+        message,
+        env('CLIENT_EMAIL'),  # Adresse email de l'expéditeur
+        [env('CLIENT_EMAIL')],
+    )
 
 def cgv_view(request):
     nonce = generate_nonce()
