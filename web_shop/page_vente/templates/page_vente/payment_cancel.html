@@ -1,12 +1,12 @@
 {% extends 'page_vente/base.html' %}
 
 {% block content %}
-<section style="font-family: 'Western', sans-serif; padding: 20px; text-align: center;">
-    <h1 style="font-size: 30px; color: red;">Paiement Annulé</h1>
-    <p>Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer.</p>
+<section id="payment-cancel">
+    <h1 id="payment-cancel-title">Paiement Annulé</h1>
+    <p id="payment-cancel-description">Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer.</p>
     
     <div style="margin-top: 30px;">
-        <a href="/" style="text-decoration: none; background-color: red; color: white; padding: 10px 20px; border-radius: 5px;">Retour à l'accueil</a>
+        <a href="/" id="payment-cancel-button">Retour à l'accueil</a>
     </div>
 </section>
 {% endblock %}

@@ -181,19 +181,10 @@ if env('DJANGO_ENV') == 'development':
     CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
-    CONTENT_SECURITY_POLICY = {
-        'default-src': "'self'",
-        'script-src': "'self' 'unsafe-eval' 'unsafe-inline'",  # Autorise les scripts inline pour le développement
-        'style-src': "'self' 'unsafe-inline'",  # Permet les styles inline pendant le développement
-        'img-src': "'self' data:",  # Permet les images en base64 pendant le développement
-        'font-src': "'self'",
-        'connect-src': "'self'",  # Peut autoriser plus de sources pour le débogage si nécessaire
-        'frame-src': "'none'",
-        'object-src': "'none'",
-        'media-src': "'self'",
-        'form-action': "'self'",
-        'upgrade-insecure-requests': True,
-    }
+    # Contenu de la CSP
+    CSP_DEFAULT_SRC = ("'self'",)
+    CSP_SCRIPT_SRC = ("'self'",)
+    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 
 else:
     # Pour la production (avec HTTPS)
@@ -210,7 +201,8 @@ else:
     CONTENT_SECURITY_POLICY = {
     'default-src': "'self'",
     'script-src': "'self'",
-}
+    'img-src': ("'self'", "https://res.cloudinary.com"),
+    }
     """CONTENT_SECURITY_POLICY = {
         'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
         'script-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les scripts venant de la même origine

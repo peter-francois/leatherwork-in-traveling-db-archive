@@ -1,10 +1,11 @@
+{% load static %}
 <!-- navbar.html -->
 <nav>
     <div class="menu">
-        <button id="menu_button" class="smooth-transition" onclick="toggleMenu()">MENU<i class="fa-solid fa-bars"></i></button>
+        <button id="menu_button" class="smooth-transition">MENU<i class="fa-solid fa-bars"></i></button>
         <div class="menu-content smooth-transition">
             <a href="/" id="menu_button_home" >ACCUEIL</a>
-            <a href="#" onclick="toggleMenuProduit(event)" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
+            <a href="#" id="menu_button_produit">PRODUITS <i class="fa-solid fa-arrow-down"></i></a>
                 <div class="menu-content-produit smooth-transition">
                     <a href="{% url 'boutique:tous-les-produits' %}" id="menu_button_tous_les_produits">TOUS LES PRODUITS</a>
                     <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE</a>
@@ -14,7 +15,7 @@
             <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">CREATION SUR MESURE</a>
             <a href="/panier" id="menu_button_panier">PANIER</a>
             <a href="/a_propos" id="menu_button_a_propos">A PROPOS</a>
-            <button id="contact_button" onclick="displayContact()" >CONTACT</button>  
+            <button id="contact_button" >CONTACT</button>  
         </div> 
     </div>
     <a class="text-center align-items-center page-button" href="/panier" id="cart-button">
@@ -24,13 +25,13 @@
     <div class="align-items-center language-selector">
         <!-- Drapeaux avec attribut de langue -->
         <img 
-        src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" 
+        src="{% static 'page_vente/images/flag/UK.webp' %}" 
         alt="English"
         class="flag" 
         data-lang="en">
 
         <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" 
+            src="{% static 'page_vente/images/flag/FR.jpg' %}" 
             alt="French" 
             class="flag" 
             data-lang="fr">

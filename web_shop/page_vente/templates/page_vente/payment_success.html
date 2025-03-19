@@ -1,18 +1,18 @@
 {% extends 'page_vente/base.html' %}
 
 {% block content %}
-<section style="font-family: 'Western', sans-serif; padding: 20px; text-align: center;">
-    <h1 style="font-size: 30px; color: green;">Paiement Réussi !</h1>
-    <p>Merci pour votre commande. Votre paiement a été traité avec succès.</p>
+<section id="payment-success">
+    <h1 id="payment-success-title">Paiement Réussi !</h1>
+    <p id="payment-success-description">Merci pour votre commande. Votre paiement a été traité avec succès.</p>
     
-    <div style="margin-top: 20px;">
-        <p><strong>Numéro de commande :</strong> {{ order_id }}</p>
-        <p><strong>Date :</strong> {{ payment_date }}</p>
-        <p><strong>Montant total :</strong> {{ total_amount | floatformat:2 }} €</p>
+    <div id="payment-success-details">
+        <p id="payment-success-order-id"><strong>Numéro de commande :</strong> {{ order_id }}</p>
+        <p id="payment-success-date"><strong>Date :</strong> {{ payment_date }}</p>
+        <p id="payment-success-amount"><strong>Montant total :</strong> {{ total_amount | floatformat:2 }} €</p>
     </div>
     
-    <div style="margin-top: 30px;">
-        <a href="/" style="text-decoration: none; background-color: green; color: white; padding: 10px 20px; border-radius: 5px;">Retour à l'accueil</a>
+    <div id="payment-success-button">
+        <a href="/" id="payment-success-button">Retour à l'accueil</a>
     </div>
 </section>
 {% endblock %}

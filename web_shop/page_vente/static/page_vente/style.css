@@ -184,7 +184,9 @@ body {
         #contact-form i {
             padding-right: 10px;
         }
-
+        #contact_phone, #contact_email{
+            text-decoration: none;
+        }
         #close-btn {
             padding: 10px;
             background: #28a745;
@@ -670,6 +672,42 @@ footer {
     width: 130px;
     height: auto;
 }
+#payment-cancel{
+    font-family: 'Western', sans-serif; 
+    padding: 20px; 
+    text-align: center;
+}
+#payment-cancel-title{
+    font-size: 30px; 
+    color: red;
+}
+#payment-cancel-button{
+    text-decoration: none;
+    background-color: red;
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    
+}
+
+#payment-success{
+    font-family: 'Western', sans-serif; 
+    padding: 20px; 
+    text-align: center;
+}
+#payment-success-title{
+    font-size: 30px; 
+    color: green;
+}
+#payment-success-button{
+    text-decoration: none;
+    background-color: green;
+    color: white; 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    
+}
+
     
 @media only screen and (max-width: 1182px)
 {   

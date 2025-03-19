@@ -706,3 +706,96 @@ function handleCheckout() {
     console.log("add-insurance :", document.getElementById('add-insurance'));
     console.log("total-amount :", document.getElementById('total-amount'));
 }
+
+// Sortir les evenement onclick
+if (document.getElementById("contact_link")) {
+    document.getElementById("contact_link").addEventListener("click", function() {
+        displayContact();
+    });
+}
+
+if (document.getElementById("close-btn")) {
+    document.getElementById("close-btn").addEventListener("click", function() {
+        hideContact();
+    });
+}
+
+if (document.getElementById("footer_contact")) {
+    document.getElementById("footer_contact").addEventListener("click", function() {
+        displayContact();
+    });
+}
+
+if (document.getElementById("menu_button")) {
+    document.getElementById("menu_button").addEventListener("click", function() {
+        toggleMenu();
+    });
+}
+
+if (document.getElementById("menu_button_produit")) {
+    document.getElementById("menu_button_produit").addEventListener("click", function(event) {
+        toggleMenuProduit(event);
+    });
+}
+
+if (document.getElementById("contact_button")) {
+    document.getElementById("contact_button").addEventListener("click", function() {
+        displayContact();
+    });
+}
+
+if (document.getElementById("clear_cart")) {
+    document.getElementById("clear_cart").addEventListener("click", function() {
+        clearCart();
+    });
+}
+
+if (document.getElementById("add-insurance")) {
+    document.getElementById("add-insurance").addEventListener("change", function() {
+        updateTotal();
+    });
+}
+
+if (document.getElementById("checkout")) {
+    document.getElementById("checkout").addEventListener("click", function() {
+        handleCheckout();
+    });
+}
+
+if (document.getElementById("close-button")) {
+    document.getElementById("close-button").addEventListener("click", function() {
+        closeModal();
+    });
+}
+
+if (document.getElementById("prev-button")) {
+    document.getElementById("prev-button").addEventListener("click", function() {
+        changeImage(-1);
+    });
+}
+
+if (document.getElementById("next-button")) {
+    document.getElementById("next-button").addEventListener("click", function() {
+        changeImage(1);
+    });
+}
+
+document.addEventListener("click", function(event) {
+    if (event.target && event.target.matches(".add_to_cart_button")) {
+        const articleId = event.target.getAttribute('data-product-id');
+        if (!articleId) return;
+        addToCart(articleId);
+    }
+});
+
+if (document.getElementById("prev-button")) {
+    document.getElementById("prev-button").addEventListener("click", function() {
+        changeImage(-1);
+    });
+}
+
+if (document.getElementById("next-button")) {
+    document.getElementById("next-button").addEventListener("click", function() {
+        changeImage(1);
+    });
+}
