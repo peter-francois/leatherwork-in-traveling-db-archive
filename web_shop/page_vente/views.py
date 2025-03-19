@@ -15,6 +15,8 @@ from django.conf import settings
 from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import timedelta
 from django.urls import reverse
+import base64
+import os
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -25,13 +27,11 @@ logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
 def index(request):    
-
-
-    # return JsonResponse({"message": "CSRF Cookie Set"})
-    return render(request, 'page_vente/index.html')
+    nonce = generate_nonce()
+    return render(request, 'page_vente/index.html', {'nonce': nonce})
 
 def tous_les_produits(request):
-
+    nonce = generate_nonce()
     all_products = AllProducts.objects.all()
     
     all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
@@ -45,11 +45,13 @@ def tous_les_produits(request):
     context = {
         'products': page_obj,
         'form': form,
+        'nonce': nonce
     }
 
     return render(request, 'page_vente/tous_les_produits.html', context)
 
 def maroquinerie(request):
+    nonce = generate_nonce()
 
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
     all_leather_products = [product for product in all_leather_products if product.disponible and not product.en_attente_dans_panier]
@@ -63,11 +65,13 @@ def maroquinerie(request):
     context = {
         'products': page_obj,
         'form': form,
+        'nonce': nonce
     }
 
     return render(request, 'page_vente/maroquinerie.html', context)
 
 def macrames(request):
+    nonce = generate_nonce()
 
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
     all_macrame_products = [product for product in all_macrame_products if product.disponible and not product.en_attente_dans_panier]
@@ -81,11 +85,13 @@ def macrames(request):
     context = {
         'products': page_obj,
         'form': form,
+        'nonce': nonce
     }
 
     return render(request, 'page_vente/macrames.html', context)
 
 def hybride(request):
+    nonce = generate_nonce()
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
     all_hybride_products = [product for product in all_hybride_products if product.disponible and not product.en_attente_dans_panier]
 
@@ -98,14 +104,17 @@ def hybride(request):
     context = {
         'products': page_obj,
         'form': form,
+        'nonce': nonce
     }
 
     return render(request, 'page_vente/hybride.html', context)
 
 def creation_sur_mesure(request):
-    return render(request, 'page_vente/creation_sur_mesure.html')
+    nonce = generate_nonce()
+    return render(request, 'page_vente/creation_sur_mesure.html', {'nonce': nonce})
 
 def panier(request):
+    nonce = generate_nonce()
     session_key = request.session.session_key
     latest_cgv = CGV.objects.latest('created_at')
     cart = Cart.objects.filter(session_id=session_key, paid=False).first()
@@ -117,11 +126,13 @@ def panier(request):
         "expiration_date": expiration_date,
         "items": items,
         "total": total,
-        "latest_cgv": latest_cgv,
+        "latest_cgv": latest_cgv,   
+        'nonce': nonce
     })
 
 def a_propos(request):
-    return render(request, 'page_vente/a_propos.html')
+    nonce = generate_nonce()
+    return render(request, 'page_vente/a_propos.html', {'nonce': nonce})
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
@@ -159,7 +170,8 @@ def add_to_cart(request, product_id):
         'success': True, 
         'message': f'{product.nom} ajouté au panier',
         'cart_uuid': str(cart.uuid),
-        "session_expiration": expiration_date.strftime('%Y-%m-%d %H:%M:%S') if expiration_date else None})
+        "session_expiration": expiration_date.strftime('%Y-%m-%d %H:%M:%S') if expiration_date else None,
+    })
 
 def cart_detail(request):
     session_id = request.session.session_key
@@ -175,7 +187,7 @@ def cart_detail(request):
     data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url, 
             'image2': item.product.image2.url, 'image3': item.product.image3.url, 'image4': item.product.image4.url, 'id': item.product.id} for item in cart_items]
 
-    return JsonResponse({'cart': data,})
+    return JsonResponse({'cart': data})
 
 def vider_panier(request):
     session_id = request.session.session_key
@@ -224,6 +236,7 @@ def get_product_images(request, article_id):
         return JsonResponse({'error': 'Product not found'}, status=404)
 
 def use_filter(request, product_views, is_all_products):
+    
     if not product_views:
         return product_views, None
 
@@ -309,6 +322,7 @@ def get_total(cart, add_insurance):
     return total_centimes  # Total en centimes
 
 def checkout(request):
+    nonce = generate_nonce()
     cart_uuid = request.GET.get('cart_uuid')
     cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
     front_total = float(request.GET.get('front_total'))
@@ -368,7 +382,7 @@ def checkout(request):
                             'total_verified': total_centimes
                         }
         )
-        return redirect(checkout_session.url)
+        return redirect(checkout_session.url, {'nonce': nonce})
     except stripe.error.StripeError as e:
         logger.error(f"Erreur Stripe : {e}")
         return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
@@ -377,10 +391,11 @@ def checkout(request):
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
 def success_view(request):
+    nonce = generate_nonce()
     session_id = request.GET.get('session_id')
     if not session_id:
         logger.error("Session ID manquant.")
-        return redirect('/')
+        return redirect('/', {'nonce': nonce})
 
     try:
         session = stripe.checkout.Session.retrieve(session_id)
@@ -413,15 +428,17 @@ def success_view(request):
         return render(request, 'page_vente/payment_success.html', {
             'order_id': cart.id,
             'total_amount': total_verified,
-            'payment_date': cart.paid_at if cart.paid_at else "Non disponible"
+            'payment_date': cart.paid_at if cart.paid_at else "Non disponible",
+            'nonce': nonce
         })
 
     except stripe.error.StripeError:
         logger.error("Erreur Stripe lors de la récupération de la session.")
-        return redirect('/')
+        return redirect('/', {'nonce': nonce})
 
 def cancel_view(request):
-    return render(request, 'page_vente/payment_cancel.html')
+    nonce = generate_nonce()
+    return render(request, 'page_vente/payment_cancel.html', {'nonce': nonce})
 
 @csrf_exempt  # Désactive la protection CSRF pour recevoir les requêtes Stripe
 def stripe_webhook(request):
@@ -460,20 +477,24 @@ def stripe_webhook(request):
     return JsonResponse({'status': 'success'}, status=200)
 
 def cgv_view(request):
+    nonce = generate_nonce()
     latest_cgv = CGV.objects.latest('created_at')
-    return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv})
+    return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv, 'nonce': nonce})
 
 def cookies_view(request):
+    nonce = generate_nonce()
     latest_cookies = CookiesPolicy.objects.latest('created_at')
-    return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies})
+    return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies, 'nonce': nonce})
 
 def legal_mentions_view(request):
+    nonce = generate_nonce()
     latest_legal_mentions = LegalMention.objects.latest('created_at')
-    return render(request, 'page_vente/mentions-legales.html', {'legal_mentions': latest_legal_mentions})
+    return render(request, 'page_vente/mentions-legales.html', {'legal_mentions': latest_legal_mentions, 'nonce': nonce})
 
 def privacy_policy_view(request):
+    nonce = generate_nonce()
     latest_privacy_policy = PrivacyPolicy.objects.latest('created_at')
-    return render(request, 'page_vente/politique-confidentialite.html', {'privacy_policy': latest_privacy_policy})
+    return render(request, 'page_vente/politique-confidentialite.html', {'privacy_policy': latest_privacy_policy, 'nonce': nonce})
 
 def get_number_of_products_in_cart(request):
     session_key = request.session.session_key
@@ -502,6 +523,7 @@ def get_number_of_products_in_cart(request):
         return JsonResponse({'success': False, 'number_of_products': 0})
 
 def get_document_content(request, document_type, lang):
+    nonce = generate_nonce()
     try:
         if document_type == 'CGV':
             latest_cgv = CGV.objects.latest('created_at')
@@ -533,3 +555,6 @@ def get_document_content(request, document_type, lang):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+def generate_nonce():
+    return base64.b64encode(os.urandom(16)).decode('utf-8')
