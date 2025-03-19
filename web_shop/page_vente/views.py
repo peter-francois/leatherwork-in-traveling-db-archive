@@ -372,15 +372,18 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=("http://localhost:8001/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
-            cancel_url=("http://localhost:8001/payment_cancel" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_cancel"),
+            success_url=("http://localhost:8002/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
+            cancel_url=("http://localhost:8002/payment_cancel" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_cancel"),
             metadata={
                             'cart_uuid': str(cart_uuid),
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
                             'total_verified': total_centimes
-                        }
+                        },
+            shipping_address_collection={
+                'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
+            },
         )
         return redirect(checkout_session.url, {'nonce': nonce})
     except stripe.error.StripeError as e:
