@@ -232,3 +232,14 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
+
+# Mail configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Paramètres pour envoyer des emails via Hotmail/Outlook
+EMAIL_HOST = 'smtp.office365.com'  # Serveur SMTP de Hotmail/Outlook
+EMAIL_PORT = 587  # Utiliser le port 587 pour TLS
+EMAIL_USE_TLS = True  # Utiliser TLS (Transport Layer Security) pour la connexion sécurisée
+EMAIL_HOST_USER = env('CLIENT_EMAIL')  # Votre adresse email Hotmail
+EMAIL_HOST_PASSWORD = env('CLIENT_EMAIL_PASSWORD')  # Votre mot de passe ou mot de passe d'application (si l'authentification à 2 facteurs est activée)
+DEFAULT_FROM_EMAIL = env('CLIENT_EMAIL')
