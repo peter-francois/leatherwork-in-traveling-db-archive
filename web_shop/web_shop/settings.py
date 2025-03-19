@@ -236,10 +236,11 @@ STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
 # Mail configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Paramètres pour envoyer des emails via Hotmail/Outlook
-EMAIL_HOST = 'smtp.office365.com'  # Serveur SMTP de Hotmail/Outlook
-EMAIL_PORT = 587  # Utiliser le port 587 pour TLS
-EMAIL_USE_TLS = True  # Utiliser TLS (Transport Layer Security) pour la connexion sécurisée
-EMAIL_HOST_USER = env('CLIENT_EMAIL')  # Votre adresse email Hotmail
-EMAIL_HOST_PASSWORD = env('CLIENT_EMAIL_PASSWORD')  # Votre mot de passe ou mot de passe d'application (si l'authentification à 2 facteurs est activée)
-DEFAULT_FROM_EMAIL = env('CLIENT_EMAIL')
+# Configuration SMTP
+EMAIL_BACKEND = env("EMAIL_BACKEND")
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_PORT = env.int("EMAIL_PORT")
+EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
