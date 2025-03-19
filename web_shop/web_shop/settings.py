@@ -198,7 +198,7 @@ CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 X_FRAME_OPTIONS = 'DENY'
 CONTENT_SECURITY_POLICY = {
     'default-src': "'self'",
-    'script-src': "'self' 'unsafe-inline'",
+    'script-src': "'self'",
 }
 
 import cloudinary
