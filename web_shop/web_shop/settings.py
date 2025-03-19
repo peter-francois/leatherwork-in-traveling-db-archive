@@ -209,16 +209,16 @@ else:
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
     CONTENT_SECURITY_POLICY = {
         'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
-        'script-src': "'self'",  # Autorise uniquement les scripts venant de la même origine
-        'style-src': "'self'",  # Autorise uniquement les styles venant de la même origine
-        'img-src': "'self' https://res.cloudinary.com",  # Permet les images venant de Cloudinary
-        'font-src': "'self'",  # Limite les polices aux sources locales
-        'connect-src': "'self'",  # Limite les connexions aux mêmes origines
-        'frame-src': "'none'",  # Interdit l'intégration de contenu dans des iframes
-        'object-src': "'none'",  # Interdit l'utilisation de plugins comme Flash
+        'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://fonts.googleapis.com",  # Autorise les scripts de 'self', inline, et les sources CDN
+        'style-src': "'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com",  # Autorise les styles de 'self' et les CDN externes
+        'img-src': "'self' https://upload.wikimedia.org https://*.wikipedia.org",  # Autorise les images venant de 'self' et Wikipedia
+        'font-src': "'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com",  # Autorise les polices locales et celles provenant de Google Fonts
+        'connect-src': "'self'",  # Limite les requêtes HTTP aux mêmes origines
+        'frame-src': "'none'",  # Empêche l'intégration de contenu dans des iframes
+        'object-src': "'none'",  # Empêche l'utilisation de plugins comme Flash
         'media-src': "'self'",  # Limite les fichiers multimédia à la même origine
         'form-action': "'self'",  # Autorise uniquement les soumissions de formulaire vers la même origine
-        'upgrade-insecure-requests': True,  # Force les requêtes HTTP à être envoyées en HTTPS
+        'upgrade-insecure-requests': True,  # Force les requêtes HTTP à être envoyées en HTTPS si disponible
     }
 
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
