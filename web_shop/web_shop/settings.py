@@ -208,6 +208,10 @@ else:
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
     CONTENT_SECURITY_POLICY = {
+    'default-src': "'self'",
+    'script-src': "'self'",
+}
+    """CONTENT_SECURITY_POLICY = {
         'default-src': "'self'",  # Limite toutes les sources par défaut à 'self'
         'script-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les scripts venant de la même origine
         'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",  # Autorise uniquement les styles venant de la même origine
@@ -220,7 +224,7 @@ else:
         'form-action': "'self'",  # Autorise uniquement les soumissions de formulaire vers la même origine
         'upgrade-insecure-requests': True,  # Force les requêtes HTTP à être envoyées en HTTPS
     }
-
+"""
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 X_FRAME_OPTIONS = 'DENY'
