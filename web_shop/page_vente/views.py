@@ -27,14 +27,14 @@ endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
-def index(request):    
+def index(request):
     nonce = generate_nonce()
     return render(request, 'page_vente/index.html', {'nonce': nonce})
 
 def tous_les_produits(request):
     nonce = generate_nonce()
     all_products = AllProducts.objects.all()
-    
+
     all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
 
     all_products.sort(key=lambda product: product.id, reverse=True)
@@ -56,7 +56,7 @@ def maroquinerie(request):
 
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
     all_leather_products = [product for product in all_leather_products if product.disponible and not product.en_attente_dans_panier]
-    
+
     all_leather_products.sort(key=lambda product: product.id, reverse=True)
 
     all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
@@ -127,7 +127,7 @@ def panier(request):
         "expiration_date": expiration_date,
         "items": items,
         "total": total,
-        "latest_cgv": latest_cgv,   
+        "latest_cgv": latest_cgv,
         'nonce': nonce
     })
 
@@ -152,7 +152,7 @@ def add_to_cart(request, product_id):
         request.session.create()
         session_id = request.session.session_key
         cart = Cart.objects.create(session_id=session_id, uuid=uuid.uuid4())
-    
+
     # Récupérer l'expiration de la session
     expiration_date = get_session_expiration(request)
 
@@ -168,7 +168,7 @@ def add_to_cart(request, product_id):
     product.save()
 
     return JsonResponse({
-        'success': True, 
+        'success': True,
         'message': f'{product.nom} ajouté au panier',
         'cart_uuid': str(cart.uuid),
         "session_expiration": expiration_date.strftime('%Y-%m-%d %H:%M:%S') if expiration_date else None,
@@ -182,10 +182,10 @@ def cart_detail(request):
     cart = Cart.objects.filter(session_id=session_id, paid=False).first()
 
     if not cart:
-        return JsonResponse({'cart': []})  
+        return JsonResponse({'cart': []})
 
     cart_items = CartItem.objects.filter(cart=cart).select_related('product')
-    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url, 
+    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url,
             'image2': item.product.image2.url, 'image3': item.product.image3.url, 'image4': item.product.image4.url, 'id': item.product.id} for item in cart_items]
 
     return JsonResponse({'cart': data})
@@ -237,7 +237,7 @@ def get_product_images(request, article_id):
         return JsonResponse({'error': 'Product not found'}, status=404)
 
 def use_filter(request, product_views, is_all_products):
-    
+
     if not product_views:
         return product_views, None
 
@@ -260,7 +260,7 @@ def use_filter(request, product_views, is_all_products):
                 product_views = [product for product in product_views if product.prix >= min_price]
             if max_price is not None:
                 product_views = [product for product in product_views if product.prix <= max_price]
-        
+
         return product_views, form
     else:
         categorie = product_views[0].categorie if hasattr(product_views[0], 'categorie') else None
@@ -284,7 +284,7 @@ def use_filter(request, product_views, is_all_products):
                 product_views = [product for product in product_views if product.prix >= min_price]
             if max_price is not None:
                 product_views = [product for product in product_views if product.prix <= max_price]
-        
+
         return product_views, form
 
 def pagination(request,product_views):
@@ -300,15 +300,15 @@ def get_total(cart, add_insurance):
     total_centimes = int(round(total * 100))
 
     # Ajouter l'assurance en centimes si nécessaire
-    if total_centimes > 5000:  
-        if total_centimes > 37500:  
-            total_centimes += 800 
-        elif total_centimes > 25000: 
-            total_centimes += 650 
-        elif total_centimes > 12500: 
-            total_centimes += 500 
+    if total_centimes > 5000:
+        if total_centimes > 37500:
+            total_centimes += 800
+        elif total_centimes > 25000:
+            total_centimes += 650
+        elif total_centimes > 12500:
+            total_centimes += 500
         else:
-            total_centimes += 350 
+            total_centimes += 350
     elif 2500 < total_centimes <= 5000:
         if add_insurance:
             total_centimes += 200
@@ -330,14 +330,14 @@ def checkout(request):
 
     if not cart:
         return JsonResponse({'error': 'Panier invalide ou expiré.'}, status=400)
-    
+
     # Récupérer les paramètres envoyés par le front
     add_insurance = request.GET.get('insurance') == '1'
     acceptCGV = request.GET.get('acceptCGV') == '1'
     if not acceptCGV:
         logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
         return JsonResponse({'error': 'Vous devez accepter les conditions générales de vente'}, status=400)
-    
+
     # Récupérer la dernière version des CGV
     latest_cgv = CGV.objects.latest('created_at')
 
@@ -415,17 +415,17 @@ def success_view(request):
        # 🔹 Vérifier si `metadata` existe avant d'accéder à `cart_uuid`
         if not session.metadata or "cart_uuid" not in session.metadata:
             return redirect('/')
-        
+
         cart_uuid = session.metadata["cart_uuid"]
         add_insurance = session.metadata['add_insurance'] == '1'
-        
+
         # ✅ Convertir cart_uuid en format UUID
         try:
             cart_uuid = uuid.UUID(cart_uuid)  # Transforme la string en UUID valide
         except ValueError:
             logger.error("UUID du panier invalide.")
             return redirect('/')
-        
+
         cart = get_object_or_404(Cart, uuid=cart_uuid)
 
         # Vérifier que le total correspond bien
@@ -433,7 +433,7 @@ def success_view(request):
         if total_verified_centimes != get_total(cart, add_insurance):
             logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {get_total(cart, add_insurance)}")
             return redirect('/')
-        
+
         total_verified = round(total_verified_centimes / 100, 2)
         return render(request, 'page_vente/payment_success.html', {
             'order_id': cart.id,
@@ -482,37 +482,41 @@ def stripe_webhook(request):
                 product.en_attente_dans_panier = False
                 product.save()
 
-            print(f"✅ Paiement reçu pour le panier {cart_uuid}")
-            
-            # Récupérer les informations du client
-            customer_email = session.get('customer_email')
-            customer_name = session['shipping']['name'] if 'shipping' in session else 'Nom inconnu'
-            shipping_address = session['shipping']['address'] if 'shipping' in session else 'Adresse inconnue'
-            list_products = metadata.get('list_products')
+        logger.info(f"✅ Paiement reçu pour le panier {cart_uuid}")
 
-            # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
-            send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
+        # Récupérer les informations du client
+        customer_email = session.get('customer_details', {}).get('email', 'Email inconnu')
+        logger.info(customer_email)
+        customer_name = session.get('customer_details', {}).get('name', 'Nom inconnu')
+        logger.info(customer_name)
+        shipping_address = session.get('customer_details', {}).get('address', 'Nom inconnu')
+        logger.info(shipping_address)
+        list_products = metadata.get('list_products')
+        logger.info(list_products)
+
+        # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
+        send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
 
     return JsonResponse({'status': 'success'}, status=200)
 
 def send_email_to_owner(customer_email, customer_name, shipping_address, list_products):
     # Exemple d'envoi d'email à l'administrateur du site (propriétaire du compte Stripe)
     from django.core.mail import send_mail
-    
+
     subject = 'Nouvelle commande reçue'
     message = f"""
     Une nouvelle commande a été passée par {customer_name}.
-    
+
     Détails de la commande :
     - Email client : {customer_email}
     - Adresse de livraison : {shipping_address}
-    
+
     Produits commandés :
     {list_products}
-    
+
     Merci de traiter la commande.
     """
-    
+
     send_mail(
         subject,
         message,

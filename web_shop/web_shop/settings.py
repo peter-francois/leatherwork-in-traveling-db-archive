@@ -77,7 +77,7 @@ CLIENT_EMAIL=env('CLIENT_EMAIL',default='Non disponible')
 def global_variables(request):
     return {
         'CLIENT_PHONE_NUMBER': settings.CLIENT_PHONE_NUMBER,
-        'CLIENT_EMAIL': settings.CLIENT_EMAIL,  
+        'CLIENT_EMAIL': settings.CLIENT_EMAIL,
     }
 TEMPLATES = [
     {
@@ -240,7 +240,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = env("EMAIL_BACKEND")
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env.int("EMAIL_PORT")
+EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
 EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")
