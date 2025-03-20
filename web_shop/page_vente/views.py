@@ -361,8 +361,20 @@ def checkout(request):
     # Créer la session de paiement Stripe
     list_products = []
     for item in cart.cartitem_set.all():
+        
+        image_url = None
+        if item.product.image1.url:
+            image_url = item.product.image1.url
+        elif item.product.image2.url:
+            image_url = item.product.image2.url
+        elif item.product.image3.url:
+            image_url = item.product.image3.url
+        elif item.product.image4.url:
+            image_url = item.product.image4.url
+        
         list_products.append({
             'name': item.product.nom,
+            'image_url': image_url,
         })
     try:
         checkout_session = stripe.checkout.Session.create(
@@ -386,7 +398,7 @@ def checkout(request):
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
                             'total_verified': total_centimes,
-                            'list_products': str(list_products)
+                            'list_products': str(list_products),
                         },
             shipping_address_collection={
                 'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
@@ -491,6 +503,7 @@ def stripe_webhook(request):
         list_products = metadata.get('list_products')
 
 
+
         # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
         send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
 
@@ -515,7 +528,7 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     </ul>
     <p>Produits commandés :</p>
     <ul>
-    {''.join(f'<li><img src="{product['image_url']}" alt="{product['name']}" style="width:100px;" /> {product['name']}</li>' for product in list_products)}
+    {''.join(f'<li><img src="{product['image_url']}" alt="{product['name']}" style="width:100px; height:100px;" /> {product['name']}</li>' for product in list_products)}
     </ul>
     <p>Merci de traiter la commande.</p>
     </body>
