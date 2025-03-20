@@ -17,6 +17,7 @@ from datetime import timedelta
 from django.urls import reverse
 import base64
 import os
+from django.core.mail import send_mail
 
 
 
@@ -361,7 +362,7 @@ def checkout(request):
     # Créer la session de paiement Stripe
     list_products = []
     for item in cart.cartitem_set.all():
-        
+
         image_url = None
         if item.product.image1.url:
             image_url = item.product.image1.url
@@ -371,11 +372,12 @@ def checkout(request):
             image_url = item.product.image3.url
         elif item.product.image4.url:
             image_url = item.product.image4.url
-        
+
         list_products.append({
             'name': item.product.nom,
-            'image_url': image_url,
+            'image_url': image_url if image_url else 'default-image-url',
         })
+        logger.info(list_products)
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -397,8 +399,8 @@ def checkout(request):
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
-                            'total_verified': total_centimes,
-                            'list_products': str(list_products),
+                            'total_verified': int(total_centimes),
+                            'list_products': json.dumps(list_products),
                         },
             shipping_address_collection={
                 'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
@@ -497,55 +499,113 @@ def stripe_webhook(request):
         logger.info(f"✅ Paiement reçu pour le panier {cart_uuid}")
 
         # Récupérer les informations du client
+        order_id = cart.id
         customer_email = session.get('customer_details', {}).get('email', 'Email inconnu')
         customer_name = session.get('customer_details', {}).get('name', 'Nom inconnu')
         shipping_address = session.get('customer_details', {}).get('address', {})
         list_products = metadata.get('list_products')
+        cart_uuid= metadata.get('cart_uuid')
+        acceptCGV= metadata.get('acceptCGV')
+        cgv_version= metadata.get('cgv_version')
+        add_insurance= metadata.get('add_insurance')
+        total_verified= metadata.get('total_verified')
+
 
 
 
         # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
-        send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
+        send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, acceptCGV, cgv_version, add_insurance, total_verified, order_id)
 
     return JsonResponse({'status': 'success'}, status=200)
 
-def send_email_to_owner(customer_email, customer_name, shipping_address, list_products):
-    # Exemple d'envoi d'email à l'administrateur du site (propriétaire du compte Stripe)
-    from django.core.mail import send_mail
-    import json
-    
+def send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, acceptCGV, cgv_version, add_insurance, total_verified, order_id):
+    # Vérification et conversion de list_products
     if isinstance(list_products, str):
-        list_products = json.loads(list_products)
+        try:
+            list_products = json.loads(list_products)
+        except json.JSONDecodeError as e:
+            logger.error(f"Erreur lors de la désérialisation de list_products: {e}")
+            return  # Arrêt si la désérialisation échoue
 
+    if not isinstance(list_products, list):
+        logger.error("Erreur : list_products n'est pas une liste.")
+        return  # Arrêt de l'exécution pour éviter des erreurs
+
+    # Vérification et formatage de l'adresse
+    shipping_address_line_2 = shipping_address.get('line2')
+    if shipping_address_line_2 and shipping_address_line_2.lower() != "none":
+        address = ', '.join(filter(None, [shipping_address.get('line1', 'Adresse inconnue'), shipping_address_line_2]))
+    else:
+        address = shipping_address.get('line1', 'Adresse inconnue')
+
+    # Vérification et conversion de total_verified
+    try:
+        total_verified = round(float(total_verified) / 100, 2)  # Convertir en float avant de diviser
+    except ValueError:
+        logger.error(f"Erreur: total_verified contient une valeur non numérique ({total_verified}). Valeur par défaut utilisée.")
+        total_verified = 0.00
+
+    logger.info(f"Total vérifié après conversion : {total_verified} €")
+
+    # Sujet de l'email
     subject = 'Nouvelle commande reçue'
+
+    # Générer le message HTML
     message = f"""
     <html>
     <body>
     <p>Une nouvelle commande a été passée par {customer_name}.</p>
+    <p>Numéro de commande : {order_id}</p>
+    <p>Condition générale de vente et UUID:</p>
+    <ul>
+        <li>UUID : {cart_uuid}</li>
+        <li>Version des Conditions Générales de vente acceptée : {cgv_version}</li>
+    </ul>
     <p>Détails de la commande :</p>
     <ul>
+        <li>Nom du client : {customer_name}</li>
         <li>Email client : {customer_email}</li>
         <li>Pays : {shipping_address.get('country', 'Pays inconnu')}</li>
-        <li>Adresse de livraison : {shipping_address.get('line1', 'Adresse inconnue')}, {shipping_address.get('line2', '')}, {shipping_address.get('city', 'Ville inconnue')}</li>
+        <li>Adresse de livraison : {address}</li>
         <li>Code postal : {shipping_address.get('postal_code', 'Code postal inconnu')}</li>
         <li>Ville : {shipping_address.get('city', 'Ville inconnue')}</li>
+        <li>Option d'assurance supplémentaire: {add_insurance}</li>
+        <li><strong>Total de la commande frais de port inclus : {total_verified} €</strong></li>
     </ul>
     <p>Produits commandés :</p>
     <ul>
-    {''.join('<li><img src="{image}" alt="{name}" style="width:100px;" /> {name}</li>'.format(
-    image=product["image_url"], name=product["name"]) for product in list_products)}
+    """
+
+    # Ajouter chaque produit à l'email
+    for product in list_products:
+        if isinstance(product, dict):
+            image_url = product.get("image_url", 'default-image-url')
+            product_name = product.get("name", "Nom inconnu")
+            message += f'<li><img src="{image_url}" alt="{product_name}" style="width:200px;" /> {product_name}</li>'
+        else:
+            logger.error(f"Produit invalide détecté : {product}")
+            message += f'<li>Erreur avec le produit : {product}</li>'
+
+    message += """
     </ul>
+    <br>
     <p>Merci de traiter la commande.</p>
     </body>
     </html>
     """
 
-    send_mail(
-        subject,
-        message,
-        settings.EMAIL_HOST_USER,  # Adresse email de l'expéditeur
-        [settings.CLIENT_EMAIL],
-    )
+    # Envoi de l'email
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [settings.CLIENT_EMAIL],
+            html_message=message,
+        )
+        logger.info(f"Email envoyé avec succès à {settings.CLIENT_EMAIL}")
+    except Exception as e:
+        logger.error(f"Erreur lors de l'envoi de l'email : {e}")
 
 def cgv_view(request):
     nonce = generate_nonce()
