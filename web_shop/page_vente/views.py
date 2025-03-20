@@ -486,13 +486,10 @@ def stripe_webhook(request):
 
         # Récupérer les informations du client
         customer_email = session.get('customer_details', {}).get('email', 'Email inconnu')
-        logger.info(customer_email)
         customer_name = session.get('customer_details', {}).get('name', 'Nom inconnu')
-        logger.info(customer_name)
-        shipping_address = session.get('customer_details', {}).get('address', 'Nom inconnu')
-        logger.info(shipping_address)
+        shipping_address = session.get('customer_details', {}).get('address', {})
         list_products = metadata.get('list_products')
-        logger.info(list_products)
+
 
         # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
         send_email_to_owner(customer_email, customer_name, shipping_address, list_products)
@@ -505,22 +502,30 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
 
     subject = 'Nouvelle commande reçue'
     message = f"""
-    Une nouvelle commande a été passée par {customer_name}.
-
-    Détails de la commande :
-    - Email client : {customer_email}
-    - Adresse de livraison : {shipping_address}
-
-    Produits commandés :
-    {list_products}
-
-    Merci de traiter la commande.
+    <html>
+    <body>
+    <p>Une nouvelle commande a été passée par {customer_name}.</p>
+    <p>Détails de la commande :</p>
+    <ul>
+        <li>Email client : {customer_email}</li>
+        <li>Pays : {shipping_address.get('country', 'Pays inconnu')}</li>
+        <li>Adresse de livraison : {shipping_address.get('line1', 'Adresse inconnue')}, {shipping_address.get('line2', '')}, {shipping_address.get('city', 'Ville inconnue')}</li>
+        <li>Code postal : {shipping_address.get('postal_code', 'Code postal inconnu')}</li>
+        <li>Ville : {shipping_address.get('city', 'Ville inconnue')}</li>
+    </ul>
+    <p>Produits commandés :</p>
+    <ul>
+    {''.join(f'<li><img src="{product['image_url']}" alt="{product['name']}" style="width:100px;" /> {product['name']}</li>' for product in list_products)}
+    </ul>
+    <p>Merci de traiter la commande.</p>
+    </body>
+    </html>
     """
 
     send_mail(
         subject,
         message,
-        settings.CLIENT_EMAIL,  # Adresse email de l'expéditeur
+        settings.EMAIL_HOST_USER,  # Adresse email de l'expéditeur
         [settings.CLIENT_EMAIL],
     )
 
