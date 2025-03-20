@@ -502,7 +502,7 @@ def stripe_webhook(request):
         order_id = cart.id
         customer_email = session.get('customer_details', {}).get('email', 'Email inconnu')
         customer_name = session.get('customer_details', {}).get('name', 'Nom inconnu')
-        shipping_address = session.get('customer_details', {}).get('address', {})
+        shipping_address = session.get('collected_information', {}).get('shipping_details', {}).get('address', {})
         list_products = metadata.get('list_products')
         cart_uuid= metadata.get('cart_uuid')
         acceptCGV= metadata.get('acceptCGV')
