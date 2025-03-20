@@ -512,6 +512,10 @@ def stripe_webhook(request):
 def send_email_to_owner(customer_email, customer_name, shipping_address, list_products):
     # Exemple d'envoi d'email à l'administrateur du site (propriétaire du compte Stripe)
     from django.core.mail import send_mail
+    import json
+    
+    if isinstance(list_products, str):
+        list_products = json.loads(list_products)
 
     subject = 'Nouvelle commande reçue'
     message = f"""
