@@ -528,7 +528,8 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     </ul>
     <p>Produits commandés :</p>
     <ul>
-    {''.join(f'<li><img src="{product['image_url']}" alt="{product['name']}" style="width:100px; height:100px;" /> {product['name']}</li>' for product in list_products)}
+    {''.join('<li><img src="{image}" alt="{name}" style="width:100px;" /> {name}</li>'.format(
+    image=product["image_url"], name=product["name"]) for product in list_products)}
     </ul>
     <p>Merci de traiter la commande.</p>
     </body>
