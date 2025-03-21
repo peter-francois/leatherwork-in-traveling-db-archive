@@ -707,6 +707,9 @@ footer {
     border-radius: 5px;
     
 }
+#payment-cancel-div{
+    margin-top: 30px;
+}
 
     
 @media only screen and (max-width: 1182px)

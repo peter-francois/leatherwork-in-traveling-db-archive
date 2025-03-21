@@ -101,9 +101,10 @@
     "payment_success_description": "Thank you for your order. Your payment has been processed successfully.",
     "payment_success_order_id": "Order ID :",
     "payment_success_amount": "Total Amount :",
-    "back_to_home": "Back to Home",
+    "payment_success_button": "Back to Home",
     "payment_cancel_title": "Payment Cancelled",
-    "payment_cancel_description": "Your payment has been cancelled. If this was an error, you can try again."
+    "payment_cancel_description": "Your payment has been cancelled. If this was an error, you can try again.",
+    "payment_cancel_button": "Back to Home"
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -207,9 +208,10 @@
       "payment_success_description": "Merci pour votre commande. Votre paiement a été traité avec succès.",
       "payment_success_order_id": "Numéro de commande :",
       "payment_success_amount": "Montant total :",
-      "back_to_home": "Retour à l'accueil",
+      "payment_success_button": "Retour à l'accueil",
       "payment_cancel_title": "Paiement Annulé",
-      "payment_cancel_description": "Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer."
+      "payment_cancel_description": "Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer.",
+      "payment_cancel_button": "Retour à l'accueil"
     }
     
 }
