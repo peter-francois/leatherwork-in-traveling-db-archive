@@ -280,11 +280,10 @@ def pagination(request,product_views):
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
 
-def get_total(cart, add_insurance):
+def get_total(total_articles, add_insurance):
 
     # Calculer le total en centimes
-    total = Cart.get_total(cart)
-    total_centimes = int(round(total * 100))
+    total_centimes = int(round(total_articles * 100))
 
     # Ajouter l'assurance en centimes si nécessaire
     if total_centimes > 5000:
@@ -334,8 +333,10 @@ def checkout(request):
         cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
         cart.save()
 
+    total_articles = cart.get_total(cart)
+
     # Calcul du total en centimes
-    total_centimes = get_total(cart, add_insurance)
+    total_centimes = get_total(total_articles, add_insurance)
 
     # Convertir le montant du front-end en centimes pour la comparaison
     front_total_centimes = int(round(front_total * 100))
@@ -383,6 +384,7 @@ def checkout(request):
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
+                            'total_articles': float(total_articles),
                             'total_verified': int(total_centimes),
                             'list_products': json.dumps(list_products),
                         },
@@ -490,7 +492,7 @@ def stripe_webhook(request):
         shipping_address = session.get('collected_information', {}).get('shipping_details', {}).get('address', {})
         list_products = metadata.get('list_products')
         cart_uuid= metadata.get('cart_uuid')
-        acceptCGV= metadata.get('acceptCGV')
+        total_articles = metadata.get('total_articles')
         cgv_version= metadata.get('cgv_version')
         add_insurance= metadata.get('add_insurance')
         total_verified= metadata.get('total_verified')
@@ -499,11 +501,11 @@ def stripe_webhook(request):
 
 
         # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
-        send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, acceptCGV, cgv_version, add_insurance, total_verified, order_id)
+        send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id)
 
     return JsonResponse({'status': 'success'}, status=200)
 
-def send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, acceptCGV, cgv_version, add_insurance, total_verified, order_id):
+def send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id):
     # Vérification et conversion de list_products
     if isinstance(list_products, str):
         try:
@@ -529,6 +531,12 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     except ValueError:
         logger.error(f"Erreur: total_verified contient une valeur non numérique ({total_verified}). Valeur par défaut utilisée.")
         total_verified = 0.00
+    
+    # Vérification si assurance supplémentaire ou assurance obligatoire (commande >= 50€)
+    if add_insurance == 'True' or total_articles >= 50:
+        insurance = 'Oui'
+    else:
+        insurance = 'Non'
 
 
     # Sujet de l'email
@@ -553,8 +561,10 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         <li>Adresse de livraison : {address}</li>
         <li>Code postal : {shipping_address.get('postal_code', 'Code postal inconnu')}</li>
         <li>Ville : {shipping_address.get('city', 'Ville inconnue')}</li>
-        <li>Option d'assurance supplémentaire: {add_insurance}</li>
-        <li><strong>Total de la commande frais de port inclus : {total_verified} €</strong></li>
+        <li>Assurance: {insurance}</li>
+        <li>Frais de port : 5.00 €</li>
+        <li>Total des articles : {total_articles} €</li>
+        <li><strong>Total de la commande frais de port et assurance inclus: {total_verified} €</strong></li>
     </ul>
     <p>Produits commandés :</p>
     <ul>
