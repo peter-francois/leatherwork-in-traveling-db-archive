@@ -787,15 +787,3 @@ document.addEventListener("click", function(event) {
         addToCart(articleId);
     }
 });
-
-if (document.getElementById("prev-button")) {
-    document.getElementById("prev-button").addEventListener("click", function() {
-        changeImage(-1);
-    });
-}
-
-if (document.getElementById("next-button")) {
-    document.getElementById("next-button").addEventListener("click", function() {
-        changeImage(1);
-    });
-}
