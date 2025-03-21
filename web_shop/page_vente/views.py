@@ -280,7 +280,7 @@ def pagination(request,product_views):
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
 
-def get_total(total_articles, add_insurance):
+def get_total_centimes(total_articles, add_insurance):
 
     # Calculer le total en centimes
     total_centimes = int(round(total_articles * 100))
@@ -333,10 +333,10 @@ def checkout(request):
         cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
         cart.save()
 
-    total_articles = cart.get_total(cart)
+    total_articles = Cart.get_total(cart)
 
     # Calcul du total en centimes
-    total_centimes = get_total(total_articles, add_insurance)
+    total_centimes = get_total_centimes(total_articles, add_insurance)
 
     # Convertir le montant du front-end en centimes pour la comparaison
     front_total_centimes = int(round(front_total * 100))
@@ -431,10 +431,10 @@ def success_view(request):
 
         # Vérifier que le total correspond bien
         total_verified_centimes = session.amount_total
-        total_cart = get_total(cart, add_insurance)
+        total_cart = get_total_centimes(cart, add_insurance)
 
         if total_verified_centimes != total_cart:
-            logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {get_total(cart, add_insurance)}")
+            logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {total_cart}")
             return redirect('/')
 
         total_verified = round(total_verified_centimes / 100, 2)
