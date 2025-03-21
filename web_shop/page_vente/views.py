@@ -539,7 +539,7 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     else:
         insurance = 'Non'
     shipping_cost = 5
-    insurance_cost = total_verified - total_articles - shipping_cost
+    insurance_cost = float(total_verified) - float(total_articles) - float(shipping_cost)
 
 
     # Sujet de l'email
