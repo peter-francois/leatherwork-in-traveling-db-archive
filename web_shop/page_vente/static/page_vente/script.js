@@ -142,8 +142,15 @@ async function changeLanguage(lang) {
                 'cookies_title': translations.cookies_title,
                 'legal_mentions_title': translations.legal_mentions_title,
                 'privacy_policy_title': translations.privacy_policy_title,
-                'publish_on': translations.publish_on
-        };
+                'publish_on': translations.publish_on,
+                'payment-success-title': translations.payment_success_title,
+                'payment-success-description': translations.payment_success_description,
+                'payment-success-order-id': translations.payment_success_order_id,
+                'payment-success-amount': translations.payment_success_amount,
+                'back-to-home': translations.back_to_home,
+                'payment-cancel-title': translations.payment_cancel_title,
+                'payment-cancel-description': translations.payment_cancel_description
+            };
 
         for (const [id, text] of Object.entries(elementsToTranslate)) {
             const element = document.getElementById(id);

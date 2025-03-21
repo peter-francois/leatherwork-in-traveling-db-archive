@@ -6,13 +6,13 @@
     <p id="payment-success-description">Merci pour votre commande. Votre paiement a été traité avec succès.</p>
     
     <div id="payment-success-details">
-        <p id="payment-success-order-id"><strong>Numéro de commande :</strong> {{ order_id }}</p>
-        <p id="payment-success-date"><strong>Date :</strong> {{ payment_date }}</p>
-        <p id="payment-success-amount"><strong>Montant total :</strong> {{ total_amount | floatformat:2 }} €</p>
+        <p id="payment-success-order-id"><strong id="payment-success-order-id">Numéro de commande :</strong> {{ order_id }}</p>
+        <p><strong>Date :</strong> {{ payment_date }}</p>
+        <p><strong id="payment-success-amount">Montant total :</strong> {{ total_amount | floatformat:2 }} €</p>
     </div>
     
     <div id="payment-success-button">
-        <a href="/" id="payment-success-button">Retour à l'accueil</a>
+        <a href="/" id="back-to-home">Retour à l'accueil</a>
     </div>
 </section>
 {% endblock %}

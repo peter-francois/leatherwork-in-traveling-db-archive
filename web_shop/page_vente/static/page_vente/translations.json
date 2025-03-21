@@ -96,7 +96,14 @@
     "cgv_title": "Terms and Conditions of Sale",
     "cookies_title": "Cookie Management",
     "legal_mentions_title": "Legal Mentions",
-    "privacy_policy_title": "Privacy Policy"
+    "privacy_policy_title": "Privacy Policy",
+    "payment_success_title": "Payment Successful",
+    "payment_success_description": "Thank you for your order. Your payment has been processed successfully.",
+    "payment_success_order_id": "Order ID :",
+    "payment_success_amount": "Total Amount :",
+    "back_to_home": "Back to Home",
+    "payment_cancel_title": "Payment Cancelled",
+    "payment_cancel_description": "Your payment has been cancelled. If this was an error, you can try again."
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -195,7 +202,14 @@
       "cgv_title": "Conditions Générales de Vente",
       "cookies_title": "Gestion des cookies",
       "legal_mentions_title": "Mentions légales",
-      "privacy_policy_title": "Politique de Confidentialité"
+      "privacy_policy_title": "Politique de Confidentialité",
+      "payment_success_title": "Paiement Réussi !",
+      "payment_success_description": "Merci pour votre commande. Votre paiement a été traité avec succès.",
+      "payment_success_order_id": "Numéro de commande :",
+      "payment_success_amount": "Montant total :",
+      "back_to_home": "Retour à l'accueil",
+      "payment_cancel_title": "Paiement Annulé",
+      "payment_cancel_description": "Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer."
     }
     
 }
