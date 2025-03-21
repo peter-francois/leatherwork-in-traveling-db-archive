@@ -329,15 +329,27 @@ body {
     }
 
 /*Panier*/
+    .produit h3, #liste-articles li h3, 
+    .produit p, #liste-articles li p {
+        word-wrap: break-word; /* Coupe les mots trop longs */
+        white-space: normal; /* Autorise les retours à la ligne */
+    }
     .product-list-cart{
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         gap: 10px;
+        max-width: 100%;
+        overflow: visible;
+        align-items:flex-start;
+        justify-content: flex-start;
+        overflow-x: auto;
+
     }
     .product-list-cart li{
         width: 220px;
-        height: 320px;
+        min-height: 320px;
+        height: auto; 
     }
     #panier h2 {
         font-size: 24px;
@@ -506,7 +518,6 @@ body {
         margin-bottom: 15px;
     }
     .tous_les_produits, #liste-articles{
-        align-items: stretch;
         grid-template-columns: repeat(4, 1fr);
         margin: 30px 25px;
         gap: 40px;
