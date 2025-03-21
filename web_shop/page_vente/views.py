@@ -333,7 +333,7 @@ def checkout(request):
         cart.cgv_expires_at = cart.cgv_accepted_at + timedelta(days=5*365)
         cart.save()
 
-    total_articles = Cart.get_total(cart)
+    total_articles = float(Cart.get_total(cart))
 
     # Calcul du total en centimes
     total_centimes = get_total_centimes(total_articles, add_insurance)
@@ -419,6 +419,7 @@ def success_view(request):
 
         cart_uuid = metadata["cart_uuid"]
         add_insurance = metadata.get('add_insurance', 'false').lower() == 'true'
+        total_articles = float(metadata.get('total_articles', 0))
 
         # ✅ Convertir cart_uuid en format UUID
         try:
@@ -431,7 +432,7 @@ def success_view(request):
 
         # Vérifier que le total correspond bien
         total_verified_centimes = session.amount_total
-        total_cart = get_total_centimes(cart, add_insurance)
+        total_cart = get_total_centimes(total_articles, add_insurance)
 
         if total_verified_centimes != total_cart:
             logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {total_cart}")
@@ -533,7 +534,7 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         total_verified = 0.00
     
     # Vérification si assurance supplémentaire ou assurance obligatoire (commande >= 50€)
-    if add_insurance == 'True' or total_articles >= 50:
+    if add_insurance == 'True' or float(total_articles) >= 50:
         insurance = 'Oui'
     else:
         insurance = 'Non'
@@ -548,12 +549,12 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     <body>
     <p>Une nouvelle commande a été passée par {customer_name}.</p>
     <p>Numéro de commande : {order_id}</p>
-    <p>Condition générale de vente et UUID:</p>
+    <h5>Condition générale de vente et UUID:</h5>
     <ul>
         <li>UUID : {cart_uuid}</li>
         <li>Version des Conditions Générales de vente acceptée : {cgv_version}</li>
     </ul>
-    <p>Détails de la commande :</p>
+    <h5>Détails du client :</h5>
     <ul>
         <li>Nom du client : {customer_name}</li>
         <li>Email client : {customer_email}</li>
@@ -561,13 +562,16 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         <li>Adresse de livraison : {address}</li>
         <li>Code postal : {shipping_address.get('postal_code', 'Code postal inconnu')}</li>
         <li>Ville : {shipping_address.get('city', 'Ville inconnue')}</li>
+    </ul>
+    <h5>Détails de la commande :</h5>
+    <ul>
         <li>Assurance: {insurance}</li>
         <li>Frais de port : 5.00 €</li>
         <li>Total des articles : {total_articles} €</li>
         <li><strong>Total de la commande frais de port et assurance inclus: {total_verified} €</strong></li>
-    </ul>
-    <p>Produits commandés :</p>
-    <ul>
+        <li>
+            <h5>Produits commandés :</h5>
+            <ul>
     """
 
     # Ajouter chaque produit à l'email
@@ -581,6 +585,8 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
             message += f'<li>Erreur avec le produit : {product}</li>'
 
     message += """
+            </ul>
+        </li>
     </ul>
     <br>
     <p>Merci de traiter la commande.</p>
@@ -674,6 +680,3 @@ def get_document_content(request, document_type, lang):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
-
-def generate_nonce():
-    return base64.b64encode(os.urandom(16)).decode('utf-8')
