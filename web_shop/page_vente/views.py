@@ -538,6 +538,8 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         insurance = 'Oui'
     else:
         insurance = 'Non'
+    shipping_cost = 5
+    insurance_cost = total_verified - total_articles - shipping_cost
 
 
     # Sujet de l'email
@@ -566,8 +568,9 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     <h5>Détails de la commande :</h5>
     <ul>
         <li>Assurance: {insurance}</li>
-        <li>Frais de port : 5.00 €</li>
+        <li>Frais de port : {shipping_cost} €</li>
         <li>Total des articles : {total_articles} €</li>
+        <li>Assurance : {insurance_cost} €</li>
         <li><strong>Total de la commande frais de port et assurance inclus: {total_verified} €</strong></li>
         <li>
             <h5>Produits commandés :</h5>
