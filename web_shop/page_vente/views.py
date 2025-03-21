@@ -29,11 +29,9 @@ logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
 def index(request):
-    nonce = generate_nonce()
-    return render(request, 'page_vente/index.html', {'nonce': nonce})
+    return render(request, 'page_vente/index.html')
 
 def tous_les_produits(request):
-    nonce = generate_nonce()
     all_products = AllProducts.objects.all()
 
     all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
@@ -47,14 +45,11 @@ def tous_les_produits(request):
     context = {
         'products': page_obj,
         'form': form,
-        'nonce': nonce
     }
 
     return render(request, 'page_vente/tous_les_produits.html', context)
 
 def maroquinerie(request):
-    nonce = generate_nonce()
-
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
     all_leather_products = [product for product in all_leather_products if product.disponible and not product.en_attente_dans_panier]
 
@@ -67,13 +62,11 @@ def maroquinerie(request):
     context = {
         'products': page_obj,
         'form': form,
-        'nonce': nonce
     }
 
     return render(request, 'page_vente/maroquinerie.html', context)
 
 def macrames(request):
-    nonce = generate_nonce()
 
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
     all_macrame_products = [product for product in all_macrame_products if product.disponible and not product.en_attente_dans_panier]
@@ -87,13 +80,11 @@ def macrames(request):
     context = {
         'products': page_obj,
         'form': form,
-        'nonce': nonce
     }
 
     return render(request, 'page_vente/macrames.html', context)
 
 def hybride(request):
-    nonce = generate_nonce()
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
     all_hybride_products = [product for product in all_hybride_products if product.disponible and not product.en_attente_dans_panier]
 
@@ -106,17 +97,14 @@ def hybride(request):
     context = {
         'products': page_obj,
         'form': form,
-        'nonce': nonce
     }
 
     return render(request, 'page_vente/hybride.html', context)
 
 def creation_sur_mesure(request):
-    nonce = generate_nonce()
-    return render(request, 'page_vente/creation_sur_mesure.html', {'nonce': nonce})
+    return render(request, 'page_vente/creation_sur_mesure.html')
 
 def panier(request):
-    nonce = generate_nonce()
     session_key = request.session.session_key
     latest_cgv = CGV.objects.latest('created_at')
     cart = Cart.objects.filter(session_id=session_key, paid=False).first()
@@ -129,12 +117,10 @@ def panier(request):
         "items": items,
         "total": total,
         "latest_cgv": latest_cgv,
-        'nonce': nonce
     })
 
 def a_propos(request):
-    nonce = generate_nonce()
-    return render(request, 'page_vente/a_propos.html', {'nonce': nonce})
+    return render(request, 'page_vente/a_propos.html')
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
@@ -324,7 +310,6 @@ def get_total(cart, add_insurance):
     return total_centimes  # Total en centimes
 
 def checkout(request):
-    nonce = generate_nonce()
     cart_uuid = request.GET.get('cart_uuid')
     cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
     front_total = float(request.GET.get('front_total'))
@@ -377,7 +362,6 @@ def checkout(request):
             'name': item.product.nom,
             'image_url': image_url if image_url else 'default-image-url',
         })
-        logger.info(list_products)
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -406,7 +390,7 @@ def checkout(request):
                 'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
             },
         )
-        return redirect(checkout_session.url, {'nonce': nonce})
+        return redirect(checkout_session.url)
     except stripe.error.StripeError as e:
         logger.error(f"Erreur Stripe : {e}")
         return JsonResponse({'error': 'Erreur de paiement, veuillez réessayer.'}, status=500)
@@ -415,23 +399,24 @@ def checkout(request):
         return JsonResponse({'error': 'Une erreur est survenue.'}, status=500)
 
 def success_view(request):
-    nonce = generate_nonce()
     session_id = request.GET.get('session_id')
     if not session_id:
         logger.error("Session ID manquant.")
-        return redirect('/', {'nonce': nonce})
+        return redirect('/')
 
     try:
         session = stripe.checkout.Session.retrieve(session_id)
         if session.payment_status != 'paid':
             return redirect('/')
 
-       # 🔹 Vérifier si `metadata` existe avant d'accéder à `cart_uuid`
-        if not session.metadata or "cart_uuid" not in session.metadata:
+# Vérifier si `metadata` est bien un dictionnaire
+        metadata = getattr(session, "metadata", {})
+        if not isinstance(metadata, dict) or "cart_uuid" not in metadata:
+            logger.error("Métadonnées invalides ou cart_uuid manquant.")
             return redirect('/')
 
-        cart_uuid = session.metadata["cart_uuid"]
-        add_insurance = session.metadata['add_insurance'] == '1'
+        cart_uuid = metadata["cart_uuid"]
+        add_insurance = metadata.get('add_insurance', 'false').lower() == 'true'
 
         # ✅ Convertir cart_uuid en format UUID
         try:
@@ -444,7 +429,9 @@ def success_view(request):
 
         # Vérifier que le total correspond bien
         total_verified_centimes = session.amount_total
-        if total_verified_centimes != get_total(cart, add_insurance):
+        total_cart = get_total(cart, add_insurance)
+
+        if total_verified_centimes != total_cart:
             logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {get_total(cart, add_insurance)}")
             return redirect('/')
 
@@ -453,16 +440,14 @@ def success_view(request):
             'order_id': cart.id,
             'total_amount': total_verified,
             'payment_date': cart.paid_at if cart.paid_at else "Non disponible",
-            'nonce': nonce
         })
 
     except stripe.error.StripeError:
         logger.error("Erreur Stripe lors de la récupération de la session.")
-        return redirect('/', {'nonce': nonce})
+        return redirect('/')
 
 def cancel_view(request):
-    nonce = generate_nonce()
-    return render(request, 'page_vente/payment_cancel.html', {'nonce': nonce})
+    return render(request, 'page_vente/payment_cancel.html')
 
 @csrf_exempt  # Désactive la protection CSRF pour recevoir les requêtes Stripe
 def stripe_webhook(request):
@@ -545,7 +530,6 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         logger.error(f"Erreur: total_verified contient une valeur non numérique ({total_verified}). Valeur par défaut utilisée.")
         total_verified = 0.00
 
-    logger.info(f"Total vérifié après conversion : {total_verified} €")
 
     # Sujet de l'email
     subject = 'Nouvelle commande reçue'
@@ -603,29 +587,24 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
             [settings.CLIENT_EMAIL],
             html_message=message,
         )
-        logger.info(f"Email envoyé avec succès à {settings.CLIENT_EMAIL}")
     except Exception as e:
         logger.error(f"Erreur lors de l'envoi de l'email : {e}")
 
 def cgv_view(request):
-    nonce = generate_nonce()
     latest_cgv = CGV.objects.latest('created_at')
-    return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv, 'nonce': nonce})
+    return render(request, 'page_vente/cgv.html', {'cgv': latest_cgv})
 
 def cookies_view(request):
-    nonce = generate_nonce()
     latest_cookies = CookiesPolicy.objects.latest('created_at')
-    return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies, 'nonce': nonce})
+    return render(request, 'page_vente/cookies.html', {'cookies': latest_cookies})
 
 def legal_mentions_view(request):
-    nonce = generate_nonce()
     latest_legal_mentions = LegalMention.objects.latest('created_at')
-    return render(request, 'page_vente/mentions-legales.html', {'legal_mentions': latest_legal_mentions, 'nonce': nonce})
+    return render(request, 'page_vente/mentions-legales.html', {'legal_mentions': latest_legal_mentions})
 
 def privacy_policy_view(request):
-    nonce = generate_nonce()
     latest_privacy_policy = PrivacyPolicy.objects.latest('created_at')
-    return render(request, 'page_vente/politique-confidentialite.html', {'privacy_policy': latest_privacy_policy, 'nonce': nonce})
+    return render(request, 'page_vente/politique-confidentialite.html', {'privacy_policy': latest_privacy_policy})
 
 def get_number_of_products_in_cart(request):
     session_key = request.session.session_key
@@ -654,7 +633,6 @@ def get_number_of_products_in_cart(request):
         return JsonResponse({'success': False, 'number_of_products': 0})
 
 def get_document_content(request, document_type, lang):
-    nonce = generate_nonce()
     try:
         if document_type == 'CGV':
             latest_cgv = CGV.objects.latest('created_at')
