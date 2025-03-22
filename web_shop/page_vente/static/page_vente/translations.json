@@ -1,7 +1,7 @@
 {
     "en": {
     "title_page_index": "My shop",
-    "title_index": "Welcome to My <br> Artisan Store",
+    "title_index": "Welcome to My <br> Authentic Store",
     "menu_button_home": "HOME",
     "menu_button_produit": "PRODUCTS  <i class='fa-solid fa-arrow-down'></i>",
     "menu_button_panier": "CART",
@@ -108,7 +108,7 @@
   },
     "fr": {
       "title_page_index": "Ma boutique",
-      "title_index": "Bienvenue sur Ma <br>Boutique Artisanale",
+      "title_index": "Bienvenue sur Ma <br>Boutique Authentique",
       "menu_button_home": "ACCUEIL",
       "menu_button_produit": "PRODUITS  <i class='fa-solid fa-arrow-down'></i>",
       "menu_button_panier": "PANIER",
