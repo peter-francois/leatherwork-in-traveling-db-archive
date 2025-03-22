@@ -1,8 +1,8 @@
 {% extends 'page_vente/base.html' %}
 
 {% block content %}
-<section style="font-family: 'Western', sans-serif;padding: 20px;">
-    <h1 style="font-size: 30px;"><span id="legal_mentions_title">Mentions légales</span> (version: {{ legal_mentions.version }})</h1>
+<section class="legal_documents">
+    <h1><span id="legal_mentions_title">Mentions légales</span> (version: {{ legal_mentions.version }})</h1>
     <p><span id="publish_on">Publié le : </span>{{ legal_mentions.created_at|date:"d/m/Y" }}</p>
 
     <div id="legal_mentions_content">

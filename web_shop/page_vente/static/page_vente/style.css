@@ -722,6 +722,16 @@ footer {
     margin-top: 30px;
 }
 
+/* Legal documents*/
+
+.legal_documents{
+    font-family: 'Western', sans-serif;
+    padding: 20px; 
+}
+.legal_documents h1{
+    font-size: 34px;
+}
+
     
 @media only screen and (max-width: 1182px)
 {   
