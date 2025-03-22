@@ -718,7 +718,7 @@ footer {
     border-radius: 5px;
     
 }
-#payment-cancel-div{
+#payment-cancel-div, #payment-success-div{
     margin-top: 30px;
 }
 

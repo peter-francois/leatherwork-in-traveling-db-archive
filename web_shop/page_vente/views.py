@@ -391,6 +391,11 @@ def checkout(request):
             shipping_address_collection={
                 'allowed_countries': ['FR','DE','AT','BE','ES','IT','LU','NL','PT'],
             },
+            custom_text={
+                "shipping_address": {
+                    "message": "Si votre pays ne figure pas dans la liste des destinations disponibles, veuillez nous contacter. Nous pouvons trouver une solution pour expédier votre commande dans toute l'Europe."
+                }
+            },
         )
         return redirect(checkout_session.url)
     except stripe.error.StripeError as e:
