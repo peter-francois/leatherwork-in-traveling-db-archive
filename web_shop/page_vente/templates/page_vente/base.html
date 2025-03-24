@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="description" content="{% block meta-description %}Boutique en ligne de produits 100 % fait à la main{% endblock %}">
+    <meta name="keywords" content="maroquinerie, macramé, produits faits main, créations sur mesure, sacs en cuir">
+    <meta name="author" content="Leather Work In Traveling DB">
     <link rel="icon" type="image/x-icon" href="{% static 'page_vente/favicon.ico' %}">
     <title>{% block title %}Leather Work In Traveling DB{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
