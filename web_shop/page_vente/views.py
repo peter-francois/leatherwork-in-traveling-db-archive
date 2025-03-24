@@ -393,7 +393,7 @@ def checkout(request):
             },
             custom_text={
                 "shipping_address": {
-                    "message": f"Si votre pays ne figure pas dans la liste des destinations disponibles, veuillez nous contacter par mail {settings.CLIENT_EMAIL}. Nous pouvons trouver une solution pour expédier votre commande dans toute l'Europe."
+                    "message": f"If your country is not listed, please contact us by email {settings.CLIENT_EMAIL}. We have a solution to ship your order to any part of Europe."
                 }
             },
         )
