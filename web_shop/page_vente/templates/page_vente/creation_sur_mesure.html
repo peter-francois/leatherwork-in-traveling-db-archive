@@ -1,12 +1,58 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
+{% block meta-description %}Offrez-vous une création sur mesure ! Personnalisez vos articles de maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre service pour réaliser des pièces uniques et personnalisées.{% endblock %}
 {% block header %}
-    <h1 id="title_custom">CREATION SUR MESURE</h1>
+    <h1 id="title_custom">Création sur mesure de maroquinerie et macramé - Personnalisez vos accessoires | Leather Work In Traveling DB</h1>
 {% endblock %}
 
 {% block description %}
     <p class ="text-center" id="description_custom">Bienvenue dans l'espace Creation Sur Mesure.</p>
+
+    
 {% endblock %}
 {% block content %}
+<section class="container">
+        <div class="section">
+            <h2>Comment ça marche ?</h2>
+            <div class="grid-container" style="grid-template-columns: 70% 30%; width: 100%; align-items: center; justify-items: center;">
+                <p>Sur les routes d’Europe à bord de mon camion, je perfectionne mon savoir-faire en apprenant auprès des artisans locaux. Chaque création est imprégnée des cultures et des techniques que je découvre au fil de mes voyages.</p>
+                <img style="width: 100%; height: 100%; border-radius: 0 50% 0 50%; border: 2px solid #000;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Camion_au_bord_de_l_eau.jpg' %}" alt="Camion au bord de l'eau">
+            </div>
+        </div>
+        <div class="section">
+            <h2>Mon Voyage, Mon Art</h2>
+            <div class="grid-container" style="grid-template-columns: 70% 30%; width: 100%; align-items: center; justify-items: center;">
+                <p>Sur les routes d’Europe à bord de mon camion, je perfectionne mon savoir-faire en apprenant auprès des artisans locaux. Chaque création est imprégnée des cultures et des techniques que je découvre au fil de mes voyages.</p>
+                <img style="width: 100%; height: 100%; border-radius: 0 50% 0 50%; border: 2px solid #000;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Camion_au_bord_de_l_eau.jpg' %}" alt="Camion au bord de l'eau">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Galerie de mes Créations</h2>
+            <div class="photos">
+                <img src="creation1.jpg" alt="Bracelet en cuir inspiré des traditions nordiques">
+                <img src="creation2.jpg" alt="Sac en cuir steampunk avec gravures artisanales">
+                <img src="creation3.jpg" alt="Macramé mural réalisé sur une plage espagnole">
+                <img src="creation4.jpg" alt="Ceinture artisanale fabriquée dans un atelier nomade">
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Pourquoi choisir mes créations ?</h2>
+            <ul>
+                <li>100% fait main avec des matériaux trouvés sur la route.</li>
+                <li>Un savoir-faire enrichi par des rencontres avec artisans européens.</li>
+                <li>Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée.</li>
+                <li>Des créations uniques, réalisées avec passion et authenticité.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Contactez-moi</h2>
+            <p>Un projet, une idée, une envie d’échanger sur l’artisanat nomade ? Écrivez-moi !</p>
+            <p>Email : contact@monartisancuir.com</p>
+            <p>Instagram : @monartisancuir</p>
+        </div>
+</section>
     
 {% endblock %}
