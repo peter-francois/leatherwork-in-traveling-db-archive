@@ -267,6 +267,7 @@ body {
             top: 10px;
             right: 35%;
             z-index: 3;
+            padding: 5px 15px;
         }
         #cart-button:hover{
             border-color: white;
@@ -276,7 +277,16 @@ body {
             margin-right: 7px;
         }
         .flex_item_cart_button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px 3px;
+            width: 20px;
+            height: 20px;
             margin: 0px 0px;
+        }
+        #cart-button:hover #cart-icon{
+            content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
         }
 
 /*Product*/
