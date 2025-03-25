@@ -854,10 +854,7 @@ h2 { border-bottom: 3px solid #8b5e3b; padding-bottom: 5px; }
             height: 80%;
         }
         /*cart*/
-        .product-list-cart li {
-            width: 200px;
-            height: 320px;
-        }
+
         section.cart-container div.grid-container{
             grid-template-columns: 70% 30%;
         }
