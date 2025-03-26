@@ -5,7 +5,7 @@
         <button id="menu_button" class="smooth-transition">MENU<i class="fa-solid fa-bars"></i></button>
         <div class="menu-content smooth-transition">
             <a href="/" id="menu_button_home" >ACCUEIL</a>
-            <a href="#" id="menu_button_produit">NOS CRÉATIONS <i class="fa-solid fa-arrow-down"></i></a>
+            <a href="#"id="our-works" ><span id="menu_button_produit">NOS CRÉATIONS</span><img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}"></a>
                 <div class="menu-content-produit smooth-transition">
                     <a href="{% url 'boutique:tous-les-produits' %}" id="menu_button_tous_les_produits">TOUTES NOS CRÉATIONS</a>
                     <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE FAITE À LA MAIN</a>

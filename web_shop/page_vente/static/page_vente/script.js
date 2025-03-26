@@ -742,8 +742,8 @@ if (document.getElementById("menu_button")) {
     });
 }
 
-if (document.getElementById("menu_button_produit")) {
-    document.getElementById("menu_button_produit").addEventListener("click", function(event) {
+if (document.getElementById("our-works")) {
+    document.getElementById("our-works").addEventListener("click", function(event) {
         toggleMenuProduit(event);
     });
 }
