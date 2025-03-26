@@ -1,9 +1,11 @@
 {% extends 'page_vente/base.html' %}
 {% block meta-description %}En savoir plus sur l’utilisation des cookies sur notre site et comment vous pouvez gérer vos préférences. Nous respectons votre vie privée et vous informons de notre utilisation des cookies.{% endblock %}
 {% block title %}Gestion des cookies - Leather Work In Traveling DB{% endblock %}
+{% block header %}
+    <h1 class = "legal_documents"><span id="cookies_title">Gestion des cookies</span> (version: {{ cookies.version }})</h1>
+{% endblock %}
 {% block content %}
 <section class="legal_documents">
-    <h1><span id="cookies_title">Gestion des cookies</span> (version: {{ cookies.version }})</h1>
     <p><span id="publish_on">Publié le : </span>{{ cookies.created_at|date:"d/m/Y" }}</p>
 
     <div id="cookies_content">

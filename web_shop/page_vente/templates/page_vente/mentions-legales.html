@@ -1,9 +1,11 @@
 {% extends 'page_vente/base.html' %}
 {% block meta-description %}Découvrez nos mentions légales. Ces informations vous permettent de comprendre l'ensemble de l'activité de la marque, ainsi que l'ensemble des informations légales liées à la marque.{% endblock %}
 {% block title %}Mentions légales - Leather Work In Traveling DB{% endblock %}
+{% block header %}
+    <h1 class = "legal_documents"><span id="legal_mentions_title">Mentions légales</span> (version: {{ legal_mentions.version }})</h1>
+{% endblock %}
 {% block content %}
 <section class="legal_documents">
-    <h1><span id="legal_mentions_title">Mentions légales</span> (version: {{ legal_mentions.version }})</h1>
     <p><span id="publish_on">Publié le : </span>{{ legal_mentions.created_at|date:"d/m/Y" }}</p>
 
     <div id="legal_mentions_content">
