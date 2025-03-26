@@ -109,6 +109,10 @@ body {
         #menu_button.active {
             background-color: #000000cf;
         }
+        #menu_button:hover{
+            background-color: #000000cf;
+            color: white;
+        }
         
         .menu i{
             margin-left: 10px;
@@ -740,15 +744,35 @@ footer {
     font-family: 'Western', sans-serif;
     padding: 20px; 
 }
-.legal_documents h1{
-    font-size: 34px;
+h1.legal_documents{
+    font-size: 36px;
 }
 /* Custom creation*/
-.container-custom { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-.custom-pictures { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-.custom-pictures img { width: 100%; height: auto; border-radius: 8px; }
-.section-custom { margin-bottom: 30px; }
-.container-custom h2 { border-bottom: 3px solid #8b5e3b; padding-bottom: 5px; }
+.container-custom { 
+    max-width: 1000px;
+    margin: 20px auto; 
+    padding: 20px; 
+    background: white; 
+    border-radius: 8px; 
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1); 
+}
+.custom-pictures { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 15px; 
+    }
+.custom-pictures img { 
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+    }
+.section-custom { 
+    margin-bottom: 30px; 
+}
+.container-custom h2 { 
+    border-bottom: 3px solid #8b5e3b; 
+    padding-bottom: 5px; 
+}
     
 @media only screen and (max-width: 1182px)
 {   
