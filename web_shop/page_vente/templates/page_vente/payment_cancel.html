@@ -1,9 +1,11 @@
 {% extends 'page_vente/base.html' %}
-{% block meta-description %}Votre paiement a été annulé. Retrouvez les détails de votre commande et revenez à la page de confirmation.{% endblock %}
-{% block title %}Paiement annulé - Leather Work In Traveling DB{% endblock %}
+{% block meta-description %}Votre paiement a été annulé. Vous pouvez réessayer ou modifier votre commande en toute sécurité.{% endblock %}
+{% block title %}Paiement annulé - Réessayez ou modifiez votre commande{% endblock %}
+{% block header %}
+    <h1 id="title_payment_cancel">Paiement Annulé</h1>
+{% endblock %}
 {% block content %}
 <section id="payment-cancel">
-    <h1 id="payment-cancel-title">Paiement Annulé</h1>
     <p id="payment-cancel-description">Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer.</p>
     
     <div id="payment-cancel-div">

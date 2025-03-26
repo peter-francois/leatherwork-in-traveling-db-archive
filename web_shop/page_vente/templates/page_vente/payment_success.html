@@ -1,9 +1,11 @@
 {% extends 'page_vente/base.html' %}
-{% block meta-description %}Paiement confirmé. Voici les détails de votre commande. Retournez à la page de confirmation pour plus d'informations.{% endblock %}
+{% block meta-description %}Votre paiement a été confirmé ! Consultez les détails de votre commande et suivez son statut en toute sécurité.{% endblock %}
 {% block title %}Paiement confirmé - Leather Work In Traveling DB{% endblock %}
+{% block header %}
+    <h1 id="title_payment_success">Paiement Réussi !</h1>
+{% endblock %}
 {% block content %}
 <section id="payment-success">
-    <h1 id="payment-success-title">Paiement Réussi !</h1>
     <p id="payment-success-description">Merci pour votre commande. Votre paiement a été traité avec succès.</p>
     
     <div id="payment-success-details">

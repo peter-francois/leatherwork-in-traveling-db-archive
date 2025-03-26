@@ -25,6 +25,9 @@ body {
         border: 1px solid #ccc;
         padding: 10px;
     }
+    h1{
+        line-height: 2;
+    }
     .page-button{
         background-color: #00000080 ;
         border: 3px solid var(--color1);
@@ -139,7 +142,7 @@ body {
             position: fixed;
             left: 0;
             top: 60px;
-            background-color: #000000b2;
+            background-color: #000000cf;
         }
 
         
@@ -291,6 +294,12 @@ body {
         }
         #cart-button:hover #cart-icon{
             content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
+        }
+        #separator-header{
+            border-bottom: 2px solid var(--color1); 
+            width: 80%;
+            justify-self: center;
+            margin: 10px 0;
         }
 
 /*Product*/
@@ -448,8 +457,9 @@ body {
         border-radius: 10px;
         
     }
-    .separator{
-        border-bottom: 2px solid var(--color2); margin: 10px 0;
+    .separator-cart{
+        border-bottom: 2px solid var(--color2); 
+        margin: 10px 0;
     }
 /*Tous les produits*/
 
@@ -744,9 +754,7 @@ footer {
     font-family: 'Western', sans-serif;
     padding: 20px; 
 }
-h1.legal_documents{
-    font-size: 36px;
-}
+
 /* Custom creation*/
 .container-custom { 
     max-width: 1000px;
@@ -794,10 +802,7 @@ h1.legal_documents{
         padding-right: 0px;
 
         }
-        .title_and_logo{
-            grid-template-columns: .4fr 1fr;
-            gap: 10px;
-        }
+
         /*Contact*/
 
             #contact-form {
@@ -916,7 +921,7 @@ h1.legal_documents{
 
         #cart-button{
             border-radius: 10px;
-            padding: 5px 15px;
+            padding: 3px 6px;
             font-size: 12px;      
         }
         .flag {
@@ -924,11 +929,15 @@ h1.legal_documents{
             height: 25px;
         }
         h1{
-        font-size: 22px;
+        font-size: 28px;
+        }
+        .title_and_logo{
+            grid-template-columns: 1fr;
+            gap: 0px;
         }
         .logo{
-            height: 150px;
-            width: 150px;
+            height: 15em;
+            width: 15em;
         }
     /*Product*/
         .category{
@@ -1065,13 +1074,15 @@ h1.legal_documents{
 
     /*Header*/
         h1{
-            font-size: 20px;
+            font-size: 22px;
+            margin: 5px;
         }
         .logo{
-            height: 130px;
-            width: 130px;
+            height: 11em;
+            width: 11em;
+            padding: 5px;
         }
-        #description_all_products{
+        #description_all_products, #any_question{
             font-size: 13px;
         }
         #contact_link{

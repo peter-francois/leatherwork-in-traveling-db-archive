@@ -148,9 +148,11 @@ async function changeLanguage(lang) {
                 'payment-success-order-id': translations.payment_success_order_id,
                 'payment-success-amount': translations.payment_success_amount,
                 'payment-success-button': translations.payment_success_button,
-                'payment-cancel-title': translations.payment_cancel_title,
+                'title_payment_cancel': translations.title_payment_cancel,
                 'payment-cancel-description': translations.payment_cancel_description,
-                'payment-cancel-button': translations.payment_cancel_button
+                'payment-cancel-button': translations.payment_cancel_button,
+                'title_about': translations.title_about,
+                'description_about': translations.description_about
             };
 
         for (const [id, text] of Object.entries(elementsToTranslate)) {
