@@ -83,7 +83,7 @@ async function changeLanguage(lang) {
                 'title_page_all_products':translations.title_page_all_products,
                 'title_all_products':translations.title_all_products,
                 'description_all_products':translations.description_all_products,
-                'filter_button':translations.filter_button,
+                'filter_button_text':translations.filter_button_text,
                 'contact_link':translations.contact_link,     
                 'of':translations.of,
                 'of2':translations.of,

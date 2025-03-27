@@ -116,6 +116,12 @@ body {
             font-family: 'Uncial Antiqua', serif;
             text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
         }
+        #menu-icon{
+            display: none;
+        }
+        #menu_button:hover #menu-icon{
+            content: url( "/static/page_vente/icons/bars-solid-hover.svg");
+        }
         #menu_button.scrolled {
             background-color: #00000080;
         }
@@ -402,8 +408,7 @@ body {
     #liste-articles img{
         margin-top: 20px;
         margin-bottom: 20px;
-        width: 70px;
-        height: 70px;
+
     }
     .produit, #liste-articles li{ 
         justify-items: center;
@@ -517,8 +522,8 @@ body {
     #filter_button {
         margin-top: 10px;
         justify-content: center; 
-        background: #8c6b4f; 
-        border: 2px solid #FFD700; 
+        background: var(--color2); 
+        border: 2px solid var(--color1); 
         color: #f8f5e1;
         padding: 8px 20px;
         border-radius: 5px;
@@ -531,8 +536,17 @@ body {
         justify-self: center;
     }
     #filter_button:hover {
-        background: #FFD700; 
-        color: #8c6b4f; 
+        background: var(--color1); 
+        color: var(--color2); 
+    }
+    #filter-icon{
+        width: 17px;
+        height: 17px;
+        padding-left: 10px;
+    }
+    #filter_button:hover #filter-icon{
+        content: url( "/static/page_vente/icons/filter-solid-hover.svg");
+        
     }
     .pagination-button{
         display: inline-block;
@@ -929,6 +943,16 @@ footer {
             padding: 7px 20px;
             font-size: 16px;
         }
+        #menu-icon{
+            display: block;
+            height: 25px;
+            width: 25px;
+
+            margin-bottom: 0;
+        }
+        #menu-button-text{
+            display: none;
+        }
         .menu-content, #contact_button{
             min-width: 100px;
             top: 50px;
@@ -1015,6 +1039,7 @@ footer {
             margin-top: 5px;
             grid-column: span 2;
         }
+
         .pagination-button{
             font-size: 14px;
             padding: 5px 15px;
@@ -1150,7 +1175,11 @@ footer {
     /*Tous les produits*/
         .filter-form{
             grid-template-columns: 1fr 1fr;
-        }        
+        }    
+        .tous_les_produits img, #liste-articles img{
+            width: 8em;
+            height: 8em;
+        }    
         #modal h3{
             top: 35px;
             font-size: 18px;
