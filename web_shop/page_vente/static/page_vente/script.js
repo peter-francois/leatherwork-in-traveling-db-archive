@@ -332,12 +332,14 @@ function displayCart() {
             data.cart.forEach(article => {
                 let li = document.createElement('li');
                 let img = document.createElement('img');
+                let h3 = document.createElement('h3');
                 let p = document.createElement('p');
                 let span = document.createElement('span');
                 let span2 = document.createElement('span');
                 span.classList.add('price_article');
                 span.textContent = `${article.prix.toFixed(2)}`;
                 span2.textContent = `€ (x${article.quantity})`;
+                h3.textContent = `${article.nom}`;
                 p.appendChild(span);
                 p.appendChild(span2);
                 img.onclick = () => displayProductImages(article.id);
@@ -345,7 +347,7 @@ function displayCart() {
                 button.textContent = 'Supprimer';
                 button.onclick = () => remove_from_cart(article.id);
                 button.classList.add('page-button', 'delete_button');
-                li.textContent = `${article.nom}`;
+                li.appendChild(h3);
                 li.appendChild(p);
                 if (article.image1) {
                     img.src = `${article.image1}`;
