@@ -11,7 +11,7 @@
 }
 @font-face {
     font-family: 'Playfair Display';
-    src: url('/static/page_vente/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf') format('truetype');
+    src: url('/static/page_vente/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -35,6 +35,10 @@ body {
         font-family: 'Uncial Antiqua', serif;
         line-height: 2;
     }
+    h3{
+        font-size: 21px;
+    }
+
     p{
         font-size: 19px;
     }
@@ -383,7 +387,6 @@ body {
         padding: 0 25px;
     }
     .product-title {
-        font-size: 1.5em;
         color: #8c6b4f;
     }
     .index-img{
@@ -437,9 +440,7 @@ body {
         background: #fff;
         color: var(--color2);
     }
-    .produit h3, #liste-articles li h3{
-        font-size: 21px;
-    }
+
     .produit button, #liste-articles button{
         margin-top: 15px;
     }
@@ -624,7 +625,7 @@ body {
         box-sizing: border-box;
         overflow: hidden;
     }
-    #modal h3{
+    #modal h2{
         margin: 0px;
         position: absolute;
         text-align: center;
@@ -684,7 +685,7 @@ body {
         justify-content: center;
         gap: 10px;
     }
-    #modal h4{
+    #modal h3{
         margin-bottom: 0;
     }
     #prev-button, #next-button{
@@ -838,6 +839,12 @@ footer {
         .display-mobile{
             display: block;
         }
+        h2{
+            font-size: 18px;
+        }
+        h3{
+            font-size: 16px;
+        }
 
     /*header*/
 
@@ -860,19 +867,18 @@ footer {
             #contact-form h2 {
                 margin-top: 60px;
                 padding:0 30px;
-                font-size: 1.2em;
 
             }
             #contact-form p {
-                padding:0 30px;
-                font-size: .85em;
+                padding:0 40px;
             }
             #contact-form i {
-                padding-left: 30px;
-                font-size: .85em;
+                padding-left: 40px;
+                font-size: 14px;
             }
             #contact-form a {
-                font-size: .85em;
+                font-size: 14px;
+                padding-left: 40px;
             }
             #close-btn {
                 top: 30px;
@@ -950,6 +956,9 @@ footer {
         margin: 15px 0px;
         padding: 5px;
     }
+    p{
+        font-size: 14px;
+    }
 
     /*Header*/
 
@@ -1008,6 +1017,7 @@ footer {
             margin: 10px 5px;
             }
         .product-title{
+            font-size: small;
             margin:5px 0;
         }
         .index-icon{
@@ -1017,12 +1027,8 @@ footer {
             margin-bottom: -4px;
         }
         
-        h2.product-title{
-        font-size: 15px;
-        }
         .product-description{
             margin: 5px 0;
-            font-size: 8px;
         }
         .index-img{
         width: 220px;
@@ -1036,11 +1042,8 @@ footer {
             gap: 20px;
         }
 
-        .produit h3, #liste-articles li h3{
+        h3{
             font-size: 15px;
-        }
-        .produit p, #liste-articles li p{
-            font-size: 14px;
         }
         .produit button, #liste-articles button{
             margin-top: 13px;
@@ -1074,7 +1077,8 @@ footer {
             padding: 5px;
         }
         .produit button, #liste-articles button{
-            margin-top: 5px;
+            padding: 5px;
+            font-size: 14px;
         }
         #modal{
             width: 100%;
@@ -1095,7 +1099,7 @@ footer {
             gap: 0px; 
             margin-top: 65px;
         }
-        #modal h4, #modal p{
+        #modal h3, #modal p{
             margin-bottom: 0;
             margin-top: 0;
         }
@@ -1150,13 +1154,28 @@ footer {
             font-size: 22px;
             margin: 5px;
         }
+        h2{
+            font-size: 16px;
+            }
+        h3{
+            font-size: 15px;
+        }
+        h4{
+            margin-top: 5px;
+        }
+        p{
+            font-size: 13px;
+        }
         .logo{
             height: 11em;
             width: 11em;
             padding: 5px;
         }
-        #description_all_products, #any_question{
+        .font-size-17{
             font-size: 13px;
+        }
+        .font-size-19{
+            font-size: 15px;
         }
         #contact_link{
             font-size: 10px;
@@ -1173,11 +1192,11 @@ footer {
             padding-right: 6px;
             margin-bottom: -3px;
         }
-        h2.product-title{
-            font-size: 12px;
-            }
-        .product-description{
-        font-size: 6px;
+        .product-title-and-description {
+            padding: 0 5px;
+        }
+        .product-card {
+            padding: 7px;
         }
         .index-img{
             width: 120px;
@@ -1196,20 +1215,20 @@ footer {
         .filter-form{
             grid-template-columns: 1fr 1fr;
         }    
-        .tous_les_produits img, #liste-articles img{
+        .tous_les_produits img{
+            width: 7em;
+            height: 7em;
+        }    
+        #liste-articles img{
             width: 8em;
             height: 8em;
-        }    
+        }
         #modal h3{
             top: 35px;
-            font-size: 18px;
         }
         #close-button{
             top: 25px;
             right: 25px;
-        }
-        #modal h4, #modal p{
-            font-size: 11px;
         }
         #modal .grid-container{
             grid-template-rows: 20% 80%;
@@ -1223,6 +1242,9 @@ footer {
         .custom-pictures { 
 
             gap: 15px; 
+           }
+           #modal{
+            padding: 5px;
            }
 
 }
