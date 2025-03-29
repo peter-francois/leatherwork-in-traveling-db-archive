@@ -37,10 +37,10 @@
             </div>
             <div class="separator-cart"></div>
             <p><span id="total_amount_title">Total de la commande : </span><span id="total-amount">0</span> €</p>
-            <div>
+            <p>
               <input type="checkbox" id="accept-cgv"> 
               <label for="accept-cgv" ><span id="accept-cgv-label">J'accepte les <a href="/cgv" target="_blank">conditions générales de vente</a>.</span>(v{{ latest_cgv.version }})</label>
-            </div>
+            </p>
             <button class="page-button" id="checkout">Payer via Stripe</button>
           
             <p id="error-message" class="error hidden">Vous devez accepter les CGV pour continuer.</p>

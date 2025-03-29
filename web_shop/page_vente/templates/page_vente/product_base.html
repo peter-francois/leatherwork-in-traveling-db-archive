@@ -7,13 +7,13 @@
         <div>
             <form class="filter-form grid-container" method="GET">
                 {{ form.as_p }}
-                <button class="align-items-center" id ="filter_button" type="submit" ><span id="filter_button_text">Filtrer</span><img id="filter-icon" src="{% static 'page_vente/icons/filter-solid.svg' %}" alt="icon filter"></button>
+                <button class="align-items-center font-size-17" id ="filter_button" type="submit" ><span id="filter_button_text">Filtrer</span><img id="filter-icon" src="{% static 'page_vente/icons/filter-solid.svg' %}" alt="icon filter"></button>
             </form>   
         </div>
     </section>
 
     <!--Pagination Links-->
-    <div class="pagination text-center">
+    <div class="pagination text-center font-size-17">
         {% if products.has_previous %}
             <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
             <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
@@ -84,7 +84,7 @@
         
 
          <!--Pagination Links-->
-        <div class="pagination text-center">
+        <div class="pagination text-center font-size-17">
             {% if products.has_previous %}
                 <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
                 <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
