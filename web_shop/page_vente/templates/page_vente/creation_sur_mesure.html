@@ -14,56 +14,56 @@
 {% block content %}
 <section class="container-custom">
     <div class="section-custom">
-        <h2>Créativité nomade et savoir-faire unique</h2>
-        <div class="grid-container" style="grid-template-columns: 70% 30%; width: 100%; align-items: center; justify-items: center;">
-            <p>Chaque création sur mesure est inspirée des techniques traditionnelles et des influences culturelles rencontrées lors de mes voyages à travers l’Europe. Mon approche allie originalité et passion pour offrir des pièces uniques, imprégnées d’histoire.</p>
-            <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 0 50% 0 50%; border: 2px solid #000; justify-self: center;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Camion_au_bord_de_l_eau.jpeg' %}" alt="Camion au bord de l'eau">
+        <h2 id="title_nomad_creation">Créativité nomade et savoir-faire unique</h2>
+        <div class="grid-container custom-grid-container">
+            <p id="text_nomad_creation">Chaque création sur mesure est inspirée des techniques traditionnelles et des influences culturelles rencontrées lors de mes voyages à travers l’Europe. Mon approche allie originalité et passion pour offrir des pièces uniques, imprégnées d’histoire.</p>
+            <img id="picture-truck" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Camion_au_bord_de_l_eau.jpeg' %}" alt="Camion au bord de l'eau">
         </div>
     </div>
     <div class="section-custom">
-        <h2>Votre création sur mesure, étape par étape</h2>
+        <h2 id="title_creation_step">Votre création sur mesure, étape par étape</h2>
 
-                <p>Vous souhaitez un accessoire en cuir ou une décoration en macramé entièrement personnalisé ? Voici comment nous créons ensemble une pièce unique :</p>
-                <ol class="custom-ol font-size-19" style="line-height: 2; list-style-type:none;">
-                    <li><strong>1. Échange initial :</strong> Contactez-moi par e-mail ou téléphone pour discuter de votre projet et obtenir une première estimation.</li>
-                    <li><strong>2. Conception :</strong> Réalisation d’un croquis détaillé et établissement d’un devis précis.</li>
-                    <li><strong>3. Début de la fabrication :</strong> Un acompte de 1/3 du prix est demandé pour lancer la production.</li>
-                    <li><strong>4. Validation :</strong> Je vous envoie des visuels pour finaliser les motifs et ajuster les détails si nécessaire.</li>
-                    <li><strong>5. Livraison :</strong> Une fois le paiement final effectué, votre création est expédiée en toute sécurité avec assurance.</li>
+        <p id="text_creation_step">Vous souhaitez un accessoire en cuir ou une décoration en macramé entièrement personnalisé ? Voici comment nous créons ensemble une pièce unique :</p>
+        <ol class="custom-ol font-size-19" >
+                    <li id="list_creation_step1"><strong>1. Échange initial :</strong> Contactez-moi par e-mail ou téléphone pour discuter de votre projet et obtenir une première estimation.</li>
+                    <li id="list_creation_step2"><strong>2. Conception :</strong> Réalisation d’un croquis détaillé et établissement d’un devis précis.</li>
+                    <li id="list_creation_step3"><strong>3. Début de la fabrication :</strong> Un acompte de 1/3 du prix est demandé pour lancer la production.</li>
+                    <li id="list_creation_step4"><strong>4. Validation :</strong> Je vous envoie des visuels pour finaliser les motifs et ajuster les détails si nécessaire.</li>
+                    <li id="list_creation_step5"><strong>5. Livraison :</strong> Une fois le paiement final effectué, votre création est expédiée en toute sécurité avec assurance.</li>
                 </ol>
 
     </div>
         
 
         <div class="section-custom">
-            <h2>Découvrez mes réalisations</h2>
-            <div class="custom-pictures" style="position: relative;">
-                <img id="custom-picture-round" style="object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36%; height: 62%; border-radius: 50%; border: 2px solid #000; z-index: 1;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Damien_porte_feuille_punk.jpg' %}" alt="Camion au bord de l'eau">
-                <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 0 0 0 50%; border: 2px solid #000; justify-self: center;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/patron_collier_chien.jpg' %}" alt="Camion au bord de l'eau">
-                <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 0 0 50% 0; border: 2px solid #000; justify-self: center;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/porte_feuille_moto_cross.jpg' %}" alt="Camion au bord de l'eau">
-                <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 50% 0 50% 0; border: 2px solid #000; justify-self: center;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/carte.jpg' %}" alt="Camion au bord de l'eau">
-                <img style="object-fit: cover; width: 100%; height: 100%; border-radius: 0 50% 0 50%; border: 2px solid #000; justify-self: center;" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/porte_feuille.jpeg' %}" alt="Camion au bord de l'eau">
+            <h2 id="title_discover_realizations">Découvrez mes réalisations</h2>
+            <div class="custom-pictures">
+                <img id="custom-picture-round" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/Damien_porte_feuille_punk.jpg' %}" alt="Damien in action">
+                <img id ="custom-picture-1"src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/patron_collier_chien.jpg' %}" alt="Collier chien patron">
+                <img id ="custom-picture-2"  src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/porte_feuille_moto_cross.jpg' %}" alt="Porte feuille moto cross">
+                <img id ="custom-picture-3"  src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/carte.jpg' %}" alt="Carte d'europe'">
+                <img id ="custom-picture-4" src="{% static 'page_vente/images/A PROPOS ET CUSTOM CREATION/porte_feuille.jpeg' %}" alt="porte feuille punk">
             </div>
             
         </div>
         
         <div class="section-custom">
-            <h2>Pourquoi choisir mes créations unique?</h2>
-            <ul class="custom-ul font-size-19">
-                <li>Fabrication 100% à la main avec des matériaux soigneusement sélectionnés lors de mes voyages.</li>
-                <li>Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes européens.</li>
-                <li>Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée.</li>
-                <li>Des créations personnalisées, façonnées avec passion et souci du détail.</li>
+            <h2 id="title_why_choose_my_creations">Pourquoi choisir mes créations unique?</h2>
+            <ul class="custom-li font-size-19">
+                <li  id="list_why_choose_my_creations_1">Fabrication 100% à la main avec des matériaux soigneusement sélectionnés lors de mes voyages.</li>
+                <li  id="list_why_choose_my_creations_2">Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes européens.</li>
+                <li  id="list_why_choose_my_creations_3">Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée.</li>
+                <li  id="list_why_choose_my_creations_4">Des créations personnalisées, façonnées avec passion et souci du détail.</li>
             </ul>
         </div>
 
         <div class="section-custom">
-            <h2>Contactez-moi</h2>
-            <p>Un projet, une idée, une envie d’échanger sur l’artisanat nomade ? Écrivez-moi !</p>
+            <h2 id="title_contact">Contactez-moi</h2>
+            <p id="text_contact">Un projet, une idée, une envie d’échanger sur mes créations ou sur la vie nomades ? Écrivez-moi !</p>
             <p>Email : <a id="contact_email" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com">{{ CLIENT_EMAIL }}</a></p>
             <p>Instagram : <a id="contact_instagram" href="https://www.instagram.com/{{ CLIENT_INSTAGRAM }}">{{ CLIENT_INSTAGRAM }}</a></p>
             <p>Facebook : <a id="contact_facebook" href="https://www.facebook.com/{{ CLIENT_FACEBOOK }}">{{ CLIENT_FACEBOOK }}</a></p>
-            <p>Numéro de téléphone : <a id="contact_phone" href="tel:{{ CLIENT_PHONE_NUMBER }}">{{ CLIENT_PHONE_NUMBER }}</a></p>
+            <p ><span id="contact_phone">Numéro de téléphone : </span><a id="contact_phone" href="tel:{{ CLIENT_PHONE_NUMBER }}">{{ CLIENT_PHONE_NUMBER }}</a></p>
         </div>
 </section>
     

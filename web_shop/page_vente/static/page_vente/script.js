@@ -152,7 +152,28 @@ async function changeLanguage(lang) {
                 'payment-cancel-description': translations.payment_cancel_description,
                 'payment-cancel-button': translations.payment_cancel_button,
                 'title_about': translations.title_about,
-                'description_about': translations.description_about
+                'description_about': translations.description_about,
+                'title_custom': translations.title_custom,
+                'description_custom': translations.description_custom,
+                'title_nomad_creation': translations.title_nomad_creation,
+                'text_nomad_creation': translations.text_nomad_creation,
+                'title_creation_step': translations.title_creation_step,
+                'text_creation_step': translations.text_creation_step,
+                'list_creation_step1': translations.list_creation_step1,
+                'list_creation_step2': translations.list_creation_step2,
+                'list_creation_step3': translations.list_creation_step3,
+                'list_creation_step4': translations.list_creation_step4,
+                'list_creation_step5': translations.list_creation_step5,
+                'title_discover_realizations': translations.title_discover_realizations,
+                'title_why_choose_my_creations': translations.title_why_choose_my_creations,
+                'list_why_choose_my_creations_1': translations.list_why_choose_my_creations_1,
+                'list_why_choose_my_creations_2': translations.list_why_choose_my_creations_2,
+                'list_why_choose_my_creations_3': translations.list_why_choose_my_creations_3,
+                'list_why_choose_my_creations_4': translations.list_why_choose_my_creations_4,
+                'title_contact': translations.title_contact,
+                'text_contact': translations.text_contact,
+                'contact_phone': translations.contact_phone,
+
             };
 
         for (const [id, text] of Object.entries(elementsToTranslate)) {
