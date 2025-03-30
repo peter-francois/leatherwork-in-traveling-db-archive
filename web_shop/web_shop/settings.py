@@ -73,11 +73,15 @@ ROOT_URLCONF = 'web_shop.urls'
 
 CLIENT_PHONE_NUMBER = env('CLIENT_PHONE_NUMBER', default='Non disponible')
 CLIENT_EMAIL=env('CLIENT_EMAIL',default='Non disponible')
+CLIENT_INSTAGRAM = env('CLIENT_INSTAGRAM', default='Non disponible')
+CLIENT_FACEBOOK = env('CLIENT_FACEBOOK', default='Non disponible')
 
 def global_variables(request):
     return {
         'CLIENT_PHONE_NUMBER': settings.CLIENT_PHONE_NUMBER,
         'CLIENT_EMAIL': settings.CLIENT_EMAIL,
+        'CLIENT_INSTAGRAM': settings.CLIENT_INSTAGRAM,
+        'CLIENT_FACEBOOK': settings.CLIENT_FACEBOOK,
     }
 TEMPLATES = [
     {
@@ -181,7 +185,8 @@ if env('DJANGO_ENV') == 'development':
     CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
-
+    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'","http://localhost:*", "ws://localhost:*", "http://127.0.0.1")
+    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 else:
     # Pour la production (avec HTTPS)
     SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
@@ -194,10 +199,10 @@ else:
     SECURE_HSTS_PRELOAD = True
     SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
+    CSP_DEFAULT_SRC = ("'self'",)
+    CSP_SCRIPT_SRC = ("'self'",)
+    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_SCRIPT_SRC = ("'self'",)
-CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
 X_FRAME_OPTIONS = 'DENY'
