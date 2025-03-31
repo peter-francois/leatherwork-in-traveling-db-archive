@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'web_shop.middleware.BlockWordPressRequestsMiddleware',
 ]
 
 ROOT_URLCONF = 'web_shop.urls'
