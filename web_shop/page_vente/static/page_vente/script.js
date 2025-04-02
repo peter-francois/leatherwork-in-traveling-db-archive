@@ -23,6 +23,9 @@ async function changeLanguage(lang) {
     let currentLanguage = lang;
     localStorage.setItem('language', currentLanguage); // Mettre à jour la langue dans le stockage local
 
+     // Modifier la langue de la balise <html>
+     document.documentElement.lang = lang;
+
     const CGV_content = document.getElementById('cgv_content');
     const Cookies_content = document.getElementById('cookies_content');
     const LegalMentions_content = document.getElementById('legal_mentions_content');
