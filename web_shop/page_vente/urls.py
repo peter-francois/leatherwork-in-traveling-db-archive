@@ -6,11 +6,11 @@ app_name = 'boutique'
 
 urlpatterns = [
     path('', views.index, name="index"),
-    path('tous-les-produits/macrames/', views.macrames, name="macrames"),
-    path('tous-les-produits/maroquinerie/', views.maroquinerie, name="maroquinerie"),
+    path('produits/macrames/', views.macrames, name="macrames"),
+    path('produits/maroquinerie/', views.maroquinerie, name="maroquinerie"),
     path('creation-sur-mesure/', views.creation_sur_mesure, name="creation-sur-mesure"),
-    path('tous-les-produits/hybride/', views.hybride, name="hybride"),
-    path('tous-les-produits/', views.tous_les_produits, name="tous-les-produits"),
+    path('produits/hybride/', views.hybride, name="hybride"),
+    path('produits/', views.tous_les_produits, name="tous-les-produits"),
     path('panier/', views.panier, name="panier"),
     path('a_propos/', views.a_propos, name="a_propos"),
     path('add_to_cart/<int:product_id>/', add_to_cart, name='add_to_cart'),

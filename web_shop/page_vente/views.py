@@ -47,7 +47,7 @@ def tous_les_produits(request):
         'form': form,
     }
 
-    return render(request, 'page_vente/tous_les_produits.html', context)
+    return render(request, 'page_vente/produits.html', context)
 
 def maroquinerie(request):
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
