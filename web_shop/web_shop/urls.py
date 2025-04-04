@@ -16,10 +16,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import gettext_lazy as _
+from page_vente import views
+from django.contrib.sitemaps.views import sitemap
+from page_vente.sitemaps import StaticSitemap
+from django.views.i18n import JavaScriptCatalog
+
+sitemaps = {
+    'static': StaticSitemap(),
+}
 
 app_name = 'main'
 
-urlpatterns = [
+"""urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('page_vente.urls')),
+]"""
+urlpatterns = i18n_patterns(
+    path('admin/', admin.site.urls),
+    path('', include('page_vente.urls')),  # Inclusion des URLs de ton app
+    path('i18n/', include('django.conf.urls.i18n')),  # Activation du changement de langue
+)
+
+urlpatterns += [
+    path('sitemap.xml', views.sitemap, {'sitemaps': sitemaps}, name='sitemap'), 
+    path('api/', include('page_vente.api_urls')),  # Déplacer API dans un autre fichier
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
