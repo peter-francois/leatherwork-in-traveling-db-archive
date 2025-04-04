@@ -377,8 +377,8 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=("http://localhost:8002/payment_success?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_success?session_id={CHECKOUT_SESSION_ID}"),
-            cancel_url=("http://localhost:8002/payment_cancel" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/payment_cancel"),
+            success_url=("http://localhost:8002/paiement_reussi?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/paiement_reussi?session_id={CHECKOUT_SESSION_ID}"),
+            cancel_url=("http://localhost:8002/paiement_annule" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/paiement_annule"),
             metadata={
                             'cart_uuid': str(cart_uuid),
                             'acceptCGV': str(acceptCGV),
@@ -444,7 +444,7 @@ def success_view(request):
             return redirect('/')
 
         total_verified = round(total_verified_centimes / 100, 2)
-        return render(request, 'page_vente/payment_success.html', {
+        return render(request, 'page_vente/paiement_reussi.html', {
             'order_id': cart.id,
             'total_amount': total_verified,
             'payment_date': cart.paid_at if cart.paid_at else "Non disponible",
@@ -455,7 +455,7 @@ def success_view(request):
         return redirect('/')
 
 def cancel_view(request):
-    return render(request, 'page_vente/payment_cancel.html')
+    return render(request, 'page_vente/paiement_annule.html')
 
 @csrf_exempt  # Désactive la protection CSRF pour recevoir les requêtes Stripe
 def stripe_webhook(request):
@@ -688,3 +688,6 @@ def get_document_content(request, document_type, lang):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+def sitemap(request):
+    return render(request, 'page_vente/api/sitemap.xml')
