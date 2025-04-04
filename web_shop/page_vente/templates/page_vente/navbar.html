@@ -1,39 +1,44 @@
 {% load static %}
+{% load i18n %}
 <!-- navbar.html -->
 <nav>
     <div class="menu">
         <button id="menu_button" class="smooth-transition"><span id="menu-button-text">MENU</span><img id="menu-icon" src="{% static 'page_vente/icons/bars-solid.svg' %}" alt="icon menu"></button>
         <div class="menu-content smooth-transition">
-            <a href="/" id="menu_button_home" >ACCUEIL</a>
-            <a href="#"id="our-works" ><span id="menu_button_produit">NOS CRÉATIONS</span><img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}"></a>
+            <a href="{% url 'boutique:index' %}" id="menu_button_home" >{% trans "ACCUEIL" %}</a>
+            <a href="#"id="our-works" ><span id="menu_button_produit">{% trans "NOS CRÉATIONS" %}</span><img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}"></a>
                 <div class="menu-content-produit smooth-transition">
-                    <a href="{% url 'boutique:tous-les-produits' %}" id="menu_button_tous_les_produits">TOUTES NOS CRÉATIONS</a>
-                    <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">MAROQUINERIE FAITE À LA MAIN</a>
-                    <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">CRÉATIONS EN MACRAMÉ</a>
-                    <a href="{% url 'boutique:hybride' %}" id="menu_button_hybride">ALLIANCE CUIR & MACRAMÉ</a>
+                    <a href="{% url 'boutique:produits' %}" id="menu_button_tous_les_produits">{% trans "TOUTES NOS CRÉATIONS" %}</a>
+                    <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">{% trans "MAROQUINERIE FAITE À LA MAIN" %}</a>
+                    <a href="{% url 'boutique:macrames' %}" id="menu_button_macrames">{% trans "CRÉATIONS EN MACRAMÉ" %}</a>
+                    <a href="{% url 'boutique:hybride' %}" id="menu_button_hybride">{% trans "ALLIANCE CUIR & MACRAMÉ" %}</a>
                 </div>
-            <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">CRÉATION SUR MESURE</a>
-            <a href="/panier" id="menu_button_panier">PANIER</a>
+            <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">{% trans "CRÉATION SUR MESURE" %}</a>
+            <a href="{% url 'boutique:panier' %}" id="menu_button_panier">{% trans "PANIER" %}</a>
             <!--<a href="/a_propos" id="menu_button_a_propos">A PROPOS</a>-->
             <button id="contact_button" >CONTACT</button>  
         </div> 
     </div>
-    <a class="text-center align-items-center page-button" href="/panier" id="cart-button">
+    <a class="text-center align-items-center page-button" href="{% url 'boutique:panier' %}" id="cart-button">
         <img class="flex_item_cart_button" id="cart-icon" src="{% static 'page_vente/icons/cart-shopping-solid.svg' %}">
         <p id="text-cart-button" class="flex_item_cart_button"></p>
     </a>
     <div class="align-items-center language-selector">
-        <!-- Drapeaux avec attribut de langue -->
-        <img 
-        src="{% static 'page_vente/images/flag/UK.webp' %}" 
-        alt="English"
-        class="flag" 
-        data-lang="en">
-
-        <img 
-            src="{% static 'page_vente/images/flag/FR.jpg' %}" 
-            alt="French" 
-            class="flag" 
-            data-lang="fr">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <input name="language" type="hidden" value="en">
+            <button type="submit" class="flag-button">
+                <img src="{% static 'page_vente/images/flag/UK.webp' %}" alt="English" class="flag" data-lang="en">
+            </button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.path }}">
+            <input name="language" type="hidden" value="fr">
+            <button type="submit" class="flag-button">
+                <img src="{% static 'page_vente/images/flag/FR.jpg' %}" alt="French active" class="flag" data-lang="fr">
+            </button>
+        </form>
     </div>
 </nav>

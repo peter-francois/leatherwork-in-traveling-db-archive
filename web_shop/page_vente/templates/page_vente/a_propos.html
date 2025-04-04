@@ -1,13 +1,14 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
-{% block meta-description %}Découvrez mon savoir-faire et l'histoire de Leather Work In Traveling DB. Créations uniques alliant tradition et modernité.{% endblock %}
-{% block title %}À propos - L’histoire et le savoir-faire de Leather Work In Traveling DB{% endblock %}
+{% load i18n %}
+{% block meta-description %}{% trans "Découvrez mon savoir-faire et l'histoire de Leather Work In Traveling DB. Créations uniques alliant tradition et modernité." %}{% endblock %}
+{% block title %}{% trans "À propos - L’histoire et le savoir-faire de Leather Work In Traveling DB" %}{% endblock %}
 {% block header %}
-    <h1 id="title_about">Mon histoire et mon savoir-faire en maroquinerie et macramé</h1>
+    <h1 id="title_about">{% trans "Mon histoire et mon savoir-faire en maroquinerie et macramé" %}</h1>
 {% endblock %}
 
 {% block description %}
-    <p class ="text-center" id="description_about">Bienvenue dans l'espace A Propos.</p>
+    <p class ="text-center" id="description_about">{% trans "Bienvenue dans l'espace A Propos." %}</p>
 {% endblock %}
 {% block content %}
     

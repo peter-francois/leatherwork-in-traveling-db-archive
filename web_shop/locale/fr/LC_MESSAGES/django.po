@@ -1,0 +1,970 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-04 10:18+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\page_vente\admin.py:24
+msgid "Le fichier est trop volumineux. La taille maximale est de 10 Mo."
+msgstr "Le fichier est trop volumineux. La taille maximale est de 10 Mo."
+
+#: .\page_vente\templates\page_vente\a_propos.html:4
+msgid ""
+"Découvrez mon savoir-faire et l'histoire de Leather Work In Traveling DB. "
+"Créations uniques alliant tradition et modernité."
+msgstr ""
+"Découvrez mon savoir-faire et l'histoire de Leather Work In Traveling DB. "
+"Créations uniques alliant tradition et modernité."
+
+#: .\page_vente\templates\page_vente\a_propos.html:5
+msgid ""
+"À propos - L’histoire et le savoir-faire de Leather Work In Traveling DB"
+msgstr ""
+"À propos - L’histoire et le savoir-faire de Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\a_propos.html:7
+msgid "Mon histoire et mon savoir-faire en maroquinerie et macramé"
+msgstr "Mon histoire et mon savoir-faire en maroquinerie et macramé"
+
+#: .\page_vente\templates\page_vente\a_propos.html:11
+msgid "Bienvenue dans l'espace A Propos."
+msgstr "Bienvenue dans l'espace A Propos."
+
+#: .\page_vente\templates\page_vente\base.html:19
+msgid "Créations en maroquinerie et macramé - Leather Work In Traveling DB"
+msgstr "Créations en maroquinerie et macramé - Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\base.html:32
+msgid "Si vous avez des questions, n'hésitez pas à me contacter en cliquant "
+msgstr "Si vous avez des questions, n'hésitez pas à me contacter en cliquant"
+
+#: .\page_vente\templates\page_vente\base.html:32
+msgid "ICI"
+msgstr "ICI"
+
+#: .\page_vente\templates\page_vente\base.html:39
+msgid ""
+"Besoin de renseignements ou de prendre contact pour un produit sur mesure ?"
+msgstr ""
+"Besoin de renseignements ou de prendre contact pour un produit sur mesure ?"
+
+#: .\page_vente\templates\page_vente\base.html:40
+msgid ""
+"Je suis à votre disposition pour toute information complémentaire, que ce "
+"soit sur le procédé de fabrication ou les matières premières utilisées."
+msgstr ""
+"Je suis à votre disposition pour toute information complémentaire, que ce "
+"soit sur le procédé de fabrication ou les matières premières utilisées."
+
+#: .\page_vente\templates\page_vente\base.html:41
+msgid "Vous souhaitez un produit"
+msgstr "Vous souhaitez un produit"
+
+#: .\page_vente\templates\page_vente\base.html:41
+msgid "sur mesure"
+msgstr "sur mesure"
+
+#: .\page_vente\templates\page_vente\base.html:41
+msgid "ou personnaliser un produit existant ?"
+msgstr "ou personnaliser un produit existant ?"
+
+#: .\page_vente\templates\page_vente\base.html:42
+msgid ""
+"Contactez-moi dès maintenant pour en discuter et obtenir un devis "
+"personnalisé."
+msgstr ""
+"Contactez-moi dès maintenant pour en discuter et obtenir un devis "
+"personnalisé."
+
+#: .\page_vente\templates\page_vente\base.html:43
+msgid "Je suis joignable soit par télephone:"
+msgstr "Je suis joignable soit par télephone:"
+
+#: .\page_vente\templates\page_vente\base.html:46
+msgid "soit par email:"
+msgstr "soit par email:"
+
+#: .\page_vente\templates\page_vente\base.html:49
+msgid "À très bientôt"
+msgstr "À très bientôt"
+
+#: .\page_vente\templates\page_vente\base.html:55
+msgid "À propos"
+msgstr "A propos"
+
+#: .\page_vente\templates\page_vente\base.html:63
+msgid "Informations légales"
+msgstr "Informations légales"
+
+#: .\page_vente\templates\page_vente\base.html:65
+#: .\page_vente\templates\page_vente\mentions-legales.html:6
+msgid "Mentions légales"
+msgstr "Informations légales"
+
+#: .\page_vente\templates\page_vente\base.html:66
+msgid "Conditions Générales de Vente (CGV)"
+msgstr "Conditions Générales de Vente (CGV)"
+
+#: .\page_vente\templates\page_vente\base.html:67
+#: .\page_vente\templates\page_vente\politique-confidentialite.html:6
+msgid "Politique de Confidentialité"
+msgstr "Politique de confidentialité"
+
+#: .\page_vente\templates\page_vente\base.html:68
+msgid "Gestion des Cookies"
+msgstr "Gestion des cookies"
+
+#: .\page_vente\templates\page_vente\base.html:73
+msgid "Suivez-nous"
+msgstr "Suivez-nous"
+
+#: .\page_vente\templates\page_vente\base.html:81
+msgid "Paiements sécurisés"
+msgstr "Paiement securisé"
+
+#: .\page_vente\templates\page_vente\base.html:82
+msgid "Transactions sécurisées avec"
+msgstr "Transactions sécurisées avec"
+
+#: .\page_vente\templates\page_vente\base.html:88
+msgid "Tous droits réservés."
+msgstr "Tous droits réservés."
+
+#: .\page_vente\templates\page_vente\cgv.html:3
+msgid ""
+"Consultez nos Conditions Générales de Vente pour découvrir les modalités "
+"d'achat, les retours et les conditions de livraison sur notre boutique en "
+"ligne."
+msgstr ""
+"Consultez nos Conditions Générales de Vente pour découvrir les modalités "
+"d'achat, les retours et les conditions de livraison sur notre boutique en "
+"ligne."
+
+#: .\page_vente\templates\page_vente\cgv.html:4
+msgid "Conditions Générales de Vente - Leather Work In Traveling DB"
+msgstr ""
+"Création sur mesure de maroquinerie et macramé - Personnalisez vos "
+"accessoires"
+
+#: .\page_vente\templates\page_vente\cgv.html:6
+msgid "Conditions Générales de Vente"
+msgstr "Conditions générales de vente"
+
+#: .\page_vente\templates\page_vente\cgv.html:10
+#: .\page_vente\templates\page_vente\cookies.html:10
+#: .\page_vente\templates\page_vente\politique-confidentialite.html:10
+msgid "Publié le :"
+msgstr "Publié le :"
+
+#: .\page_vente\templates\page_vente\cookies.html:3
+msgid ""
+"En savoir plus sur l’utilisation des cookies sur notre site et comment vous "
+"pouvez gérer vos préférences. Nous respectons votre vie privée et vous "
+"informons de notre utilisation des cookies."
+msgstr ""
+"En savoir plus sur l’utilisation des cookies sur notre site et comment vous "
+"pouvez gérer vos préférences. Nous respectons votre vie privée et vous "
+"informons de notre utilisation des cookies."
+
+#: .\page_vente\templates\page_vente\cookies.html:4
+msgid "Gestion des cookies - Leather Work In Traveling DB"
+msgstr "Gestion des cookies - Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\cookies.html:6
+msgid "Gestion des cookies"
+msgstr "Gestion des cookies"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:4
+msgid ""
+"Offrez-vous une création sur mesure ! Personnalisez vos articles de "
+"maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre "
+"service pour réaliser des pièces uniques et personnalisées."
+msgstr ""
+"Offrez-vous une création sur mesure ! Personnalisez vos articles de "
+"maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre "
+"service pour réaliser des pièces uniques et personnalisées."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:5
+msgid "Accessoires cuir & macramé personnalisés | Création sur mesure"
+msgstr "Accessoires cuir & macramé personnalisés | Création sur mesure"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:7
+msgid ""
+"Création sur mesure de maroquinerie et macramé - Personnalisez vos "
+"accessoires"
+msgstr ""
+"Création sur mesure de maroquinerie et macramé - Personnalisez vos "
+"accessoires"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:11
+msgid "Bienvenue dans l'espace Creation Sur Mesure."
+msgstr "Bienvenue dans l'espace Creation Sur Mesure."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:18
+msgid "Créativité nomade et savoir-faire unique"
+msgstr "Créativité nomade et savoir-faire unique"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:20
+msgid ""
+"Chaque création sur mesure est inspirée des techniques traditionnelles et "
+"des influences culturelles rencontrées lors de mes voyages à travers "
+"l’Europe. Mon approche allie originalité et passion pour offrir des pièces "
+"uniques, imprégnées d’histoire."
+msgstr ""
+"Chaque création sur mesure est inspirée des techniques traditionnelles et "
+"des influences culturelles rencontrées lors de mes voyages à travers "
+"l'Europe. Mon approche allie originalité et passion pour offrir des pièces "
+"uniques, imprégnées d'histoire."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:25
+msgid "Votre création sur mesure, étape par étape"
+msgstr "Votre création sur mesure, étape par étape"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:27
+msgid ""
+"Vous souhaitez un accessoire en cuir ou une décoration en macramé "
+"entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
+"unique :"
+msgstr ""
+"Vous souhaitez un accessoire en cuir ou une décoration en macramé "
+"entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
+"unique :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:29
+msgid "Échange initial :"
+msgstr "Échange initial :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:29
+msgid ""
+"Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
+"obtenir une première estimation."
+msgstr ""
+"Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
+"obtenir une première estimation."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+msgid "Conception :"
+msgstr "Conception :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+msgid "Réalisation d’un croquis détaillé et établissement d’un devis précis."
+msgstr "Réalisation d’un croquis détaillé et établissement d’un devis précis."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:31
+msgid "Début de la fabrication :"
+msgstr "Début de la fabrication :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:31
+msgid "Un acompte de 1/3 du prix est demandé pour lancer la production."
+msgstr "Un acompte de 1/3 du prix est demandé pour lancer la production."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:32
+msgid "Validation :"
+msgstr "Validation :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:32
+msgid ""
+"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
+"si nécessaire."
+msgstr ""
+"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
+"si nécessaire."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:33
+msgid "Livraison :"
+msgstr "Livraison :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:33
+msgid ""
+"Une fois le paiement final effectué, votre création est expédiée en toute "
+"sécurité avec assurance."
+msgstr ""
+"Une fois le paiement final effectué, votre création est expédiée en toute "
+"sécurité avec assurance."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+msgid "Découvrez mes réalisations"
+msgstr "Découvrez mes réalisations"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:52
+msgid "Pourquoi choisir mes créations unique?"
+msgstr "Pourquoi choisir mes créations unique?"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:54
+msgid "Fabrication "
+msgstr "Fabrication "
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:54
+msgid ""
+"à la main avec des matériaux soigneusement sélectionnés lors de mes voyages."
+msgstr ""
+"à la main avec des matériaux soigneusement sélectionnés lors de mes voyages."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:55
+msgid ""
+"Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes "
+"européens."
+msgstr ""
+"Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes "
+"européens."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:56
+msgid ""
+"Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée."
+msgstr ""
+"Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:57
+msgid ""
+"Des créations personnalisées, façonnées avec passion et souci du détail."
+msgstr ""
+"Des créations personnalisées, façonnées avec passion et souci du détail."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:62
+msgid "Contactez-moi"
+msgstr "Contactez-moi"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:63
+msgid ""
+"Un projet, une idée, une envie d’échanger sur mes créations ou sur la vie "
+"nomades ? Écrivez-moi !"
+msgstr ""
+"Un projet, une idée, une envie d'échanger sur mes créations ou sur la vie "
+"nomades ? Écrivez-moi !"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
+msgid "Numéro de téléphone :"
+msgstr "Numéro de téléphone :"
+
+#: .\page_vente\templates\page_vente\hybride.html:4
+msgid ""
+"Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires "
+"et bijoux alliant l’élégance du cuir à la finesse du tissage."
+msgstr ""
+
+#: .\page_vente\templates\page_vente\hybride.html:5
+msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
+msgstr "Créations hybrides maroquinerie & macramé - Accessoires uniques"
+
+#: .\page_vente\templates\page_vente\hybride.html:7
+msgid "Accessoires uniques alliant maroquinerie et macramé"
+msgstr "Accessoires uniques alliant maroquinerie et macramé"
+
+#: .\page_vente\templates\page_vente\hybride.html:11
+msgid " est une alliance de "
+msgstr " est une alliance de "
+
+#: .\page_vente\templates\page_vente\hybride.html:11
+msgid "differentes techniques et matériaux"
+msgstr "differentes techniques et matériaux"
+
+#: .\page_vente\templates\page_vente\hybride.html:11
+msgid "Ici vous trouverez tous les produits en "
+msgstr "Ici vous trouverez tous les produits en"
+
+#: .\page_vente\templates\page_vente\hybride.html:11
+msgid " disponibles."
+msgstr "disponible."
+
+#: .\page_vente\templates\page_vente\index.html:4
+msgid ""
+"Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des "
+"créations uniques pour sublimer votre quotidien. Commandez en ligne, "
+"expédition rapide."
+msgstr ""
+"Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des "
+"créations uniques pour sublimer votre quotidien. Commandez en ligne, "
+"expédition rapide."
+
+#: .\page_vente\templates\page_vente\index.html:5
+msgid "Maroquinerie & macramé faits main - Leather Work In Traveling DB"
+msgstr "Maroquinerie & macramé faits main - Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\index.html:7
+msgid "Bienvenue dans notre boutique de maroquinerie et macramé faits main"
+msgstr "Bienvenue dans notre boutique de maroquinerie et macramé faits main"
+
+#: .\page_vente\templates\page_vente\index.html:14
+msgid "Espace Maroquinerie"
+msgstr "Espace Maroquinerie"
+
+#: .\page_vente\templates\page_vente\index.html:15
+msgid "Collection de modèles en "
+msgstr "Collection de modèles en "
+
+#: .\page_vente\templates\page_vente\index.html:15
+msgid "Cuir"
+msgstr "Cuir"
+
+#: .\page_vente\templates\page_vente\index.html:26
+msgid "Espace Macramé"
+msgstr "Espace Macramé"
+
+#: .\page_vente\templates\page_vente\index.html:27
+msgid "Création sur une base de "
+msgstr "Création sur une base de "
+
+#: .\page_vente\templates\page_vente\index.html:27
+msgid "tissage de fils"
+msgstr "tissage de fils"
+
+#: .\page_vente\templates\page_vente\index.html:38
+msgid "Création sur Mesure"
+msgstr "Création sur Mesure"
+
+#: .\page_vente\templates\page_vente\index.html:39
+msgid "Une idée, un Projet ?"
+msgstr "Une idée, un Projet ?"
+
+#: .\page_vente\templates\page_vente\index.html:39
+msgid "Mon plus grand plaisir, c'est de réaliser des créations"
+msgstr "Mon plus grand plaisir, c'est de réaliser des créations"
+
+#: .\page_vente\templates\page_vente\index.html:40
+msgid "entièrement personnalisés"
+msgstr "entièrement personnalisés"
+
+#: .\page_vente\templates\page_vente\index.html:41
+msgid "pour mes clients."
+msgstr "pour mes clients."
+
+#: .\page_vente\templates\page_vente\index.html:41
+msgid "N'hésitez pas à me contacter, je serai ravi de"
+msgstr "N'hésitez pas à me contacter, je serai ravi de"
+
+#: .\page_vente\templates\page_vente\index.html:41
+msgid "donner vie à vos idées !"
+msgstr "donner vie à vos idées !"
+
+#: .\page_vente\templates\page_vente\index.html:52
+msgid "Mix de "
+msgstr "Mix de "
+
+#: .\page_vente\templates\page_vente\index.html:52
+msgid "différentes techniques et matériaux"
+msgstr "différentes techniques et matériaux"
+
+#: .\page_vente\templates\page_vente\macrames.html:4
+msgid ""
+"Sublimez votre style avec nos bijoux en macramé faits main : chaînes de "
+"corps, boucles d'oreilles, colliers et bracelets tissés avec soin pour une "
+"touche d'élégance unique."
+msgstr ""
+"Sublimez votre style avec nos bijoux en macramé faits main : chaînes de "
+"corps, boucles d'oreilles, colliers et bracelets tissés avec soin pour une "
+"touche d'élégance unique."
+
+#: .\page_vente\templates\page_vente\macrames.html:5
+msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
+msgstr "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
+
+#: .\page_vente\templates\page_vente\macrames.html:7
+msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
+msgstr "Bijoux et accessoires en macramé faits main – Originalité et style"
+
+#: .\page_vente\templates\page_vente\macrames.html:11
+msgid ""
+"Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits "
+"disponibles."
+msgstr ""
+"Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits "
+"disponibles."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:4
+msgid ""
+"Découvrez nos sacs, portefeuilles, ceintures et accessoires en cuir faits "
+"main. Des pièces uniques, confectionnées avec soin pour une qualité "
+"exceptionnelle."
+msgstr ""
+"Découvrez nos sacs, portefeuilles, ceintures et accessoires en cuir faits "
+"main. Des pièces uniques, confectionnées avec soin pour une qualité "
+"exceptionnelle."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:5
+msgid "Maroquinerie fait main - Sacs, portefeuilles et accessoires en cuir"
+msgstr "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:7
+msgid "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
+msgstr "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:11
+msgid ""
+"Bienvenue dans l'espace maroquinerie. Retrouvez ci-dessous tous les produits "
+"disponibles."
+msgstr ""
+"Bienvenue dans l'espace maroquinerie. Retrouvez ci-dessous tous les produits "
+"disponibles."
+
+#: .\page_vente\templates\page_vente\mentions-legales.html:3
+msgid ""
+"Découvrez nos mentions légales. Ces informations vous permettent de "
+"comprendre l'ensemble de l'activité de la marque, ainsi que l'ensemble des "
+"informations légales liées à la marque."
+msgstr ""
+"Découvrez nos mentions légales. Ces informations vous permettent de "
+"comprendre l'ensemble de l'activité de la marque, ainsi que l'ensemble des "
+"informations légales liées à la marque."
+
+#: .\page_vente\templates\page_vente\mentions-legales.html:4
+msgid "Mentions légales - Leather Work In Traveling DB"
+msgstr "Mentions légales - Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\mentions-legales.html:10
+msgid "Publié le : "
+msgstr "Publié le :"
+
+#: .\page_vente\templates\page_vente\navbar.html:8
+msgid "ACCUEIL"
+msgstr "ACCUEIL"
+
+#: .\page_vente\templates\page_vente\navbar.html:9
+msgid "NOS CRÉATIONS"
+msgstr "NOS CRÉATIONS"
+
+#: .\page_vente\templates\page_vente\navbar.html:11
+msgid "TOUTES NOS CRÉATIONS"
+msgstr "TOUTES NOS CRÉATIONS"
+
+#: .\page_vente\templates\page_vente\navbar.html:12
+msgid "MAROQUINERIE FAITE À LA MAIN"
+msgstr "MAROQUINERIE FAITE À LA MAIN"
+
+#: .\page_vente\templates\page_vente\navbar.html:13
+msgid "CRÉATIONS EN MACRAMÉ"
+msgstr "CRÉATIONS EN MACRAMÉ"
+
+#: .\page_vente\templates\page_vente\navbar.html:14
+msgid "ALLIANCE CUIR & MACRAMÉ"
+msgstr "ALLIANCE CUIR & MACRAMÉ"
+
+#: .\page_vente\templates\page_vente\navbar.html:16
+msgid "CRÉATION SUR MESURE"
+msgstr "CRÉATION SUR MESURE"
+
+#: .\page_vente\templates\page_vente\navbar.html:17
+msgid "PANIER"
+msgstr "PANIER"
+
+#: .\page_vente\templates\page_vente\paiement_annule.html:3
+msgid ""
+"Votre paiement a été annulé. Vous pouvez réessayer ou modifier votre "
+"commande en toute sécurité."
+msgstr ""
+"Votre paiement a été annulé. Vous pouvez réessayer ou modifier votre "
+"commande en toute sécurité."
+
+#: .\page_vente\templates\page_vente\paiement_annule.html:4
+msgid "Paiement annulé | Leather Work In Traveling DB"
+msgstr "Paiement annulé | Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\paiement_annule.html:6
+msgid "Paiement Annulé"
+msgstr "Paiement Annulé"
+
+#: .\page_vente\templates\page_vente\paiement_annule.html:10
+msgid ""
+"Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer."
+msgstr ""
+"Votre paiement a été annulé. Si cela est une erreur, vous pouvez réessayer."
+
+#: .\page_vente\templates\page_vente\paiement_annule.html:13
+#: .\page_vente\templates\page_vente\paiement_reussi.html:19
+msgid "Retour à l'accueil"
+msgstr "Retour à l'accueil"
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:3
+msgid ""
+"Votre paiement a été confirmé ! Consultez les détails de votre commande et "
+"suivez son statut en toute sécurité."
+msgstr ""
+"Votre paiement a été confirmé ! Consultez les détails de votre commande et "
+"suivez son statut en toute sécurité."
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:4
+msgid "Paiement confirmé | Leather Work In Traveling DB"
+msgstr "Paiement confirmé | Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:6
+msgid "Paiement Réussi !"
+msgstr "Paiement Réussi !"
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:10
+msgid "Merci pour votre commande. Votre paiement a été traité avec succès."
+msgstr "Merci pour votre commande. Votre paiement a été traité avec succès."
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:13
+msgid "Numéro de commande :"
+msgstr "Numéro de commande :"
+
+#: .\page_vente\templates\page_vente\paiement_reussi.html:15
+msgid "Montant total :"
+msgstr "Montant total :"
+
+#: .\page_vente\templates\page_vente\panier.html:4
+msgid ""
+"Vérifiez votre panier et passez commande en toute sécurité via Stripe. "
+"Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
+"et macramé faits main."
+msgstr ""
+"Vérifiez votre panier et passez commande en toute sécurité via Stripe. "
+"Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
+"et macramé faits main."
+
+#: .\page_vente\templates\page_vente\panier.html:5
+msgid "Panier - Commande sécurisée en maroquinerie et macramé"
+msgstr "Panier - Commande sécurisée en maroquinerie et macramé"
+
+#: .\page_vente\templates\page_vente\panier.html:7
+msgid "Votre panier - Vérifiez et finalisez votre commande"
+msgstr "Votre panier - Vérifiez et finalisez votre commande"
+
+#: .\page_vente\templates\page_vente\panier.html:14
+msgid "Vider le panier"
+msgstr "Vider le panier"
+
+#: .\page_vente\templates\page_vente\panier.html:16
+#: .\page_vente\templates\page_vente\panier.html:53
+msgid "Votre panier expirera le"
+msgstr "Votre panier expirera le"
+
+#: .\page_vente\templates\page_vente\panier.html:18
+#: .\page_vente\templates\page_vente\panier.html:55
+msgid "Votre panier expirera bientôt."
+msgstr "Votre panier expirera bientôt."
+
+#: .\page_vente\templates\page_vente\panier.html:25
+msgid "Paiement sécurisé"
+msgstr "Paiement sécurisé"
+
+#: .\page_vente\templates\page_vente\panier.html:27
+msgid "Les frais de port sont fixes à 5 €"
+msgstr "Les frais de port sont fixes à 5 €"
+
+#: .\page_vente\templates\page_vente\panier.html:27
+msgid "et incluent une assurance jusqu'à 25 €"
+msgstr "et incluent une assurance jusqu'à 25 € "
+
+#: .\page_vente\templates\page_vente\panier.html:27
+msgid "via notre partenaire Mondial Relay."
+msgstr "via notre partenaire Mondial Relay."
+
+#: .\page_vente\templates\page_vente\panier.html:29
+msgid "Une assurance obligatoire de"
+msgstr "Une assurance obligatoire de"
+
+#: .\page_vente\templates\page_vente\panier.html:29
+msgid ""
+"montant variable selon le montant de la commande. Plus d'information sur la "
+"page"
+msgstr ""
+"montant variable selon le montant de la commande. Plus d'information sur la "
+"page"
+
+#: .\page_vente\templates\page_vente\panier.html:29
+msgid "sera ajoutée pour les commandes comprise entre"
+msgstr "sera ajoutée pour les commandes comprise entre"
+
+#: .\page_vente\templates\page_vente\panier.html:29
+msgid "et"
+msgstr "et"
+
+#: .\page_vente\templates\page_vente\panier.html:29
+msgid "L'indemnisation forfaitaire maximal est de 500 €"
+msgstr "L'indemnisation forfaitaire maximal est de 500 €"
+
+#: .\page_vente\templates\page_vente\panier.html:34
+msgid "Assurance :"
+msgstr "Assurance :"
+
+#: .\page_vente\templates\page_vente\panier.html:34
+msgid "Inclue (jusqu'à 25 €)"
+msgstr "Inclue (jusqu'à 25 €)"
+
+#: .\page_vente\templates\page_vente\panier.html:37
+msgid "Assurer la totalité de la valeur des produits"
+msgstr "Assurer la totalité de la valeur des produits"
+
+#: .\page_vente\templates\page_vente\panier.html:40
+msgid "Total de la commande :"
+msgstr "Total de la commande :"
+
+#: .\page_vente\templates\page_vente\panier.html:43
+msgid "J'accepte les"
+msgstr "J'accepte les"
+
+#: .\page_vente\templates\page_vente\panier.html:43
+msgid "conditions générales de vente"
+msgstr "conditions générales de vente"
+
+#: .\page_vente\templates\page_vente\panier.html:45
+msgid "Payer via Stripe"
+msgstr "Payer via Stripe"
+
+#: .\page_vente\templates\page_vente\panier.html:47
+msgid "Vous devez accepter les CGV pour continuer."
+msgstr "Vous devez accepter les CGV pour continuer."
+
+#: .\page_vente\templates\page_vente\panier.html:61
+msgid "Votre panier est vide."
+msgstr "Votre panier est vide"
+
+#: .\page_vente\templates\page_vente\panier.html:69
+msgid "Description :"
+msgstr "Description :"
+
+#: .\page_vente\templates\page_vente\panier.html:71
+msgid "Prix :"
+msgstr "Prix :"
+
+#: .\page_vente\templates\page_vente\panier.html:77
+msgid "Précédent"
+msgstr "Prédécedent"
+
+#: .\page_vente\templates\page_vente\panier.html:78
+msgid "Suivant"
+msgstr "Suivant"
+
+#: .\page_vente\templates\page_vente\politique-confidentialite.html:3
+msgid ""
+"Découvrez notre politique de confidentialité. Nous mettons l'accent sur la "
+"protection de vos données personnelles et sur la transparence de nos "
+"pratiques."
+msgstr ""
+"Découvrez notre politique de confidentialité. Nous mettons l'accent sur la "
+"protection de vos données personnelles et sur la transparence de nos "
+"pratiques."
+
+#: .\page_vente\templates\page_vente\politique-confidentialite.html:4
+msgid "Politique de Confidentialité | Leather Work In Traveling DB"
+msgstr "Politique de Confidentialité | Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\produits.html:5
+msgid ""
+"Découvrez notre sélection exclusive de créations uniques : bijoux originaux, "
+"accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. "
+"Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
+"qualité garantie."
+msgstr ""
+"Découvrez notre sélection exclusive de créations uniques : bijoux originaux, "
+"accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. "
+"Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
+"qualité garantie."
+
+#: .\page_vente\templates\page_vente\produits.html:8
+msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
+msgstr "Accessoires, maroquinerie & macramé faits main | Créations originales"
+
+#: .\page_vente\templates\page_vente\produits.html:11
+msgid "Explorez Nos Créations - Trouvez votre style unique"
+msgstr "Explorez Nos Créations - Trouvez votre style unique"
+
+#: .\page_vente\templates\page_vente\produits.html:15
+msgid "Retrouvez ci-dessous tous les produits disponibles."
+msgstr "Retrouvez ci-dessous tous les produits disponibles."
+
+#: .\page_vente\urls.py:13
+msgid "produits/macrames/"
+msgstr "produits/macrames/"
+
+#: .\page_vente\urls.py:14
+msgid "produits/maroquinerie/"
+msgstr "produits/maroquinerie/"
+
+#: .\page_vente\urls.py:15
+msgid "creation-sur-mesure/"
+msgstr "creation-sur-mesure/"
+
+#: .\page_vente\urls.py:16
+msgid "produits/hybride/"
+msgstr "produits/hybride/"
+
+#: .\page_vente\urls.py:17
+msgid "produits/"
+msgstr "produits/"
+
+#: .\page_vente\urls.py:18
+msgid "panier/"
+msgstr "panier/"
+
+#: .\page_vente\urls.py:19
+msgid "a_propos/"
+msgstr "a_propos/"
+
+#: .\page_vente\urls.py:20
+msgid "cgv/"
+msgstr "cgv/"
+
+#: .\page_vente\urls.py:21
+msgid "cookies/"
+msgstr "cookies/"
+
+#: .\page_vente\urls.py:22
+msgid "mentions-legales/"
+msgstr "mentions-legales/"
+
+#: .\page_vente\urls.py:23
+msgid "politique-confidentialite/"
+msgstr "politique-confidentialite/"
+
+#: .\page_vente\urls.py:24
+msgid "paiement_reussi/"
+msgstr "paiement_reussi/"
+
+#: .\page_vente\urls.py:25
+msgid "paiement_annule/"
+msgstr "paiement_annule/"
+
+#: .\web_shop\settings.py:65
+msgid "Français"
+msgstr "Français"
+
+#: .\web_shop\settings.py:66
+msgid "English"
+msgstr "English"
+
+#~ msgid ""
+#~ "Vous souhaitez un produit <strong>100 % sur mesure</strong> ou "
+#~ "personnaliser un produit existant ?"
+#~ msgstr ""
+#~ "Vous souhaitez un produit <strong>100 % sur mesure</strong> ou "
+#~ "personnaliser un produit existant ?"
+
+# Translations from translations.json
+#~ msgid "Ma boutique"
+#~ msgstr "Ma boutique"
+
+#~ msgid "A PROPOS"
+#~ msgstr "A PROPOS"
+
+#~ msgid ""
+#~ "<strong>Une idée, un Projet ?</strong><span class='display-"
+#~ "laptop'><br>Mon plus grand plaisir, c'est de réaliser des créations "
+#~ "<strong>entièrement personnalisés</strong> pour mes clients.</"
+#~ "span><br>N'hésitez pas à me contacter, je serai ravi de <strong>donner "
+#~ "vie à vos idées !</strong>"
+#~ msgstr ""
+#~ "<strong>Une idée, un Projet ?</strong><span class='display-"
+#~ "laptop'><br>Mon plus grand plaisir, c'est de réaliser des créations "
+#~ "<strong>entièrement personnalisés</strong> pour mes clients.</"
+#~ "span><br>N'hésitez pas à me contacter, je serai ravi de <strong>donner "
+#~ "vie à vos idées !</strong>"
+
+#~ msgid "Hybride"
+#~ msgstr "Hybride"
+
+#~ msgid "Panier"
+#~ msgstr "Panier"
+
+#~ msgid "Mon Panier"
+#~ msgstr "Mon Panier"
+
+#~ msgid "Recherche..."
+#~ msgstr "Recherche..."
+
+#~ msgid "Rechercher"
+#~ msgstr "Rechercher"
+
+#~ msgid "Prix min"
+#~ msgstr "Prix min"
+
+#~ msgid "Prix max"
+#~ msgstr "Prix max"
+
+#~ msgid "Filtrer"
+#~ msgstr "Filtrer"
+
+#~ msgid "sur"
+#~ msgstr "sur"
+
+#~ msgid "Prix"
+#~ msgstr "Prix"
+
+#~ msgid "Ajouter au panier"
+#~ msgstr "Ajouter au panier"
+
+#~ msgid "Aucun produit disponible"
+#~ msgstr "Aucun produit disponible"
+
+#~ msgid "&laquo; Première"
+#~ msgstr "&laquo; Première"
+
+#~ msgid "Dernière &raquo;"
+#~ msgstr "Dernière &raquo;"
+
+msgid "Supprimer"
+msgstr "Supprimer"
+
+#~ msgid "Maroquinerie"
+#~ msgstr "Maroquinerie"
+
+#~ msgid ""
+#~ "La <strong>Maroquinerie</strong> est ma principale specialité.<br>Ici "
+#~ "vous trouverez tous les produits en <strong>Cuir</strong> disponibles."
+#~ msgstr ""
+#~ "La <strong>Maroquinerie</strong> est ma principale specialité.<br>Ici "
+#~ "vous trouverez tous les produits en <strong>Cuir</strong> disponibles."
+
+#~ msgid "Macramé"
+#~ msgstr "Macramé"
+
+#~ msgid ""
+#~ "Ici vous trouverez tous les produits en <strong>Macramé</strong> "
+#~ "disponibles."
+#~ msgstr ""
+#~ "Ici vous trouverez tous les produits en <strong>Macramé</strong> "
+#~ "disponibles."
+
+#~ msgid ""
+#~ "<strong>Hybride</strong> est une alliance de <strong>differentes "
+#~ "techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits "
+#~ "en <strong>Hybride</strong> disponibles."
+#~ msgstr ""
+#~ "<strong>Hybride</strong> est une alliance de <strong>differentes "
+#~ "techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits "
+#~ "en <strong>Hybride</strong> disponibles."
+
+#~ msgid "Notre histoire"
+#~ msgstr "Notre histoire"
+
+#~ msgid "Paiement securisé avec <strong>Stripe</strong>."
+#~ msgstr "Paiement securisé avec <strong>Stripe</strong>."
+
+#~ msgid "© 2025 Leather work in traveling DB. Tous droits reservés."
+#~ msgstr "© 2025 Leather work in traveling DB. Tous droits reservés."
+
+#~ msgid ""
+#~ "€ (montant variable selon le montant de la commande. Plus d'information "
+#~ "sur la page <a href='/cgv' target='_blank'>CGV</a>) sera ajoutée pour les "
+#~ "commandes comprise entre  50 € et  500 €."
+#~ msgstr ""
+#~ "€ (montant variable selon le montant de la commande. Plus d'information "
+#~ "sur la page <a href='/cgv' target='_blank'>CGV</a>) sera ajoutée pour les "
+#~ "commandes comprise entre  50 € et  500 €."
+
+#~ msgid "Total des articles :"
+#~ msgstr "Total des articles :"
+
+#~ msgid "Frais de port : <span id='shipping-cost'>5.00 €</span>"
+#~ msgstr "Frais de port : <span id='shipping-cost'>5.00 €</span>"
+
+#~ msgid ""
+#~ "J'accepte les <a href='/cgv' target='_blank'>conditions générales de "
+#~ "vente</a>"
+#~ msgstr ""
+#~ "J'accepte les <a href='/cgv' target='_blank'>conditions générales de "
+#~ "vente</a>"

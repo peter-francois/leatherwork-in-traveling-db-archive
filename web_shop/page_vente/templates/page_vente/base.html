@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +16,9 @@
     <meta name="twitter:image" content="{% static 'page_vente/images/logo2.png' %}">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/x-icon" href="{% static 'page_vente/favicon.ico' %}">
-    <title>{% block title %}Créations en maroquinerie et macramé - Leather Work In Traveling DB{% endblock %}</title>
+    <title>{% block title %}{% trans "Créations en maroquinerie et macramé - Leather Work In Traveling DB" %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 </head>
 <body>
     <div class="header text-center">
@@ -28,30 +30,30 @@
         <div id="separator-header"></div>
         {% block description %}
         {% endblock %}
-        <p class ="text-center" id="any_question">Si vous avez des questions, n'hésitez pas à me contacter en cliquant </p><button class="align-items-center page-button" id = "contact_link">ici</button>
+        <p class ="text-center" id="any_question">{% trans "Si vous avez des questions, n'hésitez pas à me contacter en cliquant " %}<button class="align-items-center page-button" id = "contact_link">{% trans "ICI" %}</button></p>
         {% include 'page_vente/navbar.html' %}
     </div>
     {% block content %}
     {% endblock %}
     <div id="contact-form">
         <button type="button" id="close-btn">&times;</button>
-        <h2 class="center" id="contact_title">Besoin de renseignements ou de prendre contact pour un produit sur mesure ?</h2>
-        <p class="contact-p" id="contact_description1 ">Je suis à votre disposition pour toute information complémentaire, que ce soit sur le procédé de fabrication ou les matières premières utilisées.</p>
-        <p class="contact-p" id="contact_description2">Vous souhaitez un produit <strong>100 % sur mesure</strong> ou personnaliser un produit existant ?</p>
-        <p class="contact-p" id="contact_description3">Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé.</p>
-        <p class="contact-p" id="contact_description4">Je suis joignable soit par télephone:</p>
+        <h2 class="center" id="contact_title">{% trans "Besoin de renseignements ou de prendre contact pour un produit sur mesure ?" %}</h2>
+        <p class="contact-p" id="contact_description1 ">{% trans "Je suis à votre disposition pour toute information complémentaire, que ce soit sur le procédé de fabrication ou les matières premières utilisées." %}</p>
+        <p class="contact-p" id="contact_description2">{% trans "Vous souhaitez un produit"%} <strong>100 % {% trans "sur mesure" %}</strong> {% trans "ou personnaliser un produit existant ?" %}</p>
+        <p class="contact-p" id="contact_description3">{% trans "Contactez-moi dès maintenant pour en discuter et obtenir un devis personnalisé." %}</p>
+        <p class="contact-p" id="contact_description4">{% trans "Je suis joignable soit par télephone:" %}</p>
         <a id="contact_phone" href="tel:{{ CLIENT_PHONE_NUMBER }}">{{ CLIENT_PHONE_NUMBER }}</a>
         <br>
-        <p class="contact-p" id="contact_description5">soit par email:</p>
+        <p class="contact-p" id="contact_description5">{% trans "soit par email:" %}</p>
         <a id="contact_email" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com">{{ CLIENT_EMAIL }}</a>
         <br>
-        <p class="contact-p" id="contact_description6">À très bientôt</p>
+        <p class="contact-p" id="contact_description6">{% trans "À très bientôt" %}</p>
     </div>
 
     <footer class="font-size-19">
         <div class="footer-container">
             <div class="footer-section">
-                <h4 id="footer_about">À propos</h4>
+                <h4 id="footer_about">{% trans "À propos" %}</h4>
                 <ul>
                     <!--<li><a id="footer_history" href="/a_propos">Notre histoire</a></li>-->
                     <li><a id="footer_contact">Contact</a></li>
@@ -59,17 +61,17 @@
             </div>
     
             <div class="footer-section">
-                <h4 id="footer_legal">Informations légales</h4>
+                <h4 id="footer_legal">{% trans "Informations légales" %}</h4>
                 <ul>
-                    <li><a id="footer_mention" href="/mentions-legales">Mentions légales</a></li>
-                    <li><a id="footer_cgv" href="/cgv">Conditions Générales de Vente (CGV)</a></li>
-                    <li><a id="footer_policy" href="/politique-confidentialite">Politique de Confidentialité</a></li>
-                    <li><a id="footer_cookie" href="/cookies">Gestion des Cookies</a></li>
+                    <li><a id="footer_mention" href="{% url 'boutique:legal_mentions' %}">{% trans "Mentions légales" %}</a></li>
+                    <li><a id="footer_cgv" href="{% url 'boutique:cgv' %}">{% trans "Conditions Générales de Vente (CGV)" %}</a></li>
+                    <li><a id="footer_policy" href="{% url 'boutique:privacy_policy' %}">{% trans "Politique de Confidentialité" %}</a></li>
+                    <li><a id="footer_cookie" href="{% url 'boutique:cookies' %}">{% trans "Gestion des Cookies" %}</a></li>
                 </ul>
             </div>
     
             <div class="footer-section">
-                <h4 id="footer_social">Suivez-nous</h4>
+                <h4 id="footer_social">{% trans "Suivez-nous" %}</h4>
                 <ul>
                     <li><a href="https://www.facebook.com/{{ CLIENT_FACEBOOK }}" target="_blank">Facebook</a></li>
                     <li><a href="https://www.instagram.com/{{ CLIENT_INSTAGRAM }}" target="_blank">Instagram</a></li>
@@ -77,17 +79,17 @@
             </div>
     
             <div class="footer-section">
-                <h4 id="footer_payment">Paiements sécurisés</h4>
-                <p id="footer_payment_description">Transactions sécurisées avec <strong>Stripe</strong>.</p>
+                <h4 id="footer_payment">{% trans "Paiements sécurisés" %}</h4>
+                <p id="footer_payment_description">{% trans "Transactions sécurisées avec" %} <strong>Stripe</strong>.</p>
                 <img id="stripe_logo" src="{% static 'page_vente/images/Stripe_wordmark-slate.png' %}" alt="Paiement sécurisé via Stripe">
             </div>
         </div>
     
         <div class="footer-bottom">
-            <p id="footer_copyright">© 2025 Leather work in traveling DB. Tous droits réservés.</p>
+            <p id="footer_copyright">© 2025 Leather work in traveling DB. {% trans "Tous droits réservés." %}</p>
         </div>
     </footer>
-    <script src="{% static 'page_vente/script.js'%}"></script>
+    <script type="text/javascript" src="{% static 'page_vente/script.js'%}"></script>
 </body>
 <div id="overlay" class="hidden"></div>
 </html>

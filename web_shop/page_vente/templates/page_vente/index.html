@@ -1,17 +1,18 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
-{% block meta-description %}Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des créations uniques pour sublimer votre quotidien. Commandez en ligne, expédition rapide.{% endblock %}
-{% block title %}Maroquinerie & macramé faits main - Leather Work In Traveling DB{% endblock %}
+{% load i18n %}
+{% block meta-description %}{% trans "Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des créations uniques pour sublimer votre quotidien. Commandez en ligne, expédition rapide." %}{% endblock %}
+{% block title %}{% trans "Maroquinerie & macramé faits main - Leather Work In Traveling DB" %}{% endblock %}
 {% block header %}
-<h1 id="title_index">Bienvenue dans notre boutique de maroquinerie et macramé faits main</h1>
+<h1 id="title_index">{% trans "Bienvenue dans notre boutique de maroquinerie et macramé faits main" %}</h1>
 {% endblock %}
 {% block content%}
     <section class="category grid-container">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
             <div class="grid-container align-items-center half-grid-width" >
                 <div class="product-title-and-description align-items-center text-center">
-                    <h2 class="product-title"><img  class="index-icon" src="{% static 'page_vente/icons/wallet-solid.svg' %}" alt="icon porte_feuille"><span id="maroquinerie_title">Espace Maroquinerie</span></h2>
-                    <p class="product-description" id="maroquinerie_description" >Collection de modèles en <strong>Cuir</strong>.</p>
+                    <h2 class="product-title"><img  class="index-icon" src="{% static 'page_vente/icons/wallet-solid.svg' %}" alt="icon porte_feuille"><span id="maroquinerie_title">{% trans "Espace Maroquinerie" %}</span></h2>
+                    <p class="product-description" id="maroquinerie_description" >{% trans "Collection de modèles en " %}<strong>{% trans "Cuir" %}</strong>.</p>
                 </div>
                 <img class="index-img float-right display-laptop" src="{% static 'page_vente/images/sac_bandouliere2.jpeg' %}" alt="Sac en cuir">
                 <img class="index-img float-right display-mobile" src="{% static 'page_vente/images/sac_bandouliere_paysage.jpeg' %}" alt="Sac en cuir">
@@ -22,8 +23,8 @@
         <a class="linker product-card " href="{% url 'boutique:macrames' %}">
             <div class="grid-container align-items-center half-grid-width" >
                 <div class="product-title-and-description align-items-center text-center">
-                    <h2 class="product-title" ><img  class="index-icon" src="{% static 'page_vente/icons/feather-pointed-solid.svg' %}" alt="icon macrames"><span id="macrames_title">Espace Macramé</span></h2>
-                    <p class="product-description" id="macrames_description" >Création sur une base de <strong>tissage de fils</strong>. </p>
+                    <h2 class="product-title" ><img  class="index-icon" src="{% static 'page_vente/icons/feather-pointed-solid.svg' %}" alt="icon macrames"><span id="macrames_title">{% trans "Espace Macramé" %}</span></h2>
+                    <p class="product-description" id="macrames_description" >{% trans "Création sur une base de " %}<strong>{% trans "tissage de fils" %}</strong>. </p>
                 </div>
                 <img class="index-img float-right display-laptop" src="{% static 'page_vente/images/macrame.jpeg' %}" alt="Atelier macramé">
                 <img class="index-img float-right display-mobile" src="{% static 'page_vente/images/macrame_paysage.jpeg' %}" alt="Atelier macramé">
@@ -34,10 +35,10 @@
             <div class="grid-container align-items-center grid-width_2" >
                 <img class="index-img image-full-span display-laptop" src="{% static 'page_vente/images/porte_feuille.jpeg' %}" alt="Atelier maroquinerie">
                 <div class="product-title-and-description align-items-center text-center">
-                    <h2 class="product-title" ><img  class="index-icon" src="{% static 'page_vente/icons/pen-ruler-solid.svg' %}" alt="icon creation sur mesure"><span id="creation_sur_mesure_title">Création sur Mesure</span></h2>
-                    <p class="product-description text-center" id="creation_sur_mesure_description" ><strong>Une idée, un Projet ?</strong><span class="display-laptop"> <br>Mon plus grand plaisir, c'est de réaliser des créations
-                        <strong>entièrement personnalisés</strong>
-                        pour mes clients.</span><br>N'hésitez pas à me contacter, je serai ravi de <strong>donner vie à vos idées !</strong></p>
+                    <h2 class="product-title" ><img  class="index-icon" src="{% static 'page_vente/icons/pen-ruler-solid.svg' %}" alt="icon creation sur mesure"><span id="creation_sur_mesure_title">{% trans "Création sur Mesure" %}</span></h2>
+                    <p class="product-description text-center" id="creation_sur_mesure_description" ><strong>{% trans "Une idée, un Projet ?" %}</strong><span class="display-laptop"> <br>{% trans "Mon plus grand plaisir, c'est de réaliser des créations" %}
+                        <strong>{% trans "entièrement personnalisés" %}</strong>
+                        {% trans "pour mes clients." %}</span><br>{% trans "N'hésitez pas à me contacter, je serai ravi de" %} <strong>{% trans "donner vie à vos idées !" %}</strong></p>
                 </div>
                 <img class="index-img image-full-span " src="{% static 'page_vente/images/atelier_maroquinerie.jpeg' %}" alt="Atelier maroquinerie">
     
@@ -48,7 +49,7 @@
                 <img class="index-img image-full-span display-laptop" src="{% static 'page_vente/images/mix_maro_macra.jpeg' %}" alt="Outils maroquinerie">
                 <div class="product-title-and-description align-items-center text-center">
                     <h2 class="product-title" ><img  class="index-icon" src="{% static 'page_vente/icons/yin-yang-solid.svg' %}" alt="icon hybride"><span id="hybride_title"> Hybride</span></h2>
-                    <p class="product-description" id="autres_produits_description">Mix de <strong>différentes techniques et matériaux</strong>.</p>
+                    <p class="product-description" id="autres_produits_description">{% trans "Mix de " %}<strong>{% trans "différentes techniques et matériaux" %}</strong>.</p>
                 </div>
                 <img class="index-img image-full-span " src="{% static 'page_vente/images/mix_maro_macra2.jpeg' %}" alt="Outils macramé">
             </div>

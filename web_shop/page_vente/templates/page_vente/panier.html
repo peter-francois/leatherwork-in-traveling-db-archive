@@ -1,80 +1,82 @@
 {% extends 'page_vente/base.html' %}
 {% load static %}
-{% block meta-description %}Vérifiez votre panier et passez commande en toute sécurité via Stripe. Profitez de la livraison rapide pour recevoir vos créations en maroquinerie et macramé faits main.{% endblock %}
-{% block title %}Panier - Commande sécurisée en maroquinerie et macramé{% endblock %}
+{% load i18n %}
+{% block meta-description %}{% trans "Vérifiez votre panier et passez commande en toute sécurité via Stripe. Profitez de la livraison rapide pour recevoir vos créations en maroquinerie et macramé faits main." %}{% endblock %}
+{% block title %}{% trans "Panier - Commande sécurisée en maroquinerie et macramé" %}{% endblock %}
 {% block header %}
-<h1 id="title_cart">Votre panier - Vérifiez et finalisez votre commande</h1>
+<h1 id="title_cart">{% trans "Votre panier - Vérifiez et finalisez votre commande" %}</h1>
 {% endblock %}
 {% block description %}
 {% endblock %}
 {% block content %}
+{% if items %}
 <section class="cart-container">
-    {% if items %}
-    <button class="align-items-center page-button float-right" id="clear_cart" >Vider le panier</button>
+    
+    <button class="align-items-center page-button float-right" id="clear_cart" >{% trans "Vider le panier" %}</button>
         {% if expiration_date %}
-            <p ><span id="expiration_date">⚠️ Votre panier expirera le </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
+            <p ><span id="expiration_date">⚠️ {% trans "Votre panier expirera le" %} </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
         {% else %}
-            <p id="expiration_soon">⚠️ Votre panier expirera bientôt.</p>
+            <p id="expiration_soon">⚠️ {% trans "Votre panier expirera bientôt." %}</p>
         {% endif %}
     <div class="grid-container">
         
         <ul class="product-list-cart" id="liste-articles"></ul>
         {% if items %}
         <aside class="text-center">
-            <h2 id="payment_title">Paiement sécurisé</h2>
+            <h2 id="payment_title">{% trans "Paiement sécurisé" %}</h2>
 
-            <p><span id="shipping_cost">✅ Les frais de port sont fixes à 5 €</span> <span id="insurance_25_euros">et incluent une assurance jusqu'à 25 € </span><span id="with_our_partner_mondial_relay">via notre partenaire Mondial Relay.</span></p>
+            <p><span id="shipping_cost">✅ {% trans "Les frais de port sont fixes à 5 €" %}</span> <span id="insurance_25_euros">{% trans "et incluent une assurance jusqu'à 25 €" %}</span><span id="with_our_partner_mondial_relay">{% trans "via notre partenaire Mondial Relay." %}</span></p>
           
-            <p id="mandatory-insurance" class="hidden"><span id="mandatory_insurance_2">🚨 Une assurance obligatoire de </span><span id="mandatory-insurance-cost">0</span><span id="mandatory_insurance_3"> € (montant variable selon le montant de la commande. Plus d'information sur la page <a href="/cgv" target="_blank">CGV</a>) sera ajoutée pour les commandes comprise entre  50 € et  500 €.</span><span id="mandatory_insurance_4"><br><br>⚠️ L'indemnisation forfaitaire maximal est de 500 €⚠️</span></p>
+            <p id="mandatory-insurance" class="hidden"><span id="mandatory_insurance_2">🚨 {% trans "Une assurance obligatoire de" %} </span><span id="mandatory-insurance-cost">0</span><span id="mandatory_insurance_3"> € ({% trans "montant variable selon le montant de la commande. Plus d'information sur la page" %} <a href="/cgv" target="_blank">CGV</a>) {% trans "sera ajoutée pour les commandes comprise entre" %} 50 € {% trans "et" %} 500 €.</span><span id="mandatory_insurance_4"><br><br>⚠️ {% trans "L'indemnisation forfaitaire maximal est de 500 €" %}⚠️</span></p>
             <div class="separator-cart"></div>
             <p id="total_articles"><span id="total_articles_title">Total des articles : </span><span id="order-total">{{total | floatformat:2 }}</span> €</p>
             <p id="shipping_cost_short">Frais de port : <span id="shipping-cost">5.00 €</span></p>
             
-            <p id="insurance"><span id="insurance_cost">Assurance : </span><span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>Inclue (jusqu'à 25 €)</span></p>
+            <p id="insurance"><span id="insurance_cost">{% trans "Assurance :" %} </span><span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>{% trans "Inclue (jusqu'à 25 €)" %}</span></p>
             <div id="insurance-option" class="hidden">
                 <input type="checkbox" id="add-insurance"> 
-                <label class="font-size-17" for="add-insurance" id="add-insurance-label">Assurer la totalité de la valeur des produits (+2,00 €)</label>
+                <label class="font-size-17" for="add-insurance" id="add-insurance-label">{% trans "Assurer la totalité de la valeur des produits" %} (+2,00 €)</label>
             </div>
             <div class="separator-cart"></div>
-            <p><span id="total_amount_title">Total de la commande : </span><span id="total-amount">0</span> €</p>
+            <p><span id="total_amount_title">{% trans "Total de la commande :" %} </span><span id="total-amount">0</span> €</p>
             <p>
               <input type="checkbox" id="accept-cgv"> 
-              <label for="accept-cgv" ><span id="accept-cgv-label">J'accepte les <a href="/cgv" target="_blank">conditions générales de vente</a>.</span>(v{{ latest_cgv.version }})</label>
+              <label for="accept-cgv" ><span id="accept-cgv-label">{% trans "J'accepte les" %} <a href="/cgv" target="_blank">{% trans "conditions générales de vente" %}</a>.</span>({{ latest_cgv.version }})</label>
             </p>
-            <button class="page-button" id="checkout">Payer via Stripe</button>
+            <button class="page-button" id="checkout">{% trans "Payer via Stripe" %}</button>
           
-            <p id="error-message" class="error hidden">Vous devez accepter les CGV pour continuer.</p>
+            <p id="error-message" class="error hidden">{% trans "Vous devez accepter les CGV pour continuer." %}</p>
         </aside>
     {% endif %}    
     
     </div>
         {% if expiration_date %}
-            <p ><span id="expiration_date">⚠️ Votre panier expirera le </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
+            <p ><span id="expiration_date">⚠️ {% trans "Votre panier expirera le" %} </span>{{ expiration_date|date:"d/m/Y H:i" }}.</p>
         {% else %}
-            <p id="expiration_soon">⚠️ Votre panier expirera bientôt.</p>
+            <p id="expiration_soon">⚠️ {% trans "Votre panier expirera bientôt." %}</p>
         {% endif %}
-
-    {% endif %}
 </section>
+{% endif %}
 <section id="empty-section">
-    <p id="empty_cart">Votre panier est vide.</p>
+    <p id="empty_cart">{% trans "Votre panier est vide." %}</p>
 </section>
+
 
 <div id="modal">
     <h2 class="text-center" id="nom-article"></h2>
     <button id="close-button" type="button">&times;</button>
     <div class="grid-container">
         <div class="product-info">
-            <h3 id="info-description">Description :</h3>
+            <h3 id="info-description">{% trans "Description :" %}</h3>
             <p id="description-article"></p>
-            <h3 id="info-price">Prix :</h3>
+            <h3 id="info-price">{% trans "Prix :" %}</h3>
             <p id="prix-article"></p>
         </div>
         <div class="image-container">
             <img id="current-image" src="" alt="Image du produit">
             <div class="image-buttons">
-                <button class="font-size-17" id="prev-button" type="button">Précédent</button>
-                <button class="font-size-17" id="next-button" type="button">Suivant</button>
+                <button class="font-size-17" id="prev-button" type="button">{% trans "Précédent" %}</button>
+                <button class="font-size-17" id="next-button" type="button">{% trans "Suivant" %}</button>
             </div>
         </div>
     </div>

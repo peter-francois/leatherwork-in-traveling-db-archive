@@ -843,7 +843,7 @@ footer {
 
 
 .custom-pictures { 
-    position: relative;
+    position: relative; 
     display: grid; 
     grid-template-columns: repeat(2, 1fr);
      gap: 50px; 
@@ -1312,4 +1312,15 @@ footer {
             padding: 5px;
            }
 
+}
+
+.flag-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.flag-button:hover {
+    opacity: 0.8;
 }

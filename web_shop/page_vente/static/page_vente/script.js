@@ -1,12 +1,12 @@
 const flags = document.querySelectorAll('.flag');
 
-// Initialisation de la langue par défaut
 let currentLanguage = localStorage.getItem('language') || 'fr';
-changeLanguage(currentLanguage);
+
+console.log("Langue actuelle:", localStorage.getItem('language'));
 
 async function getDocumentContent(documentType, lang) {
     try {
-        const response = await fetch(`/get_document_content/${documentType}/${lang}`);
+        const response = await fetch(`/api/get_document_content/${documentType}/${lang}`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -17,35 +17,48 @@ async function getDocumentContent(documentType, lang) {
     }
 }
 
+function getLanguageFromCookie() {
+    const match = document.cookie.match(/(?:^|;\s*)django_language=([^;]+)/);
+    return match ? match[1] : null;
+}
 // Fonction pour changer la langue
 
-async function changeLanguage(lang) {
-    let currentLanguage = lang;
-    localStorage.setItem('language', currentLanguage); // Mettre à jour la langue dans le stockage local
+async function changeLanguage(lang, event = null, initial = false) {
+    if (event) event.preventDefault(); // Empêche rechargement
 
-     // Modifier la langue de la balise <html>
-     document.documentElement.lang = lang;
 
-    const CGV_content = document.getElementById('cgv_content');
-    const Cookies_content = document.getElementById('cookies_content');
-    const LegalMentions_content = document.getElementById('legal_mentions_content');
-    const PrivacyPolicy_content = document.getElementById('privacy_policy_content');
-
-    if (CGV_content) {
-        CGV_content.innerHTML = await getDocumentContent('CGV', lang);
-    }
-    if (Cookies_content) {
-        Cookies_content.innerHTML = await getDocumentContent('Cookies', lang);
-    }
-    if (LegalMentions_content) {
-        LegalMentions_content.innerHTML = await getDocumentContent('LegalMentions', lang);
-    }
-    if (PrivacyPolicy_content) {
-        PrivacyPolicy_content.innerHTML = await getDocumentContent('PrivacyPolicy', lang);
-    }
-
-    // Mise à jour du contenu statique depuis translations.json
     try {
+        
+        // Mettre à jour la langue dans le stockage local
+        currentLanguage = lang;
+        localStorage.setItem('language', currentLanguage);
+        
+        // Mettre à jour les contenus des documents
+        const documentPromises = [];
+        
+        const documents = {
+            'cgv_content': 'CGV',
+            'cookies_content': 'Cookies',
+            'legal_mentions_content': 'LegalMentions',
+            'privacy_policy_content': 'PrivacyPolicy'
+        };
+
+        for (const [elementId, docType] of Object.entries(documents)) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                documentPromises.push(
+                    getDocumentContent(docType, lang)
+                        .then(content => {
+                            element.innerHTML = content;
+                        })
+                );
+            }
+        }
+
+        // Attendre que tous les documents soient chargés
+        await Promise.all(documentPromises);
+
+        // Charger les traductions depuis translations.json
         const response = await fetch('/static/page_vente/translations.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
@@ -57,188 +70,97 @@ async function changeLanguage(lang) {
 
         const translations = data[lang];
 
-        // Mise à jour des éléments statiques
-        const elementsToTranslate = {
-            'title_page_index': translations.title_page_index,
-                'title_index': translations.title_index,
-                'menu_button_home':translations.menu_button_home,
-                'menu_button_produit':translations.menu_button_produit,
-                'menu_button_panier':translations.menu_button_panier,
-                'menu_button_a_propos':translations.menu_button_a_propos,
-                'menu_button_tous_les_produits':translations.menu_button_tous_les_produits,
-                'menu_button_maroquinerie':translations.menu_button_maroquinerie,
-                'menu_button_macrames':translations.menu_button_macrames,
-                'menu_button_hybride':translations.menu_button_hybride,
-                'menu_button_creation_sur_mesure':translations.menu_button_creation_sur_mesure,
-                'macrames_title':translations.macrames_title,
-                'macrames_description':translations.macrames_description,
-                'creation_sur_mesure_title':translations.creation_sur_mesure_title,
-                'creation_sur_mesure_description':translations.creation_sur_mesure_description,
-                'maroquinerie_title':translations.maroquinerie_title,
-                'maroquinerie_description':translations.maroquinerie_description,
-                'hybride_title':translations.hybride_title,
-                'autres_produits_description':translations.autres_produits_description,
-                'title_page_cart':translations.title_page_cart,
-                'title_panier':translations.title_panier,
-                'vider_panier':translations.vider_panier,
-                'panier_vide':translations.panier_vide,
-                'any_question':translations.any_question,
-                'title_page_all_products':translations.title_page_all_products,
-                'title_all_products':translations.title_all_products,
-                'description_all_products':translations.description_all_products,
-                'filter_button_text':translations.filter_button_text,
-                'contact_link':translations.contact_link,     
-                'of':translations.of,
-                'of2':translations.of,
-                'no_image':translations.no_image,
-                'no_products':translations.no_products,
-                'title_cart':translations.title_cart,
-                'empty_cart':translations.empty_cart,
-                'title_page_leathercraft':translations.title_page_leathercraft,
-                'title_leathercraft':translations.title_leathercraft,
-                'description_leathercraft':translations.description_leathercraft,
-                'title_page_macrame':translations.title_page_macrame,
-                'title_macrame':translations.title_macrame,
-                'description_macrame':translations.description_macrame,
-                'title_page_hybride':translations.title_page_hybride,
-                'title_hybride':translations.title_hybride,
-                'description_hybride':translations.description_hybride,
-                'expiration_date':translations.expiration_date,
-                'expiration_soon':translations.expiration_soon,
-                'footer_about':translations.footer_about,
-                'footer_history':translations.footer_history,
-                'footer_legal':translations.footer_legal,
-                'footer_mention':translations.footer_mention,
-                'footer_cgv':translations.footer_cgv,
-                'footer_policy':translations.footer_policy,
-                'footer_cookie':translations.footer_cookie,
-                'footer_social':translations.footer_social,
-                'footer_payment':translations.footer_payment,
-                'footer_payment_description':translations.footer_payment_description,
-                'footer_copyright':translations.footer_copyright,
-                'contact_title':translations.contact_title,
-                'contact_description1':translations.contact_description1,
-                'contact_description2':translations.contact_description2,
-                'contact_description3':translations.contact_description3,
-                'contact_description4':translations.contact_description4,
-                'contact_description5':translations.contact_description5,
-                'contact_description6':translations.contact_description6,
-                'payment_title':translations.payment_title,
-                'shipping_cost':translations.shipping_cost,
-                'insurance_25_euros':translations.insurance_25_euros,
-                'with_our_partner_mondial_relay':translations.with_our_partner_mondial_relay,
-                'mandatory_insurance_2':translations.mandatory_insurance_2,
-                'mandatory_insurance_3':translations.mandatory_insurance_3,
-                'mandatory_insurance_4':translations.mandatory_insurance_4,
-                'total_articles_title':translations.total_articles_title,
-                'shipping_cost_short':translations.shipping_cost_short,
-                'insurance_cost':translations.insurance_cost,
-                'insurance_25_euros_2':translations.insurance_25_euros_2,
-                'add-insurance-label':translations.add_insurance_label,
-                'total_amount_title':translations.total_amount_title,
-                'accept-cgv-label':translations.accept_cgv_label,
-                'checkout':translations.checkout,
-                'error-message':translations.error_message,
-                'clear_cart':translations.clear_cart,
-                'info-price':translations.info_price,
-                'cgv_title': translations.cgv_title,
-                'cookies_title': translations.cookies_title,
-                'legal_mentions_title': translations.legal_mentions_title,
-                'privacy_policy_title': translations.privacy_policy_title,
-                'publish_on': translations.publish_on,
-                'payment-success-title': translations.payment_success_title,
-                'payment-success-description': translations.payment_success_description,
-                'payment-success-order-id': translations.payment_success_order_id,
-                'payment-success-amount': translations.payment_success_amount,
-                'payment-success-button': translations.payment_success_button,
-                'title_payment_cancel': translations.title_payment_cancel,
-                'payment-cancel-description': translations.payment_cancel_description,
-                'payment-cancel-button': translations.payment_cancel_button,
-                'title_about': translations.title_about,
-                'description_about': translations.description_about,
-                'title_custom': translations.title_custom,
-                'description_custom': translations.description_custom,
-                'title_nomad_creation': translations.title_nomad_creation,
-                'text_nomad_creation': translations.text_nomad_creation,
-                'title_creation_step': translations.title_creation_step,
-                'text_creation_step': translations.text_creation_step,
-                'list_creation_step1': translations.list_creation_step1,
-                'list_creation_step2': translations.list_creation_step2,
-                'list_creation_step3': translations.list_creation_step3,
-                'list_creation_step4': translations.list_creation_step4,
-                'list_creation_step5': translations.list_creation_step5,
-                'title_discover_realizations': translations.title_discover_realizations,
-                'title_why_choose_my_creations': translations.title_why_choose_my_creations,
-                'list_why_choose_my_creations_1': translations.list_why_choose_my_creations_1,
-                'list_why_choose_my_creations_2': translations.list_why_choose_my_creations_2,
-                'list_why_choose_my_creations_3': translations.list_why_choose_my_creations_3,
-                'list_why_choose_my_creations_4': translations.list_why_choose_my_creations_4,
-                'title_contact': translations.title_contact,
-                'text_contact': translations.text_contact,
-                'contact_phone': translations.contact_phone,
+        // Mise à jour de l'interface
+        updateInterface(translations, lang);
 
-            };
 
-        for (const [id, text] of Object.entries(elementsToTranslate)) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.innerHTML = text;
-            }
+        const currentPath = window.location.pathname.replace(/^\/[a-z]{2}/, '');
+        const newPath = translations.routes[currentPath] || currentPath;
+        const newUrl = `/${lang}${newPath}`;
+        document.cookie = `django_language=${lang}; path=/`;
+        window.history.pushState({}, '', newUrl);
+
+        // Mettre à jour les prix si on est sur la page panier
+        if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart')) {
+            const orderTotal = document.getElementById('order-total');
+            const insuranceCost = document.getElementById('insurance-cost');
+            const totalAmount = document.getElementById('total-amount');
+            
+            if (orderTotal && insuranceCost && totalAmount) {
+                const total = parseFloat(orderTotal.textContent.replace(',', '.'));
+                orderTotal.textContent = lang === 'en' ? 
+                    total.toFixed(2) : 
+                    total.toFixed(2).replace('.', ',');
+                
+                // Forcer la mise à jour de l'assurance et du total
+                console.log("Mise à jour des montants...");
+                await Promise.resolve(); // Attendre le prochain cycle
+                await updateInsurance();
+                await updateTotal();
+                console.log("Mise à jour terminée");
         }
-
-        // Mise à jour du placeholder du champ de recherche
-        const searchField = document.getElementById('search_field');
-        if (searchField) searchField.placeholder = translations.search_field;
-
-        // Mise à jour des labels
-        const labels = {
-            'label[for="search_field"]': translations.search_label,
-            'label[for="id_min_price"]': translations.min_price,
-            'label[for="id_max_price"]': translations.max_price
-        };
-
-        for (const [selector, text] of Object.entries(labels)) {
-            const element = document.querySelector(selector);
-            if (element) element.innerHTML = text;
-        }
-
-        // Mise à jour des éléments multiples (boutons, prix, images...)
-        const multipleElements = {
-            '.prices': translations.price,
-            '.add_to_cart_button': translations.add_to_cart_button,
-            '.prev-button': translations.previous_button,
-            '.next-button': translations.next_button,
-            '.first-button': translations.first_button,
-            '.last-button': translations.last_button,
-            '.delete_button': translations.delete_button,
-            '.no-image': translations.no_image,
-        };
-
-        for (const [selector, text] of Object.entries(multipleElements)) {
-            document.querySelectorAll(selector).forEach(element => {
-                if (element) {
-                    element.innerHTML = text;
-                }
-            });
-        }
-
-        // Mise à jour de l'état actif des drapeaux
-        flags.forEach(flag => {
-            flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
-        });
+    }
+         // Déclencher l'événement après les mises à jour
+         document.dispatchEvent(new Event('languageChanged'));
 
     } catch (error) {
-        console.error('Error fetching translations:', error);
+        console.error('Error during language change:', error);
     }
 }
 
-// Écouteurs d'événements pour les clics sur les drapeaux
-flags.forEach(flag => {
-    flag.addEventListener('click', () => {
-        const selectedLang = flag.getAttribute('data-lang');
-        changeLanguage(selectedLang);
+// Fonction séparée pour mettre à jour l'interface
+function updateInterface(translations, lang) {
+    // Mise à jour du champ de recherche
+    const searchField = document.getElementById('search_field');
+    if (searchField) {
+        searchField.placeholder = translations.search_field;
+    }
+
+    // Mise à jour des labels
+    const labels = {
+        'label[for="search_field"]': translations.search_label,
+        'label[for="id_min_price"]': translations.min_price,
+        'label[for="id_max_price"]': translations.max_price
+    };
+
+    for (const [selector, text] of Object.entries(labels)) {
+        const element = document.querySelector(selector);
+        if (element) element.innerHTML = text;
+    }
+
+    // Mise à jour des éléments multiples
+    const multipleElements = {
+        '.prices': translations.price,
+        '.add_to_cart_button': translations.add_to_cart_button,
+        '.prev-button': translations.previous_button,
+        '.next-button': translations.next_button,
+        '.first-button': translations.first_button,
+        '.last-button': translations.last_button,
+        '.delete_button': translations.delete_button,
+        '.no-image': translations.no_image,
+    };
+
+    for (const [selector, text] of Object.entries(multipleElements)) {
+        document.querySelectorAll(selector).forEach(element => {
+            if (element) {
+                element.innerHTML = text;
+            }
+        });
+    }
+
+    // Mise à jour des drapeaux
+    flags.forEach(flag => {
+        flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
     });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    // Langue déjà définie par Django via cookie
+    const lang = getLanguageFromCookie() || 'fr';  // fallback au cas où
+
+    // Lancer la logique JS avec cette langue (mais sans reload, ni changement d'URL)
+    changeLanguage(lang, null, true); // Le paramètre `initial = true` empêche le pushState
 });
+
 
 // Fonction pour afficher le menu
 function toggleMenu() {
@@ -308,6 +230,7 @@ function hideContact() {
     overlay.style.display = 'none'; // Masque l'overlay
     ContactDiv.style.display = 'none';
 }
+
 // Fonction pour fermer le contact et le modal si on clique sur l'overlay
 document.addEventListener('click', function(event) {
     const overlay = document.querySelector('#overlay');
@@ -334,78 +257,103 @@ document.addEventListener('DOMContentLoaded', function () {
     displayCart();
     initCart();
     updateTextCartButton(); 
-    if (window.location.pathname.includes('panier')){
+    if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart')){
         if(document.getElementById('order-total')){
+            const orderTotal = document.getElementById('order-total');
+            if (orderTotal) {
+                const total = parseFloat(orderTotal.textContent.replace(',', '.'));
+                orderTotal.textContent = currentLanguage === 'en' ? 
+                    total.toFixed(2) : 
+                    total.toFixed(2).replace('.', ',');
+            }
             updateInsurance();
             updateTotal();
             updateCartVisibility();
             
         }
     }
+    console.log("order-total:", document.getElementById('order-total').textContent);
+    console.log("insurance-cost:", document.getElementById('insurance-cost').textContent);
+    console.log("total-amount:", document.getElementById('total-amount').textContent);
 });
 
 // Fonction pour afficher les articles du panier
 function displayCart() {
-    fetch('/cart_detail/')
+    fetch('/api/cart_detail/')
         .then(response => response.json())
         .then(data => {
-
             let listeArticles = document.getElementById('liste-articles');
             if (listeArticles) {
-            listeArticles.innerHTML = ''; 
-            data.cart.forEach(article => {
-                let li = document.createElement('li');
-                let img = document.createElement('img');
-                let h3 = document.createElement('h3');
-                let p = document.createElement('p');
-                let span = document.createElement('span');
-                let span2 = document.createElement('span');
-                span.classList.add('price_article');
-                span.textContent = `${article.prix.toFixed(2)}`;
-                span2.textContent = `€ (x${article.quantity})`;
-                h3.textContent = `${article.nom}`;
-                p.appendChild(span);
-                p.appendChild(span2);
-                img.onclick = () => displayProductImages(article.id);
-                let button = document.createElement('button');
-                button.textContent = 'Supprimer';
-                button.onclick = () => remove_from_cart(article.id);
-                button.classList.add('page-button', 'delete_button');
-                li.appendChild(h3);
-                li.appendChild(p);
-                if (article.image1) {
-                    img.src = `${article.image1}`;
-                    img.alt = `${article.nom}`;
-                    li.appendChild(img);
-                }
-                else if (article.image2) {
-                    img.src = `${article.image2}`;
-                    img.alt = `${article.nom}`;
-                    li.appendChild(img);
-                }
-                else if (article.image3) {
-                    img.src = `${article.image3}`;
-                    img.alt = `${article.nom}`;
-                    li.appendChild(img);
-                }
-                else if (article.image4) {
-                    img.src = `${article.image4}`;
-                    img.alt = `${article.nom}`;
-                    li.appendChild(img);
-                }
-                else {
-                    img.src = ''; // Aucune image disponible
+                const formatNumber = (num) => currentLanguage === 'en' ? 
+                    num.toFixed(2) : 
+                    num.toFixed(2).replace('.', ',');
+                listeArticles.innerHTML = ''; 
+                data.cart.forEach(article => {
+                    let li = document.createElement('li');
+                    let img = document.createElement('img');
+                    let h3 = document.createElement('h3');
                     let p = document.createElement('p');
-                    p.classList.add('no-image');
-                    p.textContent = 'Aucune image disponible';
+                    let span = document.createElement('span');
+                    let span2 = document.createElement('span');
+                    span.classList.add('price_article');
+                    span.textContent = formatNumber(article.prix);;
+                    span2.textContent = `€ (x${article.quantity})`;
+                    h3.textContent = `${article.nom}`;
+                    p.appendChild(span);
+                    p.appendChild(span2);
+                    img.onclick = () => displayProductImages(article.id);
+                    let button = document.createElement('button');
+                    button.textContent = 'Supprimer';
+                    button.onclick = () => remove_from_cart(article.id);
+                    button.classList.add('page-button', 'delete_button');
+                    li.appendChild(h3);
                     li.appendChild(p);
-                }
+                    if (article.image1) {
+                        img.src = `${article.image1}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
+                    else if (article.image2) {
+                        img.src = `${article.image2}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
+                    else if (article.image3) {
+                        img.src = `${article.image3}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
+                    else if (article.image4) {
+                        img.src = `${article.image4}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
+                    else {
+                        img.src = ''; // Aucune image disponible
+                        let p = document.createElement('p');
+                        p.classList.add('no-image');
+                        const noImageText = gettext('Aucune image disponible');
+                        p.textContent = noImageText;
+                        li.appendChild(p);
+                    }
 
-                li.appendChild(button);
-                listeArticles.appendChild(li);
-            });
-        }
-    }).catch(error => console.error('Erreur lors de la récupération du panier:', error));
+                    li.appendChild(button);
+                    listeArticles.appendChild(li);
+                });
+                
+                // Appliquer les traductions après la création des boutons
+                fetch('/static/page_vente/translations.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data[currentLanguage]) {
+                            const translations = data[currentLanguage];
+                            document.querySelectorAll('.delete_button').forEach(button => {
+                                button.textContent = translations.delete_button;
+                            });
+                        }
+                    });
+            }
+        }).catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
 
 // Fonction pour récupérer le token CSRF depuis le meta tag
@@ -420,7 +368,7 @@ function initCart() {
 }
 // Ajouter un produit au panier
 function addToCart(articleId) {
-    fetch(`/add_to_cart/${articleId}/`, { 
+    fetch(`/api/add_to_cart/${articleId}/`, { 
         method: 'POST',
         headers: {
             'X-CSRFToken': getCSRFTokenFromMeta(),
@@ -457,7 +405,7 @@ function updateProductList(articleId) {
 
 // Fonction pour obtenir le nombre d'articles dans le panier
 async function getNumberOfProductsInCart() {
-    const response = await fetch(`/get_number_of_products_in_cart/`, { 
+    const response = await fetch(`/api/get_number_of_products_in_cart/`, { 
         method: 'GET',
         headers: {
             'X-CSRFToken': getCSRFTokenFromMeta(),
@@ -506,15 +454,15 @@ function updateCartVisibility() {
     // Si le total est 0 ou indéfini, on considère le panier vide
     if (orderTotal <= 0 || isNaN(orderTotal)) {
         cartSection.style.display = 'none';
-        emptyCartMessage.style.display = 'block'; // Affiche le message "Votre panier est vide"
+        emptyCartMessage.style.display = 'block';
     } else {
         cartSection.style.display = 'block';
-        emptyCartMessage.style.display = 'none'; // Cache le message si le panier n'est pas vide
+        emptyCartMessage.style.display = 'none';
     }
 }
 // Fonction pour vider le panier
 function clearCart() {
-    fetch('/vider_panier/', { 
+    fetch('/api/vider_panier/', { 
         method: 'POST',
         headers: {
             'X-CSRFToken': getCSRFTokenFromMeta(),
@@ -529,8 +477,9 @@ function clearCart() {
                 const addInsurance = document.getElementById('add-insurance');
                 addInsurance.checked = false;
                 alert(data.message);
-                document.getElementById('order-total').textContent = '0.00';
-                document.getElementById('total-amount').textContent = '0.00';
+                const formattedZero = currentLanguage === 'en' ? '0.00' : '0,00';
+                document.getElementById('order-total').textContent = formattedZero;
+                document.getElementById('total-amount').textContent = formattedZero;
                 updateCartVisibility();
                 initCart();
                 updateTextCartButton();
@@ -542,7 +491,7 @@ function clearCart() {
 
 // Fonction pour supprimer un article du panier
 function remove_from_cart(articleId) {
-    fetch(`/remove_from_cart/${articleId}/`, {
+    fetch(`/api/remove_from_cart/${articleId}/`, {
         method: 'POST',
         headers: {
             'X-CSRFToken': getCSRFTokenFromMeta(),
@@ -559,7 +508,11 @@ function remove_from_cart(articleId) {
                 let orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
                 const priceArticle = parseFloat(data.article.prix.toFixed(2));
                 orderTotal -= priceArticle;
-                document.getElementById('order-total').textContent = orderTotal.toFixed(2);
+                // Formater selon la langue
+                const formattedTotal = currentLanguage === 'en' ? 
+                    orderTotal.toFixed(2) : 
+                    orderTotal.toFixed(2).replace('.', ',');
+                document.getElementById('order-total').textContent = formattedTotal;
                 if (orderTotal<25) {
                     addInsurance.checked = false;
                 }
@@ -584,7 +537,7 @@ let images = []; // Tableau pour stocker les images
 
 // Fonction pour afficher les images d'un article avec le nom de l'article
 function displayProductImages(articleId) {
-    fetch(`/get_product_images/${articleId}/`)
+    fetch(`/api/get_product_images/${articleId}/`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -635,7 +588,11 @@ function closeModal() {
 // Fonction pour mettre à jour l'assurance
 
 function updateInsurance() {
+    console.log("Langue dans updateInsurance:", currentLanguage);
+    
     const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
+    console.log("orderTotal dans updateInsurance:", orderTotal);
+    
     const insuranceOption = document.getElementById('insurance-option'); // Checkbox assurance optionnelle
     const mandatoryInsurance = document.getElementById('mandatory-insurance'); // Assurance obligatoire
     const insuranceCostSpan = document.getElementById('insurance-cost'); // Prix assurance optionnelle
@@ -655,13 +612,17 @@ function updateInsurance() {
     insuranceCostSpan.textContent = "0,00";
     mandatoryInsuranceCostSpan.textContent = "0,00";
 
+    // Fonction helper pour formater les nombres selon la langue
+    const formatNumber = (num) => currentLanguage === 'en' ? 
+    num.toFixed(2) : 
+    num.toFixed(2).replace('.', ',');
 
     // 1. Gestion de l'assurance optionnelle entre 25 € et 50 €
     if (orderTotal > 25 && orderTotal <= 50) {
         insuranceOption.classList.remove('hidden'); // Afficher l'option d'assurance
         insurance.classList.add('hidden');
         if (insuranceOption.checked){
-        insuranceCostSpan.textContent = "2,00"; // Coût fixe pour cette tranche
+        insuranceCostSpan.textContent = formatNumber(2); // Coût fixe pour cette tranche
         }
     }
 
@@ -672,41 +633,55 @@ function updateInsurance() {
         mandatoryInsurance.classList.remove('hidden');
 
         // Définir le coût de l'assurance obligatoire en fonction du total
+        let insuranceAmount = 3.5;
         if (orderTotal > 500) {
             upTo500.classList.remove('hidden');
-            mandatoryInsuranceCostSpan.textContent = "8.00";
-            insuranceCostSpan.textContent = "8.00";
+            insuranceAmount = 8;
         } else if (orderTotal > 375) {
-            mandatoryInsuranceCostSpan.textContent = "8.00";
-            insuranceCostSpan.textContent = "8.00";
+            insuranceAmount = 8;
         } else if (orderTotal > 250) {
-            mandatoryInsuranceCostSpan.textContent = "6.50";
-            insuranceCostSpan.textContent = "6.50";
+            insuranceAmount = 6.5;
         } else if (orderTotal > 125) {
-            mandatoryInsuranceCostSpan.textContent = "5.00";
-            insuranceCostSpan.textContent = "5.00";
-        } else {
-            mandatoryInsuranceCostSpan.textContent = "3.50";
-            insuranceCostSpan.textContent = "3.50";
+            insuranceAmount = 5;
         }
-    }
+        mandatoryInsuranceCostSpan.textContent = formatNumber(insuranceAmount);
+        insuranceCostSpan.textContent = formatNumber(insuranceAmount);
 
+}
 }
 // Fonction pour mettre à jour le total
 function updateTotal() {
-    const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
-    const insuranceCost = parseFloat(document.getElementById('insurance-cost').textContent.replace(',', '.'))|| 0;
-
-    // Checkbox assurance optionnelle
-    const addInsurance = document.getElementById('add-insurance').checked;
+    const currentLang = localStorage.getItem('language') || 'fr';
+    console.log("Langue dans updateTotal:", currentLang);
+    
+    const orderTotalElement = document.getElementById('order-total');
+    const insuranceCostElement = document.getElementById('insurance-cost');
+    const totalAmountElement = document.getElementById('total-amount');
+    
+    if (!orderTotalElement || !insuranceCostElement || !totalAmountElement) {
+        console.error("Éléments manquants pour le calcul du total");
+        return;
+    }
+    
+    const orderTotal = parseFloat(orderTotalElement.textContent.replace(',', '.'));
+    const insuranceCost = parseFloat(insuranceCostElement.textContent.replace(',', '.')) || 0;
+    
+    console.log("orderTotal après parse:", orderTotal);
+    console.log("insuranceCost après parse:", insuranceCost);
+    
+    const addInsurance = document.getElementById('add-insurance')?.checked || false;
     let totalAmount = orderTotal + 5.00 + insuranceCost;
-    if (addInsurance) {
+    
+    if (addInsurance && orderTotal > 25 && orderTotal <= 50) {
         totalAmount += 2.00;
     }
     
-
-    document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
-
+    const formattedTotal = currentLang === 'en'
+        ? totalAmount.toFixed(2)
+        : totalAmount.toFixed(2).replace('.', ',');
+    
+    console.log("formattedTotal:", formattedTotal);
+    totalAmountElement.textContent = formattedTotal;
 }
 
 // Fonction pour gérer le checkout
@@ -714,8 +689,10 @@ function handleCheckout() {
     const acceptCGV = document.getElementById('accept-cgv').checked;
     const addInsurance = document.getElementById('add-insurance').checked;
     const errorMessage = document.getElementById('error-message');
-    const orderTotal = document.getElementById('total-amount').textContent;
-
+    let orderTotal = document.getElementById('total-amount').textContent;
+    if (currentLanguage == 'fr'){
+        orderTotal = orderTotal.replace(',', '.');
+    }
     if (!acceptCGV) {
       errorMessage.classList.remove('hidden');
       return;
@@ -732,7 +709,7 @@ function handleCheckout() {
         return;
     }
     // Redirige vers Stripe avec le montant total
-    window.location.href = `/checkout/?front_total=${orderTotal}&cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+    window.location.href = `/api/checkout/?front_total=${orderTotal}&cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
 // débug
   function debugElements() {
@@ -821,5 +798,15 @@ document.addEventListener("click", function(event) {
         const articleId = event.target.getAttribute('data-product-id');
         if (!articleId) return;
         addToCart(articleId);
+    }
+});
+
+document.addEventListener('languageChanged', function() {
+    console.log("Événement languageChanged déclenché");
+    console.log("Langue actuelle:", currentLanguage);
+    console.log("Sur la page panier:", window.location.pathname.includes('panier'));
+    if(window.location.pathname.includes('panier') || window.location.pathname.includes('cart')){
+        updateInsurance();
+        updateTotal();
     }
 });

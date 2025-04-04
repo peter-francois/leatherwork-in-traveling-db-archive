@@ -14,6 +14,7 @@ from pathlib import Path
 import environ
 import os
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 
 
@@ -55,6 +56,20 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'csp',
+    'django.contrib.sitemaps',
+    'django_extensions',
+]
+
+
+LANGUAGES = [
+    ('fr', _('Français')),
+    ('en', _('English')),
+]
+
+LANGUAGE_CODE = 'fr'  # Langue par défaut
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
 MIDDLEWARE = [
@@ -150,8 +165,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

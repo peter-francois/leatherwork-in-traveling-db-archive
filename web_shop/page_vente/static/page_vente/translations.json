@@ -1,40 +1,10 @@
 {
     "en": {
-    "title_page_index": "My shop",
-    "title_index": "Welcome in our shop of handmade leather and macrame",
-    "menu_button_home": "HOME",
-    "menu_button_produit": "OUR CREATIONS",
-    "menu_button_panier": "CART",
-    "menu_button_a_propos": "ABOUT",
-    "menu_button_tous_les_produits": "ALL OUR HANDMADE CREATIONS",
-    "menu_button_maroquinerie": "HANDMADE LEATHERCRAFT",
-    "menu_button_macrames": "MACRAME CREATION",
-    "menu_button_hybride": "LEATHER & MACRAME FUSION",
-    "menu_button_creation_sur_mesure": "CUSTOM CREATION",
-    "macrames_title": "Macrame Area",
-    "macrames_description": "Creation based on <strong>thread weaving</strong>. ",
-    "creation_sur_mesure_title": "Custom Creation",
-    "creation_sur_mesure_description": "<strong>An idea, a project?</strong><span class='display-laptop'><br>My greatest pleasure is creating <strong>completely customized</strong> pieces for my clients.</span><br>Don't hesitate to contact me, I will be happy to <strong>breathe life into your ideas!</strong>",
-    "maroquinerie_title": "Leathercraft Area",
-    "maroquinerie_description": "Collection of models in <strong>leather</strong>.",
-    "hybride_title": "Hybrid",
-    "autres_produits_description": "Mix of <strong>different techniques and materials</strong>.",
-    "title_page_cart":"Cart",
-    "title_panier":"Shopping cart",
-    "vider_panier":"Clear Cart",
-    "any_question":"If you have questions, do not hesitate to contact me by clicking ",
-    "panier_vide":"Your cart is empty",
-    "title_page_all_products":"All products",
-    "title_all_products":"Explore all our creations - Find your unique style",
-    "description_all_products":"Here you can find all the available products.",
-    "contact_link":"HERE",
     "search_field":"Search...",
     "search_label":"Search",
     "min_price":"Min price",
     "max_price":"Max price",
     "filter_button_text":"Filter",
-    "of":"of",
-    "price":"Price",
     "add_to_cart_button":"Add to cart",
     "no_image":"No image available",
     "no_products":"No products available",
@@ -126,7 +96,22 @@
     "list_why_choose_my_creations_4": "<strong>Personalized creations</strong>, made with passion and attention to detail.",
     "title_contact": "Contact me",
       "text_contact": "A project, an idea, a desire to exchange on my creations or on the nomadic life ? Write me !",
-      "contact_phone": "Phone number : "
+      "contact_phone": "Phone number : ",
+      "routes": {
+        "/cgv/": "/terms-and-conditions/",
+        "/mentions-legales/": "/legal-notice/",
+        "/cookies/": "/cookies/",
+        "/politique-confidentialite/": "/privacy-policy/",
+        "/produits/macrames/":"/products/macrame/",
+        "/produits/maroquinerie/":"/products/leather-goods/",
+        "/creation-sur-mesure/":"/custom-creation/",
+        "/produits/hybride/":"/products/hybrid/",
+        "/produits/":"/products/",
+        "/panier/":"/cart/",
+        "/a_propos/":"/about/",
+        "/paiement_reussi/":"/payment-successful/",
+        "/paiement_annule/":"/payment-cancelled/"    
+      }
   },
     "fr": {
       "title_page_index": "Ma boutique",
@@ -255,7 +240,22 @@
       "list_why_choose_my_creations_4": "<strong>Des créations personnalisées</strong>, façonnées avec passion et souci du détail.",
       "title_contact": "Contactez-moi",
       "text_contact": "Un projet, une idée, une envie d’échanger sur mes créations ou sur la vie nomades ? Écrivez-moi !",
-      "contact_phone": "Numéro de téléphone : "
+      "contact_phone": "Numéro de téléphone : ",
+      "routes": {
+      "/terms-and-conditions/": "/cgv/",
+      "/legal-notice/": "/mentions-legales/",
+      "/cookies/": "/cookies/",
+      "/privacy-policy/": "/politique-confidentialite/",
+      "/products/macrames/":"/produits/macrames/",
+      "/products/leather-goods/":"/produits/maroquinerie/",
+      "/custom-creation/":"/creation-sur-mesure/",
+      "/products/hybrid/":"/produits/hybride/",
+      "/products/":"/produits/",
+      "/cart/":"/panier/",
+      "/about/":"/a-propos/",
+      "/payment-successful/":"/paiement-reussi/",
+      "/payment-cancelled/":"/paiement-annule/"    
+    }
     }
     
 }

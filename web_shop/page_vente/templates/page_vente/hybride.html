@@ -1,11 +1,12 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
-{% block meta-description %}Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires et bijoux alliant l’élégance du cuir à la finesse du tissage.{% endblock %}
-{% block title %}Créations hybrides maroquinerie & macramé - Accessoires uniques{% endblock %}
+{% load i18n %}
+{% block meta-description %}{% trans "Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires et bijoux alliant l’élégance du cuir à la finesse du tissage." %}{% endblock %}
+{% block title %}{% trans "Créations hybrides maroquinerie & macramé - Accessoires uniques" %}{% endblock %}
 {% block header %}
-    <h1 id="title_hybride">Accessoires uniques alliant maroquinerie et macramé</h1>
+    <h1 id="title_hybride">{% trans "Accessoires uniques alliant maroquinerie et macramé" %}</h1>
 {% endblock %}
 
 {% block description %}
-    <p class ="text-center" id="description_hybride"><strong>Hybride</strong> est une alliance de <strong>differentes techniques et matériaux</strong>.<br>Ici vous trouverez tous les produits en <strong>Hybride</strong> disponibles.</p>
+    <p class ="text-center" id="description_hybride"><strong>Hybride</strong>{% trans " est une alliance de " %}<strong>{% trans "differentes techniques et matériaux" %}</strong>.<br>{% trans "Ici vous trouverez tous les produits en " %}<strong>Hybride</strong>{% trans " disponibles." %}</p>
 {% endblock %}
