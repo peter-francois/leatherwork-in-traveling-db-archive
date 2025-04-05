@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-04 10:19+0200\n"
+"POT-Creation-Date: 2025-04-05 08:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,8 +33,7 @@ msgstr ""
 #: .\page_vente\templates\page_vente\a_propos.html:5
 msgid ""
 "À propos - L’histoire et le savoir-faire de Leather Work In Traveling DB"
-msgstr ""
-"About - The history and expertise of Leather Work In Traveling DB"
+msgstr "About - The history and expertise of Leather Work In Traveling DB"
 
 #: .\page_vente\templates\page_vente\a_propos.html:7
 msgid "Mon histoire et mon savoir-faire en maroquinerie et macramé"
@@ -49,20 +48,20 @@ msgid "Créations en maroquinerie et macramé - Leather Work In Traveling DB"
 msgstr ""
 "Custom Creation of leatherwork and macrame - Personalize your accessories"
 
-#: .\page_vente\templates\page_vente\base.html:32
+#: .\page_vente\templates\page_vente\base.html:33
 msgid "Si vous avez des questions, n'hésitez pas à me contacter en cliquant "
 msgstr "If you have questions, do not hesitate to contact me by clicking"
 
-#: .\page_vente\templates\page_vente\base.html:32
+#: .\page_vente\templates\page_vente\base.html:33
 msgid "ICI"
 msgstr "HERE"
 
-#: .\page_vente\templates\page_vente\base.html:39
+#: .\page_vente\templates\page_vente\base.html:40
 msgid ""
 "Besoin de renseignements ou de prendre contact pour un produit sur mesure ?"
 msgstr "You need information or want to contact for a custom product ?"
 
-#: .\page_vente\templates\page_vente\base.html:40
+#: .\page_vente\templates\page_vente\base.html:41
 msgid ""
 "Je suis à votre disposition pour toute information complémentaire, que ce "
 "soit sur le procédé de fabrication ou les matières premières utilisées."
@@ -70,75 +69,75 @@ msgstr ""
 "I am available to provide additional information, whether it is about the "
 "production process or the raw materials used."
 
-#: .\page_vente\templates\page_vente\base.html:41
+#: .\page_vente\templates\page_vente\base.html:42
 msgid "Vous souhaitez un produit"
 msgstr "Would you like a product"
 
-#: .\page_vente\templates\page_vente\base.html:41
+#: .\page_vente\templates\page_vente\base.html:42
 msgid "sur mesure"
 msgstr "custom-made"
 
-#: .\page_vente\templates\page_vente\base.html:41
+#: .\page_vente\templates\page_vente\base.html:42
 msgid "ou personnaliser un produit existant ?"
 msgstr "or personalise an existing product ?"
 
-#: .\page_vente\templates\page_vente\base.html:42
+#: .\page_vente\templates\page_vente\base.html:43
 msgid ""
 "Contactez-moi dès maintenant pour en discuter et obtenir un devis "
 "personnalisé."
 msgstr "Contact me now to discuss and get a personalised quote."
 
-#: .\page_vente\templates\page_vente\base.html:43
+#: .\page_vente\templates\page_vente\base.html:44
 msgid "Je suis joignable soit par télephone:"
 msgstr "I am available either by phone:"
 
-#: .\page_vente\templates\page_vente\base.html:46
+#: .\page_vente\templates\page_vente\base.html:47
 msgid "soit par email:"
 msgstr "or by email:"
 
-#: .\page_vente\templates\page_vente\base.html:49
+#: .\page_vente\templates\page_vente\base.html:50
 msgid "À très bientôt"
 msgstr "See you soon"
 
-#: .\page_vente\templates\page_vente\base.html:55
+#: .\page_vente\templates\page_vente\base.html:56
 msgid "À propos"
 msgstr "About"
 
-#: .\page_vente\templates\page_vente\base.html:63
+#: .\page_vente\templates\page_vente\base.html:64
 msgid "Informations légales"
 msgstr "Legal informations"
 
-#: .\page_vente\templates\page_vente\base.html:65
+#: .\page_vente\templates\page_vente\base.html:66
 #: .\page_vente\templates\page_vente\mentions-legales.html:6
 msgid "Mentions légales"
 msgstr "Legal mentions"
 
-#: .\page_vente\templates\page_vente\base.html:66
+#: .\page_vente\templates\page_vente\base.html:67
 msgid "Conditions Générales de Vente (CGV)"
 msgstr "General Terms and Conditions of Sale (GTC)"
 
-#: .\page_vente\templates\page_vente\base.html:67
+#: .\page_vente\templates\page_vente\base.html:68
 #: .\page_vente\templates\page_vente\politique-confidentialite.html:6
 msgid "Politique de Confidentialité"
 msgstr "Privacy Policy"
 
-#: .\page_vente\templates\page_vente\base.html:68
+#: .\page_vente\templates\page_vente\base.html:69
 msgid "Gestion des Cookies"
 msgstr "Cookie Management"
 
-#: .\page_vente\templates\page_vente\base.html:73
+#: .\page_vente\templates\page_vente\base.html:74
 msgid "Suivez-nous"
 msgstr "Follow us"
 
-#: .\page_vente\templates\page_vente\base.html:81
+#: .\page_vente\templates\page_vente\base.html:82
 msgid "Paiements sécurisés"
 msgstr "Payment Secure"
 
-#: .\page_vente\templates\page_vente\base.html:82
+#: .\page_vente\templates\page_vente\base.html:83
 msgid "Transactions sécurisées avec"
 msgstr "Secure transactions with"
 
-#: .\page_vente\templates\page_vente\base.html:88
+#: .\page_vente\templates\page_vente\base.html:89
 msgid "Tous droits réservés."
 msgstr "All rights reserved."
 
@@ -620,88 +619,96 @@ msgstr "Cart - Secure order for leatherwork and macrame"
 msgid "Votre panier - Vérifiez et finalisez votre commande"
 msgstr "Your cart - Check and finalize your order"
 
-#: .\page_vente\templates\page_vente\panier.html:14
+#: .\page_vente\templates\page_vente\panier.html:15
 msgid "Vider le panier"
 msgstr "Empty cart"
 
-#: .\page_vente\templates\page_vente\panier.html:16
-#: .\page_vente\templates\page_vente\panier.html:53
+#: .\page_vente\templates\page_vente\panier.html:17
+#: .\page_vente\templates\page_vente\panier.html:54
 msgid "Votre panier expirera le"
 msgstr "Your cart will expire on"
 
-#: .\page_vente\templates\page_vente\panier.html:18
-#: .\page_vente\templates\page_vente\panier.html:55
+#: .\page_vente\templates\page_vente\panier.html:19
+#: .\page_vente\templates\page_vente\panier.html:56
 msgid "Votre panier expirera bientôt."
 msgstr "Your cart will expire soon."
 
-#: .\page_vente\templates\page_vente\panier.html:25
+#: .\page_vente\templates\page_vente\panier.html:26
 msgid "Paiement sécurisé"
 msgstr "Secure payment"
 
-#: .\page_vente\templates\page_vente\panier.html:27
+#: .\page_vente\templates\page_vente\panier.html:28
 msgid "Les frais de port sont fixes à 5 €"
 msgstr "Shipping costs are fixed at 5 €"
 
-#: .\page_vente\templates\page_vente\panier.html:27
+#: .\page_vente\templates\page_vente\panier.html:28
 msgid "et incluent une assurance jusqu'à 25 €"
 msgstr "and include insurance up to 25 € "
 
-#: .\page_vente\templates\page_vente\panier.html:27
+#: .\page_vente\templates\page_vente\panier.html:28
 msgid "via notre partenaire Mondial Relay."
 msgstr "through our partner Mondial Relay."
 
-#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:30
 msgid "Une assurance obligatoire de"
 msgstr "A mandatory insurance of"
 
-#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:30
 msgid ""
 "montant variable selon le montant de la commande. Plus d'information sur la "
 "page"
 msgstr ""
 "variable amount depending on the order total. More information on the page"
 
-#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:30
 msgid "sera ajoutée pour les commandes comprise entre"
 msgstr "will be added for orders between"
 
-#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:30
 msgid "et"
 msgstr "and"
 
-#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:30
 msgid "L'indemnisation forfaitaire maximal est de 500 €"
 msgstr "The maximum fixed compensation is 500 €"
 
-#: .\page_vente\templates\page_vente\panier.html:34
+#: .\page_vente\templates\page_vente\panier.html:32
+msgid "Total des articles :"
+msgstr "Total of the articles :"
+
+#: .\page_vente\templates\page_vente\panier.html:33
+msgid "Frais de port :"
+msgstr "Shipping cost :"
+
+#: .\page_vente\templates\page_vente\panier.html:35
 msgid "Assurance :"
 msgstr "Insurance:"
 
-#: .\page_vente\templates\page_vente\panier.html:34
+#: .\page_vente\templates\page_vente\panier.html:35
 msgid "Inclue (jusqu'à 25 €)"
 msgstr "Included (up to 25 €)"
 
-#: .\page_vente\templates\page_vente\panier.html:37
+#: .\page_vente\templates\page_vente\panier.html:38
 msgid "Assurer la totalité de la valeur des produits"
 msgstr "Insure the total value of the products"
 
-#: .\page_vente\templates\page_vente\panier.html:40
+#: .\page_vente\templates\page_vente\panier.html:41
 msgid "Total de la commande :"
 msgstr "Order total:"
 
-#: .\page_vente\templates\page_vente\panier.html:43
+#: .\page_vente\templates\page_vente\panier.html:44
 msgid "J'accepte les"
 msgstr "I accept the"
 
-#: .\page_vente\templates\page_vente\panier.html:43
+#: .\page_vente\templates\page_vente\panier.html:44
 msgid "conditions générales de vente"
 msgstr "terms and conditions of sale"
 
-#: .\page_vente\templates\page_vente\panier.html:45
+#: .\page_vente\templates\page_vente\panier.html:46
 msgid "Payer via Stripe"
 msgstr "Pay with Stripe"
 
-#: .\page_vente\templates\page_vente\panier.html:47
+#: .\page_vente\templates\page_vente\panier.html:48
 msgid "Vous devez accepter les CGV pour continuer."
 msgstr "You must accept the terms and conditions to continue."
 
@@ -709,19 +716,17 @@ msgstr "You must accept the terms and conditions to continue."
 msgid "Votre panier est vide."
 msgstr "Your cart is empty."
 
-#: .\page_vente\templates\page_vente\panier.html:69
-msgid "Description :"
-msgstr "Description:"
-
-#: .\page_vente\templates\page_vente\panier.html:71
+#: .\page_vente\templates\page_vente\panier.html:72
 msgid "Prix :"
 msgstr "Price:"
 
-#: .\page_vente\templates\page_vente\panier.html:77
+#: .\page_vente\templates\page_vente\panier.html:78
+#: .\page_vente\templates\page_vente\product_base.html:78
 msgid "Précédent"
 msgstr "Previous"
 
-#: .\page_vente\templates\page_vente\panier.html:78
+#: .\page_vente\templates\page_vente\panier.html:79
+#: .\page_vente\templates\page_vente\product_base.html:79
 msgid "Suivant"
 msgstr "Next"
 
@@ -737,6 +742,29 @@ msgstr ""
 #: .\page_vente\templates\page_vente\politique-confidentialite.html:4
 msgid "Politique de Confidentialité | Leather Work In Traveling DB"
 msgstr "Privacy Policy | Leather Work In Traveling DB"
+
+#: .\page_vente\templates\page_vente\product_base.html:10
+msgid "Filtrer"
+msgstr "Filter"
+
+#: .\page_vente\templates\page_vente\product_base.html:28
+#: .\page_vente\templates\page_vente\product_base.html:98
+msgid "of"
+msgstr "of"
+
+#: .\page_vente\templates\page_vente\product_base.html:51
+#, fuzzy
+#| msgid "Aucun produit disponible"
+msgid "Aucune image disponible"
+msgstr "No products available"
+
+#: .\page_vente\templates\page_vente\product_base.html:57
+msgid "Aucun produit disponible"
+msgstr "No products available"
+
+#: .\page_vente\templates\page_vente\product_base.html:72
+msgid "Prix"
+msgstr "Price"
 
 #: .\page_vente\templates\page_vente\produits.html:5
 msgid ""
@@ -822,6 +850,9 @@ msgstr "French"
 msgid "English"
 msgstr "English"
 
+#~ msgid "Description :"
+#~ msgstr "Description:"
+
 #~ msgid ""
 #~ "Vous souhaitez un produit <strong>100 % sur mesure</strong> ou "
 #~ "personnaliser un produit existant ?"
@@ -869,20 +900,11 @@ msgstr "English"
 #~ msgid "Prix max"
 #~ msgstr "Max price"
 
-#~ msgid "Filtrer"
-#~ msgstr "Filter"
-
 #~ msgid "sur"
 #~ msgstr "of"
 
-#~ msgid "Prix"
-#~ msgstr "Price"
-
 #~ msgid "Ajouter au panier"
 #~ msgstr "Add to cart"
-
-#~ msgid "Aucun produit disponible"
-#~ msgstr "No products available"
 
 #~ msgid "&laquo; Première"
 #~ msgstr "&laquo; First"
@@ -890,8 +912,8 @@ msgstr "English"
 #~ msgid "Dernière &raquo;"
 #~ msgstr "Last &raquo;"
 
-msgid "Supprimer"
-msgstr "Delete"
+#~ msgid "Supprimer"
+#~ msgstr "Delete"
 
 #~ msgid "Maroquinerie"
 #~ msgstr "Leathercraft"
@@ -938,9 +960,6 @@ msgstr "Delete"
 #~ "€ (variable amount depending on the order amount. For more information "
 #~ "see <a href='/cgv' target='_blank'>CGV</a>) will be added for orders "
 #~ "between 50 € and 500 €."
-
-#~ msgid "Total des articles :"
-#~ msgstr "Total of the articles :"
 
 #~ msgid "Frais de port : <span id='shipping-cost'>5.00 €</span>"
 #~ msgstr "Fees of shipping : <span id='shipping-cost'>5.00 €</span>"

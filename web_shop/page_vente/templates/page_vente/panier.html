@@ -29,8 +29,8 @@
           
             <p id="mandatory-insurance" class="hidden"><span id="mandatory_insurance_2">🚨 {% trans "Une assurance obligatoire de" %} </span><span id="mandatory-insurance-cost">0</span><span id="mandatory_insurance_3"> € ({% trans "montant variable selon le montant de la commande. Plus d'information sur la page" %} <a href="/cgv" target="_blank">CGV</a>) {% trans "sera ajoutée pour les commandes comprise entre" %} 50 € {% trans "et" %} 500 €.</span><span id="mandatory_insurance_4"><br><br>⚠️ {% trans "L'indemnisation forfaitaire maximal est de 500 €" %}⚠️</span></p>
             <div class="separator-cart"></div>
-            <p id="total_articles"><span id="total_articles_title">Total des articles : </span><span id="order-total">{{total | floatformat:2 }}</span> €</p>
-            <p id="shipping_cost_short">Frais de port : <span id="shipping-cost">5.00 €</span></p>
+            <p id="total_articles"><span id="total_articles_title">{% trans "Total des articles :" %} </span><span id="order-total">{{total | floatformat:2 }}</span> €</p>
+            <p id="shipping_cost_short">{% trans "Frais de port :" %} <span id="shipping-cost">5.00 €</span></p>
             
             <p id="insurance"><span id="insurance_cost">{% trans "Assurance :" %} </span><span id="insurance-cost">0.00</span> €<span id="insurance_25_euros_2" ><br>{% trans "Inclue (jusqu'à 25 €)" %}</span></p>
             <div id="insurance-option" class="hidden">
@@ -67,7 +67,7 @@
     <button id="close-button" type="button">&times;</button>
     <div class="grid-container">
         <div class="product-info">
-            <h3 id="info-description">{% trans "Description :" %}</h3>
+            <h3 id="info-description">Description :</h3>
             <p id="description-article"></p>
             <h3 id="info-price">{% trans "Prix :" %}</h3>
             <p id="prix-article"></p>
