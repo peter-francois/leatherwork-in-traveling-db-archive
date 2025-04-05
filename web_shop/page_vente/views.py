@@ -18,6 +18,9 @@ from django.urls import reverse
 import base64
 import os
 from django.core.mail import send_mail
+from django.utils import translation
+from page_vente.sitemaps import StaticSitemap
+from django.contrib.sitemaps.views import sitemap as django_sitemap
 
 
 
@@ -31,7 +34,7 @@ logger = logging.getLogger(__name__)
 def index(request):
     return render(request, 'page_vente/index.html')
 
-def tous_les_produits(request):
+def produits(request):
     all_products = AllProducts.objects.all()
 
     all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
@@ -689,5 +692,24 @@ def get_document_content(request, document_type, lang):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-def sitemap(request):
-    return render(request, 'page_vente/api/sitemap.xml')
+def sitemap_lang(request, lang):
+    sitemaps = {
+        'static': StaticSitemap(lang),
+    }
+    return django_sitemap(request, sitemaps)
+
+def sitemap_index(request):
+    # Tu peux aussi automatiser cette liste si tu as beaucoup de langues
+    base_url = request.build_absolute_uri('/')
+    sitemap_urls = [
+        f'{base_url}sitemap-fr.xml',
+        f'{base_url}sitemap-en.xml',
+    ]
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for url in sitemap_urls:
+        xml += f'  <sitemap>\n    <loc>{url}</loc>\n  </sitemap>\n'
+    xml += '</sitemapindex>'
+
+    return HttpResponse(xml, content_type='application/xml')

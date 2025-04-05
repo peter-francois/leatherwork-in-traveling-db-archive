@@ -1,27 +1,33 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
+from django.utils import translation
 
 class StaticSitemap(Sitemap):
     priority = 1.0
     changefreq = "monthly"
+    
+    def __init__(self, language = None):
+        self.language = language
+        self.static_urls = {
+            'index': 'boutique:index',
+            'produits': 'boutique:produits',
+            'maroquinerie': 'boutique:maroquinerie',
+            'macrames': 'boutique:macrames',
+            'hybride': 'boutique:hybride',
+            'creation-sur-mesure': 'boutique:creation-sur-mesure',
+            'a_propos': 'boutique:a_propos',
+            'cgv': 'boutique:cgv',
+            'cookies': 'boutique:cookies',
+            'legal_mentions': 'boutique:legal_mentions',
+            'privacy_policy': 'boutique:privacy_policy',
+            'panier': 'boutique:panier',
+            'paiement_reussi': 'boutique:paiement_reussi',
+            'paiement_annule': 'boutique:paiement_annule'
+        }
 
     def items(self):
-        return [
-            'boutique:index',
-            'boutique:macrames',
-            'boutique:maroquinerie',
-            'boutique:creation-sur-mesure',
-            'boutique:hybride',
-            'boutique:produits',
-            'boutique:panier',
-            'boutique:a_propos',
-            'boutique:payment_success',
-            'boutique:payment_cancel',
-            'boutique:cgv',
-            'boutique:cookies',
-            'boutique:legal_mentions',
-            'boutique:privacy_policy',
-        ]
+        return list(self.static_urls.keys())
 
     def location(self, item):
-        return reverse(item)  # Génère les URLs automatiquement
+        with translation.override(self.language):
+            return reverse(self.static_urls[item])
