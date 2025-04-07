@@ -23,7 +23,6 @@ from page_vente.sitemaps import StaticSitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 
 
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
 endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
@@ -312,6 +311,8 @@ def get_total_centimes(total_articles, add_insurance):
     return total_centimes  # Total en centimes
 
 def checkout(request):
+    success_url_build = request.build_absolute_uri(reverse('boutique:paiement_reussi'))
+    cancel_url_build = request.build_absolute_uri(reverse('boutique:paiement_annule'))
     cart_uuid = request.GET.get('cart_uuid')
     cart = Cart.objects.filter(uuid=cart_uuid, paid=False).first()
     front_total = float(request.GET.get('front_total'))
@@ -380,8 +381,8 @@ def checkout(request):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url=("http://localhost:8002/paiement_reussi?session_id={CHECKOUT_SESSION_ID}" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/paiement_reussi?session_id={CHECKOUT_SESSION_ID}"),
-            cancel_url=("http://localhost:8002/paiement_annule" if settings.DEBUG else "https://www.leatherworkintravelingdb.com/paiement_annule"),
+            success_url=success_url_build + "?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url=cancel_url_build,
             metadata={
                             'cart_uuid': str(cart_uuid),
                             'acceptCGV': str(acceptCGV),
