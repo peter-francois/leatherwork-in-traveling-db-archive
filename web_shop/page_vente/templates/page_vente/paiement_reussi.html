@@ -2,6 +2,16 @@
 {% load i18n %}
 {% block meta-description %}{% trans "Votre paiement a été confirmé ! Consultez les détails de votre commande et suivez son statut en toute sécurité." %}{% endblock %}
 {% block title %}{% trans "Paiement confirmé | Leather Work In Traveling DB" %}{% endblock %}
+{% block head %}
+    <!-- Balises hreflang pour la page actuelle -->
+    {% get_current_language as current_language %}
+    <link rel="alternate" href="https://leatherworkintravelingdb.com{{ request.path }}" hreflang="{{ current_language }}" />
+    {% if current_language == "fr" %}
+        <link rel="alternate" href="https://leatherworkintravelingdb.com/en/payment-successful/" hreflang="en" />
+    {% elif current_language == "en" %}
+        <link rel="alternate" href="https://leatherworkintravelingdb.com/fr/paiement_reussi/" hreflang="fr" />
+    {% endif %}
+{% endblock %}
 {% block header %}  
     <h1 id="title_payment_success">{% trans "Paiement Réussi !" %}</h1>
 {% endblock %}

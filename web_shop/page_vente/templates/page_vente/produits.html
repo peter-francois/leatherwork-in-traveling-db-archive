@@ -6,7 +6,16 @@
 {% endblock %}
 
 {% block title %}{% trans "Accessoires, maroquinerie & macramé faits main | Créations originales" %}{% endblock %}
-
+{% block head %}
+    <!-- Balises hreflang pour la page actuelle -->
+    {% get_current_language as current_language %}
+    <link rel="alternate" href="https://leatherworkintravelingdb.com{{ request.path }}" hreflang="{{ current_language }}" />
+    {% if current_language == "fr" %}
+        <link rel="alternate" href="https://leatherworkintravelingdb.com/en/products/" hreflang="en" />
+    {% elif current_language == "en" %}
+        <link rel="alternate" href="https://leatherworkintravelingdb.com/fr/produits/" hreflang="fr" />
+    {% endif %}
+{% endblock %}
 {% block header %}
     <h1 id="title_all_products">{% trans "Explorez Nos Créations - Trouvez votre style unique" %}</h1>
 {% endblock %}
