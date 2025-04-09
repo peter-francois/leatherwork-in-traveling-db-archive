@@ -2,8 +2,6 @@ const flags = document.querySelectorAll('.flag');
 
 let currentLanguage = localStorage.getItem('language') || 'fr';
 
-console.log("Langue actuelle:", localStorage.getItem('language'));
-
 async function getDocumentContent(documentType, lang) {
     try {
         const response = await fetch(`/api/get_document_content/${documentType}/${lang}`);
@@ -93,11 +91,10 @@ async function changeLanguage(lang, event = null, initial = false) {
                     total.toFixed(2).replace('.', ',');
                 
                 // Forcer la mise à jour de l'assurance et du total
-                console.log("Mise à jour des montants...");
+
                 await Promise.resolve(); // Attendre le prochain cycle
                 await updateInsurance();
                 await updateTotal();
-                console.log("Mise à jour terminée");
         }
     }
          // Déclencher l'événement après les mises à jour
@@ -272,9 +269,6 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
     }
-    console.log("order-total:", document.getElementById('order-total').textContent);
-    console.log("insurance-cost:", document.getElementById('insurance-cost').textContent);
-    console.log("total-amount:", document.getElementById('total-amount').textContent);
 });
 
 // Fonction pour afficher les articles du panier
@@ -588,11 +582,13 @@ function closeModal() {
 // Fonction pour mettre à jour l'assurance
 
 function updateInsurance() {
-    console.log("Langue dans updateInsurance:", currentLanguage);
+    const orderTotalElement = document.getElementById('order-total');
     
-    const orderTotal = parseFloat(document.getElementById('order-total').textContent.replace(',', '.'));
-    console.log("orderTotal dans updateInsurance:", orderTotal);
+    if (!orderTotalElement) {
+        return;
+    }
     
+    const orderTotal = parseFloat(orderTotalElement.textContent.replace(',', '.'));    
     const insuranceOption = document.getElementById('insurance-option'); // Checkbox assurance optionnelle
     const mandatoryInsurance = document.getElementById('mandatory-insurance'); // Assurance obligatoire
     const insuranceCostSpan = document.getElementById('insurance-cost'); // Prix assurance optionnelle
@@ -652,22 +648,18 @@ function updateInsurance() {
 // Fonction pour mettre à jour le total
 function updateTotal() {
     const currentLang = localStorage.getItem('language') || 'fr';
-    console.log("Langue dans updateTotal:", currentLang);
     
     const orderTotalElement = document.getElementById('order-total');
     const insuranceCostElement = document.getElementById('insurance-cost');
     const totalAmountElement = document.getElementById('total-amount');
     
     if (!orderTotalElement || !insuranceCostElement || !totalAmountElement) {
-        console.error("Éléments manquants pour le calcul du total");
         return;
     }
     
     const orderTotal = parseFloat(orderTotalElement.textContent.replace(',', '.'));
     const insuranceCost = parseFloat(insuranceCostElement.textContent.replace(',', '.')) || 0;
     
-    console.log("orderTotal après parse:", orderTotal);
-    console.log("insuranceCost après parse:", insuranceCost);
     
     const addInsurance = document.getElementById('add-insurance')?.checked || false;
     let totalAmount = orderTotal + 5.00 + insuranceCost;
@@ -680,7 +672,6 @@ function updateTotal() {
         ? totalAmount.toFixed(2)
         : totalAmount.toFixed(2).replace('.', ',');
     
-    console.log("formattedTotal:", formattedTotal);
     totalAmountElement.textContent = formattedTotal;
 }
 
@@ -802,9 +793,6 @@ document.addEventListener("click", function(event) {
 });
 
 document.addEventListener('languageChanged', function() {
-    console.log("Événement languageChanged déclenché");
-    console.log("Langue actuelle:", currentLanguage);
-    console.log("Sur la page panier:", window.location.pathname.includes('panier'));
     if(window.location.pathname.includes('panier') || window.location.pathname.includes('cart')){
         updateInsurance();
         updateTotal();
