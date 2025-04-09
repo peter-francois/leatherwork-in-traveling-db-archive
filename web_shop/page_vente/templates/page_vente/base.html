@@ -7,16 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token }}">
-    <meta name="description" content="{% block meta-description %}Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des créations uniques pour sublimer votre quotidien. Commandez en ligne, expédition rapide.{% endblock %}">
+    <meta name="description" content="{% block meta-description %}{% trans 'Sacs, accessoires et décorations en cuir et macramé conçus avec passion. Des créations uniques pour sublimer votre quotidien. Commandez en ligne, expédition rapide.' %}{% endblock %}">
     <meta name="author" content="Leather Work In Traveling DB">
     {% block head %}
     {% endblock %}
-    <meta property="og:title" content="Créations en maroquinerie et macramé - Leather Work In Traveling DB">
-    <meta property="og:description" content="Découvrez des produits authentiques en maroquinerie et macramé faits main.">
+    <meta property="og:title" content="{% trans 'Créations en maroquinerie et macramé - Leather Work In Traveling DB' %}">
+    <meta property="og:description" content="{% trans 'Découvrez des produits authentiques en maroquinerie et macramé faits main.' %}">
     <meta property="og:image" content="{% static 'page_vente/images/logo2.png' %}">
     <meta property="og:url" content="https://leatherworkintravelingdb.com">
-    <meta name="twitter:title" content="Créations en maroquinerie et macramé - Leather Work In Traveling DB">
-    <meta name="twitter:description" content="Découvrez des produits authentiques en maroquinerie et macramé faits main.">
+    <meta name="twitter:title" content="{% trans 'Créations en maroquinerie et macramé - Leather Work In Traveling DB' %}">
+    <meta name="twitter:description" content="{% trans 'Découvrez des produits authentiques en maroquinerie et macramé faits main.' %}">
     <meta name="twitter:image" content="{% static 'page_vente/images/logo2.png' %}">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/x-icon" href="{% static 'page_vente/favicon.ico' %}">
