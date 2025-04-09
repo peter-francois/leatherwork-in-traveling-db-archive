@@ -45,6 +45,7 @@ urlpatterns += [
     path('sitemap.xml', views.sitemap_index, name='sitemap-index'),
     path('sitemap-fr.xml', views.sitemap_lang, {'lang': 'fr'}, name='sitemap-fr'),
     path('sitemap-en.xml', views.sitemap_lang, {'lang': 'en'}, name='sitemap-en'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
     path('api/', include('page_vente.api_urls')),  # Déplacer API dans un autre fichier
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]

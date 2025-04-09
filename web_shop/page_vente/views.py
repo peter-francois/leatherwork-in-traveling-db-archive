@@ -714,3 +714,6 @@ def sitemap_index(request):
     xml += '</sitemapindex>'
 
     return HttpResponse(xml, content_type='application/xml')
+
+def robots_txt(request):
+    return HttpResponse("User-agent: *\nDisallow: /admin/\nDisallow: /private/\nSitemap: https://www.leather/sitemap.xml", content_type='text/plain')
