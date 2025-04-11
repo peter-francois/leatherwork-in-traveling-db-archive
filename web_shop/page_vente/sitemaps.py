@@ -15,7 +15,7 @@ class StaticSitemap(Sitemap):
             'macrames': 'boutique:macrames',
             'hybride': 'boutique:hybride',
             'creation-sur-mesure': 'boutique:creation-sur-mesure',
-            'a_propos': 'boutique:a_propos',
+            # 'a_propos': 'boutique:a_propos',
             'cgv': 'boutique:cgv',
             'cookies': 'boutique:cookies',
             'legal_mentions': 'boutique:legal_mentions',
