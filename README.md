@@ -8,7 +8,7 @@ As a beginner developer, this project is particularly challenging, as I am build
 ## ✨ Features
 - 🛒 Product listing with categories and filters
 - 🛍️ Shopping cart functionality
-<!-- - 💳 Secure checkout process -->
+- 💳 Secure checkout process with Stripe
 - ⚙️ Admin dashboard for product
 - 📱 Responsive design for mobile and desktop
 
@@ -17,7 +17,7 @@ As a beginner developer, this project is particularly challenging, as I am build
 - **Backend:** Django (Python)
 - **Frontend:** HTML, CSS, JavaScript
 - **Database:** SQLite
-<!-- - **Deployment:** (To be decided) -->
+- **Deployment:** Pythonanywhere - live at [leatherworkintravelingdb.com](https://www.leatherworkintravelingdb.com/fr/)
 
 ## 🚀 Installation
 1. Clone the repository:
@@ -49,9 +49,7 @@ As a beginner developer, this project is particularly challenging, as I am build
 7. Open your browser and go to `http://127.0.0.1:8000/`
 
 ## 🔮 Future Improvements
-- 💰 Payment gateway integration (Stripe)
-- 🔍 SEO optimization
-- ⚡ Performance improvements
+- ⚡ Performance improvement
 
 ## 🤝 Contributions
 Since this is a personal learning project, contributions are not expected at the moment. However, suggestions and feedback are always welcome!
