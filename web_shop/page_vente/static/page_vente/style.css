@@ -615,6 +615,9 @@ body {
         cursor: pointer;
 
     }
+    .unavailable{
+        background: #cacaca;
+    }
     #modal{
         background-color: #fff;
         border: 2px solid var(--color2);
@@ -1027,7 +1030,7 @@ footer {
         .produit, #liste-articles li{
             padding: 10px;
         }
-        .produit button, #liste-articles button{
+        .produit button, #liste-articles button, .produit a{
             margin-top: 10px;
         }
         #modal{

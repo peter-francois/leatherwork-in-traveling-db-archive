@@ -34,9 +34,13 @@
     <div id="liste-produits" class="grid-container tous_les_produits">
         {% if products %}
         {% for produit in products %}
-            <div class="produit" data-product-id="{{ produit.id }}">
+            <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
                 <h3>{{ produit.nom }}</h3>
+                {% if not produit.en_attente_dans_panier %}
                 <p><span class="prices">Prix</span> : {{ produit.prix | floatformat:2 }} €</p>
+                {%else %}
+                <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
+                {% endif %}
                 {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
                     {% if produit.image1 %}
                             <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
@@ -50,7 +54,11 @@
                 {% else %}
                     <p class="no-image">{% trans "Aucune image disponible" %}</p>
                 {% endif %}
+                {% if not produit.en_attente_dans_panier %}
                 <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">Ajouter au panier</button>
+                {%else %}
+                <a class="align-items-center page-button on-order-button text-center" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com%20-%20Demande%20de%20fabrication%20de%20l'article%20{{produit.nom}}">{% trans 'Contactez-nous, disponible sur commande' %}</a>
+                {% endif %}
             </div>
         {% endfor %}
         {% else %}

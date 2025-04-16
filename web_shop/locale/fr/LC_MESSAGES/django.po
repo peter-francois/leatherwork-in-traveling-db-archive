@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 07:38+0200\n"
+"POT-Creation-Date: 2025-04-16 10:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -409,23 +409,22 @@ msgid "Bienvenue dans notre boutique de maroquinerie et macramé faits main"
 msgstr "Bienvenue dans ma boutique de maroquinerie et macramé faits main"
 
 #: .\page_vente\templates\page_vente\index.html:22
-#: .\page_vente\templates\page_vente\index.html:26
 msgid "Espace Maroquinerie"
 msgstr "Espace Maroquinerie – Sacs, portefeuilles & accessoires en cuir"
 
-#: .\page_vente\templates\page_vente\index.html:27
+#: .\page_vente\templates\page_vente\index.html:26
 msgid "Collection de modèles en "
 msgstr "Découvrez ma collection de modèles en "
 
-#: .\page_vente\templates\page_vente\index.html:27
+#: .\page_vente\templates\page_vente\index.html:26
 msgid "Cuir"
 msgstr "Cuir"
 
-#: .\page_vente\templates\page_vente\index.html:27
+#: .\page_vente\templates\page_vente\index.html:26
 msgid " conçue avec passion et savoir-faire."
 msgstr " conçue avec passion et savoir-faire."
 
-#: .\page_vente\templates\page_vente\index.html:28
+#: .\page_vente\templates\page_vente\index.html:27
 msgid ""
 "Chaque pièce – sac en cuir, portefeuille, ceinture ou accessoire – est "
 "réalisée avec des matériaux de qualité et un souci du détail."
@@ -433,20 +432,19 @@ msgstr ""
 "Chaque pièce – sac en cuir, portefeuille, ceinture ou accessoire – est "
 "réalisée avec des matériaux de qualité et un souci du détail."
 
-#: .\page_vente\templates\page_vente\index.html:37
-#: .\page_vente\templates\page_vente\index.html:40
+#: .\page_vente\templates\page_vente\index.html:36
 msgid "Espace Macramé"
 msgstr "Macramé fait à la main – Bijoux & accessoires en tissage"
 
-#: .\page_vente\templates\page_vente\index.html:41
+#: .\page_vente\templates\page_vente\index.html:39
 msgid "Création sur une base de "
 msgstr "Laissez-vous séduire par mes "
 
-#: .\page_vente\templates\page_vente\index.html:41
+#: .\page_vente\templates\page_vente\index.html:39
 msgid "tissage de fils"
 msgstr "créations en macramé"
 
-#: .\page_vente\templates\page_vente\index.html:41
+#: .\page_vente\templates\page_vente\index.html:39
 msgid ""
 ", une technique de tissage de fils qui permet de créer des pièces uniques : "
 "suspensions murales, porte-plantes, bijoux, et bien plus encore. Des objets "
@@ -456,51 +454,51 @@ msgstr ""
 "collier, boucles d'oreilles, chevillière, et bien plus encore. Des bijoux "
 "bohèmes, doux et authentiques."
 
-#: .\page_vente\templates\page_vente\index.html:52
+#: .\page_vente\templates\page_vente\index.html:47
 msgid "Création sur Mesure"
 msgstr "Création sur Mesure – Donnez vie à vos idées"
 
-#: .\page_vente\templates\page_vente\index.html:53
+#: .\page_vente\templates\page_vente\index.html:51
 msgid "Une idée, un Projet ?"
 msgstr "Vous avez une idée précise ou un projet personnel ?"
 
-#: .\page_vente\templates\page_vente\index.html:53
+#: .\page_vente\templates\page_vente\index.html:51
 msgid "Mon plus grand plaisir, c'est de réaliser des créations"
 msgstr "Je propose des créations"
 
-#: .\page_vente\templates\page_vente\index.html:54
+#: .\page_vente\templates\page_vente\index.html:52
 msgid "entièrement personnalisés"
 msgstr "100% personnalisées "
 
-#: .\page_vente\templates\page_vente\index.html:55
+#: .\page_vente\templates\page_vente\index.html:52
 msgid "que ce soit en maroquinerie ou en macramé."
 msgstr "que ce soit en maroquinerie ou en macramé."
 
-#: .\page_vente\templates\page_vente\index.html:55
+#: .\page_vente\templates\page_vente\index.html:52
 msgid "Mon objectif : transformer votre idée en un"
 msgstr "Mon objectif : transformer votre idée en un"
 
-#: .\page_vente\templates\page_vente\index.html:55
+#: .\page_vente\templates\page_vente\index.html:52
 msgid "objet unique"
 msgstr "objet unique "
 
-#: .\page_vente\templates\page_vente\index.html:55
+#: .\page_vente\templates\page_vente\index.html:52
 msgid "qui vous ressemble."
 msgstr ""
 
-#: .\page_vente\templates\page_vente\index.html:65
+#: .\page_vente\templates\page_vente\index.html:59
 msgid "Fusion cuir, macramé et pierres décoratives"
 msgstr "Fusion cuir, macramé et pierres décoratives"
 
-#: .\page_vente\templates\page_vente\index.html:66
+#: .\page_vente\templates\page_vente\index.html:63
 msgid "Certaines de mes créations sont dites"
 msgstr "Certaines de mes créations sont dites "
 
-#: .\page_vente\templates\page_vente\index.html:66
+#: .\page_vente\templates\page_vente\index.html:63
 msgid "hybrides"
 msgstr "hybrides "
 
-#: .\page_vente\templates\page_vente\index.html:66
+#: .\page_vente\templates\page_vente\index.html:63
 msgid ""
 "car elles mêlent différentes techniques artisanales, comme le cuir, le "
 "macramé, et l'ajout de pierres décoratives naturelles."
@@ -508,7 +506,7 @@ msgstr ""
 "car elles mêlent différentes techniques artisanales, comme le cuir, le "
 "macramé, et l'ajout de pierres décoratives naturelles."
 
-#: .\page_vente\templates\page_vente\index.html:67
+#: .\page_vente\templates\page_vente\index.html:64
 msgid ""
 "Le résultat ? Des pièces originales, pleines de charme et d’authenticité."
 msgstr ""
@@ -792,12 +790,12 @@ msgid "Prix :"
 msgstr "Prix :"
 
 #: .\page_vente\templates\page_vente\panier.html:88
-#: .\page_vente\templates\page_vente\product_base.html:78
+#: .\page_vente\templates\page_vente\product_base.html:86
 msgid "Précédent"
 msgstr "Prédécedent"
 
 #: .\page_vente\templates\page_vente\panier.html:89
-#: .\page_vente\templates\page_vente\product_base.html:79
+#: .\page_vente\templates\page_vente\product_base.html:87
 msgid "Suivant"
 msgstr "Suivant"
 
@@ -820,19 +818,27 @@ msgid "Filtrer"
 msgstr "Filtrer"
 
 #: .\page_vente\templates\page_vente\product_base.html:28
-#: .\page_vente\templates\page_vente\product_base.html:98
+#: .\page_vente\templates\page_vente\product_base.html:106
 msgid "of"
 msgstr "sur"
 
-#: .\page_vente\templates\page_vente\product_base.html:51
+#: .\page_vente\templates\page_vente\product_base.html:42
+msgid "Produit indisponible pour le moment"
+msgstr "Produit indisponible pour le moment"
+
+#: .\page_vente\templates\page_vente\product_base.html:55
 msgid "Aucune image disponible"
 msgstr "Aucun produit disponible"
 
-#: .\page_vente\templates\page_vente\product_base.html:57
+#: .\page_vente\templates\page_vente\product_base.html:60
+msgid "Contactez-nous, disponible sur commande"
+msgstr "Contactez-nous, disponible sur commande"
+
+#: .\page_vente\templates\page_vente\product_base.html:65
 msgid "Aucun produit disponible"
 msgstr "Aucun produit disponible"
 
-#: .\page_vente\templates\page_vente\product_base.html:72
+#: .\page_vente\templates\page_vente\product_base.html:80
 msgid "Prix"
 msgstr "Prix"
 

@@ -36,11 +36,12 @@ def index(request):
 def produits(request):
     all_products = AllProducts.objects.all()
 
-    all_products = [product for product in all_products if product.disponible and not product.en_attente_dans_panier]
+    all_products = [product for product in all_products if product.disponible]
 
-    all_products.sort(key=lambda product: product.id, reverse=True)
+    all_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_products, form = use_filter(request, all_products, is_all_products=True )
+
 
     page_obj = pagination(request,all_products)
 
