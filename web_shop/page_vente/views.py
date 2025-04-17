@@ -21,6 +21,7 @@ from django.core.mail import send_mail
 from django.utils import translation
 from page_vente.sitemaps import StaticSitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
+from urllib.parse import urlencode
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -48,6 +49,7 @@ def produits(request):
     context = {
         'products': page_obj,
         'form': form,
+        'query_string': get_query_string(request),
     }
 
     return render(request, 'page_vente/produits.html', context)
@@ -65,6 +67,7 @@ def maroquinerie(request):
     context = {
         'products': page_obj,
         'form': form,
+        'query_string': get_query_string(request),
     }
 
     return render(request, 'page_vente/maroquinerie.html', context)
@@ -83,6 +86,7 @@ def macrames(request):
     context = {
         'products': page_obj,
         'form': form,
+        'query_string': get_query_string(request),
     }
 
     return render(request, 'page_vente/macrames.html', context)
@@ -100,6 +104,7 @@ def hybride(request):
     context = {
         'products': page_obj,
         'form': form,
+        'query_string': get_query_string(request),
     }
 
     return render(request, 'page_vente/hybride.html', context)
@@ -266,11 +271,17 @@ def use_filter(request, product_views, is_all_products):
 
     return product_views, form
 
-def pagination(request,product_views):
+def pagination(request, product_views):
 
-    paginator = Paginator(product_views, 20)  # 20 articles par page
+    paginator = Paginator(product_views, 2)
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
+
+def get_query_string(request):
+    params = request.GET.copy()
+    if 'page' in params:
+        params.pop('page')
+    return params.urlencode()
 
 def get_total_centimes(total_articles, add_insurance):
 
