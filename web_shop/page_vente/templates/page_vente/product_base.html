@@ -15,13 +15,13 @@
     <!--Pagination Links-->
     <div class="pagination text-center font-size-17">
         {% if products.has_previous %}
-            <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
-            <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
+            <a class="pagination-button first-button" href="?page=1">&laquo; {% trans "Premier" %}</a>
+            <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
         {% endif %}
         <br id="br-pagination">
         {% if products.has_next %}
-            <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
-            <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+            <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
+            <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
         {% endif %}
 
         <span class="current-page">
@@ -37,7 +37,7 @@
             <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
                 <h3>{{ produit.nom }}</h3>
                 {% if not produit.en_attente_dans_panier %}
-                <p><span class="prices">Prix</span> : {{ produit.prix | floatformat:2 }} €</p>
+                <p>{% trans "Prix" %} : {{ produit.prix | floatformat:2 }} €</p>
                 {%else %}
                 <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
                 {% endif %}
@@ -52,10 +52,10 @@
                         <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
                     {% endif %}
                 {% else %}
-                    <p class="no-image">{% trans "Aucune image disponible" %}</p>
+                    <p >{% trans "Aucune image disponible" %}</p>
                 {% endif %}
                 {% if not produit.en_attente_dans_panier %}
-                <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">Ajouter au panier</button>
+                <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">{% trans "Ajouter au panier" %}</button>
                 {%else %}
                 <a class="align-items-center page-button on-order-button text-center" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com%20-%20Demande%20de%20fabrication%20de%20l'article%20{{produit.nom}}">{% trans 'Contactez-nous, disponible sur commande' %}</a>
                 {% endif %}
@@ -94,13 +94,13 @@
          <!--Pagination Links-->
         <div class="pagination text-center font-size-17">
             {% if products.has_previous %}
-                <a class="pagination-button first-button" href="?page=1">&laquo; First</a>
-                <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">Previous</a>
+                <a class="pagination-button first-button" href="?page=1">&laquo; {% trans "Premier" %}</a>
+                <a class="pagination-button prev-button" href="?page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
             {% endif %}
             <br id="br-pagination">
             {% if products.has_next %}
-                <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">Next</a>
-                <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+                <a class="pagination-button next-button" href="?page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
+                <a class="pagination-button last-button" href="?page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
             {% endif %}
             <span class="current-page">
                 Page {{ products.number }} <span id="of2">{% trans "of" %}</span> {{ products.paginator.num_pages }}

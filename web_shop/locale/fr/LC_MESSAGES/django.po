@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 07:05+0200\n"
+"POT-Creation-Date: 2025-04-17 08:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -822,14 +822,27 @@ msgid "Prix :"
 msgstr "Prix :"
 
 #: .\page_vente\templates\page_vente\panier.html:88
+#: .\page_vente\templates\page_vente\product_base.html:19
 #: .\page_vente\templates\page_vente\product_base.html:86
+#: .\page_vente\templates\page_vente\product_base.html:98
 msgid "Précédent"
 msgstr "Prédécedent"
 
 #: .\page_vente\templates\page_vente\panier.html:89
+#: .\page_vente\templates\page_vente\product_base.html:23
 #: .\page_vente\templates\page_vente\product_base.html:87
+#: .\page_vente\templates\page_vente\product_base.html:102
 msgid "Suivant"
 msgstr "Suivant"
+
+#: .\page_vente\templates\page_vente\panier.html:97
+msgid "Supprimer"
+msgstr "Supprimer"
+
+#: .\page_vente\templates\page_vente\panier.html:98
+#: .\page_vente\templates\page_vente\product_base.html:55
+msgid "Aucune image disponible"
+msgstr "Aucune image disponible"
 
 #: .\page_vente\templates\page_vente\politique-confidentialite.html:3
 msgid ""
@@ -849,18 +862,33 @@ msgstr "Politique de Confidentialité | Leather Work In Traveling DB"
 msgid "Filtrer"
 msgstr "Filtrer"
 
+#: .\page_vente\templates\page_vente\product_base.html:18
+#: .\page_vente\templates\page_vente\product_base.html:97
+msgid "Premier"
+msgstr ""
+
+#: .\page_vente\templates\page_vente\product_base.html:24
+#: .\page_vente\templates\page_vente\product_base.html:103
+msgid "Dernier"
+msgstr ""
+
 #: .\page_vente\templates\page_vente\product_base.html:28
 #: .\page_vente\templates\page_vente\product_base.html:106
 msgid "of"
 msgstr "sur"
 
+#: .\page_vente\templates\page_vente\product_base.html:40
+#: .\page_vente\templates\page_vente\product_base.html:80
+msgid "Prix"
+msgstr "Prix"
+
 #: .\page_vente\templates\page_vente\product_base.html:42
 msgid "Produit indisponible pour le moment"
 msgstr "Produit indisponible pour le moment"
 
-#: .\page_vente\templates\page_vente\product_base.html:55
-msgid "Aucune image disponible"
-msgstr "Aucun produit disponible"
+#: .\page_vente\templates\page_vente\product_base.html:58
+msgid "Ajouter au panier"
+msgstr "Ajouter au panier"
 
 #: .\page_vente\templates\page_vente\product_base.html:60
 msgid "Contactez-nous, disponible sur commande"
@@ -869,10 +897,6 @@ msgstr "Contactez-nous, disponible sur commande"
 #: .\page_vente\templates\page_vente\product_base.html:65
 msgid "Aucun produit disponible"
 msgstr "Aucun produit disponible"
-
-#: .\page_vente\templates\page_vente\product_base.html:80
-msgid "Prix"
-msgstr "Prix"
 
 #: .\page_vente\templates\page_vente\produits.html:5
 msgid ""

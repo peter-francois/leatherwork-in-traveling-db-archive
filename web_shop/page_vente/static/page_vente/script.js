@@ -56,27 +56,8 @@ async function changeLanguage(lang, event = null, initial = false) {
         // Attendre que tous les documents soient chargés
         await Promise.all(documentPromises);
 
-        // Charger les traductions depuis translations.json
-        const response = await fetch('/static/page_vente/translations.json');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        const data = await response.json();
-        if (!data[lang]) {
-            console.error(`Language ${lang} not found in translations`);
-            return;
-        }
-
-        const translations = data[lang];
-
         // Mise à jour de l'interface
-        updateInterface(translations, lang);
-
-
-        const currentPath = window.location.pathname.replace(/^\/[a-z]{2}/, '');
-        const newPath = translations.routes[currentPath] || currentPath;
-        const newUrl = `/${lang}${newPath}`;
-        document.cookie = `django_language=${lang}; path=/`;
-        window.history.pushState({}, '', newUrl);
+        updateFlags(lang);
 
         // Mettre à jour les prix si on est sur la page panier
         if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart')) {
@@ -105,31 +86,8 @@ async function changeLanguage(lang, event = null, initial = false) {
     }
 }
 
-// Fonction séparée pour mettre à jour l'interface
-function updateInterface(translations, lang) {
-
-
-    // Mise à jour des éléments multiples
-    const multipleElements = {
-        '.prices': translations.price,
-        '.add_to_cart_button': translations.add_to_cart_button,
-        '.prev-button': translations.previous_button,
-        '.next-button': translations.next_button,
-        '.first-button': translations.first_button,
-        '.last-button': translations.last_button,
-        '.delete_button': translations.delete_button,
-        '.no-image': translations.no_image,
-    };
-
-    for (const [selector, text] of Object.entries(multipleElements)) {
-        document.querySelectorAll(selector).forEach(element => {
-            if (element) {
-                element.innerHTML = text;
-            }
-        });
-    }
-
-    // Mise à jour des drapeaux
+// Fonction séparée pour mettre à jour l'etat actif des drapeaux
+function updateFlags(lang) {
     flags.forEach(flag => {
         flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
     });
@@ -267,6 +225,7 @@ function displayCart() {
                     num.toFixed(2).replace('.', ',');
                 listeArticles.innerHTML = ''; 
                 data.cart.forEach(article => {
+                    const translations_front = JSON.parse(document.getElementById("translations").textContent);
                     let li = document.createElement('li');
                     let img = document.createElement('img');
                     let h3 = document.createElement('h3');
@@ -281,7 +240,7 @@ function displayCart() {
                     p.appendChild(span2);
                     img.onclick = () => displayProductImages(article.id);
                     let button = document.createElement('button');
-                    button.textContent = 'Supprimer';
+                    button.textContent = translations_front.delete_button;
                     button.onclick = () => remove_from_cart(article.id);
                     button.classList.add('page-button', 'delete_button');
                     li.appendChild(h3);
@@ -310,8 +269,7 @@ function displayCart() {
                         img.src = ''; // Aucune image disponible
                         let p = document.createElement('p');
                         p.classList.add('no-image');
-                        const noImageText = gettext('Aucune image disponible');
-                        p.textContent = noImageText;
+                        p.textContent = translations_front.no_image;
                         li.appendChild(p);
                     }
 
@@ -319,17 +277,7 @@ function displayCart() {
                     listeArticles.appendChild(li);
                 });
                 
-                // Appliquer les traductions après la création des boutons
-                fetch('/static/page_vente/translations.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data[currentLanguage]) {
-                            const translations = data[currentLanguage];
-                            document.querySelectorAll('.delete_button').forEach(button => {
-                                button.textContent = translations.delete_button;
-                            });
-                        }
-                    });
+
             }
         }).catch(error => console.error('Erreur lors de la récupération du panier:', error));
 }
