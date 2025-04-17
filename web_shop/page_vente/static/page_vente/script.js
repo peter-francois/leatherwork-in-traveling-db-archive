@@ -230,9 +230,9 @@ function displayCart() {
                     let img = document.createElement('img');
                     let h3 = document.createElement('h3');
                     let p = document.createElement('p');
+                    p.textContent = translations_front.price;
                     let span = document.createElement('span');
                     let span2 = document.createElement('span');
-                    span.classList.add('price_article');
                     span.textContent = formatNumber(article.prix);;
                     span2.textContent = `€ (x${article.quantity})`;
                     h3.textContent = `${article.nom}`;
@@ -244,7 +244,7 @@ function displayCart() {
                     button.onclick = () => remove_from_cart(article.id);
                     button.classList.add('page-button', 'delete_button');
                     li.appendChild(h3);
-                    li.appendChild(p);
+                    
                     if (article.image1) {
                         img.src = `${article.image1}`;
                         img.alt = `${article.nom}`;
@@ -270,8 +270,9 @@ function displayCart() {
                         let p = document.createElement('p');
                         p.classList.add('no-image');
                         p.textContent = translations_front.no_image;
-                        li.appendChild(p);
+
                     }
+                    li.appendChild(p);
 
                     li.appendChild(button);
                     listeArticles.appendChild(li);

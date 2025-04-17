@@ -36,11 +36,6 @@
         {% for produit in products %}
             <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
                 <h3>{{ produit.nom }}</h3>
-                {% if not produit.en_attente_dans_panier %}
-                <p>{% trans "Prix" %} : {{ produit.prix | floatformat:2 }} €</p>
-                {%else %}
-                <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
-                {% endif %}
                 {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
                     {% if produit.image1 %}
                             <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
@@ -55,8 +50,10 @@
                     <p >{% trans "Aucune image disponible" %}</p>
                 {% endif %}
                 {% if not produit.en_attente_dans_panier %}
+                <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }} €</p>
                 <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">{% trans "Ajouter au panier" %}</button>
                 {%else %}
+                <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
                 <a class="align-items-center page-button on-order-button text-center" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com%20-%20Demande%20de%20fabrication%20de%20l'article%20{{produit.nom}}">{% trans 'Contactez-nous, disponible sur commande' %}</a>
                 {% endif %}
             </div>
@@ -77,7 +74,7 @@
             <div class="product-info">
                 <h3>Description :</h3>
                 <p id="description-article"></p>
-                <h3>{% trans "Prix" %}:</h3>
+                <h3>{% trans "Prix: " %}</h3>
                 <p id="prix-article"></p>
             </div>
             <div class="image-container">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 08:54+0200\n"
+"POT-Creation-Date: 2025-04-17 09:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -801,8 +801,11 @@ msgid "Votre panier est vide."
 msgstr "Your cart is empty."
 
 #: .\page_vente\templates\page_vente\panier.html:82
-msgid "Prix :"
-msgstr "Price:"
+#: .\page_vente\templates\page_vente\panier.html:99
+#: .\page_vente\templates\page_vente\product_base.html:40
+#: .\page_vente\templates\page_vente\product_base.html:80
+msgid "Prix: "
+msgstr "Price: "
 
 #: .\page_vente\templates\page_vente\panier.html:88
 #: .\page_vente\templates\page_vente\product_base.html:19
@@ -858,11 +861,6 @@ msgstr ""
 #: .\page_vente\templates\page_vente\product_base.html:106
 msgid "of"
 msgstr "of"
-
-#: .\page_vente\templates\page_vente\product_base.html:40
-#: .\page_vente\templates\page_vente\product_base.html:80
-msgid "Prix"
-msgstr "Price"
 
 #: .\page_vente\templates\page_vente\product_base.html:42
 msgid "Produit indisponible pour le moment"
@@ -959,6 +957,12 @@ msgstr "French"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid "Prix :"
+#~ msgstr "Price :"
+
+#~ msgid "Prix"
+#~ msgstr "Price"
 
 #~ msgid ""
 #~ "car elles mêlent différentes techniques artisanales, comme le cuir, le "
