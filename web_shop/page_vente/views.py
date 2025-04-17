@@ -233,49 +233,38 @@ def use_filter(request, product_views, is_all_products):
 
     if is_all_products:
         form = ProductFilterForm(request.GET, categorie=None)
-        if form.is_valid():
-            search = form.cleaned_data.get('search')
-            type = form.cleaned_data.get('type')
-            min_price = form.cleaned_data.get('min_price')
-            max_price = form.cleaned_data.get('max_price')
 
-            if search:
-                product_views = [product for product in product_views if search.lower() in product.nom.lower()]
-            if type:
-                if type == '---':
-                    type = None
-                else:
-                    product_views = [product for product in product_views if product.type == type]
-            if min_price is not None:
-                product_views = [product for product in product_views if product.prix >= min_price]
-            if max_price is not None:
-                product_views = [product for product in product_views if product.prix <= max_price]
-
-        return product_views, form
     else:
         categorie = product_views[0].categorie if hasattr(product_views[0], 'categorie') else None
         if not categorie:
             return product_views, None
-        form = ProductFilterForm(request.GET, categorie=categorie)
-        if form.is_valid():
-            search = form.cleaned_data.get('search')
-            type = form.cleaned_data.get('type')
-            min_price = form.cleaned_data.get('min_price')
-            max_price = form.cleaned_data.get('max_price')
+        form = ProductFilterForm(request.GET, categorie=categorie)  
 
-            if search:
-                product_views = [product for product in product_views if search.lower() in product.nom.lower()]
-            if type:
-                if type == '---':
-                    type = None
-                else:
-                    product_views = [product for product in product_views if product.type == type]
-            if min_price is not None:
-                product_views = [product for product in product_views if product.prix >= min_price]
-            if max_price is not None:
-                product_views = [product for product in product_views if product.prix <= max_price]
+    if form.is_valid():
+        search = form.cleaned_data.get('search')
+        type = form.cleaned_data.get('type')
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
+        sort_by_price = form.cleaned_data.get('sort_by_price')
 
-        return product_views, form
+        if search:
+            product_views = [product for product in product_views if search.lower() in product.nom.lower()]
+        if type:
+            if type == '---':
+                type = None
+            else:
+                product_views = [product for product in product_views if product.type == type]
+        if min_price is not None:
+            product_views = [product for product in product_views if product.prix >= min_price]
+        if max_price is not None:
+            product_views = [product for product in product_views if product.prix <= max_price]
+        if sort_by_price:
+            if sort_by_price == 'price':
+                product_views = sorted(product_views, key=lambda x: x.prix)
+            elif sort_by_price == '-price':
+                product_views = sorted(product_views, key=lambda x: x.prix, reverse=True)
+
+    return product_views, form
 
 def pagination(request,product_views):
 

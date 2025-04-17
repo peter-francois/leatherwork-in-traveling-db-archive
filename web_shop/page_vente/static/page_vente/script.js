@@ -107,23 +107,7 @@ async function changeLanguage(lang, event = null, initial = false) {
 
 // Fonction séparée pour mettre à jour l'interface
 function updateInterface(translations, lang) {
-    // Mise à jour du champ de recherche
-    const searchField = document.getElementById('search_field');
-    if (searchField) {
-        searchField.placeholder = translations.search_field;
-    }
 
-    // Mise à jour des labels
-    const labels = {
-        'label[for="search_field"]': translations.search_label,
-        'label[for="id_min_price"]': translations.min_price,
-        'label[for="id_max_price"]': translations.max_price
-    };
-
-    for (const [selector, text] of Object.entries(labels)) {
-        const element = document.querySelector(selector);
-        if (element) element.innerHTML = text;
-    }
 
     // Mise à jour des éléments multiples
     const multipleElements = {

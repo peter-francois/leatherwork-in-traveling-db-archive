@@ -1,15 +1,16 @@
 from django import forms
 from .models import *
-
+from django.utils.translation import gettext_lazy as _
 
 
 
 class ProductFilterForm(forms.Form):
     
-    search = forms.CharField(required=False, label="Recherche", widget=forms.TextInput(attrs={'placeholder': 'Rechercher...', 'id': 'search_field'}))
-    type = forms.CharField(required=False, label="Type", widget=forms.Select(choices= [('---', '---')]))
-    min_price = forms.DecimalField(required=False, label="Prix min", min_value=0)
-    max_price = forms.DecimalField(required=False, label="Prix max", min_value=0)
+    search = forms.CharField(required=False, label=_("Recherche"), widget=forms.TextInput(attrs={'placeholder': _('Rechercher...'), 'id': 'search_field'}))
+    type = forms.CharField(required=False, label=_("Type"), widget=forms.Select(choices= [('---', '---')]))
+    min_price = forms.DecimalField(required=False, label=_("Prix min"), min_value=0)
+    max_price = forms.DecimalField(required=False, label=_("Prix max"), min_value=0)
+    sort_by_price = forms.ChoiceField(required=False, label=_("Trier par prix"), choices=[('---', '---'), ('price', _('Prix croissant')), ('-price', _('Prix décroissant'))])
     
     def __init__(self, *args, **kwargs):
         categorie = kwargs.pop('categorie', None)  # Récupérer la catégorie depuis les arguments

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 10:03+0200\n"
+"POT-Creation-Date: 2025-04-17 07:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,38 @@ msgstr ""
 #: .\page_vente\admin.py:24
 msgid "Le fichier est trop volumineux. La taille maximale est de 10 Mo."
 msgstr "Le fichier est trop volumineux. La taille maximale est de 10 Mo."
+
+#: .\page_vente\forms.py:9
+msgid "Recherche"
+msgstr "Recherche"
+
+#: .\page_vente\forms.py:9
+msgid "Rechercher..."
+msgstr "Rechercher..."
+
+#: .\page_vente\forms.py:10
+msgid "Type"
+msgstr "Type"
+
+#: .\page_vente\forms.py:11
+msgid "Prix min"
+msgstr "Prix min"
+
+#: .\page_vente\forms.py:12
+msgid "Prix max"
+msgstr "Prix max"
+
+#: .\page_vente\forms.py:13
+msgid "Trier par prix"
+msgstr "Trier par prix"
+
+#: .\page_vente\forms.py:13
+msgid "Prix croissant"
+msgstr "Prix croissant"
+
+#: .\page_vente\forms.py:13
+msgid "Prix décroissant"
+msgstr "Prix décroissant"
 
 #: .\page_vente\templates\page_vente\a_propos.html:4
 msgid ""
