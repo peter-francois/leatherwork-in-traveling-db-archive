@@ -477,9 +477,15 @@ def stripe_webhook(request):
     # 🎯 Si un paiement est réussi
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
+        if session.get("payment_link"):
+            logger.warning("Paiement via Payment Link ignoré.")
+            return JsonResponse({'status': 'ignored - payment link'}, status=200)
         # 🔹 Vérifier si `metadata` existe avant d'accéder à `cart_uuid`
         metadata = session.get("metadata", {})
         cart_uuid = metadata.get("cart_uuid")
+        if not cart_uuid:
+            logger.error("Cart UUID manquant.")
+            return JsonResponse({'status': 'error - missing cart UUID'}, status=400)
 
         cart = get_object_or_404(Cart, uuid=cart_uuid)
         if not cart.paid:  # Vérifier que le panier n'a pas déjà été traité
