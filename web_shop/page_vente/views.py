@@ -41,7 +41,7 @@ def produits(request):
 
     all_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
-    all_products, form = use_filter(request, all_products, is_all_products=True )
+    all_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_products, is_all_products=True )
 
 
     page_obj = pagination(request,all_products)
@@ -50,6 +50,8 @@ def produits(request):
         'products': page_obj,
         'form': form,
         'query_string': get_query_string(request),
+        'number_of_products_in_filter': number_of_products_in_filter,
+        'filter_used': filter_used
     }
 
     return render(request, 'page_vente/produits.html', context)
@@ -60,7 +62,7 @@ def maroquinerie(request):
 
     all_leather_products.sort(key=lambda product: product.id, reverse=True)
 
-    all_leather_products, form = use_filter(request, all_leather_products, is_all_products=False)
+    all_leather_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_leather_products, is_all_products=False)
 
     page_obj = pagination(request,all_leather_products)
 
@@ -68,6 +70,8 @@ def maroquinerie(request):
         'products': page_obj,
         'form': form,
         'query_string': get_query_string(request),
+        'number_of_products_in_filter': number_of_products_in_filter,
+        'filter_used': filter_used
     }
 
     return render(request, 'page_vente/maroquinerie.html', context)
@@ -79,7 +83,7 @@ def macrames(request):
 
     all_macrame_products.sort(key=lambda product: product.id, reverse=True)
 
-    all_macrame_products, form = use_filter(request, all_macrame_products, is_all_products=False)
+    all_macrame_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_macrame_products, is_all_products=False)
 
     page_obj = pagination(request,all_macrame_products)
 
@@ -87,6 +91,8 @@ def macrames(request):
         'products': page_obj,
         'form': form,
         'query_string': get_query_string(request),
+        'number_of_products_in_filter': number_of_products_in_filter,
+        'filter_used': filter_used
     }
 
     return render(request, 'page_vente/macrames.html', context)
@@ -97,7 +103,7 @@ def hybride(request):
 
     all_hybride_products.sort(key=lambda product: product.id, reverse=True)
 
-    all_hybride_products, form = use_filter(request, all_hybride_products, is_all_products=False)
+    all_hybride_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_hybride_products, is_all_products=False)
 
     page_obj = pagination(request,all_hybride_products)
 
@@ -105,6 +111,8 @@ def hybride(request):
         'products': page_obj,
         'form': form,
         'query_string': get_query_string(request),
+        'number_of_products_in_filter': number_of_products_in_filter,
+        'filter_used': filter_used
     }
 
     return render(request, 'page_vente/hybride.html', context)
@@ -232,9 +240,10 @@ def get_product_images(request, article_id):
         return JsonResponse({'error': 'Product not found'}, status=404)
 
 def use_filter(request, product_views, is_all_products):
-
+    
+    filter_used = False
     if not product_views:
-        return product_views, None
+        return product_views, None, 0, filter_used
 
     if is_all_products:
         form = ProductFilterForm(request.GET, categorie=None)
@@ -242,7 +251,8 @@ def use_filter(request, product_views, is_all_products):
     else:
         categorie = product_views[0].categorie if hasattr(product_views[0], 'categorie') else None
         if not categorie:
-            return product_views, None
+            return product_views, None , 0, filter_used
+
         form = ProductFilterForm(request.GET, categorie=categorie)  
 
     if form.is_valid():
@@ -252,24 +262,32 @@ def use_filter(request, product_views, is_all_products):
         max_price = form.cleaned_data.get('max_price')
         sort_by_price = form.cleaned_data.get('sort_by_price')
 
+
         if search:
             product_views = [product for product in product_views if search.lower() in product.nom.lower()]
+            filter_used = True
         if type:
             if type == '---':
                 type = None
             else:
                 product_views = [product for product in product_views if product.type == type]
+                filter_used = True
         if min_price is not None:
             product_views = [product for product in product_views if product.prix >= min_price]
+            filter_used = True
         if max_price is not None:
             product_views = [product for product in product_views if product.prix <= max_price]
+            filter_used = True
         if sort_by_price:
             if sort_by_price == 'price':
                 product_views = sorted(product_views, key=lambda x: x.prix)
+                filter_used = True
             elif sort_by_price == '-price':
                 product_views = sorted(product_views, key=lambda x: x.prix, reverse=True)
+                filter_used = True
+        number_of_products_in_filter = len(product_views)
 
-    return product_views, form
+    return product_views, form, number_of_products_in_filter, filter_used
 
 def pagination(request, product_views):
 
@@ -646,7 +664,7 @@ def get_number_of_products_in_cart(request):
 
     # Vérifie si le session_key est valide
     if not session_key:
-        return JsonResponse({'success': False, 'number_of_products': 0})
+        return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
 
     try:
         # Récupère le panier lié à la session
@@ -654,18 +672,18 @@ def get_number_of_products_in_cart(request):
 
         # Si aucun panier n'est trouvé
         if not cart:
-            return JsonResponse({'success': False, 'number_of_products': 0})
+            return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
         if cart.paid:
-            return JsonResponse({'success': False, 'number_of_products': 0})
+            return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
 
         # Comptage des articles dans le panier
         cart_items = CartItem.objects.filter(cart=cart)
         cart_items_count = cart_items.count()
-        return JsonResponse({'success': True, 'number_of_products': cart_items_count})
+        return JsonResponse({'success': True, 'number_of_products_in_cart': cart_items_count})
 
     except ObjectDoesNotExist:
         # Si une erreur se produit avec l'accès aux objets, retourner une réponse vide
-        return JsonResponse({'success': False, 'number_of_products': 0})
+        return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
 
 def get_document_content(request, document_type, lang):
     try:
