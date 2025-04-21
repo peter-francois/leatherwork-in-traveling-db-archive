@@ -664,7 +664,7 @@ def get_number_of_products_in_cart(request):
 
     # Vérifie si le session_key est valide
     if not session_key:
-        return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
+        return JsonResponse({'success': False, 'number_of_products': 0})
 
     try:
         # Récupère le panier lié à la session
@@ -672,18 +672,18 @@ def get_number_of_products_in_cart(request):
 
         # Si aucun panier n'est trouvé
         if not cart:
-            return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
+            return JsonResponse({'success': False, 'number_of_products': 0})
         if cart.paid:
-            return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
+            return JsonResponse({'success': False, 'number_of_products': 0})
 
         # Comptage des articles dans le panier
         cart_items = CartItem.objects.filter(cart=cart)
         cart_items_count = cart_items.count()
-        return JsonResponse({'success': True, 'number_of_products_in_cart': cart_items_count})
+        return JsonResponse({'success': True, 'number_of_products': cart_items_count})
 
     except ObjectDoesNotExist:
         # Si une erreur se produit avec l'accès aux objets, retourner une réponse vide
-        return JsonResponse({'success': False, 'number_of_products_in_cart': 0})
+        return JsonResponse({'success': False, 'number_of_products': 0})
 
 def get_document_content(request, document_type, lang):
     try:

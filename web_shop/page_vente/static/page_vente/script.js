@@ -416,6 +416,12 @@ function clearCart() {
         });
 }
 
+// Fonction pour nettoyer le filtre
+function cleanFilter() {
+    // Redirige vers l'URL de base sans paramètres GET
+    window.location.href = window.location.pathname;
+}
+
 // Fonction pour supprimer un article du panier
 function remove_from_cart(articleId) {
     fetch(`/api/remove_from_cart/${articleId}/`, {
@@ -714,6 +720,12 @@ if (document.getElementById("prev-button")) {
 if (document.getElementById("next-button")) {
     document.getElementById("next-button").addEventListener("click", function() {
         changeImage(1);
+    });
+}
+
+if (document.getElementById("clean_filter")) {
+    document.getElementById("clean_filter").addEventListener("click", function() {
+        cleanFilter();
     });
 }
 

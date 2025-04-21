@@ -474,15 +474,16 @@ body {
         box-shadow: 0 0 12px rgba(76, 175, 80, 0.7);
         background: #45a049; 
         }
-    #clear_cart {
+    .clean-button {
         margin-top: 0px;
         background-color: #f44336;
         color: white;
         border: none;
         padding: 10px;
         cursor: pointer;
+        justify-self: right;
     }
-    #clear_cart:hover {
+    .clean-button:hover {
         background-color: #d32f2f;
     }
     /*checkout modal*/    
@@ -1322,7 +1323,7 @@ footer {
         #checkout{
             font-size: 14px;
         }
-        #clear_cart {
+        .clean-button {
             font-size: 13px;
         }
     /*Tous les produits*/
