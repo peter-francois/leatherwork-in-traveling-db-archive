@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 09:28+0200\n"
+"POT-Creation-Date: 2025-04-21 08:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -802,22 +802,22 @@ msgstr "Your cart is empty."
 
 #: .\page_vente\templates\page_vente\panier.html:82
 #: .\page_vente\templates\page_vente\panier.html:99
-#: .\page_vente\templates\page_vente\product_base.html:40
-#: .\page_vente\templates\page_vente\product_base.html:80
+#: .\page_vente\templates\page_vente\product_base.html:59
+#: .\page_vente\templates\page_vente\product_base.html:83
 msgid "Prix: "
 msgstr "Price: "
 
 #: .\page_vente\templates\page_vente\panier.html:88
-#: .\page_vente\templates\page_vente\product_base.html:19
-#: .\page_vente\templates\page_vente\product_base.html:86
-#: .\page_vente\templates\page_vente\product_base.html:98
+#: .\page_vente\templates\page_vente\product_base.html:25
+#: .\page_vente\templates\page_vente\product_base.html:89
+#: .\page_vente\templates\page_vente\product_base.html:101
 msgid "Précédent"
 msgstr "Previous"
 
 #: .\page_vente\templates\page_vente\panier.html:89
-#: .\page_vente\templates\page_vente\product_base.html:23
-#: .\page_vente\templates\page_vente\product_base.html:87
-#: .\page_vente\templates\page_vente\product_base.html:102
+#: .\page_vente\templates\page_vente\product_base.html:29
+#: .\page_vente\templates\page_vente\product_base.html:90
+#: .\page_vente\templates\page_vente\product_base.html:105
 msgid "Suivant"
 msgstr "Next"
 
@@ -826,7 +826,7 @@ msgid "Supprimer"
 msgstr "Delete"
 
 #: .\page_vente\templates\page_vente\panier.html:98
-#: .\page_vente\templates\page_vente\product_base.html:55
+#: .\page_vente\templates\page_vente\product_base.html:56
 msgid "Aucune image disponible"
 msgstr "No picture available"
 
@@ -847,34 +847,46 @@ msgstr "Privacy Policy | Leather Work In Traveling DB"
 msgid "Filtrer"
 msgstr "Filter"
 
-#: .\page_vente\templates\page_vente\product_base.html:18
-#: .\page_vente\templates\page_vente\product_base.html:97
-msgid "Premier"
-msgstr ""
+#: .\page_vente\templates\page_vente\product_base.html:14
+msgid "articles trouvés après application du filtre."
+msgstr "articles found."
+
+#: .\page_vente\templates\page_vente\product_base.html:14
+msgid "article trouvé après application du filtre."
+msgstr "article found."
+
+#: .\page_vente\templates\page_vente\product_base.html:16
+msgid "Effacer le filtre"
+msgstr "Clear filter"
 
 #: .\page_vente\templates\page_vente\product_base.html:24
-#: .\page_vente\templates\page_vente\product_base.html:103
-msgid "Dernier"
-msgstr ""
+#: .\page_vente\templates\page_vente\product_base.html:100
+msgid "Premier"
+msgstr "First"
 
-#: .\page_vente\templates\page_vente\product_base.html:28
+#: .\page_vente\templates\page_vente\product_base.html:30
 #: .\page_vente\templates\page_vente\product_base.html:106
+msgid "Dernier"
+msgstr "Last"
+
+#: .\page_vente\templates\page_vente\product_base.html:34
+#: .\page_vente\templates\page_vente\product_base.html:109
 msgid "of"
 msgstr "of"
 
-#: .\page_vente\templates\page_vente\product_base.html:42
-msgid "Produit indisponible pour le moment"
-msgstr "Product currently unavailable"
-
-#: .\page_vente\templates\page_vente\product_base.html:58
+#: .\page_vente\templates\page_vente\product_base.html:60
 msgid "Ajouter au panier"
 msgstr "Add to cart"
 
-#: .\page_vente\templates\page_vente\product_base.html:60
+#: .\page_vente\templates\page_vente\product_base.html:62
+msgid "Produit indisponible pour le moment"
+msgstr "Product currently unavailable"
+
+#: .\page_vente\templates\page_vente\product_base.html:63
 msgid "Contactez-nous, disponible sur commande"
 msgstr "Available on request – Contact us"
 
-#: .\page_vente\templates\page_vente\product_base.html:65
+#: .\page_vente\templates\page_vente\product_base.html:68
 msgid "Aucun produit disponible"
 msgstr "No products available"
 
