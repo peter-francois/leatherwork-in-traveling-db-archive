@@ -1,5 +1,5 @@
 from django.contrib.sessions.models import Session
-from django.utils.timezone import now
+
 
 def get_session_expiration(request):
     """
@@ -15,3 +15,5 @@ def get_session_expiration(request):
     except Session.DoesNotExist:
         request.session.create()
         return None
+
+
