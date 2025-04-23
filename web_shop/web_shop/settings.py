@@ -215,7 +215,7 @@ else:
     SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
     CSP_DEFAULT_SRC = ("'self'",)
     CSP_SCRIPT_SRC = ("'self'",)
-    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
+    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com", "https://www.leatherworkintravelingdb.com")
 
 SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
 CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
