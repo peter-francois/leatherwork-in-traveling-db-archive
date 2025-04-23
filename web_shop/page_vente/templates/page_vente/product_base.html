@@ -42,18 +42,24 @@
         {% for produit in products %}
             <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
                 <h3>{{ produit.nom }}</h3>
-                {% if produit.image1 or produit.image2 or produit.image3 or produit.image4 %}
-                    {% if produit.image1 %}
-                            <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
-                    {% elif produit.image2 %}
-                            <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
-                    {% elif produit.image3 %}
-                            <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
-                    {% elif produit.image4 %}
-                        <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
-                    {% endif %}
+                {% if produit.cached_images.image1 %}
+                    <img src="{{ produit.cached_images.image1 }}" alt="{{ produit.nom }}">
+                {% elif produit.image1 %}
+                    <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
+                {% elif produit.cached_images.image2 %}
+                    <img src="{{ produit.cached_images.image2 }}" alt="{{ produit.nom }}">
+                {% elif produit.image2 %}
+                    <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
+                {% elif produit.cached_images.image3 %}
+                    <img src="{{ produit.cached_images.image3 }}" alt="{{ produit.nom }}">
+                {% elif produit.image3 %}
+                    <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
+                {% elif produit.cached_images.image4 %}
+                    <img src="{{ produit.cached_images.image4 }}" alt="{{ produit.nom }}">
+                {% elif produit.image4 %}
+                    <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
                 {% else %}
-                    <p >{% trans "Aucune image disponible" %}</p>
+                    <p>{% trans "Aucune image disponible" %}</p>
                 {% endif %}
                 {% if not produit.en_attente_dans_panier %}
                 <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }} €</p>

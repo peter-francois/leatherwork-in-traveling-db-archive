@@ -22,7 +22,8 @@ from page_vente import views
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from page_vente.sitemaps import StaticSitemap
 from django.views.i18n import JavaScriptCatalog
-from django.contrib.sitemaps.views import sitemap
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'main'
 
@@ -31,10 +32,6 @@ sitemaps = {
     'static_en': StaticSitemap('en'),
 }
 
-"""urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('page_vente.urls')),
-]"""
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('page_vente.urls')),  # Inclusion des URLs de ton app
@@ -49,3 +46,6 @@ urlpatterns += [
     path('api/', include('page_vente.api_urls')),  # Déplacer API dans un autre fichier
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

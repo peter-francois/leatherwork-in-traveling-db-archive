@@ -6,7 +6,8 @@ from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.timezone import now
-from .utils import get_session_expiration
+from .utils.sessions import get_session_expiration
+from .utils.cache_images import get_cached_images_for_product
 import stripe
 import json
 import logging
@@ -43,6 +44,8 @@ def produits(request):
 
     all_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_products, is_all_products=True )
 
+    for product in all_products:
+        product.cached_images = get_cached_images_for_product(product)
 
     page_obj = pagination(request,all_products)
 
@@ -63,6 +66,9 @@ def maroquinerie(request):
     all_leather_products.sort(key=lambda product: product.id, reverse=True)
 
     all_leather_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_leather_products, is_all_products=False)
+
+    for product in all_leather_products:
+        product.cached_images = get_cached_images_for_product(product)
 
     page_obj = pagination(request,all_leather_products)
 
@@ -85,6 +91,9 @@ def macrames(request):
 
     all_macrame_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_macrame_products, is_all_products=False)
 
+    for product in all_macrame_products:
+        product.cached_images = get_cached_images_for_product(product)
+
     page_obj = pagination(request,all_macrame_products)
 
     context = {
@@ -104,6 +113,9 @@ def hybride(request):
     all_hybride_products.sort(key=lambda product: product.id, reverse=True)
 
     all_hybride_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_hybride_products, is_all_products=False)
+
+    for product in all_hybride_products:
+        product.cached_images = get_cached_images_for_product(product)
 
     page_obj = pagination(request,all_hybride_products)
 
@@ -180,16 +192,28 @@ def add_to_cart(request, product_id):
 def cart_detail(request):
     session_id = request.session.session_key
     if not session_id:
-        return JsonResponse({'cart': []})  # Aucun panier trouvé
+        return JsonResponse({'cart': []})
 
     cart = Cart.objects.filter(session_id=session_id, paid=False).first()
-
     if not cart:
         return JsonResponse({'cart': []})
 
     cart_items = CartItem.objects.filter(cart=cart).select_related('product')
-    data = [{'nom': item.product.nom, 'prix': item.product.prix, 'quantity': item.quantity, 'image1': item.product.image1.url,
-            'image2': item.product.image2.url, 'image3': item.product.image3.url, 'image4': item.product.image4.url, 'id': item.product.id} for item in cart_items]
+    data = []
+
+    for item in cart_items:
+        product = item.product
+        images = get_cached_images_for_product(product)
+        data.append({
+            'nom': product.nom,
+            'prix': product.prix,
+            'quantity': item.quantity,
+            'image1': images['image1'],
+            'image2': images['image2'],
+            'image3': images['image3'],
+            'image4': images['image4'],
+            'id': product.id
+        })
 
     return JsonResponse({'cart': data})
 
@@ -228,16 +252,19 @@ def remove_from_cart(request, product_id):
 def get_product_images(request, article_id):
     try:
         product = AllProducts.objects.get(id=article_id)
-        images = [
-            product.image1.url if product.image1 else None,
-            product.image2.url if product.image2 else None,
-            product.image3.url if product.image3 else None,
-            product.image4.url if product.image4 else None,
-            ]
-        images = [image for image in images if image]
-        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix})
+        images = get_cached_images_for_product(product)
+        # On retourne les images sous forme de liste (comme avant)
+        images_list = [images['image1'], images['image2'], images['image3'], images['image4']]
+        images_list = [img for img in images_list if img]  # Filtrer les vides
+        return JsonResponse({
+            'images': images_list,
+            'nom': product.nom,
+            'description': product.description if product.description else None,
+            'prix': product.prix
+        })
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
+
 
 def use_filter(request, product_views, is_all_products):
     
