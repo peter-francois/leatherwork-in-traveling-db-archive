@@ -23,7 +23,18 @@ class Command(BaseCommand):
         expired_session_keys = list(expiring_sessions.values_list('session_key', flat=True))
 
         # Récupérer les paniers correspondants avec prefetch_related() pour minimiser les requêtes en base (récupère tous les articles liés en une seule requête)
-        expired_carts = Cart.objects.filter(session_id__in=expired_session_keys, paid=False).prefetch_related('cartitem_set__product')
+        expired_carts = Cart.objects.filter(session_id__in=expired_session_keys).prefetch_related('cartitem_set__product')
+        
+        if not expired_carts.exists():
+            self.stdout.write("✅ Aucun panier à libérer.")
+            return
+        # Si tous les paniers sont payés
+        if all(cart.paid for cart in expired_carts):
+            self.stdout.write("✅ Aucun panier à libérer.")
+            return
+
+        # On ne garde que ceux à libérer (paid=False)
+        expired_carts = expired_carts.filter(paid=False)
 
         total_products_liberated = 0
         total_carts_deleted = 0
