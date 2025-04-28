@@ -30,6 +30,8 @@ body {
         margin: 30px 25px;
         border: 1px solid #ccc;
         padding: 10px;
+        max-width: 1440px;
+        justify-self: center;
     }
     h1,h2{
         font-family: 'Uncial Antiqua', serif;
