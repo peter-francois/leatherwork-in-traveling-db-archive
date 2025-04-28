@@ -1322,7 +1322,9 @@ footer {
             padding: 7px;
         }
         .index-img{
-            width: 80%;
+            width: 75%;
+            margin-top: 2em;
+            margin-bottom: 2em;
             }
     /*Panier*/
         #checkout{
