@@ -31,6 +31,7 @@ body {
         border: 1px solid #ccc;
         padding: 10px;
         max-width: 1440px;
+
         justify-self: center;
     }
     h1,h2{
@@ -527,7 +528,7 @@ body {
     }
     section input, section select, label{
         display: block;
-        width: 70%;
+        width: 80%;
         justify-self: center;
     }
     section input, section select{
@@ -536,7 +537,7 @@ body {
         border: 2px solid var(--color2);
     }
     .filter-form{
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         align-items: stretch;
         gap: 20px;
         align-content: center;
@@ -557,7 +558,7 @@ body {
         display: inline-flex;
         align-items: center;
         transition: 0.3s ease;
-        grid-column: span 4;
+        grid-column: span 5;
         width: 7em;
         justify-self: center;
     }
