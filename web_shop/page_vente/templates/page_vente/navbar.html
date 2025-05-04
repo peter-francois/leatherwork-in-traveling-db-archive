@@ -6,7 +6,7 @@
         <button id="menu_button" class="smooth-transition"><span id="menu-button-text">MENU</span><img id="menu-icon" src="{% static 'page_vente/icons/bars-solid.svg' %}" alt="icon menu"></button>
         <div class="menu-content smooth-transition">
             <a href="{% url 'boutique:index' %}" id="menu_button_home" >{% trans "ACCUEIL" %}</a>
-            <a href="#"id="our-works" ><span id="menu_button_produit">{% trans "NOS CRÉATIONS" %}</span><img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}"></a>
+            <a href="#"id="our-works" ><span id="menu_button_produit">{% trans "NOS CRÉATIONS" %}</span><img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}" alt="icon arrow down"></a>
                 <div class="menu-content-produit smooth-transition">
                     <a href="{% url 'boutique:produits' %}" id="menu_button_tous_les_produits">{% trans "TOUTES NOS CRÉATIONS" %}</a>
                     <a href="{% url 'boutique:maroquinerie' %}" id="menu_button_maroquinerie">{% trans "MAROQUINERIE FAITE À LA MAIN" %}</a>
