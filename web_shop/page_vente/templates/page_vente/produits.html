@@ -1,11 +1,10 @@
 {% extends 'page_vente/product_base.html' %}
 {% load static %}
 {% load i18n %}
-{% block meta-description %}
-{% trans "Découvrez notre sélection exclusive de créations uniques : bijoux originaux, accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. Trouvez des produits inédits pour sublimer votre style. Livraison rapide et qualité garantie." %}
+{% block meta-description %}{% trans "Découvrez notre sélection exclusive de créations uniques : bijoux originaux, accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. Trouvez des produits inédits pour sublimer votre style. Livraison rapide et qualité garantie." %} Page {% if page_number %}{{ page_number }}{% else %}1{% endif %}
 {% endblock %}
 
-{% block title %}{% trans "Accessoires, maroquinerie & macramé faits main | Créations originales" %}{% endblock %}
+{% block title %}{% trans "Accessoires, maroquinerie & macramé faits main | Créations originales" %} | Page {% if page_number %}{{ page_number }}{% else %}1{% endif %} - {% endblock %}
 {% block head %}
     <!-- Balises hreflang pour la page actuelle -->
     {% get_current_language as current_language %}

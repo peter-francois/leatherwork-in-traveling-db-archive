@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 08:24+0200\n"
+"POT-Creation-Date: 2025-05-05 16:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -819,22 +819,22 @@ msgstr "Votre panier est vide"
 
 #: .\page_vente\templates\page_vente\panier.html:82
 #: .\page_vente\templates\page_vente\panier.html:99
-#: .\page_vente\templates\page_vente\product_base.html:59
-#: .\page_vente\templates\page_vente\product_base.html:83
+#: .\page_vente\templates\page_vente\product_base.html:65
+#: .\page_vente\templates\page_vente\product_base.html:89
 msgid "Prix: "
 msgstr "Prix: "
 
 #: .\page_vente\templates\page_vente\panier.html:88
 #: .\page_vente\templates\page_vente\product_base.html:25
-#: .\page_vente\templates\page_vente\product_base.html:89
-#: .\page_vente\templates\page_vente\product_base.html:101
+#: .\page_vente\templates\page_vente\product_base.html:95
+#: .\page_vente\templates\page_vente\product_base.html:107
 msgid "Précédent"
 msgstr "Précédent"
 
 #: .\page_vente\templates\page_vente\panier.html:89
 #: .\page_vente\templates\page_vente\product_base.html:29
-#: .\page_vente\templates\page_vente\product_base.html:90
-#: .\page_vente\templates\page_vente\product_base.html:105
+#: .\page_vente\templates\page_vente\product_base.html:96
+#: .\page_vente\templates\page_vente\product_base.html:111
 msgid "Suivant"
 msgstr "Suivant"
 
@@ -843,7 +843,7 @@ msgid "Supprimer"
 msgstr "Supprimer"
 
 #: .\page_vente\templates\page_vente\panier.html:98
-#: .\page_vente\templates\page_vente\product_base.html:56
+#: .\page_vente\templates\page_vente\product_base.html:62
 msgid "Aucune image disponible"
 msgstr "Aucune image disponible"
 
@@ -878,57 +878,55 @@ msgid "Effacer le filtre"
 msgstr "Effacer le filtre"
 
 #: .\page_vente\templates\page_vente\product_base.html:24
-#: .\page_vente\templates\page_vente\product_base.html:100
+#: .\page_vente\templates\page_vente\product_base.html:106
 msgid "Premier"
 msgstr "Premier"
 
 #: .\page_vente\templates\page_vente\product_base.html:30
-#: .\page_vente\templates\page_vente\product_base.html:106
+#: .\page_vente\templates\page_vente\product_base.html:112
 msgid "Dernier"
 msgstr "Dernier"
 
 #: .\page_vente\templates\page_vente\product_base.html:34
-#: .\page_vente\templates\page_vente\product_base.html:109
+#: .\page_vente\templates\page_vente\product_base.html:115
 msgid "of"
 msgstr "sur"
 
-#: .\page_vente\templates\page_vente\product_base.html:60
+#: .\page_vente\templates\page_vente\product_base.html:66
 msgid "Ajouter au panier"
 msgstr "Ajouter au panier"
 
-#: .\page_vente\templates\page_vente\product_base.html:62
+#: .\page_vente\templates\page_vente\product_base.html:68
 msgid "Produit indisponible pour le moment"
 msgstr "Produit indisponible pour le moment"
 
-#: .\page_vente\templates\page_vente\product_base.html:63
+#: .\page_vente\templates\page_vente\product_base.html:69
 msgid "Contactez-nous, disponible sur commande"
 msgstr "Contactez-nous, disponible sur commande"
 
-#: .\page_vente\templates\page_vente\product_base.html:68
+#: .\page_vente\templates\page_vente\product_base.html:74
 msgid "Aucun produit disponible"
 msgstr "Aucun produit disponible"
 
-#: .\page_vente\templates\page_vente\produits.html:5
+#: .\page_vente\templates\page_vente\produits.html:4
 msgid ""
 "Découvrez notre sélection exclusive de créations uniques : bijoux originaux, "
 "accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. "
 "Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
 "qualité garantie."
 msgstr ""
-"Découvrez notre sélection exclusive de créations uniques : bijoux originaux, "
-"accessoires, maroquinerie, macramés, objets hybrides et bien plus encore. "
-"Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
-"qualité garantie."
+"Créations uniques en macramé, maroquinerie et bijoux faits main. Trouvez des "
+"produits inédits pour sublimer votre style. Livraison rapide."
 
-#: .\page_vente\templates\page_vente\produits.html:8
+#: .\page_vente\templates\page_vente\produits.html:7
 msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
-msgstr "Accessoires, maroquinerie & macramé faits main | Créations originales"
+msgstr "Maroquinerie & macramé faits main"
 
-#: .\page_vente\templates\page_vente\produits.html:20
+#: .\page_vente\templates\page_vente\produits.html:19
 msgid "Explorez Nos Créations - Trouvez votre style unique"
 msgstr "Explorez Nos Créations - Trouvez votre style unique"
 
-#: .\page_vente\templates\page_vente\produits.html:24
+#: .\page_vente\templates\page_vente\produits.html:23
 msgid "Retrouvez ci-dessous tous les produits disponibles."
 msgstr "Retrouvez ci-dessous tous les produits disponibles."
 
