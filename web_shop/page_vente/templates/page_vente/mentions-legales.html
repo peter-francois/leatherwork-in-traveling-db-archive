@@ -11,6 +11,7 @@
     {% elif current_language == "en" %}
         <link rel="alternate" href="https://leatherworkintravelingdb.com/fr/mentions-legales/" hreflang="fr" />
     {% endif %}
+    <meta name="robots" content="noindex, follow">
 {% endblock %}
 {% block header %}
     <h1 class = "legal_documents"><span id="legal_mentions_title">{% trans "Mentions légales" %}</span> (version: {{ legal_mentions.version }})</h1>
