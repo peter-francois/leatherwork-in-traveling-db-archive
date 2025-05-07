@@ -54,7 +54,8 @@ def produits(request):
         'form': form,
         'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
-        'filter_used': filter_used
+        'filter_used': filter_used,
+        'page_number': page_obj.number
     }
 
     return render(request, 'page_vente/produits.html', context)
@@ -77,7 +78,8 @@ def maroquinerie(request):
         'form': form,
         'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
-        'filter_used': filter_used
+        'filter_used': filter_used,
+        'page_number': page_obj.number
     }
 
     return render(request, 'page_vente/maroquinerie.html', context)
@@ -101,7 +103,8 @@ def macrames(request):
         'form': form,
         'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
-        'filter_used': filter_used
+        'filter_used': filter_used,
+        'page_number': page_obj.number
     }
 
     return render(request, 'page_vente/macrames.html', context)
@@ -124,7 +127,8 @@ def hybride(request):
         'form': form,
         'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
-        'filter_used': filter_used
+        'filter_used': filter_used,
+        'page_number': page_obj.number
     }
 
     return render(request, 'page_vente/hybride.html', context)

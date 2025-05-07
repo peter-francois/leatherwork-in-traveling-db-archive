@@ -397,12 +397,12 @@ msgid ""
 "Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires "
 "et bijoux alliant l’élégance du cuir à la finesse du tissage."
 msgstr ""
-"Discover our unique creations combining leatherwork and macrame. Accessories "
-"and jewelry combining the elegance of leather with the finesse of weaving."
+"Unique creations in leathercraft and macramé. Jewelry and accessories"
+" blending leather and weaving with elegance. "
 
 #: .\page_vente\templates\page_vente\hybride.html:5
 msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
-msgstr "Hybrid creations leatherwork & macrame - Unique accessories"
+msgstr "Hybrid creations leatherwork & macrame "
 
 #: .\page_vente\templates\page_vente\hybride.html:17
 msgid "Accessoires uniques alliant maroquinerie et macramé"
@@ -546,7 +546,7 @@ msgstr ""
 
 #: .\page_vente\templates\page_vente\macrames.html:5
 msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
-msgstr "Handmade macrame jewelry - Body chains, necklaces and bracelets"
+msgstr "Handmade Macramé Jewelry - Necklaces & Bracelets "
 
 #: .\page_vente\templates\page_vente\macrames.html:17
 msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
@@ -564,8 +564,8 @@ msgid ""
 "main. Des pièces uniques, confectionnées avec soin pour une qualité "
 "exceptionnelle."
 msgstr ""
-"Discover our handmade leather bags, wallets, belts and accessories. Unique "
-"pieces, carefully crafted for exceptional quality."
+"Handcrafted leather bags, wallets, belts & accessories. "
+"Unique pieces made with care and guaranteed quality."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:15
 msgid "Maroquinerie fait main - Sacs, portefeuilles et accessoires en cuir"
@@ -573,7 +573,7 @@ msgstr "Handmade leatherwork - Bags, wallets and leather accessories"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:17
 msgid "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
-msgstr "Handmade leatherwork – Bags, wallets and leather accessories"
+msgstr "Bags, wallets and leather accessories"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:21
 msgid ""

@@ -406,11 +406,12 @@ msgstr "Numéro de téléphone :"
 msgid ""
 "Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires "
 "et bijoux alliant l’élégance du cuir à la finesse du tissage."
-msgstr ""
+msgstr "Créations uniques en maroquinerie et macramé. Bijoux et accessoires"
+" alliant cuir et tissage avec élégance et finesse."
 
 #: .\page_vente\templates\page_vente\hybride.html:5
 msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
-msgstr "Créations hybrides maroquinerie & macramé - Accessoires uniques"
+msgstr "Créations hybrides maroquinerie & macramé "
 
 #: .\page_vente\templates\page_vente\hybride.html:17
 msgid "Accessoires uniques alliant maroquinerie et macramé"
@@ -550,13 +551,12 @@ msgid ""
 "corps, boucles d'oreilles, colliers et bracelets tissés avec soin pour une "
 "touche d'élégance unique."
 msgstr ""
-"Sublimez votre style avec nos bijoux en macramé faits main : chaînes de "
-"corps, boucles d'oreilles, colliers et bracelets tissés avec soin pour une "
-"touche d'élégance unique."
+"Bijoux en macramé faits main : chaînes de corps, colliers, boucles d'oreilles"
+" et bracelets, tissés avec soin pour un style unique."
 
 #: .\page_vente\templates\page_vente\macrames.html:5
 msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
-msgstr "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
+msgstr "Chaînes, colliers & bracelets en macramé "
 
 #: .\page_vente\templates\page_vente\macrames.html:17
 msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
@@ -576,13 +576,13 @@ msgid ""
 "main. Des pièces uniques, confectionnées avec soin pour une qualité "
 "exceptionnelle."
 msgstr ""
-"Découvrez nos sacs, portefeuilles, ceintures et accessoires en cuir faits "
-"main. Des pièces uniques, confectionnées avec soin pour une qualité "
-"exceptionnelle."
+"Sacs, portefeuilles, ceintures et accessoires en cuir faits main. "
+"Des pièces uniques, confectionnées avec soin. Qualité garantie."
+
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:15
 msgid "Maroquinerie fait main - Sacs, portefeuilles et accessoires en cuir"
-msgstr "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
+msgstr "Sacs, portefeuilles et accessoires en cuir"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:17
 msgid "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
