@@ -134,7 +134,7 @@ body {
 
         #menu_button{
             width: 100%;
-            height: 60px;
+            height: 62.5px;
             position: fixed;
             left: 0;
             top: 0;
@@ -293,7 +293,7 @@ body {
         }
         .flag {
             width: 60px;
-            height: 35px;
+            height: 37.5px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: border 0.3s ease;
