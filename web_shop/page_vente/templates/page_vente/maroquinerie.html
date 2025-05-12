@@ -3,6 +3,7 @@
 {% load i18n %}
 {% block meta-description %}{% trans "Découvrez nos sacs, portefeuilles, ceintures et accessoires en cuir faits main. Des pièces uniques, confectionnées avec soin pour une qualité exceptionnelle." %} Page {% if page_number %}{{ page_number }}{% else %}1{% endif %}{% endblock %}
 {% block head %}
+    {{ block.super }}
     <!-- Balises hreflang pour la page actuelle -->
     {% get_current_language as current_language %}
     <link rel="alternate" href="https://leatherworkintravelingdb.com{{ request.path }}" hreflang="{{ current_language }}" />
