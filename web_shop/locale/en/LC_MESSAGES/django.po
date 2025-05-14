@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-13 09:28+0200\n"
+"POT-Creation-Date: 2025-05-14 15:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -389,32 +389,42 @@ msgid ""
 "Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires "
 "et bijoux alliant l’élégance du cuir à la finesse du tissage."
 msgstr ""
-"Unique creations in leathercraft and macramé. Jewelry and accessories "
-"blending leather and weaving with elegance. "
+"Unique macramé jewelry combining leather and thread weaving. Handmade "
+"bracelets and necklaces for an authentic and original style."
 
 #: .\page_vente\templates\page_vente\hybride.html:5
 msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
-msgstr "Hybrid creations leatherwork & macrame "
+msgstr "Macramé Jewelry & Leather - Original Creations"
 
 #: .\page_vente\templates\page_vente\hybride.html:18
 msgid "Accessoires uniques alliant maroquinerie et macramé"
-msgstr "Unique accessories combining leatherwork and macrame"
+msgstr ""
+"Explore our original macramé jewelry combining leather and thread weaving "
+"for an unmatched bohemian style."
 
 #: .\page_vente\templates\page_vente\hybride.html:22
-msgid " est une alliance de "
-msgstr " is a combination of "
+msgid "Intro hybride"
+msgstr ""
+"Let yourself be captivated by our selection of macramé jewelry combining "
+"leather and weaving for a unique bohemian style. Each piece is handmade and "
+"reflects the perfect balance between authenticity and modernity. Discover "
+"original macramé bracelets and necklaces that add an elegant and timeless "
+"touch to your look. Ideal for an authentic style."
 
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid "differentes techniques et matériaux"
-msgstr "different techniques and materials"
+#: .\page_vente\templates\page_vente\hybride.html:23
+#: .\page_vente\templates\page_vente\macrames.html:23
+#: .\page_vente\templates\page_vente\maroquinerie.html:23
+#: .\page_vente\templates\page_vente\produits.html:24
+msgid "Voir les créations ↓"
+msgstr "See the creations ↓"
 
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid "Ici vous trouverez tous les produits en "
-msgstr "Here you will find all products in "
-
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid " disponibles."
-msgstr " available."
+#: .\page_vente\templates\page_vente\hybride.html:28
+msgid "outro hybride"
+msgstr ""
+"Macramé jewelry combining leather and creativity for a truly authentic look. "
+"Our handmade creations are perfect for adding a unique touch to your daily "
+"life. Find the macramé bracelet or piece of jewelry that will perfectly "
+"complete your look and be tempted by our other collections."
 
 #: .\page_vente\templates\page_vente\index.html:5
 msgid "Maroquinerie & macramé faits main - Leather Work In Traveling DB"
@@ -554,17 +564,13 @@ msgstr ""
 "accessories, and unique creations await you. Handmade, our jewelry embodies "
 "authenticity and natural elegance."
 
-#: .\page_vente\templates\page_vente\macrames.html:22
-msgid "Voir les créations ↓"
-msgstr "See the creations ↓"
-
-#: .\page_vente\templates\page_vente\macrames.html:26
+#: .\page_vente\templates\page_vente\macrames.html:28
 msgid "outro macrames"
 msgstr ""
-"Our collection of original macramé jewelry is constantly evolving to bring you "
-"new creations inspired by the art of knotting. Braided macramé bracelets, body"
-" chains, boho earrings… let your desire for handmade style and unique pieces "
-"run free."
+"Our collection of original macramé jewelry is constantly evolving to bring "
+"you new creations inspired by the art of knotting. Braided macramé "
+"bracelets, body chains, boho earrings… let your desire for handmade style "
+"and unique pieces run free."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:4
 msgid ""
@@ -572,22 +578,38 @@ msgid ""
 "main. Des pièces uniques, confectionnées avec soin pour une qualité "
 "exceptionnelle."
 msgstr ""
-"Handcrafted leather bags, wallets, belts & accessories. Unique pieces made "
-"with care and guaranteed quality."
+"Leather accessories, handmade bags, and personalized leather wallets – "
+"unique creations for a stylish and lasting look."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:16
 msgid "Maroquinerie fait main - Sacs, portefeuilles et accessoires en cuir"
-msgstr "Handmade leatherwork - Bags, wallets and leather accessories"
+msgstr "Handmade Bag – Leather Goods & Accessories"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:18
 msgid "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
-msgstr "Bags, wallets and leather accessories"
+msgstr "Handmade bag and leather accessories – discover our leather goods"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:22
 msgid ""
 "Bienvenue dans l'espace maroquinerie. Retrouvez ci-dessous tous les produits "
 "disponibles."
-msgstr "Welcome to the leatherwork space. Find all available products below."
+msgstr ""
+"Find your handmade bag in our unique collection, along with other "
+"customizable leather accessories. Designed with special attention to detail, "
+"our pieces combine style and durability. Explore our designs and embrace an "
+"elegant, authentic look."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:28
+msgid "outro maroquinerie"
+msgstr ""
+"Looking for a personalized leather bag or a unique handmade gift? We offer "
+"custom creations to turn your ideas into reality. Let us guide you by "
+"clicking below to discover the creation process."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:29
+#: .\page_vente\templates\page_vente\produits.html:30
+msgid "Créations sur mesure"
+msgstr "Custom Creations"
 
 #: .\page_vente\templates\page_vente\mentions-legales.html:3
 msgid ""
@@ -905,20 +927,33 @@ msgid ""
 "Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
 "qualité garantie."
 msgstr ""
-"Unique creations in macramé, leather goods, and handmade jewelry. Find one-"
-"of-a-kind items to elevate your style. Fast delivery."
+"Explore our personalized bags, handcrafted leather wallets, and macramé "
+"creations. A unique boutique with an authentic style."
 
 #: .\page_vente\templates\page_vente\produits.html:6
 msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
-msgstr "Handmade Leather Goods & Macramé"
+msgstr "Custom Bags & Unique Creations – Macramé, Leather & More"
 
 #: .\page_vente\templates\page_vente\produits.html:19
 msgid "Explorez Nos Créations - Trouvez votre style unique"
-msgstr "Explore Our Creations - Find your unique style"
+msgstr ""
+"Custom Bags, Leather Goods, and Macramé Jewelry: Explore Our Entire "
+"Collection"
 
 #: .\page_vente\templates\page_vente\produits.html:23
-msgid "Retrouvez ci-dessous tous les produits disponibles."
-msgstr "Find all available products below."
+msgid "Intro produits"
+msgstr ""
+"Explore the world of our handmade creations: custom bags, leather goods, and "
+"macramé jewelry come together to form a collection of unique pieces. Each "
+"model reflects our passion for craftsmanship and authentic style. Find the "
+"accessory that suits you best in our selection."
+
+#: .\page_vente\templates\page_vente\produits.html:29
+msgid "outro produits"
+msgstr ""
+"Looking for a personalized bag, a trendy macramé jewelry piece, or a "
+"handmade gift? Let yourself be inspired by our universe, and if you're "
+"looking for a custom creation, click below to discover the creation process."
 
 #: .\page_vente\urls.py:13
 msgid "produits/macrames/"
@@ -975,6 +1010,21 @@ msgstr "French"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid "Retrouvez ci-dessous tous les produits disponibles."
+#~ msgstr "Find all available products below."
+
+#~ msgid " est une alliance de "
+#~ msgstr " is a combination of "
+
+#~ msgid "differentes techniques et matériaux"
+#~ msgstr "different techniques and materials"
+
+#~ msgid "Ici vous trouverez tous les produits en "
+#~ msgstr "Here you will find all products in "
+
+#~ msgid " disponibles."
+#~ msgstr " available."
 
 #~ msgid ""
 #~ "Si vous avez des questions, n'hésitez pas à me contacter en cliquant "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-13 09:27+0200\n"
+"POT-Creation-Date: 2025-05-14 15:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -399,32 +399,43 @@ msgid ""
 "Découvrez nos créations uniques mêlant maroquinerie et macramé. Accessoires "
 "et bijoux alliant l’élégance du cuir à la finesse du tissage."
 msgstr ""
-"Créations uniques en maroquinerie et macramé. Bijoux et accessoires alliant "
-"cuir et tissage avec élégance et finesse."
+"Bijoux macramé uniques mêlant cuir et tressage de fil. Bracelets et colliers "
+"faits main pour un style authentique et original."
 
 #: .\page_vente\templates\page_vente\hybride.html:5
 msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
-msgstr "Créations hybrides maroquinerie & macramé "
+msgstr "Bijoux macramé & cuir - Créations originales"
 
 #: .\page_vente\templates\page_vente\hybride.html:18
 msgid "Accessoires uniques alliant maroquinerie et macramé"
-msgstr "Accessoires uniques alliant maroquinerie et macramé"
+msgstr ""
+"Explorez nos bijoux macramé originaux mêlant cuir et tressage de fil pour un "
+"style bohème inimitable"
 
 #: .\page_vente\templates\page_vente\hybride.html:22
-msgid " est une alliance de "
-msgstr " est une alliance de "
+msgid "Intro hybride"
+msgstr ""
+"Laissez-vous séduire par notre sélection de bijoux macramé alliant cuir et "
+"tressage pour un style bohème unique. Chaque pièce est faite à la main et "
+"reflète l’équilibre parfait entre authenticité et modernité. Découvrez des "
+"bracelets macramé et colliers originaux qui apportent une touche élégante et "
+"intemporelle à votre look. Idéal pour un style authentique."
 
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid "differentes techniques et matériaux"
-msgstr "differentes techniques et matériaux"
+#: .\page_vente\templates\page_vente\hybride.html:23
+#: .\page_vente\templates\page_vente\macrames.html:23
+#: .\page_vente\templates\page_vente\maroquinerie.html:23
+#: .\page_vente\templates\page_vente\produits.html:24
+msgid "Voir les créations ↓"
+msgstr ""
 
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid "Ici vous trouverez tous les produits en "
-msgstr "Ici vous trouverez tous les produits en"
-
-#: .\page_vente\templates\page_vente\hybride.html:22
-msgid " disponibles."
-msgstr "disponible."
+#: .\page_vente\templates\page_vente\hybride.html:28
+msgid "outro hybride"
+msgstr ""
+"Des bijoux macramé combinant cuir et créativité pour un look résolument "
+"authentique. Nos créations faites main sont idéales pour ajouter une touche "
+"unique à votre quotidien. Trouvez le bracelet macramé ou le bijou qui "
+"complétera parfaitement votre look et laissez-vous séduire par nos autres "
+"collections."
 
 #: .\page_vente\templates\page_vente\index.html:5
 msgid "Maroquinerie & macramé faits main - Leather Work In Traveling DB"
@@ -567,17 +578,13 @@ msgstr ""
 "accessoires bohèmes et des créations uniques vous attendent. Faits à la "
 "main, nos bijoux incarnent authenticité et élégance naturelle."
 
-#: .\page_vente\templates\page_vente\macrames.html:22
-msgid "Voir les créations ↓"
-msgstr ""
-
-#: .\page_vente\templates\page_vente\macrames.html:26
+#: .\page_vente\templates\page_vente\macrames.html:28
 msgid "outro macrames"
 msgstr ""
-"Notre collection de bijoux macramé originaux évolue constamment pour vous"
-" proposer des nouveautés inspirées de l’art du nouage. Des bracelets macramé"
-" tressés, des chaînes de corps, des boucles d’oreilles bohèmes… laissez"
-" libre cours à vos envies de style fait main et de pièces uniques."
+"Notre collection de bijoux macramé originaux évolue constamment pour vous "
+"proposer des nouveautés inspirées de l’art du nouage. Des bracelets macramé "
+"tressés, des chaînes de corps, des boucles d’oreilles bohèmes… laissez libre "
+"cours à vos envies de style fait main et de pièces uniques."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:4
 msgid ""
@@ -585,24 +592,41 @@ msgid ""
 "main. Des pièces uniques, confectionnées avec soin pour une qualité "
 "exceptionnelle."
 msgstr ""
-"Sacs, portefeuilles, ceintures et accessoires en cuir faits main. Des pièces "
-"uniques, confectionnées avec soin. Qualité garantie."
+"Accessoires en cuir, sac fait main et portefeuille cuir personnalisé : des "
+"créations uniques pour un style durable et élégant."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:16
 msgid "Maroquinerie fait main - Sacs, portefeuilles et accessoires en cuir"
-msgstr "Sacs, portefeuilles et accessoires en cuir"
+msgstr "Sac fait main – Maroquinerie cuir & accessoires"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:18
 msgid "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
-msgstr "Maroquinerie fait main – Sacs, portefeuilles et accessoires en cuir"
+msgstr ""
+"Sac fait main et autres accessoires en cuir: explorez notre collection de "
+"maroquinerie"
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:22
 msgid ""
 "Bienvenue dans l'espace maroquinerie. Retrouvez ci-dessous tous les produits "
 "disponibles."
 msgstr ""
-"Bienvenue dans l'espace maroquinerie. Retrouvez ci-dessous tous les produits "
-"disponibles."
+"Trouvez votre sac fait main ainsi que d'autres accessoires en cuir "
+"personnalisables parmi notre collection unique. Conçus avec une attention "
+"particulière aux détails, nos créations allient style et longévité. Explorez "
+"nos modèles et adoptez un look élégant et authentique."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:28
+msgid "outro maroquinerie"
+msgstr ""
+"Envie d'un sac en cuir personnalisé ou d'un cadeau fait main unique ? Nous "
+"proposons des créations sur mesure afin de transformer vos idées en réalité. "
+"Laissez-vous guider pour en cliquant ci-dessous pour découvrir le processus "
+"de création."
+
+#: .\page_vente\templates\page_vente\maroquinerie.html:29
+#: .\page_vente\templates\page_vente\produits.html:30
+msgid "Créations sur mesure"
+msgstr "Création sur Mesure"
 
 #: .\page_vente\templates\page_vente\mentions-legales.html:3
 msgid ""
@@ -923,20 +947,35 @@ msgid ""
 "Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
 "qualité garantie."
 msgstr ""
-"Créations uniques en macramé, maroquinerie et bijoux faits main. Trouvez des "
-"produits inédits pour sublimer votre style. Livraison rapide."
+"Découvrez nos sacs personnalisés, portefeuilles cuir faits main et créations "
+"en macramé. Une boutique unique au style authentique."
 
 #: .\page_vente\templates\page_vente\produits.html:6
 msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
-msgstr "Maroquinerie & macramé faits main"
+msgstr "Sac personnalisé & créations originales – Macramé, cuir & plus"
 
 #: .\page_vente\templates\page_vente\produits.html:19
 msgid "Explorez Nos Créations - Trouvez votre style unique"
-msgstr "Explorez Nos Créations - Trouvez votre style unique"
+msgstr ""
+"Sacs personnalisés, maroquinerie et bijoux macramé : explorez tout notre "
+"univers"
 
 #: .\page_vente\templates\page_vente\produits.html:23
-msgid "Retrouvez ci-dessous tous les produits disponibles."
-msgstr "Retrouvez ci-dessous tous les produits disponibles."
+msgid "Intro produits"
+msgstr ""
+"Explorez l'univers de nos créations faite à la main : sacs personnalisés, "
+"maroquinerie en cuir et bijoux macramé s’y rencontrent et forment une "
+"collection de pièces uniques. Chaque modéle reflète notre passion pour le "
+"travail bien fait et le style authentique. Trouvez l’accessoire qui vous "
+"ressemble parmi notre sélection."
+
+#: .\page_vente\templates\page_vente\produits.html:29
+msgid "outro produits"
+msgstr ""
+"Vous cherchez un sac personnalisé, un bijou macramé tendance ou un cadeau "
+"fait main ? Laissez-vous inspirer par notre univers et si vous souhaitez une "
+"création sur mesure, cliquez ci-dessous pour découvrir le processus de "
+"création."
 
 #: .\page_vente\urls.py:13
 msgid "produits/macrames/"
@@ -993,6 +1032,21 @@ msgstr "Français"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid "Retrouvez ci-dessous tous les produits disponibles."
+#~ msgstr "Retrouvez ci-dessous tous les produits disponibles."
+
+#~ msgid " est une alliance de "
+#~ msgstr " est une alliance de "
+
+#~ msgid "differentes techniques et matériaux"
+#~ msgstr "differentes techniques et matériaux"
+
+#~ msgid "Ici vous trouverez tous les produits en "
+#~ msgstr "Ici vous trouverez tous les produits en"
+
+#~ msgid " disponibles."
+#~ msgstr "disponible."
 
 #~ msgid ""
 #~ "Si vous avez des questions, n'hésitez pas à me contacter en cliquant "

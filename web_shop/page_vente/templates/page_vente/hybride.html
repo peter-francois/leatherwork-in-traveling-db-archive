@@ -19,5 +19,11 @@
 {% endblock %}
 
 {% block description %}
-    <p class ="text-center" id="description_hybride"><strong>Hybride</strong>{% trans " est une alliance de " %}<strong>{% trans "differentes techniques et matériaux" %}</strong>.<br>{% trans "Ici vous trouverez tous les produits en " %}<strong>Hybride</strong>{% trans " disponibles." %}</p>
+    <p class ="text-center intro"><em>{% trans "Intro hybride" %}</em>
+        <button class="align-items-center page-button font-size-17" id="see_products_button">{% trans "Voir les créations ↓" %}</button>
+    </p>
+{% endblock %}
+
+{% block outro %}
+    <p class ="text-center outro"><em>{% trans "outro hybride" %}</em></p>
 {% endblock %}
