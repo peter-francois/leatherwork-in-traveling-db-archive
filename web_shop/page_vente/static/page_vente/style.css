@@ -18,7 +18,7 @@
 
 body {
     font-family: 'Playfair Display', serif;
-    background-color: #f8f5e1;
+    background-color: #fcf6c8;
     color: #333;
     line-height: 1.6;
     margin: 0;
@@ -27,12 +27,13 @@ body {
 
 /*Common*/
     section{
-        margin: 30px 25px;
+        margin: 30px auto;
         border: 1px solid #ccc;
-        padding: 10px;
+        border-radius: 8px;
+        padding: 35px;
         max-width: 1440px;
-
         justify-self: center;
+        background-color: #fcf6dc;
     }
     h1,h2{
         font-family: 'Uncial Antiqua', serif;
@@ -380,6 +381,7 @@ body {
         height: fit-content;
         color: var(--color2);
 
+
     }
     .half-grid-width{
         grid-column: span 1;
@@ -511,6 +513,27 @@ body {
     }
 /*Tous les produits*/
 
+    .intro{
+        border-bottom: 3px solid #8b5e3b;
+        width: 70%;
+        margin: 0px auto 25px auto;
+        padding: 20px 40px 30px 40px;
+        color: var(--color2);
+    }
+    #see_products_button{
+        margin-top: 15px;
+        font-size: 15px;
+        justify-self: center;
+        padding: 5px 10px;
+    }
+    .outro{
+        border-top: 3px solid #8b5e3b;
+        width: 70%;
+        margin: 25px auto 0px auto;
+        padding: 30px 40px 20px 40px;
+        color: var(--color2);
+    }
+
     #description_page_all_products{
         color: #f8f5e1;
     }
@@ -536,15 +559,23 @@ body {
         border-radius: 5px;
         border: 2px solid var(--color2);
     }
+    .filter-and-list{
+        grid-template-columns: .22fr .78fr;
+        justify-content: center;
+    }
     .filter-form{
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        align-items: stretch;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        align-items: start;
         gap: 20px;
         align-content: center;
         justify-content: center;
     }
     .filter-form p{
         margin: 0px 0px;
+        width: 90%;
+        box-sizing: border-box;
+        justify-self: center;
     }
     #filter_button {
         margin-top: 10px;
@@ -558,7 +589,6 @@ body {
         display: inline-flex;
         align-items: center;
         transition: 0.3s ease;
-        grid-column: span 5;
         width: 7em;
         justify-self: center;
     }
@@ -601,7 +631,7 @@ body {
         margin-bottom: 15px;
     }
     .tous_les_produits, #liste-articles{
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         margin: 30px 25px;
         gap: 40px;
     }
@@ -1026,7 +1056,7 @@ footer {
             font-size: 14px;
         }
         .tous_les_produits, #liste-articles{
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             margin: 15px 10px;
             gap: 10px;
         }
@@ -1158,12 +1188,15 @@ footer {
     /*Tous les produits*/
 
         .filter-form{
-            grid-template-columns: 1fr 1fr;
             gap:10px;
         }
-        #filter_button{
-            margin-top: 5px;
-            grid-column: span 2;
+        #filter_button {
+            padding: 6px 12px;
+            width: 6em;
+        }
+        .tous_les_produits img, #liste-articles img{
+            width: 10em;
+            height: 10em;
         }
 
         .pagination-button{
@@ -1176,7 +1209,6 @@ footer {
         }
         .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(2, 1fr);
-            margin: 0px 0px;
             gap: 5px;
         }
     
@@ -1337,12 +1369,32 @@ footer {
             font-size: 13px;
         }
     /*Tous les produits*/
-        .filter-form{
-            grid-template-columns: 1fr 1fr;
-        }    
+    #filter_button {
+        padding: 4px 8px;
+        width: 5em;
+    }
+    .produit button, #liste-articles button {
+
+        font-size: 11px;
+    }
+    #filter-icon {
+        width: 14px;
+        height: 14px;
+        padding-left: 5px;
+    }
+    .tous_les_produits, #liste-articles {
+        gap: 0px;
+        margin: 10px 3px;
+    }
+    .intro {
+        padding: 10px 20px 15px 20px;
+    }
+    .outro {
+        padding: 15px 20px 10px 20px;
+    }
         .tous_les_produits img{
-            width: 7em;
-            height: 7em;
+            width: 5em;
+            height: 6em;
         }    
         #liste-articles img{
             width: 8em;
