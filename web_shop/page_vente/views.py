@@ -316,7 +316,7 @@ def use_filter(request, product_views, is_all_products):
 
 def pagination(request, product_views):
 
-    paginator = Paginator(product_views, 20)
+    paginator = Paginator(product_views, 24)
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
 
