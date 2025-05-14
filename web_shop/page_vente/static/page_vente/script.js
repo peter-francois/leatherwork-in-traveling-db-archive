@@ -650,6 +650,17 @@ function handleCheckout() {
     console.log("total-amount :", document.getElementById('total-amount'));
 }
 
+function scrollToProducts() {
+    const productsSection = document.getElementById('products-section');
+    const offsetTop = productsSection.offsetTop - 62.5;
+    if (productsSection) {
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
+
 // Sortir les evenement onclick
 if (document.getElementById("contact_link")) {
     document.getElementById("contact_link").addEventListener("click", function() {
@@ -743,3 +754,9 @@ document.addEventListener('languageChanged', function() {
         updateTotal();
     }
 });
+
+if (document.getElementById("see_products_button")) {
+    document.getElementById("see_products_button").addEventListener("click", function() {
+        scrollToProducts();
+    });
+}
