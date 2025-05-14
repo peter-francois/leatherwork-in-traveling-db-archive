@@ -12,77 +12,96 @@
 {% endblock %}
 {% block content %}
 <main>
-    <section id="filter-section">
-        <div>
-            <form class="filter-form grid-container" method="GET">
-                {{ form.as_p }}
-                <button class="align-items-center font-size-17" id ="filter_button" type="submit" ><span id="filter_button_text">{% trans "Filtrer" %}</span><img id="filter-icon" src="{% static 'page_vente/icons/filter-solid.svg' %}" alt="icon filter"></button>
-            </form>
-            {% if filter_used %}
-                {% if number_of_products_in_filter > 0 %}
-                    <p class="number-of-products-in-filter text-center">{{ number_of_products_in_filter }} {%   if number_of_products_in_filter > 1 %}{% trans 'articles trouvés après application du filtre.' %}{% else %}{% trans 'article trouvé après application du filtre.' %}{% endif %}</p>
-                {% endif %}
-                <button type="button" id="clean_filter" class="align-items-center page-button font-size-17 clean-button">{% trans "Effacer le filtre" %}</button>
-            {% endif %}
-        </div>
-    </section>
-
-    <!--Pagination Links-->
-    <div class="pagination text-center font-size-17">
-        {% if products.has_previous %}
-            <a class="pagination-button first-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page=1">&laquo; {% trans "Premier" %}</a>
-            <a class="pagination-button prev-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
-        {% endif %}
-        <br id="br-pagination">
-        {% if products.has_next %}
-            <a class="pagination-button next-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
-            <a class="pagination-button last-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
-        {% endif %}
-
-        <span class="current-page">
-            Page {{ products.number }} <span id="of">{% trans "of" %}</span> {{ products.paginator.num_pages }}
-        </span>
-    </div>
-
-    <!--List of products-->
     <section>
-    <div id="liste-produits" class="grid-container tous_les_produits">
-        {% if products %}
-        {% for produit in products %}
-            <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
-                <h3>{{ produit.nom }}</h3>
-                {% if produit.cached_images.image1 %}
-                    <img src="{{ produit.cached_images.image1 }}" alt="{{ produit.nom }}">
-                {% elif produit.image1 %}
-                    <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
-                {% elif produit.cached_images.image2 %}
-                    <img src="{{ produit.cached_images.image2 }}" alt="{{ produit.nom }}">
-                {% elif produit.image2 %}
-                    <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
-                {% elif produit.cached_images.image3 %}
-                    <img src="{{ produit.cached_images.image3 }}" alt="{{ produit.nom }}">
-                {% elif produit.image3 %}
-                    <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
-                {% elif produit.cached_images.image4 %}
-                    <img src="{{ produit.cached_images.image4 }}" alt="{{ produit.nom }}">
-                {% elif produit.image4 %}
-                    <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
-                {% else %}
-                    <p>{% trans "Aucune image disponible" %}</p>
+        {% block description %}
+        {% endblock %}
+        <div id="products-section">
+            <!--Pagination Links-->
+            <div class="pagination text-center font-size-17">
+                {% if products.has_previous %}
+                    <a class="pagination-button first-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page=1">&laquo; {% trans "Premier" %}</a>
+                    <a class="pagination-button prev-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
                 {% endif %}
-                {% if not produit.en_attente_dans_panier %}
-                <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }} €</p>
-                <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">{% trans "Ajouter au panier" %}</button>
-                {%else %}
-                <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
-                <a class="align-items-center page-button on-order-button text-center" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com%20-%20Demande%20de%20fabrication%20de%20l'article%20{{produit.nom}}">{% trans 'Contactez-nous, disponible sur commande' %}</a>
+                <br id="br-pagination">
+                {% if products.has_next %}
+                    <a class="pagination-button next-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
+                    <a class="pagination-button last-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
                 {% endif %}
+
+                <span class="current-page">
+                    Page {{ products.number }} <span id="of">{% trans "of" %}</span> {{ products.paginator.num_pages }}
+                </span>
             </div>
-        {% endfor %}
-        {% else %}
-            <p id="no_products">{% trans "Aucun produit disponible" %}</p>
-        {% endif %}
-    </div>
+            <div class="grid-container filter-and-list">
+                <div>
+                    <form class="filter-form grid-container" method="GET">
+                        {{ form.as_p }}
+                        <button class="align-items-center font-size-17" id ="filter_button" type="submit" ><span id="filter_button_text">{% trans "Filtrer" %}</span><img id="filter-icon" src="{% static 'page_vente/icons/filter-solid.svg' %}" alt="icon filter"></button>
+                    </form>
+                    {% if filter_used %}
+                        {% if number_of_products_in_filter > 0 %}
+                            <p class="number-of-products-in-filter text-center">{{ number_of_products_in_filter }} {%   if number_of_products_in_filter > 1 %}{% trans 'articles trouvés après application du filtre.' %}{% else %}{% trans 'article trouvé après application du filtre.' %}{% endif %}</p>
+                        {% endif %}
+                        <button type="button" id="clean_filter" class="align-items-center page-button font-size-17 clean-button">{% trans "Effacer le filtre" %}</button>
+                    {% endif %}
+                </div>
+                <!--List of products-->
+                <div id="liste-produits" class="grid-container tous_les_produits">
+                    {% if products %}
+                    {% for produit in products %}
+                        <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
+                            <h3>{{ produit.nom }}</h3>
+                            {% if produit.cached_images.image1 %}
+                                <img src="{{ produit.cached_images.image1 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image1 %}
+                                <img src="{{ produit.image1.url }}" alt="{{ produit.nom }}">
+                            {% elif produit.cached_images.image2 %}
+                                <img src="{{ produit.cached_images.image2 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image2 %}
+                                <img src="{{ produit.image2.url }}" alt="{{ produit.nom }}">
+                            {% elif produit.cached_images.image3 %}
+                                <img src="{{ produit.cached_images.image3 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image3 %}
+                                <img src="{{ produit.image3.url }}" alt="{{ produit.nom }}">
+                            {% elif produit.cached_images.image4 %}
+                                <img src="{{ produit.cached_images.image4 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image4 %}
+                                <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
+                            {% else %}
+                                <p>{% trans "Aucune image disponible" %}</p>
+                            {% endif %}
+                            {% if not produit.en_attente_dans_panier %}
+                            <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }} €</p>
+                            <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">{% trans "Ajouter au panier" %}</button>
+                            {%else %}
+                            <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
+                            <a class="align-items-center page-button on-order-button text-center" href="mailto:{{ CLIENT_EMAIL }}?subject=Contact%20depuis%20LeatherWorkInTravelingDB.com%20-%20Demande%20de%20fabrication%20de%20l'article%20{{produit.nom}}">{% trans 'Contactez-nous, disponible sur commande' %}</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                        <p id="no_products">{% trans "Aucun produit disponible" %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <!--Pagination Links-->
+            <div class="pagination text-center font-size-17">
+                {% if products.has_previous %}
+                    <a class="pagination-button first-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page=1">&laquo; {% trans "Premier" %}</a>
+                    <a class="pagination-button prev-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
+                {% endif %}
+                <br id="br-pagination">
+                {% if products.has_next %}
+                    <a class="pagination-button next-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
+                    <a class="pagination-button last-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
+                {% endif %}
+                <span class="current-page">
+                    Page {{ products.number }} <span id="of2">{% trans "of" %}</span> {{ products.paginator.num_pages }}
+                </span>
+            </div>
+        </div>
+        {% block outro %}
+        {% endblock %}
     </section>
     <section class="hidden">
         <ul id="liste-articles"></ul>    
@@ -107,24 +126,5 @@
             </div>
         </div>
     </div>
-        
-
-         <!--Pagination Links-->
-        <div class="pagination text-center font-size-17">
-            {% if products.has_previous %}
-                <a class="pagination-button first-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page=1">&laquo; {% trans "Premier" %}</a>
-                <a class="pagination-button prev-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
-            {% endif %}
-            <br id="br-pagination">
-            {% if products.has_next %}
-                <a class="pagination-button next-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
-                <a class="pagination-button last-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
-            {% endif %}
-            <span class="current-page">
-                Page {{ products.number }} <span id="of2">{% trans "of" %}</span> {{ products.paginator.num_pages }}
-            </span>
-        </div>
-
-
 </main>
 {% endblock %}

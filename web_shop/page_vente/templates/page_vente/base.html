@@ -31,15 +31,13 @@
             <img class="logo" src="https://res.cloudinary.com/dalrlwhii/image/upload/f_auto/v1745414122/cwmtpsig7dz8czn6ka6p.png" alt="Logo Leather Work In Traveling DB" >
             {% block header %}
             {% endblock %}
-        </div>
-        <div id="separator-header"></div>
-        {% block description %}
-        {% endblock %}
-        <p class ="text-center" id="any_question">{% trans "Si vous avez des questions, n'hésitez pas à me contacter en cliquant " %}<button class="align-items-center page-button" id = "contact_link">{% trans "ICI" %}</button></p>
+        </div>        
         {% include 'page_vente/navbar.html' %}
     </div>
+
     {% block content %}
     {% endblock %}
+
     <div id="contact-form">
         <button type="button" id="close-btn">&times;</button>
         <h2 class="center" id="contact_title">{% trans "Besoin de renseignements ou de prendre contact pour un produit sur mesure ?" %}</h2>
