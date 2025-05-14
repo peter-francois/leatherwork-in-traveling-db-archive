@@ -19,5 +19,9 @@
 {% endblock %}
 
 {% block description %}
-    <p class ="text-center" id="description_macrame">{% trans "Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits disponibles." %}</p>
+    <p class ="text-center intro" id="intro"><em>{% trans "Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits disponibles." %}</em><button class="align-items-center page-button font-size-17" id="see_products_button">{% trans "Voir les créations ↓" %}</button></p>
+    {% endblock %}
+
+{% block outro %}
+    <p class ="text-center outro" id="outro">{% trans "outro macrames" %}</p>
 {% endblock %}
