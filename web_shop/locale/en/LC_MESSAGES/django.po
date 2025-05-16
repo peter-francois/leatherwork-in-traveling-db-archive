@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 15:23+0200\n"
+"POT-Creation-Date: 2025-05-16 07:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,30 +231,26 @@ msgid ""
 "maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre "
 "service pour réaliser des pièces uniques et personnalisées."
 msgstr ""
-"Treat yourself to a custom creation! Personalize your leather goods or "
-"macramé accessories according to your liking. I offer my expertise to craft "
-"unique, bespoke pieces tailored to your needs."
+"Treat yourself to a custom leather bag or macramé accessory. Unique, "
+"handmade pieces tailored to your style and needs. Made to order with "
+"care."
 
 #: .\page_vente\templates\page_vente\creation_sur_mesure.html:5
 msgid "Accessoires cuir & macramé personnalisés | Création sur mesure"
-msgstr "Custom leather & macramé accessories | Tailor-made creations"
+msgstr "Custom Creations – Personalized Bags & Accessories"
 
 #: .\page_vente\templates\page_vente\creation_sur_mesure.html:17
 msgid ""
 "Création sur mesure de maroquinerie et macramé - Personnalisez vos "
 "accessoires"
 msgstr ""
-"Custom Creation of leatherwork and macrame - Personalize your accessories"
+"Personalized Bags & Custom Accessories – See How We Bring Your Ideas to Life"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:21
-msgid "Bienvenue dans l'espace Creation Sur Mesure."
-msgstr "Welcome to the Custom Creations space."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:28
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:23
 msgid "Créativité nomade et savoir-faire unique"
-msgstr "Nomadic creativity and unique craftsmanship"
+msgstr "My world : Nomadic creativity and unique craftsmanship"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:25
 msgid ""
 "Chaque création sur mesure est inspirée des techniques traditionnelles et "
 "des influences culturelles rencontrées lors de mes voyages à travers "
@@ -262,27 +258,44 @@ msgid ""
 "uniques, imprégnées d’histoire."
 msgstr ""
 "Each custom creation is inspired by traditional techniques and cultural "
-"influences encountered during my travels across Europe. My approach combines "
-"originality and passion to offer unique pieces, imbued with history."
+"influences I’ve encountered during my travels across Europe. My approach "
+"combines originality and passion to deliver unique pieces, rich with history "
+"and meaning."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:35
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+msgid "title_custom_creation"
+msgstr "Thinking about a custom piece? It all starts right here."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:32
+msgid "text_custom_creation"
+msgstr ""
+"Dreaming of a personalized bag, a unique leather dog collar, or an "
+"accessory that reflects your style? Custom creation brings your ideas to "
+"life. Colors, shapes, finishes — every detail is designed with you to craft "
+"a truly personal piece. Start your project today — this is where it all "
+"begins."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:36
 msgid "Votre création sur mesure, étape par étape"
 msgstr "Your custom creation, step by step"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:37
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:38
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:62
 msgid ""
 "Vous souhaitez un accessoire en cuir ou une décoration en macramé "
 "entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
 "unique :"
 msgstr ""
-"You want a leather accessory or a macrame decoration entirely personalized? "
-"Here is how we create together a unique piece:"
+"Once your project is defined, here’s how we create your unique piece "
+"together:"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:39
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
 msgid "Échange initial :"
 msgstr "First meeting :"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:39
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
 msgid ""
 "Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
 "obtenir une première estimation."
@@ -290,28 +303,34 @@ msgstr ""
 "Contact me by email or phone to discuss your project and get an initial "
 "estimate."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
 msgid "Conception :"
 msgstr "Design :"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
 msgid "Réalisation d’un croquis détaillé et établissement d’un devis précis."
 msgstr "Realization of a detailed sketch and establishment of a precise quote."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
 msgid "Début de la fabrication :"
 msgstr "Start of production:"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
 msgid "Un acompte de 1/3 du prix est demandé pour lancer la production."
 msgstr ""
 "A deposit of one-third of the price is requested to start the production."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
 msgid "Validation :"
 msgstr "Approval:"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
 msgid ""
 "Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
 "si nécessaire."
@@ -319,11 +338,13 @@ msgstr ""
 "I send you visuals to finalize the designs and adjust the details if "
 "necessary."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:44
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:68
 msgid "Livraison :"
 msgstr "Delivery :"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:44
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:68
 msgid ""
 "Une fois le paiement final effectué, votre création est expédiée en toute "
 "sécurité avec assurance."
@@ -331,24 +352,29 @@ msgstr ""
 "Once the final payment is received, your creation is carefully packaged and "
 "shipped with insurance for a safe delivery"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:50
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:49
 msgid "Découvrez mes réalisations"
-msgstr "Discover my realizations"
+msgstr ""
+"Examples of creations: personalized leather wallets, dog collars…"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:62
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:60
+msgid "Le travail du cuir : repoussage, découpe et finitions à la main"
+msgstr ""
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:73
 msgid "Pourquoi choisir mes créations unique?"
 msgstr "Why choose my unique creations?"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:75
 msgid "Fabrication "
 msgstr "Production "
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:75
 msgid ""
 "à la main avec des matériaux soigneusement sélectionnés lors de mes voyages."
 msgstr "Handcrafted with materials carefully selected during my travels."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:76
 msgid ""
 "Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes "
 "européens."
@@ -356,23 +382,23 @@ msgstr ""
 "An enriched know-how through exchanges with creators and European "
 "specialists."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:77
 msgid ""
 "Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée."
 msgstr ""
 "Each of my creations carries the mark of the journey and the culture that "
 "inspired it."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:78
 msgid ""
 "Des créations personnalisées, façonnées avec passion et souci du détail."
 msgstr "Personalized creations, made with passion and attention to detail."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:72
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:83
 msgid "Contactez-moi"
 msgstr "Contact me"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:73
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:84
 msgid ""
 "Un projet, une idée, une envie d’échanger sur mes créations ou sur la vie "
 "nomades ? Écrivez-moi !"
@@ -380,7 +406,7 @@ msgstr ""
 "A project, an idea, a desire to exchange on my creations or on the nomadic "
 "life ? Write me !"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:77
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:88
 msgid "Numéro de téléphone :"
 msgstr "Phone number :"
 
@@ -1010,6 +1036,9 @@ msgstr "French"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid "Bienvenue dans l'espace Creation Sur Mesure."
+#~ msgstr "Welcome to the Custom Creations space."
 
 #~ msgid "Retrouvez ci-dessous tous les produits disponibles."
 #~ msgstr "Find all available products below."

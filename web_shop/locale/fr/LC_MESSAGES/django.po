@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 15:24+0200\n"
+"POT-Creation-Date: 2025-05-16 07:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,31 +238,27 @@ msgid ""
 "maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre "
 "service pour réaliser des pièces uniques et personnalisées."
 msgstr ""
-"Offrez-vous une création sur mesure ! Personnalisez vos articles de "
-"maroquinerie ou macramé selon vos goûts. Je met mon savoir-faire à votre "
-"service pour réaliser des pièces uniques et personnalisées."
+"Offrez-vous un sac personnalisé ou un accessoire unique grâce à nos "
+"créations sur mesure. Chaque pièce est conçue selon vos envies et vos "
+"besoins."
 
 #: .\page_vente\templates\page_vente\creation_sur_mesure.html:5
 msgid "Accessoires cuir & macramé personnalisés | Création sur mesure"
-msgstr "Accessoires cuir & macramé personnalisés | Création sur mesure"
+msgstr "Créations sur mesure - Sac personnalisé et accessoires"
 
 #: .\page_vente\templates\page_vente\creation_sur_mesure.html:17
 msgid ""
 "Création sur mesure de maroquinerie et macramé - Personnalisez vos "
 "accessoires"
 msgstr ""
-"Création sur mesure de maroquinerie et macramé - Personnalisez vos "
-"accessoires"
+"Créez votre sac personnalisé ou vos accessoires sur mesure - Découvrez notre "
+"processus de création"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:21
-msgid "Bienvenue dans l'espace Creation Sur Mesure."
-msgstr "Bienvenue dans l'espace Creation Sur Mesure."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:28
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:23
 msgid "Créativité nomade et savoir-faire unique"
-msgstr "Créativité nomade et savoir-faire unique"
+msgstr "Mon univers : créativité nomade et savoir-faire unique"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:25
 msgid ""
 "Chaque création sur mesure est inspirée des techniques traditionnelles et "
 "des influences culturelles rencontrées lors de mes voyages à travers "
@@ -274,91 +270,124 @@ msgstr ""
 "l'Europe. Mon approche allie originalité et passion pour offrir des pièces "
 "uniques, imprégnées d'histoire."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:35
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:30
+msgid "title_custom_creation"
+msgstr "Un projet en tête ? C'est ici que tout commence"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:32
+msgid "text_custom_creation"
+msgstr ""
+"Vous rêvez d’un sac personnalisé, d’un collier cuir pour chien unique ou d’un "
+"accessoire qui vous ressemble ? La création sur mesure vous permet de donner "
+"vie à vos idées. Couleurs, formes, finitions : chaque détail est pensé avec "
+"vous, pour créer une pièce véritablement personnelle. Lancez votre projet, "
+"tout commence ici."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:36
 msgid "Votre création sur mesure, étape par étape"
 msgstr "Votre création sur mesure, étape par étape"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:37
-msgid ""
-"Vous souhaitez un accessoire en cuir ou une décoration en macramé "
-"entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
-"unique :"
-msgstr ""
-"Vous souhaitez un accessoire en cuir ou une décoration en macramé "
-"entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
-"unique :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:39
-msgid "Échange initial :"
-msgstr "Échange initial :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:39
-msgid ""
-"Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
-"obtenir une première estimation."
-msgstr ""
-"Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
-"obtenir une première estimation."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
-msgid "Conception :"
-msgstr "Conception :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
-msgid "Réalisation d’un croquis détaillé et établissement d’un devis précis."
-msgstr "Réalisation d’un croquis détaillé et établissement d’un devis précis."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
-msgid "Début de la fabrication :"
-msgstr "Début de la fabrication :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
-msgid "Un acompte de 1/3 du prix est demandé pour lancer la production."
-msgstr "Un acompte de 1/3 du prix est demandé pour lancer la production."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
-msgid "Validation :"
-msgstr "Validation :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
-msgid ""
-"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
-"si nécessaire."
-msgstr ""
-"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
-"si nécessaire."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
-msgid "Livraison :"
-msgstr "Livraison :"
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
-msgid ""
-"Une fois le paiement final effectué, votre création est expédiée en toute "
-"sécurité avec assurance."
-msgstr ""
-"Une fois le paiement final effectué, votre création est expédiée en toute "
-"sécurité avec assurance."
-
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:50
-msgid "Découvrez mes réalisations"
-msgstr "Découvrez mes réalisations"
-
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:38
 #: .\page_vente\templates\page_vente\creation_sur_mesure.html:62
+msgid ""
+"Vous souhaitez un accessoire en cuir ou une décoration en macramé "
+"entièrement personnalisé ? Voici comment nous créons ensemble une pièce "
+"unique :"
+msgstr ""
+"Une fois votre projet défini, voici comment nous créons ensemble votre pièce "
+"unique :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+msgid "Échange initial :"
+msgstr "Premier échange :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:40
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+msgid ""
+"Contactez-moi par e-mail ou téléphone pour discuter de votre projet et "
+"obtenir une première estimation."
+msgstr ""
+"Par e-mail ou téléphone, nous discutons de votre projet pour bien cerner "
+"vos attentes et je vous propose une première estimation."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
+msgid "Conception :"
+msgstr "Conception personnalisée :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:41
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
+msgid "Réalisation d’un croquis détaillé et établissement d’un devis précis."
+msgstr ""
+"Je réalise un croquis détaillé et vous fournis un devis précis en fonction "
+"des matériaux, du format et des finitions souhaitées."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
+msgid "Début de la fabrication :"
+msgstr "Lancement de la fabrication :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:42
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
+msgid "Un acompte de 1/3 du prix est demandé pour lancer la production."
+msgstr ""
+"Une fois l’acompte de 1/3 versé, je commence la fabrication dans mon "
+"atelier."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
+msgid "Validation :"
+msgstr "Ajustements & validation :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:43
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
+msgid ""
+"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
+"si nécessaire."
+msgstr ""
+"Je vous envoie des visuels pour finaliser les motifs et ajuster les détails "
+"si nécessaire."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:44
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:68
+msgid "Livraison  :"
+msgstr "Livraison soignée :"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:44
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:68
+msgid ""
+"Une fois le paiement final effectué, votre création est expédiée en toute "
+"sécurité avec assurance."
+msgstr ""
+"Une fois le solde réglé, votre création sur mesure est expédiée avec soin "
+"et assurance, prête à rejoindre votre quotidien."
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:49
+msgid "Découvrez mes réalisations"
+msgstr ""
+"Exemples de créations : portefeuilles cuir personnalisé, colliers "
+"pour chien…"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:60
+msgid "Le travail du cuir : repoussage, découpe et finitions à la main"
+msgstr "Le travail du cuir : repoussage, découpe et finitions à la main"
+
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:73
 msgid "Pourquoi choisir mes créations unique?"
 msgstr "Pourquoi choisir mes créations unique?"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:75
 msgid "Fabrication "
 msgstr "Fabrication "
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:64
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:75
 msgid ""
 "à la main avec des matériaux soigneusement sélectionnés lors de mes voyages."
 msgstr ""
 "à la main avec des matériaux soigneusement sélectionnés lors de mes voyages."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:65
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:76
 msgid ""
 "Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes "
 "européens."
@@ -366,31 +395,32 @@ msgstr ""
 "Un savoir-faire enrichi par des échanges avec des créateurs et spécialistes "
 "européens."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:66
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:77
 msgid ""
 "Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée."
 msgstr ""
 "Chaque pièce porte l’empreinte du voyage et de la culture qui l’a inspirée."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:67
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:78
 msgid ""
 "Des créations personnalisées, façonnées avec passion et souci du détail."
 msgstr ""
 "Des créations personnalisées, façonnées avec passion et souci du détail."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:72
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:83
 msgid "Contactez-moi"
-msgstr "Contactez-moi"
+msgstr "Contactez-moi pour votre projet sur mesure"
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:73
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:84
 msgid ""
 "Un projet, une idée, une envie d’échanger sur mes créations ou sur la vie "
 "nomades ? Écrivez-moi !"
 msgstr ""
-"Un projet, une idée, une envie d'échanger sur mes créations ou sur la vie "
-"nomades ? Écrivez-moi !"
+"Envie de créer quelque chose de personnel ou d’offrir un cadeau fait main "
+"qui a du sens ? Je vous accompagne dans chaque étape de votre création "
+"sur mesure."
 
-#: .\page_vente\templates\page_vente\creation_sur_mesure.html:77
+#: .\page_vente\templates\page_vente\creation_sur_mesure.html:88
 msgid "Numéro de téléphone :"
 msgstr "Numéro de téléphone :"
 
@@ -555,17 +585,17 @@ msgid ""
 "corps, boucles d'oreilles, colliers et bracelets tissés avec soin pour une "
 "touche d'élégance unique."
 msgstr ""
-"Explorez notre sélection de bijoux macramé originaux : bracelet macramé, "
+"Explorez notre sélection de bijoux bohème en macramé : bracelet macramé, "
 "accessoires style bohème, design fait main et élégant"
 
 #: .\page_vente\templates\page_vente\macrames.html:5
 msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
-msgstr "Bijoux macramé originaux – Créations uniques à découvrir "
+msgstr "Bijoux bohème en macramé – Créations uniques à découvrir "
 
 #: .\page_vente\templates\page_vente\macrames.html:18
 msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
 msgstr ""
-"Bijoux macramé originaux – Bracelets uniques et accessoires macramé à "
+"Bijoux bohème en macramé – Bracelets originaux et accessoires macramé à "
 "découvrir"
 
 #: .\page_vente\templates\page_vente\macrames.html:22
@@ -573,7 +603,7 @@ msgid ""
 "Bienvenue dans l'espace Macramés. Retrouvez ci-dessous tous les produits "
 "disponibles."
 msgstr ""
-"Découvrez notre univers de bijoux macramé originaux, mêlant tradition du "
+"Découvrez notre univers de bijoux bohème en macramé, mêlant tradition du "
 "nouage à la main et design contemporain. Des bracelets macramé colorés, des "
 "accessoires bohèmes et des créations uniques vous attendent. Faits à la "
 "main, nos bijoux incarnent authenticité et élégance naturelle."
@@ -581,10 +611,10 @@ msgstr ""
 #: .\page_vente\templates\page_vente\macrames.html:28
 msgid "outro macrames"
 msgstr ""
-"Notre collection de bijoux macramé originaux évolue constamment pour vous "
-"proposer des nouveautés inspirées de l’art du nouage. Des bracelets macramé "
-"tressés, des chaînes de corps, des boucles d’oreilles bohèmes… laissez libre "
-"cours à vos envies de style fait main et de pièces uniques."
+"Notre collection de bijoux macramé évolue constamment pour vous proposer des "
+"nouveautés inspirées de l’art du nouage. Des bracelets macramé tressés, des "
+"chaînes de corps, des boucles d’oreilles bohèmes… laissez libre cours à vos "
+"envies de style fait main et de pièces uniques."
 
 #: .\page_vente\templates\page_vente\maroquinerie.html:4
 msgid ""
@@ -1032,6 +1062,9 @@ msgstr "Français"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid "Bienvenue dans l'espace Creation Sur Mesure."
+#~ msgstr "Bienvenue dans l'espace Creation Sur Mesure."
 
 #~ msgid "Retrouvez ci-dessous tous les produits disponibles."
 #~ msgstr "Retrouvez ci-dessous tous les produits disponibles."
