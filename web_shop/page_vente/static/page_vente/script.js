@@ -601,12 +601,15 @@ function updateTotal() {
     
     
     const addInsurance = document.getElementById('add-insurance')?.checked || false;
+    const addShipping = document.getElementById('add-shipping')?.checked || false;
     let totalAmount = orderTotal + 5.00 + insuranceCost;
     
     if (addInsurance && orderTotal > 25 && orderTotal <= 50) {
         totalAmount += 2.00;
     }
-    
+    if (addShipping) {
+        totalAmount += 5.00;
+    }
     const formattedTotal = currentLang === 'en'
         ? totalAmount.toFixed(2)
         : totalAmount.toFixed(2).replace('.', ',');
@@ -618,6 +621,7 @@ function updateTotal() {
 function handleCheckout() {
     const acceptCGV = document.getElementById('accept-cgv').checked;
     const addInsurance = document.getElementById('add-insurance').checked;
+    const addShipping = document.getElementById('add-shipping').checked;
     const errorMessage = document.getElementById('error-message');
     let orderTotal = document.getElementById('total-amount').textContent;
     if (currentLanguage == 'fr'){
@@ -639,7 +643,7 @@ function handleCheckout() {
         return;
     }
     // Redirige vers Stripe avec le montant total
-    window.location.href = `/api/checkout/?front_total=${orderTotal}&cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
+    window.location.href = `/api/checkout/?front_total=${orderTotal}&cart_uuid=${cart_uuid}&insurance=${addInsurance ? 1 : 0}&shipping=${addShipping ? 1 : 0}&acceptCGV=${acceptCGV ? 1 : 0}`;
   }
 // débug
   function debugElements() {
@@ -706,6 +710,11 @@ if (document.getElementById("clear_cart")) {
 
 if (document.getElementById("add-insurance")) {
     document.getElementById("add-insurance").addEventListener("change", function() {
+        updateTotal();
+    });
+}
+if (document.getElementById("add-shipping")) {
+    document.getElementById("add-shipping").addEventListener("change", function() {
         updateTotal();
     });
 }

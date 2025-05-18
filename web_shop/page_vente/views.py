@@ -326,7 +326,7 @@ def get_query_string(request):
         params.pop('page')
     return params.urlencode()
 
-def get_total_centimes(total_articles, add_insurance):
+def get_total_centimes(total_articles, add_insurance, add_shipping):
 
     # Calculer le total en centimes
     total_centimes = int(round(total_articles * 100))
@@ -346,7 +346,10 @@ def get_total_centimes(total_articles, add_insurance):
             total_centimes += 200
 
     # Ajouter les frais de port en centimes
-    total_centimes += 500
+    if add_shipping:
+        total_centimes += 1000
+    else:
+        total_centimes += 500
 
     # Vérification du total
     if total_centimes <= 0:
@@ -366,6 +369,7 @@ def checkout(request):
 
     # Récupérer les paramètres envoyés par le front
     add_insurance = request.GET.get('insurance') == '1'
+    add_shipping = request.GET.get('shipping') == '1'
     acceptCGV = request.GET.get('acceptCGV') == '1'
     if not acceptCGV:
         logger.error("L'utilisateur n'a pas accepté les conditions générales de vente.")
@@ -384,7 +388,7 @@ def checkout(request):
     total_articles = float(Cart.get_total(cart))
 
     # Calcul du total en centimes
-    total_centimes = get_total_centimes(total_articles, add_insurance)
+    total_centimes = get_total_centimes(total_articles, add_insurance, add_shipping)
 
     # Convertir le montant du front-end en centimes pour la comparaison
     front_total_centimes = int(round(front_total * 100))
@@ -432,6 +436,7 @@ def checkout(request):
                             'acceptCGV': str(acceptCGV),
                             'cgv_version': str(cart.cgv_accepted.version),
                             'add_insurance': str(add_insurance),
+                            'add_shipping': str(add_shipping),
                             'total_articles': float(total_articles),
                             'total_verified': int(total_centimes),
                             'list_products': json.dumps(list_products),
@@ -472,6 +477,7 @@ def success_view(request):
 
         cart_uuid = metadata["cart_uuid"]
         add_insurance = metadata.get('add_insurance', 'false').lower() == 'true'
+        add_shipping = metadata.get('add_shipping', 'false').lower() == 'true'
         total_articles = float(metadata.get('total_articles', 0))
 
         # ✅ Convertir cart_uuid en format UUID
@@ -485,7 +491,7 @@ def success_view(request):
 
         # Vérifier que le total correspond bien
         total_verified_centimes = session.amount_total
-        total_cart = get_total_centimes(total_articles, add_insurance)
+        total_cart = get_total_centimes(total_articles, add_insurance, add_shipping)
 
         if total_verified_centimes != total_cart:
             logger.error(f"Montant invalide. Total vérifié: {total_verified_centimes}, Total du panier: {total_cart}")
@@ -555,17 +561,18 @@ def stripe_webhook(request):
         total_articles = metadata.get('total_articles')
         cgv_version= metadata.get('cgv_version')
         add_insurance= metadata.get('add_insurance')
+        add_shipping= metadata.get('add_shipping')
         total_verified= metadata.get('total_verified')
 
 
 
 
         # Vous pouvez maintenant utiliser ces informations pour envoyer un email de confirmation
-        send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id)
+        send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id, add_shipping)
 
     return JsonResponse({'status': 'success'}, status=200)
 
-def send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id):
+def send_email_to_owner(customer_email, customer_name, shipping_address, list_products, cart_uuid, total_articles, cgv_version, add_insurance, total_verified, order_id, add_shipping):
     # Vérification et conversion de list_products
     if isinstance(list_products, str):
         try:
@@ -597,7 +604,11 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
         insurance = 'Oui'
     else:
         insurance = 'Non'
-    shipping_cost = 5
+    if add_shipping == 'True':
+        shipping = 'Oui'
+    else:
+        shipping = 'Non'
+    shipping_cost = 10 if add_shipping == 'True' else 5
     insurance_cost = round(float(total_verified) - float(total_articles) - float(shipping_cost), 2)
 
 
@@ -627,6 +638,7 @@ def send_email_to_owner(customer_email, customer_name, shipping_address, list_pr
     <h5>Détails de la commande :</h5>
     <ul>
         <li>Assurance: {insurance}</li>
+        <li>Livraison à domicile: {shipping}</li>
         <li>Frais de port : {shipping_cost} €</li>
         <li>Total des articles : {total_articles} €</li>
         <li>Assurance : {insurance_cost} €</li>

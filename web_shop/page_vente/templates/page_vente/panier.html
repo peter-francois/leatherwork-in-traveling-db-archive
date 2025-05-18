@@ -36,8 +36,11 @@
         <aside class="text-center">
             <h2 id="payment_title">{% trans "Paiement sécurisé" %}</h2>
 
-            <p><span id="shipping_cost">✅ {% trans "Les frais de port sont fixes à 5 €" %}</span> <span id="insurance_25_euros">{% trans "et incluent une assurance jusqu'à 25 €" %}</span><span id="with_our_partner_mondial_relay">{% trans "via notre partenaire Mondial Relay." %}</span></p>
-          
+            <p><span id="shipping_cost">✅ {% trans "Les frais de port sont fixes à 5 €" %}</span> <span id="insurance_25_euros">{% trans "et incluent une assurance jusqu'à 25 €" %}</span></p>
+            <div id="shipping-option">
+                <input type="checkbox" id="add-shipping"> 
+                <label class="font-size-17" for="add-shipping" id="add-shipping-label">{% trans "Option de livraison à domicile" %} (+5,00 €)</label>
+            </div>
             <p id="mandatory-insurance" class="hidden"><span id="mandatory_insurance_2">🚨 {% trans "Une assurance obligatoire de" %} </span><span id="mandatory-insurance-cost">0</span><span id="mandatory_insurance_3"> € ({% trans "montant variable selon le montant de la commande. Plus d'information sur la page" %} <a href="/cgv" target="_blank">CGV</a>) {% trans "sera ajoutée pour les commandes comprise entre" %} 50 € {% trans "et" %} 500 €.</span><span id="mandatory_insurance_4"><br><br>⚠️ {% trans "L'indemnisation forfaitaire maximal est de 500 €" %}⚠️</span></p>
             <div class="separator-cart"></div>
             <p id="total_articles"><span id="total_articles_title">{% trans "Total des articles :" %} </span><span id="order-total">{{total | floatformat:2 }}</span> €</p>
