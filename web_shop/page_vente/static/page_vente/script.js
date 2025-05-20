@@ -518,6 +518,26 @@ function closeModal() {
     overlay.style.display = 'none'; // Masque l'overlay
     modal.style.display = 'none';
 }
+
+// Fonction pour mettre à jour les frais de port
+function updateShippingCost() {
+    const currentLang = localStorage.getItem('language') || 'fr';
+    const shippingOption = document.getElementById('add-shipping');
+    const shippingCostSpan = document.getElementById('shipping-cost');
+    if (shippingOption.checked) {
+        const shippingCost = 10;
+        const formattedShippingCost = currentLang === 'en'
+        ? shippingCost.toFixed(2)
+        : shippingCost.toFixed(2).replace('.', ',');
+        shippingCostSpan.textContent = formattedShippingCost;
+    } else {
+        const shippingCost = 5;
+        const formattedShippingCost = currentLang === 'en'
+        ? shippingCost.toFixed(2)
+        : shippingCost.toFixed(2).replace('.', ',');
+        shippingCostSpan.textContent = formattedShippingCost;
+    }
+}
 // Fonction pour mettre à jour l'assurance
 
 function updateInsurance() {
@@ -587,7 +607,6 @@ function updateInsurance() {
 // Fonction pour mettre à jour le total
 function updateTotal() {
     const currentLang = localStorage.getItem('language') || 'fr';
-    
     const orderTotalElement = document.getElementById('order-total');
     const insuranceCostElement = document.getElementById('insurance-cost');
     const totalAmountElement = document.getElementById('total-amount');
@@ -715,6 +734,7 @@ if (document.getElementById("add-insurance")) {
 }
 if (document.getElementById("add-shipping")) {
     document.getElementById("add-shipping").addEventListener("change", function() {
+        updateShippingCost();
         updateTotal();
     });
 }

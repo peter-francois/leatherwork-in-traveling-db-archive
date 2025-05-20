@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-18 15:34+0200\n"
+"POT-Creation-Date: 2025-05-20 10:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -769,8 +769,7 @@ msgstr "Secure payment"
 
 #: .\page_vente\templates\page_vente\panier.html:39
 msgid "Les frais de port sont fixes à 5 €"
-msgstr "Shipping costs are at 5 € for a delivery at a Mondial "
-"Relay point "
+msgstr "Shipping costs are at 5 € for a delivery at a Mondial Relay point"
 
 #: .\page_vente\templates\page_vente\panier.html:39
 msgid "et incluent une assurance jusqu'à 25 €"
@@ -838,6 +837,10 @@ msgstr "terms and conditions of sale"
 #: .\page_vente\templates\page_vente\panier.html:60
 msgid "Payer via Stripe"
 msgstr "Pay with Stripe"
+
+#: .\page_vente\templates\page_vente\panier.html:61
+msgid "Relay point"
+msgstr "* For relay point deliveries, the nearest relay point to the delivery address will be automatically selected."
 
 #: .\page_vente\templates\page_vente\panier.html:62
 msgid "Vous devez accepter les CGV pour continuer."
