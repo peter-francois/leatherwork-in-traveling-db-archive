@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-20 10:40+0200\n"
+"POT-Creation-Date: 2025-05-21 08:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -732,7 +732,7 @@ msgstr "Order Number:"
 msgid "Montant total :"
 msgstr "Total Amount:"
 
-#: .\page_vente\templates\page_vente\panier.html:4
+#: .\page_vente\templates\page_vente\panier.html:5
 msgid ""
 "Vérifiez votre panier et passez commande en toute sécurité via Stripe. "
 "Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
@@ -741,25 +741,25 @@ msgstr ""
 "Check your cart and place your order securely via Stripe. Enjoy fast "
 "delivery for your handmade leatherwork and macrame creations."
 
-#: .\page_vente\templates\page_vente\panier.html:5
+#: .\page_vente\templates\page_vente\panier.html:6
 msgid "Panier - Commande sécurisée en maroquinerie et macramé"
 msgstr "Cart - Secure order for leatherwork and macrame"
 
-#: .\page_vente\templates\page_vente\panier.html:18
+#: .\page_vente\templates\page_vente\panier.html:19
 msgid "Votre panier - Vérifiez et finalisez votre commande"
 msgstr "Your cart - Check and finalize your order"
 
-#: .\page_vente\templates\page_vente\panier.html:26
+#: .\page_vente\templates\page_vente\panier.html:27
 msgid "Vider le panier"
 msgstr "Empty cart"
 
-#: .\page_vente\templates\page_vente\panier.html:28
-#: .\page_vente\templates\page_vente\panier.html:68
+#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:108
 msgid "Votre panier expirera le"
 msgstr "Your cart will expire on"
 
-#: .\page_vente\templates\page_vente\panier.html:30
-#: .\page_vente\templates\page_vente\panier.html:70
+#: .\page_vente\templates\page_vente\panier.html:31
+#: .\page_vente\templates\page_vente\panier.html:110
 msgid "Votre panier expirera bientôt."
 msgstr "Your cart will expire soon."
 
@@ -768,114 +768,116 @@ msgid "Paiement sécurisé"
 msgstr "Secure payment"
 
 #: .\page_vente\templates\page_vente\panier.html:39
-msgid "Les frais de port sont fixes à 5 €"
-msgstr "Shipping costs are at 5 € for a delivery at a Mondial Relay point"
-
-#: .\page_vente\templates\page_vente\panier.html:39
-msgid "et incluent une assurance jusqu'à 25 €"
-msgstr "and include insurance up to 25 €."
+msgid "Les frais de port sont de"
+msgstr "Shipping costs are"
 
 #: .\page_vente\templates\page_vente\panier.html:42
+msgid "et incluent une assurance jusqu'à "
+msgstr "and include insurance up to "
+
+#: .\page_vente\templates\page_vente\panier.html:48
 msgid "Option de livraison à domicile"
 msgstr "Delivery at home option"
 
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:55
 msgid "Une assurance obligatoire de"
 msgstr "A mandatory insurance of"
 
-#: .\page_vente\templates\page_vente\panier.html:44
-msgid ""
-"montant variable selon le montant de la commande. Plus d'information sur la "
-"page"
-msgstr ""
-"variable amount depending on the order total. More information on the page"
-
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:58
 msgid "sera ajoutée pour les commandes comprise entre"
 msgstr "will be added for orders between"
 
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:60
 msgid "et"
 msgstr "and"
 
-#: .\page_vente\templates\page_vente\panier.html:44
-msgid "L'indemnisation forfaitaire maximal est de 500 €"
-msgstr "The maximum fixed compensation is 500 €"
+#: .\page_vente\templates\page_vente\panier.html:63
+msgid "L'indemnisation forfaitaire maximal est de"
+msgstr "The maximum fixed compensation is"
 
-#: .\page_vente\templates\page_vente\panier.html:46
+#: .\page_vente\templates\page_vente\panier.html:68
 msgid "Total des articles :"
 msgstr "Total of the articles :"
 
-#: .\page_vente\templates\page_vente\panier.html:47
+#: .\page_vente\templates\page_vente\panier.html:71
 msgid "Frais de port :"
 msgstr "Shipping cost :"
 
-#: .\page_vente\templates\page_vente\panier.html:49
+#: .\page_vente\templates\page_vente\panier.html:75
 msgid "Assurance :"
 msgstr "Insurance:"
 
-#: .\page_vente\templates\page_vente\panier.html:49
-msgid "Inclue (jusqu'à 25 €)"
+#: .\page_vente\templates\page_vente\panier.html:79
+#, fuzzy
+#| msgid "Inclue (jusqu'à 25 €)"
+msgid "Inclue jusqu'à "
 msgstr "Included (up to 25 €)"
 
-#: .\page_vente\templates\page_vente\panier.html:52
+#: .\page_vente\templates\page_vente\panier.html:85
 msgid "Assurer la totalité de la valeur des produits"
 msgstr "Insure the total value of the products"
 
-#: .\page_vente\templates\page_vente\panier.html:55
+#: .\page_vente\templates\page_vente\panier.html:89
 msgid "Total de la commande :"
 msgstr "Order total:"
 
-#: .\page_vente\templates\page_vente\panier.html:58
+#: .\page_vente\templates\page_vente\panier.html:95
 msgid "J'accepte les"
 msgstr "I accept the"
 
-#: .\page_vente\templates\page_vente\panier.html:58
+#: .\page_vente\templates\page_vente\panier.html:96
 msgid "conditions générales de vente"
 msgstr "terms and conditions of sale"
 
-#: .\page_vente\templates\page_vente\panier.html:60
+#: .\page_vente\templates\page_vente\panier.html:100
 msgid "Payer via Stripe"
 msgstr "Pay with Stripe"
 
-#: .\page_vente\templates\page_vente\panier.html:61
+#: .\page_vente\templates\page_vente\panier.html:101
 msgid "Relay point"
-msgstr "* For relay point deliveries, the nearest relay point to the delivery address will be automatically selected."
+msgstr ""
+"* For relay point deliveries, the nearest relay point to the delivery "
+"address will be automatically selected."
 
-#: .\page_vente\templates\page_vente\panier.html:62
+#: .\page_vente\templates\page_vente\panier.html:102
+msgid "Insurances information"
+msgstr ""
+"Variable amount depending on the order total. More information on the page"
+
+#: .\page_vente\templates\page_vente\panier.html:103
 msgid "Vous devez accepter les CGV pour continuer."
 msgstr "You must accept the terms and conditions to continue."
 
-#: .\page_vente\templates\page_vente\panier.html:75
+#: .\page_vente\templates\page_vente\panier.html:115
 msgid "Votre panier est vide."
 msgstr "Your cart is empty."
 
-#: .\page_vente\templates\page_vente\panier.html:86
-#: .\page_vente\templates\page_vente\panier.html:103
+#: .\page_vente\templates\page_vente\panier.html:126
+#: .\page_vente\templates\page_vente\panier.html:143
 #: .\page_vente\templates\page_vente\product_base.html:74
 #: .\page_vente\templates\page_vente\product_base.html:117
 msgid "Prix: "
 msgstr "Price: "
 
-#: .\page_vente\templates\page_vente\panier.html:92
+#: .\page_vente\templates\page_vente\panier.html:132
 #: .\page_vente\templates\page_vente\product_base.html:23
 #: .\page_vente\templates\page_vente\product_base.html:91
 #: .\page_vente\templates\page_vente\product_base.html:123
 msgid "Précédent"
 msgstr "Previous"
 
-#: .\page_vente\templates\page_vente\panier.html:93
+#: .\page_vente\templates\page_vente\panier.html:133
 #: .\page_vente\templates\page_vente\product_base.html:27
 #: .\page_vente\templates\page_vente\product_base.html:95
 #: .\page_vente\templates\page_vente\product_base.html:124
 msgid "Suivant"
 msgstr "Next"
 
-#: .\page_vente\templates\page_vente\panier.html:101
+#: .\page_vente\templates\page_vente\panier.html:141
 msgid "Supprimer"
 msgstr "Delete"
 
-#: .\page_vente\templates\page_vente\panier.html:102
+#: .\page_vente\templates\page_vente\panier.html:142
 #: .\page_vente\templates\page_vente\product_base.html:71
 msgid "Aucune image disponible"
 msgstr "No picture available"
@@ -1030,6 +1032,12 @@ msgstr "French"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid ""
+#~ "montant variable selon le montant de la commande. Plus d'information sur "
+#~ "la page"
+#~ msgstr ""
+#~ "variable amount depending on the order total. More information on the page"
 
 #~ msgid "via notre partenaire Mondial Relay."
 #~ msgstr "through our partner Mondial Relay."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-20 10:39+0200\n"
+"POT-Creation-Date: 2025-05-21 08:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -754,7 +754,7 @@ msgstr "Numéro de commande :"
 msgid "Montant total :"
 msgstr "Montant total :"
 
-#: .\page_vente\templates\page_vente\panier.html:4
+#: .\page_vente\templates\page_vente\panier.html:5
 msgid ""
 "Vérifiez votre panier et passez commande en toute sécurité via Stripe. "
 "Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
@@ -764,25 +764,25 @@ msgstr ""
 "Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
 "et macramé faits main."
 
-#: .\page_vente\templates\page_vente\panier.html:5
+#: .\page_vente\templates\page_vente\panier.html:6
 msgid "Panier - Commande sécurisée en maroquinerie et macramé"
 msgstr "Panier - Commande sécurisée en maroquinerie et macramé"
 
-#: .\page_vente\templates\page_vente\panier.html:18
+#: .\page_vente\templates\page_vente\panier.html:19
 msgid "Votre panier - Vérifiez et finalisez votre commande"
 msgstr "Votre panier - Vérifiez et finalisez votre commande"
 
-#: .\page_vente\templates\page_vente\panier.html:26
+#: .\page_vente\templates\page_vente\panier.html:27
 msgid "Vider le panier"
 msgstr "Vider le panier"
 
-#: .\page_vente\templates\page_vente\panier.html:28
-#: .\page_vente\templates\page_vente\panier.html:68
+#: .\page_vente\templates\page_vente\panier.html:29
+#: .\page_vente\templates\page_vente\panier.html:108
 msgid "Votre panier expirera le"
 msgstr "Votre panier expirera le"
 
-#: .\page_vente\templates\page_vente\panier.html:30
-#: .\page_vente\templates\page_vente\panier.html:70
+#: .\page_vente\templates\page_vente\panier.html:31
+#: .\page_vente\templates\page_vente\panier.html:110
 msgid "Votre panier expirera bientôt."
 msgstr "Votre panier expirera bientôt."
 
@@ -791,116 +791,118 @@ msgid "Paiement sécurisé"
 msgstr "Paiement sécurisé"
 
 #: .\page_vente\templates\page_vente\panier.html:39
-msgid "Les frais de port sont fixes à 5 €"
-msgstr ""
-"Les frais de port sont de 5 € pour une livraison en point relai Mondial Relay"
-
-#: .\page_vente\templates\page_vente\panier.html:39
-msgid "et incluent une assurance jusqu'à 25 €"
-msgstr "et incluent une assurance jusqu'à 25 €."
+msgid "Les frais de port sont de"
+msgstr "Les frais de port sont de"
 
 #: .\page_vente\templates\page_vente\panier.html:42
+msgid "et incluent une assurance jusqu'à "
+msgstr "et incluent une assurance jusqu'à "
+
+#: .\page_vente\templates\page_vente\panier.html:48
 msgid "Option de livraison à domicile"
 msgstr "Option de livraison à domicile"
 
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:55
 msgid "Une assurance obligatoire de"
 msgstr "Une assurance obligatoire de"
 
-#: .\page_vente\templates\page_vente\panier.html:44
-msgid ""
-"montant variable selon le montant de la commande. Plus d'information sur la "
-"page"
-msgstr ""
-"montant variable selon le montant de la commande. Plus d'information sur la "
-"page"
-
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:58
 msgid "sera ajoutée pour les commandes comprise entre"
 msgstr "sera ajoutée pour les commandes comprise entre"
 
-#: .\page_vente\templates\page_vente\panier.html:44
+#: .\page_vente\templates\page_vente\panier.html:60
 msgid "et"
 msgstr "et"
 
-#: .\page_vente\templates\page_vente\panier.html:44
-msgid "L'indemnisation forfaitaire maximal est de 500 €"
-msgstr "L'indemnisation forfaitaire maximal est de 500 €"
+#: .\page_vente\templates\page_vente\panier.html:63
+msgid "L'indemnisation forfaitaire maximal est de"
+msgstr "L'indemnisation forfaitaire maximal est de"
 
-#: .\page_vente\templates\page_vente\panier.html:46
+#: .\page_vente\templates\page_vente\panier.html:68
 msgid "Total des articles :"
 msgstr "Total des articles :"
 
-#: .\page_vente\templates\page_vente\panier.html:47
+#: .\page_vente\templates\page_vente\panier.html:71
 msgid "Frais de port :"
 msgstr "Frais de port :"
 
-#: .\page_vente\templates\page_vente\panier.html:49
+#: .\page_vente\templates\page_vente\panier.html:75
 msgid "Assurance :"
 msgstr "Assurance :"
 
-#: .\page_vente\templates\page_vente\panier.html:49
-msgid "Inclue (jusqu'à 25 €)"
+#: .\page_vente\templates\page_vente\panier.html:79
+#, fuzzy
+#| msgid "Inclue (jusqu'à 25 €)"
+msgid "Inclue jusqu'à "
 msgstr "Inclue (jusqu'à 25 €)"
 
-#: .\page_vente\templates\page_vente\panier.html:52
+#: .\page_vente\templates\page_vente\panier.html:85
 msgid "Assurer la totalité de la valeur des produits"
 msgstr "Assurer la totalité de la valeur des produits"
 
-#: .\page_vente\templates\page_vente\panier.html:55
+#: .\page_vente\templates\page_vente\panier.html:89
 msgid "Total de la commande :"
 msgstr "Total de la commande :"
 
-#: .\page_vente\templates\page_vente\panier.html:58
+#: .\page_vente\templates\page_vente\panier.html:95
 msgid "J'accepte les"
 msgstr "J'accepte les"
 
-#: .\page_vente\templates\page_vente\panier.html:58
+#: .\page_vente\templates\page_vente\panier.html:96
 msgid "conditions générales de vente"
 msgstr "conditions générales de vente"
 
-#: .\page_vente\templates\page_vente\panier.html:60
+#: .\page_vente\templates\page_vente\panier.html:100
 msgid "Payer via Stripe"
 msgstr "Payer via Stripe"
 
-#: .\page_vente\templates\page_vente\panier.html:61
+#: .\page_vente\templates\page_vente\panier.html:101
 msgid "Relay point"
-msgstr "* Pour les livraisons en point relais, le point relais le plus proche de l’adresse de livraison indiquée lors de la commande sera automatiquement sélectionné."
+msgstr ""
+"* Pour les livraisons en point relais, le point relais le plus proche de "
+"l’adresse de livraison indiquée lors de la commande sera automatiquement "
+"sélectionné."
 
-#: .\page_vente\templates\page_vente\panier.html:62
+#: .\page_vente\templates\page_vente\panier.html:102
+msgid "Insurances information"
+msgstr ""
+"Montant variable selon le montant de la commande. Plus d'information sur la "
+"page"
+
+#: .\page_vente\templates\page_vente\panier.html:103
 msgid "Vous devez accepter les CGV pour continuer."
 msgstr "Vous devez accepter les CGV pour continuer."
 
-#: .\page_vente\templates\page_vente\panier.html:75
+#: .\page_vente\templates\page_vente\panier.html:115
 msgid "Votre panier est vide."
 msgstr "Votre panier est vide"
 
-#: .\page_vente\templates\page_vente\panier.html:86
-#: .\page_vente\templates\page_vente\panier.html:103
+#: .\page_vente\templates\page_vente\panier.html:126
+#: .\page_vente\templates\page_vente\panier.html:143
 #: .\page_vente\templates\page_vente\product_base.html:74
 #: .\page_vente\templates\page_vente\product_base.html:117
 msgid "Prix: "
 msgstr "Prix: "
 
-#: .\page_vente\templates\page_vente\panier.html:92
+#: .\page_vente\templates\page_vente\panier.html:132
 #: .\page_vente\templates\page_vente\product_base.html:23
 #: .\page_vente\templates\page_vente\product_base.html:91
 #: .\page_vente\templates\page_vente\product_base.html:123
 msgid "Précédent"
 msgstr "Précédent"
 
-#: .\page_vente\templates\page_vente\panier.html:93
+#: .\page_vente\templates\page_vente\panier.html:133
 #: .\page_vente\templates\page_vente\product_base.html:27
 #: .\page_vente\templates\page_vente\product_base.html:95
 #: .\page_vente\templates\page_vente\product_base.html:124
 msgid "Suivant"
 msgstr "Suivant"
 
-#: .\page_vente\templates\page_vente\panier.html:101
+#: .\page_vente\templates\page_vente\panier.html:141
 msgid "Supprimer"
 msgstr "Supprimer"
 
-#: .\page_vente\templates\page_vente\panier.html:102
+#: .\page_vente\templates\page_vente\panier.html:142
 #: .\page_vente\templates\page_vente\product_base.html:71
 msgid "Aucune image disponible"
 msgstr "Aucune image disponible"
@@ -1058,6 +1060,13 @@ msgstr "Français"
 #: .\web_shop\settings.py:66
 msgid "English"
 msgstr "English"
+
+#~ msgid ""
+#~ "montant variable selon le montant de la commande. Plus d'information sur "
+#~ "la page"
+#~ msgstr ""
+#~ "montant variable selon le montant de la commande. Plus d'information sur "
+#~ "la page"
 
 #~ msgid "via notre partenaire Mondial Relay."
 #~ msgstr "via notre partenaire Mondial Relay."
