@@ -50,7 +50,7 @@
                     {% if products %}
                     {% for produit in products %}
                         <div class="produit {% if produit.en_attente_dans_panier %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
-                            <h3>{{ produit.nom }}</h3>
+                            <h2 class="product-name">{{ produit.nom }}</h2>
                             {% if produit.cached_images.image1 %}
                                 <img src="{{ produit.cached_images.image1 }}" alt="{{ produit.nom }}">
                             {% elif produit.image1 %}
