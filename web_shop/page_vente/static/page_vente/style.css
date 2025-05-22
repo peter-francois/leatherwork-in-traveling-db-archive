@@ -415,9 +415,12 @@ body {
 
 /*Panier*/
     .produit h3, #liste-articles li h3, 
-    .produit p, #liste-articles li p {
+    .produit p, #liste-articles li p , .product-name {
         word-wrap: break-word; /* Coupe les mots trop longs */
+        overflow-wrap: break-word; 
+        hyphens: auto;
         white-space: normal; /* Autorise les retours à la ligne */
+        max-width: 100%;
     }
     .product-list-cart{
         display: flex;
@@ -661,6 +664,7 @@ body {
         margin-bottom: 15px;
     }
     .tous_les_produits, #liste-articles{
+        justify-content: center;
         grid-template-columns: repeat(3, 1fr);
         margin: 30px 25px;
         gap: 40px;
@@ -1101,7 +1105,7 @@ footer {
         .produit, #liste-articles li{
             padding: 10px;
         }
-        .produit button, #liste-articles button, .produit a{
+        .produit button, #liste-articles button, .produit a, .on-order-button{
             margin-top: 10px;
         }
         #modal{
@@ -1219,8 +1223,10 @@ footer {
             gap: 20px;
         }
 
-        .produit button, #liste-articles button{
+        .produit button, #liste-articles button, .on-order-button{
             margin-top: 13px;
+            padding: 5px;
+            font-size: 14px;
         }
     /*Tous les produits*/
 
@@ -1251,10 +1257,6 @@ footer {
     
         .produit, #liste-articles li{
             padding: 5px;
-        }
-        .produit button, #liste-articles button{
-            padding: 5px;
-            font-size: 14px;
         }
         #modal{
             width: 100%;
@@ -1414,12 +1416,15 @@ footer {
     section select, label, input{
         font-size: 10px;
     }
+    label[for="accept-cgv"]{
+        font-size: 13px;
+    }
     .filter {
         padding: 0px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    .produit button, #liste-articles button {
+    .produit button, #liste-articles button , .on-order-button{
 
         font-size: 11px;
     }
