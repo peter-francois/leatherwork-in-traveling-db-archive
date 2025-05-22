@@ -10,10 +10,6 @@ class StaticSitemap(Sitemap):
         self.language = language
         self.static_urls = {
             'index': 'boutique:index',
-            'produits': 'boutique:produits',
-            'maroquinerie': 'boutique:maroquinerie',
-            'macrames': 'boutique:macrames',
-            'hybride': 'boutique:hybride',
             'creation-sur-mesure': 'boutique:creation-sur-mesure',
             # 'a_propos': 'boutique:a_propos',
             'cgv': 'boutique:cgv',

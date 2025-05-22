@@ -24,12 +24,15 @@ from page_vente.sitemaps import StaticSitemap
 from django.views.i18n import JavaScriptCatalog
 from django.conf import settings
 from django.conf.urls.static import static
+from page_vente.sitemaps_paginated import PaginatedCategorySitemap
 
 app_name = 'main'
 
 sitemaps = {
-    'static': StaticSitemap('fr'), 
+    'static': StaticSitemap('fr'),
     'static_en': StaticSitemap('en'),
+    'paginated_categories_fr': PaginatedCategorySitemap('fr'),
+    'paginated_categories_en': PaginatedCategorySitemap('en'),
 }
 
 urlpatterns = i18n_patterns(

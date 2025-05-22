@@ -21,6 +21,7 @@ import os
 from django.core.mail import send_mail
 from django.utils import translation
 from page_vente.sitemaps import StaticSitemap
+from page_vente.sitemaps_paginated import PaginatedCategorySitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from urllib.parse import urlencode
 
@@ -758,6 +759,7 @@ def get_document_content(request, document_type, lang):
 def sitemap_lang(request, lang):
     sitemaps = {
         'static': StaticSitemap(lang),
+        'paginated_categories': PaginatedCategorySitemap(lang),
     }
     return django_sitemap(request, sitemaps)
 
