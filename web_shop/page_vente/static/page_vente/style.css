@@ -571,6 +571,28 @@ body {
         justify-content: center;
         margin-bottom: 20px;
     }
+    .filter {
+        position: sticky;
+        top: 80px; /* Espacement par rapport au haut de la fenêtre */
+        align-self: start; /* Pour éviter que le filtre ne s'étire */
+        max-height: 90vh; /* Hauteur maximale pour éviter de dépasser l'écran */
+        overflow-y: auto; /* Ajout d'une barre de défilement si le contenu est trop long */
+        padding: 15px;
+        background-color: #fcf6dc;
+        border: 1px solid #8c6b4f;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-top: 16px;
+        margin-bottom: 15px;
+    }
+    
+    /* Pour éviter que le filtre ne soit coupé en bas */
+    .filter::after {
+        content: '';
+        display: block;
+        height: 20px;
+    }
+
     .filter-form{
         grid-template-rows: 1fr;
         grid-template-columns: 1fr;
@@ -1383,14 +1405,21 @@ footer {
     #filter_button {
         padding: 4px 8px;
         width: 5em;
+        font-size: 11px;
+    }
+    section select, label, input{
+        font-size: 10px;
+    }
+    .filter {
+        padding: 0px;
     }
     .produit button, #liste-articles button {
 
         font-size: 11px;
     }
     #filter-icon {
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         padding-left: 5px;
     }
     .pagination-button {
