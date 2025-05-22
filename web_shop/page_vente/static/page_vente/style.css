@@ -582,8 +582,8 @@ body {
         border: 1px solid #8c6b4f;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        margin-top: 16px;
-        margin-bottom: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     
     /* Pour éviter que le filtre ne soit coupé en bas */
@@ -1093,6 +1093,10 @@ footer {
             margin: 15px 10px;
             gap: 10px;
         }
+        .filter {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
         
         .produit, #liste-articles li{
             padding: 10px;
@@ -1412,6 +1416,8 @@ footer {
     }
     .filter {
         padding: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     .produit button, #liste-articles button {
 
