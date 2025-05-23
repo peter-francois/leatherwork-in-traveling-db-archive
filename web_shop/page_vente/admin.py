@@ -26,7 +26,7 @@ class AllProductsForm(forms.ModelForm):
 
 def image_thumbnail(image_field):
     if image_field:
-        return format_html('<img src="{}" width="50" height="50" style="object-fit: cover;" />', image_field.url)
+        return format_html('<img src="{}" width="100" height="100" style="object-fit: cover;" />', image_field.url)
     return "Aucune image"
 
 class AllProductsAdmin(admin.ModelAdmin):
