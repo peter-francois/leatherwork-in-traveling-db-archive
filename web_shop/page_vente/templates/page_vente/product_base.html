@@ -71,6 +71,14 @@
                                 <img src="{{ produit.cached_images.image4 }}" alt="{{ produit.nom }}">
                             {% elif produit.image4 %}
                                 <img src="{{ produit.image4.url }}" alt="{{ produit.nom }}">
+                            {% elif produit.cached_images.image5 %}
+                                <img src="{{ produit.cached_images.image5 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image5 %}
+                                <img src="{{ produit.image5.url }}" alt="{{ produit.nom }}">
+                            {% elif produit.cached_images.image6 %}
+                                <img src="{{ produit.cached_images.image6 }}" alt="{{ produit.nom }}">
+                            {% elif produit.image6 %}
+                                <img src="{{ produit.image6.url }}" alt="{{ produit.nom }}">
                             {% else %}
                                 <p>{% trans "Aucune image disponible" %}</p>
                             {% endif %}

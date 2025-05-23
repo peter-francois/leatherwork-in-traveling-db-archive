@@ -265,6 +265,16 @@ function displayCart() {
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                     }
+                    else if (article.image5) {
+                        img.src = `${article.image5}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
+                    else if (article.image6) {
+                        img.src = `${article.image6}`;
+                        img.alt = `${article.nom}`;
+                        li.appendChild(img);
+                    }
                     else {
                         img.src = ''; // Aucune image disponible
                         let p = document.createElement('p');

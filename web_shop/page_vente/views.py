@@ -213,6 +213,8 @@ def cart_detail(request):
             'image2': images['image2'],
             'image3': images['image3'],
             'image4': images['image4'],
+            'image5': images['image5'],
+            'image6': images['image6'],
             'id': product.id
         })
 
@@ -258,6 +260,8 @@ def get_product_images(request, article_id):
             product.image2.url if product.image2 else None,
             product.image3.url if product.image3 else None,
             product.image4.url if product.image4 else None,
+            product.image5.url if product.image5 else None,
+            product.image6.url if product.image6 else None,
             ]
         images = [image for image in images if image]
         return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix})

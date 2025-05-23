@@ -36,6 +36,8 @@ class AllProducts(models.Model):
     image2 = CloudinaryField(default='', blank=True, null=True)
     image3 = CloudinaryField(default='', blank=True, null=True)
     image4 = CloudinaryField(default='', blank=True, null=True)
+    image5 = CloudinaryField(default='', blank=True, null=True)
+    image6 = CloudinaryField(default='', blank=True, null=True)
     disponible = models.BooleanField(default=True)
     en_attente_dans_panier = models.BooleanField(default=False)
 

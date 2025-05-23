@@ -36,4 +36,6 @@ def get_cached_images_for_product(product):
         'image2': cache_img_field(product.image2, "img2"),
         'image3': cache_img_field(product.image3, "img3"),
         'image4': cache_img_field(product.image4, "img4"),
+        'image5': cache_img_field(product.image5, "img5"),
+        'image6': cache_img_field(product.image6, "img6"),
     }
