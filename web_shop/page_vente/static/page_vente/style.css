@@ -440,7 +440,7 @@ body {
     -webkit-box-orient: vertical;
     }
     .product-list-cart li h3{
-        height: 80px;
+        height: 100px;
     }
     .product-list-cart {
         display: flex;
@@ -702,7 +702,7 @@ body {
         gap: 40px;
     }
     h2.product-name{
-        height: 100px;
+        height: 120px;
     }
     .tous_les_produits img, #liste-articles img{
         width: 11em;
@@ -1481,6 +1481,9 @@ footer {
     }
     .outro {
         padding: 15px 20px 10px 20px;
+    }    
+    h2.product-name{
+        height: 90px;
     }
         .tous_les_produits img{
             width: 5em;
