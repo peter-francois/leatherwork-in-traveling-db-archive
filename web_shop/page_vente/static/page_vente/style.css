@@ -422,10 +422,10 @@ body {
         white-space: normal; /* Autorise les retours à la ligne */
         max-width: 100%;
     }
-    .product-list-cart li h3 {
-    height: 60px; /* fixe la hauteur du bloc */
+    .product-list-cart li h3 ,h2.product-name{
     display: flex;
     align-items: center;        /* centrage vertical */
+    align-content: center;
     justify-content: center;    /* centrage horizontal */
     text-align: center;
 
@@ -435,10 +435,13 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
-}
+    }
+    .product-list-cart li h3{
+        height: 80px;
+    }
     .product-list-cart {
         display: flex;
         flex-wrap: wrap;
@@ -697,6 +700,9 @@ body {
         grid-template-columns: repeat(3, 1fr);
         margin: 30px 25px;
         gap: 40px;
+    }
+    h2.product-name{
+        height: 100px;
     }
     .tous_les_produits img, #liste-articles img{
         width: 11em;
