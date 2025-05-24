@@ -118,25 +118,8 @@
 </section>
 
 
-<div id="modal">
-    <h2 class="text-center" id="nom-article"></h2>
-    <button id="close-button" type="button">&times;</button>
-    <div class="grid-container">
-        <div class="product-info">
-            <h3 id="info-description">Description :</h3>
-            <p id="description-article"></p>
-            <h3 id="info-price">{% trans "Prix: " %}</h3>
-            <p id="prix-article"></p>
-        </div>
-        <div class="image-container">
-            <img id="current-image" src="" alt="Image du produit">
-            <div class="image-buttons">
-                <button class="font-size-17" id="prev-button" type="button">{% trans "Précédent" %}</button>
-                <button class="font-size-17" id="next-button" type="button">{% trans "Suivant" %}</button>
-            </div>
-        </div>
-    </div>
-</div>
+{% include 'page_vente/modal.html' %}
+
 </div>
 <script id="translations" type="application/json">
     {
