@@ -11,10 +11,10 @@ class PaginatedCategorySitemap(Sitemap):
     def __init__(self, language='fr'):
         self.language = language
         self.categories = [
-            ('boutique:produits', AllProducts.objects.all()),
-            ('boutique:maroquinerie', AllProducts.objects.filter(categorie='Maroquinerie')),
-            ('boutique:macrames', AllProducts.objects.filter(categorie='Macrame')),
-            ('boutique:hybride', AllProducts.objects.filter(categorie='Hybride')),
+            ('boutique:produits', AllProducts.objects.order_by('-id')),
+            ('boutique:maroquinerie', AllProducts.objects.filter(categorie='Maroquinerie').order_by('-id')),
+            ('boutique:macrames', AllProducts.objects.filter(categorie='Macrame').order_by('-id')),
+            ('boutique:hybride', AllProducts.objects.filter(categorie='Hybride').order_by('-id')),
         ]
 
     def items(self):
