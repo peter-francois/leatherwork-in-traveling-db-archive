@@ -31,7 +31,10 @@
             <p id="expiration_soon">⚠️ {% trans "Votre panier expirera bientôt." %}</p>
         {% endif %}
     <div class="grid-container">     
-        <ul class="product-list-cart" id="liste-articles"></ul>
+        <div>
+            <h2 class="text-center">{% trans "Articles dans votre panier" %}</h2>
+            <ul class="product-list-cart" id="liste-articles"></ul>
+        </div>
         {% if items %}
         <aside class="text-center">
             <h2 id="payment_title">{% trans "Paiement sécurisé" %}</h2>

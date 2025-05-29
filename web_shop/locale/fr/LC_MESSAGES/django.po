@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-21 08:31+0200\n"
+"POT-Creation-Date: 2025-05-29 14:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -667,6 +667,24 @@ msgstr "Mentions légales - Leather Work In Traveling DB"
 msgid "Publié le : "
 msgstr "Publié le :"
 
+#: .\page_vente\templates\page_vente\modal.html:9
+#: .\page_vente\templates\page_vente\panier.html:131
+#: .\page_vente\templates\page_vente\product_base.html:86
+msgid "Prix: "
+msgstr "Prix: "
+
+#: .\page_vente\templates\page_vente\modal.html:15
+#: .\page_vente\templates\page_vente\product_base.html:27
+#: .\page_vente\templates\page_vente\product_base.html:103
+msgid "Précédent"
+msgstr "Précédent"
+
+#: .\page_vente\templates\page_vente\modal.html:16
+#: .\page_vente\templates\page_vente\product_base.html:31
+#: .\page_vente\templates\page_vente\product_base.html:107
+msgid "Suivant"
+msgstr "Suivant"
+
 #: .\page_vente\templates\page_vente\navbar.html:8
 msgid "ACCUEIL"
 msgstr "ACCUEIL"
@@ -777,133 +795,114 @@ msgid "Vider le panier"
 msgstr "Vider le panier"
 
 #: .\page_vente\templates\page_vente\panier.html:29
-#: .\page_vente\templates\page_vente\panier.html:108
+#: .\page_vente\templates\page_vente\panier.html:113
 msgid "Votre panier expirera le"
 msgstr "Votre panier expirera le"
 
 #: .\page_vente\templates\page_vente\panier.html:31
-#: .\page_vente\templates\page_vente\panier.html:110
+#: .\page_vente\templates\page_vente\panier.html:115
 msgid "Votre panier expirera bientôt."
 msgstr "Votre panier expirera bientôt."
 
-#: .\page_vente\templates\page_vente\panier.html:37
+#: .\page_vente\templates\page_vente\panier.html:35
+msgid "Articles dans votre panier"
+msgstr "Articles dans votre panier"
+
+#: .\page_vente\templates\page_vente\panier.html:40
 msgid "Paiement sécurisé"
 msgstr "Paiement sécurisé"
 
-#: .\page_vente\templates\page_vente\panier.html:39
+#: .\page_vente\templates\page_vente\panier.html:42
 msgid "Les frais de port sont de"
 msgstr "Les frais de port sont de"
 
-#: .\page_vente\templates\page_vente\panier.html:42
+#: .\page_vente\templates\page_vente\panier.html:45
 msgid "et incluent une assurance jusqu'à "
 msgstr "et incluent une assurance jusqu'à "
 
-#: .\page_vente\templates\page_vente\panier.html:48
+#: .\page_vente\templates\page_vente\panier.html:51
 msgid "Option de livraison à domicile"
 msgstr "Option de livraison à domicile"
 
-#: .\page_vente\templates\page_vente\panier.html:55
+#: .\page_vente\templates\page_vente\panier.html:58
 msgid "Une assurance obligatoire de"
 msgstr "Une assurance obligatoire de"
 
-#: .\page_vente\templates\page_vente\panier.html:58
+#: .\page_vente\templates\page_vente\panier.html:61
 msgid "sera ajoutée pour les commandes comprise entre"
 msgstr "sera ajoutée pour les commandes comprise entre"
 
-#: .\page_vente\templates\page_vente\panier.html:60
+#: .\page_vente\templates\page_vente\panier.html:63
 msgid "et"
 msgstr "et"
 
-#: .\page_vente\templates\page_vente\panier.html:63
+#: .\page_vente\templates\page_vente\panier.html:66
 msgid "L'indemnisation forfaitaire maximal est de"
 msgstr "L'indemnisation forfaitaire maximal est de"
 
-#: .\page_vente\templates\page_vente\panier.html:68
+#: .\page_vente\templates\page_vente\panier.html:71
 msgid "Total des articles :"
 msgstr "Total des articles :"
 
-#: .\page_vente\templates\page_vente\panier.html:71
+#: .\page_vente\templates\page_vente\panier.html:74
 msgid "Frais de port :"
 msgstr "Frais de port :"
 
-#: .\page_vente\templates\page_vente\panier.html:75
+#: .\page_vente\templates\page_vente\panier.html:78
 msgid "Assurance :"
 msgstr "Assurance :"
 
-#: .\page_vente\templates\page_vente\panier.html:79
-#, fuzzy
-#| msgid "Inclue (jusqu'à 25 €)"
+#: .\page_vente\templates\page_vente\panier.html:82
 msgid "Inclue jusqu'à "
-msgstr "Inclue (jusqu'à 25 €)"
+msgstr "Inclue jusqu'à "
 
-#: .\page_vente\templates\page_vente\panier.html:85
+#: .\page_vente\templates\page_vente\panier.html:88
 msgid "Assurer la totalité de la valeur des produits"
 msgstr "Assurer la totalité de la valeur des produits"
 
-#: .\page_vente\templates\page_vente\panier.html:89
+#: .\page_vente\templates\page_vente\panier.html:92
 msgid "Total de la commande :"
 msgstr "Total de la commande :"
 
-#: .\page_vente\templates\page_vente\panier.html:95
+#: .\page_vente\templates\page_vente\panier.html:98
 msgid "J'accepte les"
 msgstr "J'accepte les"
 
-#: .\page_vente\templates\page_vente\panier.html:96
+#: .\page_vente\templates\page_vente\panier.html:99
 msgid "conditions générales de vente"
 msgstr "conditions générales de vente"
 
-#: .\page_vente\templates\page_vente\panier.html:100
+#: .\page_vente\templates\page_vente\panier.html:103
 msgid "Payer via Stripe"
 msgstr "Payer via Stripe"
 
-#: .\page_vente\templates\page_vente\panier.html:101
+#: .\page_vente\templates\page_vente\panier.html:105
 msgid "Relay point"
 msgstr ""
 "* Pour les livraisons en point relais, le point relais le plus proche de "
 "l’adresse de livraison indiquée lors de la commande sera automatiquement "
 "sélectionné."
 
-#: .\page_vente\templates\page_vente\panier.html:102
+#: .\page_vente\templates\page_vente\panier.html:107
 msgid "Insurances information"
 msgstr ""
 "Montant variable selon le montant de la commande. Plus d'information sur la "
 "page"
 
-#: .\page_vente\templates\page_vente\panier.html:103
+#: .\page_vente\templates\page_vente\panier.html:108
 msgid "Vous devez accepter les CGV pour continuer."
 msgstr "Vous devez accepter les CGV pour continuer."
 
-#: .\page_vente\templates\page_vente\panier.html:115
+#: .\page_vente\templates\page_vente\panier.html:120
 msgid "Votre panier est vide."
 msgstr "Votre panier est vide"
 
-#: .\page_vente\templates\page_vente\panier.html:126
-#: .\page_vente\templates\page_vente\panier.html:143
-#: .\page_vente\templates\page_vente\product_base.html:74
-#: .\page_vente\templates\page_vente\product_base.html:117
-msgid "Prix: "
-msgstr "Prix: "
-
-#: .\page_vente\templates\page_vente\panier.html:132
-#: .\page_vente\templates\page_vente\product_base.html:23
-#: .\page_vente\templates\page_vente\product_base.html:91
-#: .\page_vente\templates\page_vente\product_base.html:123
-msgid "Précédent"
-msgstr "Précédent"
-
-#: .\page_vente\templates\page_vente\panier.html:133
-#: .\page_vente\templates\page_vente\product_base.html:27
-#: .\page_vente\templates\page_vente\product_base.html:95
-#: .\page_vente\templates\page_vente\product_base.html:124
-msgid "Suivant"
-msgstr "Suivant"
-
-#: .\page_vente\templates\page_vente\panier.html:141
+#: .\page_vente\templates\page_vente\panier.html:129
 msgid "Supprimer"
 msgstr "Supprimer"
 
-#: .\page_vente\templates\page_vente\panier.html:142
-#: .\page_vente\templates\page_vente\product_base.html:71
+#: .\page_vente\templates\page_vente\panier.html:130
+#: .\page_vente\templates\page_vente\product_base.html:83
 msgid "Aucune image disponible"
 msgstr "Aucune image disponible"
 
@@ -921,50 +920,50 @@ msgstr ""
 msgid "Politique de Confidentialité | Leather Work In Traveling DB"
 msgstr "Politique de Confidentialité | Leather Work In Traveling DB"
 
-#: .\page_vente\templates\page_vente\product_base.html:22
-#: .\page_vente\templates\page_vente\product_base.html:90
+#: .\page_vente\templates\page_vente\product_base.html:26
+#: .\page_vente\templates\page_vente\product_base.html:102
 msgid "Premier"
 msgstr "Premier"
 
-#: .\page_vente\templates\page_vente\product_base.html:28
-#: .\page_vente\templates\page_vente\product_base.html:96
+#: .\page_vente\templates\page_vente\product_base.html:32
+#: .\page_vente\templates\page_vente\product_base.html:108
 msgid "Dernier"
 msgstr "Dernier"
 
-#: .\page_vente\templates\page_vente\product_base.html:32
-#: .\page_vente\templates\page_vente\product_base.html:99
+#: .\page_vente\templates\page_vente\product_base.html:36
+#: .\page_vente\templates\page_vente\product_base.html:111
 msgid "of"
 msgstr "sur"
 
-#: .\page_vente\templates\page_vente\product_base.html:39
+#: .\page_vente\templates\page_vente\product_base.html:43
 msgid "Filtrer"
 msgstr "Filtrer"
 
-#: .\page_vente\templates\page_vente\product_base.html:43
+#: .\page_vente\templates\page_vente\product_base.html:47
 msgid "articles trouvés après application du filtre."
 msgstr "articles trouvés."
 
-#: .\page_vente\templates\page_vente\product_base.html:43
+#: .\page_vente\templates\page_vente\product_base.html:47
 msgid "article trouvé après application du filtre."
 msgstr "article trouvé."
 
-#: .\page_vente\templates\page_vente\product_base.html:45
+#: .\page_vente\templates\page_vente\product_base.html:49
 msgid "Effacer le filtre"
 msgstr "Effacer le filtre"
 
-#: .\page_vente\templates\page_vente\product_base.html:75
+#: .\page_vente\templates\page_vente\product_base.html:87
 msgid "Ajouter au panier"
 msgstr "Ajouter au panier"
 
-#: .\page_vente\templates\page_vente\product_base.html:77
+#: .\page_vente\templates\page_vente\product_base.html:89
 msgid "Produit indisponible pour le moment"
 msgstr "Produit indisponible pour le moment"
 
-#: .\page_vente\templates\page_vente\product_base.html:78
+#: .\page_vente\templates\page_vente\product_base.html:90
 msgid "Contactez-nous, disponible sur commande"
 msgstr "Contactez-nous, disponible sur commande"
 
-#: .\page_vente\templates\page_vente\product_base.html:83
+#: .\page_vente\templates\page_vente\product_base.html:95
 msgid "Aucun produit disponible"
 msgstr "Aucun produit disponible"
 
