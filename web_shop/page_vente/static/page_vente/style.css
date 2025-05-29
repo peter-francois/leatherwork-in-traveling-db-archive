@@ -68,6 +68,7 @@ body {
         cursor: pointer;
         display: flex; 
         justify-self: center;
+        justify-content: center;
     }
     .page-button:active {
         transform: scale(0.95);

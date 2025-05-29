@@ -323,6 +323,7 @@ function addToCart(articleId) {
                 alert(data.message);
                 updateTextCartButton(); 
                 updateProductList(articleId);  // Met à jour la liste des produits en retirant celui qui a été ajouté
+                closeModal();
             } else {
                 alert("Erreur : " + data.message);
             }
@@ -498,6 +499,15 @@ function displayProductImages(articleId) {
                 document.getElementById('description-article').textContent = 'Aucune description disponible';
             }
             document.getElementById('prix-article').textContent = data.prix.toFixed(2).replace('.', ',') + ' €';
+            const addToCartButton = document.getElementById('id_add_to_cart_button');
+            if (addToCartButton) {
+                if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart')) {
+                    addToCartButton.style.display = 'none';
+                } else {
+                    addToCartButton.style.display = 'block';
+                    addToCartButton.dataset.productId = articleId;
+                }
+            }
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
