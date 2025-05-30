@@ -381,7 +381,7 @@ body {
     a.linker{
         text-decoration: none;
         display: inline-block;
-        height: fit-content;
+        height: auto;
         color: var(--color2);
 
 
