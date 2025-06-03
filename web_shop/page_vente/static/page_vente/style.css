@@ -868,6 +868,7 @@ footer {
     flex: 1;
     margin: 10px;
     min-width: 200px;
+    min-height: 50px;
 }
 
 .footer-section h4 {
