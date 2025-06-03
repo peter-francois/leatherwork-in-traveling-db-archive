@@ -12,8 +12,13 @@
             <button class="align-items-center page-button add_to_cart_button font-size-17" id="id_add_to_cart_button" >{% trans "Ajouter au panier" %}</button>
             {% endif %}
         </div>
-        <div class="image-container">
-            <img id="current-image" src="" alt="Image du produit">
+        <div class="image-and-buttons">
+            <div class="image-container" id="imageContainer">
+                <img id="current-image" src="" alt="Image du produit">
+                <div class="loupe" id="loupe">
+                    <img src="" alt="Zoom du produit" id="zoomImage">
+                </div>
+            </div>
             <div class="image-buttons">
                 <button class="font-size-17" id="prev-button" type="button">{% trans "Précédent" %}</button>
                 <button class="font-size-17" id="next-button" type="button">{% trans "Suivant" %}</button>

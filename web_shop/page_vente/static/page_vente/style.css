@@ -777,13 +777,49 @@ body {
         justify-content: center;
         overflow: hidden;
     }
-    .image-container {
+    .image-and-buttons {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         overflow: hidden;
     }
+    .image-container {
+        position: relative;
+        display: inline-block;
+        max-height: 85%;
+      }
+      .zoom-image {  
+        width: 600px; /* taille fixe de l'image */
+        height: auto;
+        display: block;     
+      }
+      .loupe {
+        position: absolute;
+        transform: translateY(25px);
+        border: 3px solid #333;
+        border-radius: 50%;
+        cursor: none;
+        /* Taille de la loupe */
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        display: none; /* cachée par défaut */
+        z-index: 10;
+        pointer-events: none;
+        cursor: none;
+      }
+      .loupe img {
+        position: absolute;
+        /* Agrandir l'image dans la loupe */
+        transform-origin: top left;
+        width: 1000px;
+        height: auto;
+        pointer-events: none;
+        border: 2px solid var(--color2);
+        border-radius: 10px;
+        cursor: none;
+      }
     #current-image{
         max-width: 100%;
         max-height: 80%;
@@ -840,7 +876,7 @@ footer {
 .footer-section ul li a {
     display: flex;
     align-items: center;
-    justify-content:space-around
+    justify-content:space-around;
 
 }
 .footer-link{
@@ -1146,7 +1182,11 @@ footer {
             width: 80%;
         }
         #current-image{
-            max-height: 80%;
+            max-height: 70%;
+            margin-top: 50px;
+        }
+        .loupe {
+            transform: translateY(45px);
         }
         /*cart*/
 
@@ -1319,7 +1359,7 @@ footer {
             padding-left: 10px;
         }
         #current-image{
-            height: 100%;
+            max-height: 90%;
             margin-top: 15px;
         }
         .product-info {

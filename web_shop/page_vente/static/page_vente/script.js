@@ -511,6 +511,7 @@ function displayProductImages(articleId) {
             images = data.images; // Charger les images dans le tableau
             currentImageIndex = 0; // Réinitialiser l'index
             document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
+            document.getElementById('zoomImage').src = images[currentImageIndex]; // Afficher la première image dans le zoom
             const modal = document.getElementById('modal');
             const overlay = document.getElementById('overlay');
             overlay.style.display = 'block'; // Affiche l'overlay
@@ -529,6 +530,7 @@ function changeImage(direction) {
         currentImageIndex = 0; // Revenir à la première image
     }
     document.getElementById('current-image').src = images[currentImageIndex]; // Mettre à jour l'image affichée
+    document.getElementById('zoomImage').src = images[currentImageIndex]; // Mettre à jour l'image affichée dans le zoom
 }
 
 // Fonction pour fermer la modale
@@ -809,3 +811,46 @@ if (document.getElementById("see_products_button")) {
         scrollToProducts();
     });
 }
+
+// Zoom dans modal
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('imageContainer');
+    const baseImage = document.getElementById('current-image');
+    const loupe = document.getElementById('loupe');
+    const zoomImage = document.getElementById('zoomImage');
+    const zoom = 2; // facteur de zoom
+  
+    container.addEventListener('mousemove', function (e) {
+      const rect = baseImage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+  
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height || window.innerWidth < 768) {
+        loupe.style.display = 'none';
+        return;
+      }
+      loupe.style.display = 'block';
+  
+      // Positionner la loupe
+      const loupeWidth = loupe.offsetWidth;
+      const loupeHeight = loupe.offsetHeight;
+      loupe.style.left = `${x - loupeWidth / 2}px`;
+      loupe.style.top = `${y - loupeHeight / 2}px`;
+  
+      // Synchroniser la taille de l'image de zoom
+      zoomImage.src = baseImage.src;
+      zoomImage.style.width = `${baseImage.offsetWidth * zoom}px`;
+      zoomImage.style.height = `${baseImage.offsetHeight * zoom}px`;
+  
+      // Positionner l'image zoomée à l'intérieur de la loupe
+      const zoomX = -x * zoom + loupeWidth / 2;
+      const zoomY = -y * zoom + loupeHeight / 2;
+  
+      zoomImage.style.left = `${zoomX}px`;
+      zoomImage.style.top = `${zoomY}px`;
+    });
+  
+    container.addEventListener('mouseleave', function () {
+      loupe.style.display = 'none';
+    });
+  });
