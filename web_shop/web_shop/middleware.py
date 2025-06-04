@@ -6,7 +6,7 @@ class CustomRequestMiddleware:
 
         # Dictionnaire des redirections permanentes
         self.redirects = {
-            '/': '/fr',
+            '/': '/fr/',
             '/tous-les-produits/': '/fr/produits',
             '/tous-les-produits/macrames/': '/fr/produits/macrames',
             '/tous-les-produits/maroquinerie/': '/fr/produits/maroquinerie',
