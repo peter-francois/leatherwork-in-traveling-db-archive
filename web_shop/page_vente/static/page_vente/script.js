@@ -813,6 +813,7 @@ if (document.getElementById("see_products_button")) {
 }
 
 // Zoom dans modal
+if (document.getElementById("imageContainer")) {
 document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('imageContainer');
     const baseImage = document.getElementById('current-image');
@@ -854,3 +855,4 @@ document.addEventListener('DOMContentLoaded', function () {
       loupe.style.display = 'none';
     });
   });
+}
