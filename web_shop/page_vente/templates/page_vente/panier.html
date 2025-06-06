@@ -5,16 +5,7 @@
 {% block meta-description %}{% trans "Vérifiez votre panier et passez commande en toute sécurité via Stripe. Profitez de la livraison rapide pour recevoir vos créations en maroquinerie et macramé faits main." %}{% endblock %}
 {% block title %}{% trans "Panier - Commande sécurisée en maroquinerie et macramé" %}{% endblock %}
 {% block head %}
-    <!-- Balises hreflang pour la page actuelle -->
-    {% get_current_language as current_language %}
-    <link rel="alternate" href="https://www.leatherworkintravelingdb.com{{ request.path }}" hreflang="{{ current_language }}" />
-    {% if current_language == "fr" %}
-        <link rel="alternate" href="https://www.leatherworkintravelingdb.com/en/cart/" hreflang="en" />
-    {% elif current_language == "en" %}
-        <link rel="alternate" href="https://www.leatherworkintravelingdb.com/fr/panier/" hreflang="fr" />
-    {% endif %}
     <meta name="robots" content="noindex, follow">
-    <link rel="alternate" href="https://www.leatherworkintravelingdb.com/en/cart/" hreflang="x-default" />
 {% endblock %}
 {% block header %}
 <h1 id="title_cart">{% trans "Votre panier - Vérifiez et finalisez votre commande" %}</h1>
