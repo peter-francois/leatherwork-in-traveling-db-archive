@@ -23,13 +23,13 @@
             <!--Pagination Links-->
             <div class="pagination text-center font-size-17">
                 {% if products.has_previous %}
-                    <a class="pagination-button first-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page=1">&laquo; {% trans "Premier" %}</a>
-                    <a class="pagination-button prev-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.previous_page_number }}">{% trans "Précédent" %}</a>
+                    <a class="pagination-button first-button" href="{{ request.path }}">&laquo; {% trans "Premier" %}</a>
+                    <a class="pagination-button prev-button" href="{% if products.number == 2 %}{{ request.path }}{% else %}{{ request.path }}?page={{ products.previous_page_number }}{% endif %}">{% trans "Précédent" %}</a>
                 {% endif %}
                 <br id="br-pagination">
                 {% if products.has_next %}
-                    <a class="pagination-button next-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
-                    <a class="pagination-button last-button" href="?{{ query_string }}{% if query_string %}&{% endif %}page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
+                    <a class="pagination-button next-button" href="{{ request.path }}?page={{ products.next_page_number }}">{% trans "Suivant" %}</a>
+                    <a class="pagination-button last-button" href="{{ request.path }}?page={{ products.paginator.num_pages }}">{% trans "Dernier" %} &raquo;</a>
                 {% endif %}
 
                 <span class="current-page">

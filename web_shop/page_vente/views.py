@@ -53,7 +53,6 @@ def produits(request):
     context = {
         'products': page_obj,
         'form': form,
-        'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
         'filter_used': filter_used,
     }
@@ -76,7 +75,6 @@ def maroquinerie(request):
     context = {
         'products': page_obj,
         'form': form,
-        'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
         'filter_used': filter_used,
     }
@@ -100,7 +98,6 @@ def macrames(request):
     context = {
         'products': page_obj,
         'form': form,
-        'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
         'filter_used': filter_used,
     }
@@ -123,7 +120,6 @@ def hybride(request):
     context = {
         'products': page_obj,
         'form': form,
-        'query_string': get_query_string(request),
         'number_of_products_in_filter': number_of_products_in_filter,
         'filter_used': filter_used,
     }
@@ -324,12 +320,6 @@ def pagination(request, product_views):
     paginator = Paginator(product_views, 24)
     page_number = request.GET.get('page', 1)
     return paginator.get_page(page_number)
-
-def get_query_string(request):
-    params = request.GET.copy()
-    if 'page' in params:
-        params.pop('page')
-    return params.urlencode()
 
 def get_total_centimes(total_articles, add_insurance, add_shipping):
 
