@@ -12,13 +12,6 @@ class StaticSitemap(Sitemap):
             'index': 'boutique:index',
             'creation-sur-mesure': 'boutique:creation-sur-mesure',
             # 'a_propos': 'boutique:a_propos',
-            'cgv': 'boutique:cgv',
-            'cookies': 'boutique:cookies',
-            'legal_mentions': 'boutique:legal_mentions',
-            'privacy_policy': 'boutique:privacy_policy',
-            'panier': 'boutique:panier',
-            'paiement_reussi': 'boutique:paiement_reussi',
-            'paiement_annule': 'boutique:paiement_annule'
         }
 
     def items(self):
