@@ -97,7 +97,7 @@ msgstr "Créations en maroquinerie et macramé - Leather Work In Traveling DB"
 msgid ""
 "Découvrez des produits authentiques en maroquinerie et macramé faits main."
 msgstr ""
-"Découvrez des produits authentiques en maroquinerie et macramé faits main."
+"Découvrez des produits authentiques en maroquinerie et macramé fait main."
 
 #: .\page_vente\templates\page_vente\base.html:43
 msgid ""
@@ -420,7 +420,7 @@ msgid ""
 "et bijoux alliant l’élégance du cuir à la finesse du tissage."
 msgstr ""
 "Bijoux macramé uniques mêlant cuir et tressage de fil. Bracelets et colliers "
-"faits main pour un style authentique et original."
+"fait main pour un style authentique et original."
 
 #: .\page_vente\templates\page_vente\hybride.html:5
 msgid "Créations hybrides maroquinerie & macramé - Accessoires uniques"
@@ -460,7 +460,7 @@ msgstr ""
 #: .\page_vente\templates\page_vente\index.html:4
 msgid "Meta description index"
 msgstr ""
-"Découvrez des sacs et portefeuilles faits main, ainsi que des bijoux bohèmes "
+"Découvrez des sacs et portefeuilles fait main, ainsi que des bijoux bohèmes "
 "en cuir et macramé. Chaque pièce est conçue avec passion et originalité."
 
 #: .\page_vente\templates\page_vente\index.html:5
@@ -470,7 +470,7 @@ msgstr "Sacs en cuir & accessoires – Bijoux Bohème en macramé"
 #: .\page_vente\templates\page_vente\index.html:17
 msgid "Bienvenue dans notre boutique de maroquinerie et macramé faits main"
 msgstr ""
-"Sacs en cuir & créations en macramé faits main – Maroquinerie et tissage "
+"Sacs en cuir & créations en macramé fait main – Maroquinerie et tissage "
 "authentiques"
 
 #: .\page_vente\templates\page_vente\index.html:22
@@ -629,7 +629,7 @@ msgstr ""
 
 #: .\page_vente\templates\page_vente\macrames.html:5
 msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
-msgstr "Bijoux bohème en macramé – Faits main & uniques"
+msgstr "Bijoux bohème en macramé – Fait main & uniques"
 
 #: .\page_vente\templates\page_vente\macrames.html:18
 msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
@@ -644,7 +644,7 @@ msgid ""
 msgstr ""
 "Découvrez notre univers de bijoux bohème en macramé, mêlant tradition du "
 "nouage à la main et design contemporain. Des bracelets macramé colorés, des "
-"accessoires bohèmes et des créations uniques vous attendent. Faits à la "
+"accessoires bohèmes et des créations uniques vous attendent. Fait à la "
 "main, nos bijoux incarnent authenticité et élégance naturelle."
 
 #: .\page_vente\templates\page_vente\macrames.html:28
@@ -833,7 +833,7 @@ msgid ""
 msgstr ""
 "Vérifiez votre panier et passez commande en toute sécurité via Stripe. "
 "Profitez de la livraison rapide pour recevoir vos créations en maroquinerie "
-"et macramé faits main."
+"et macramé fait main."
 
 #: .\page_vente\templates\page_vente\panier.html:6
 msgid "Panier - Commande sécurisée en maroquinerie et macramé"
@@ -1023,12 +1023,12 @@ msgid ""
 "Trouvez des produits inédits pour sublimer votre style. Livraison rapide et "
 "qualité garantie."
 msgstr ""
-"Découvrez nos sacs personnalisés, portefeuilles cuir faits main et créations "
+"Découvrez nos sacs personnalisés, portefeuilles cuir fait main et créations "
 "en macramé. Une boutique unique au style authentique."
 
 #: .\page_vente\templates\page_vente\produits.html:6
 msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
-msgstr "Sac personnalisé & accessoires en cuir - Bijoux macramé"
+msgstr "Sacs personnalisés & bijoux macramé – Fait main"
 
 #: .\page_vente\templates\page_vente\produits.html:19
 msgid "Explorez Nos Créations - Trouvez votre style unique"
