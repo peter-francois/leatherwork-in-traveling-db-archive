@@ -465,7 +465,7 @@ msgstr ""
 
 #: .\page_vente\templates\page_vente\index.html:5
 msgid "Maroquinerie & macramé faits main - Leather Work In Traveling DB"
-msgstr "Sacs en cuir & accessoires faits main – Leather Work In Traveling DB"
+msgstr "Sacs en cuir & accessoires – Bijoux Bohème en macramé"
 
 #: .\page_vente\templates\page_vente\index.html:17
 msgid "Bienvenue dans notre boutique de maroquinerie et macramé faits main"
@@ -629,7 +629,7 @@ msgstr ""
 
 #: .\page_vente\templates\page_vente\macrames.html:5
 msgid "Bijoux en macramé faits main - Chaînes de corps, colliers et bracelets"
-msgstr "Bijoux bohème en macramé – Créations uniques à découvrir "
+msgstr "Bijoux bohème en macramé – Faits main & uniques"
 
 #: .\page_vente\templates\page_vente\macrames.html:18
 msgid "Bijoux et accessoires en macramé faits main – Originalité et style"
@@ -1028,12 +1028,12 @@ msgstr ""
 
 #: .\page_vente\templates\page_vente\produits.html:6
 msgid "Accessoires, maroquinerie & macramé faits main | Créations originales"
-msgstr "Sac personnalisé & créations originales – Macramé, cuir & plus"
+msgstr "Sac personnalisé & accessoires en cuir - Bijoux macramé"
 
 #: .\page_vente\templates\page_vente\produits.html:19
 msgid "Explorez Nos Créations - Trouvez votre style unique"
 msgstr ""
-"Sacs personnalisés, maroquinerie et bijoux macramé : explorez tout notre "
+"Sac personnalisé, maroquinerie et bijoux macramé : explorez notre "
 "univers"
 
 #: .\page_vente\templates\page_vente\produits.html:23
