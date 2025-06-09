@@ -5,12 +5,14 @@
 }
 @font-face {
     font-family: 'Uncial Antiqua';
+    font-display: swap;
     src: url('/static/page_vente/fonts/UncialAntiqua-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Playfair Display';
+    font-display: swap;
     src: url('/static/page_vente/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
