@@ -906,7 +906,7 @@ msgstr "Pay with Stripe"
 #: .\page_vente\templates\page_vente\panier.html:105
 msgid "Relay point"
 msgstr ""
-"* For relay point deliveries, the nearest relay point to the delivery "
+"* Relay point deliveries, the nearest relay point to the delivery "
 "address will be automatically selected."
 
 #: .\page_vente\templates\page_vente\panier.html:107

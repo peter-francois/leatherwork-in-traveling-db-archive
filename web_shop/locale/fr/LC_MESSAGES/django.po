@@ -932,7 +932,7 @@ msgstr "Payer via Stripe"
 #: .\page_vente\templates\page_vente\panier.html:105
 msgid "Relay point"
 msgstr ""
-"* Pour les livraisons en point relais, le point relais le plus proche de "
+"* Livraisons en point relais, le point relais le plus proche de "
 "l’adresse de livraison indiquée lors de la commande sera automatiquement "
 "sélectionné."
 
