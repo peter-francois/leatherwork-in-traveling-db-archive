@@ -578,6 +578,7 @@ function updateInsurance() {
     const insurance25Euros2 = document.getElementById('insurance_25_euros_2'); // Message pour 25€ d'assurance incluse
     const insurance = document.getElementById('insurance');
     const upTo500 = document.getElementById('mandatory_insurance_4');
+    const insurance_info = document.getElementById('insurance_info');
 
     // Cacher toutes les options par défaut
     insuranceOption.classList.add('hidden');
@@ -588,6 +589,7 @@ function updateInsurance() {
     upTo500.classList.add('hidden');
     insuranceCostSpan.textContent = "0,00";
     mandatoryInsuranceCostSpan.textContent = "0,00";
+    insurance_info.classList.add('hidden');
 
     // Fonction helper pour formater les nombres selon la langue
     const formatNumber = (num) => currentLanguage === 'en' ? 
@@ -608,6 +610,7 @@ function updateInsurance() {
         insurance25Euros.classList.add('hidden');
         insurance25Euros2.classList.add('hidden');
         mandatoryInsurance.classList.remove('hidden');
+        insurance_info.classList.remove('hidden');
 
         // Définir le coût de l'assurance obligatoire en fonction du total
         let insuranceAmount = 3.5;
