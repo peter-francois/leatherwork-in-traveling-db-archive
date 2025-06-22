@@ -234,6 +234,10 @@ function displayCart() {
                     const translations_front = JSON.parse(document.getElementById("translations").textContent);
                     let li = document.createElement('li');
                     let img = document.createElement('img');
+                    let clickHint = document.createElement('p');
+                    clickHint.textContent = '👆 ' + translations_front.click_hint;
+                    clickHint.classList.add('click-hint');
+                    clickHint.onclick = () => displayProductImages(article.id);
                     let h3 = document.createElement('h3');
                     let p = document.createElement('p');
                     p.textContent = translations_front.price;
@@ -245,16 +249,18 @@ function displayCart() {
                     p.appendChild(span);
                     p.appendChild(span2);
                     img.onclick = () => displayProductImages(article.id);
+                    img.alt = `${article.nom}`;
+
                     let button = document.createElement('button');
                     button.textContent = translations_front.delete_button;
                     button.onclick = () => remove_from_cart(article.id);
                     button.classList.add('page-button', 'delete_button');
                     li.appendChild(h3);
-                    
                     if (article.image1) {
                         img.src = `${article.image1}`;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
+                        li.appendChild(clickHint);
                     }
                     else if (article.image2) {
                         img.src = `${article.image2}`;
@@ -265,21 +271,25 @@ function displayCart() {
                         img.src = `${article.image3}`;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
+                        li.appendChild(clickHint);
                     }
                     else if (article.image4) {
                         img.src = `${article.image4}`;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
+                        li.appendChild(clickHint);
                     }
                     else if (article.image5) {
                         img.src = `${article.image5}`;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
+                        li.appendChild(clickHint);
                     }
                     else if (article.image6) {
                         img.src = `${article.image6}`;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
+                        li.appendChild(clickHint);
                     }
                     else {
                         img.src = ''; // Aucune image disponible
@@ -289,7 +299,6 @@ function displayCart() {
 
                     }
                     li.appendChild(p);
-
                     li.appendChild(button);
                     listeArticles.appendChild(li);
                 });
