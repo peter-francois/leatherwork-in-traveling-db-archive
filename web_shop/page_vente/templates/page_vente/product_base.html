@@ -9,6 +9,11 @@
     <link rel="next" href="https://www.leatherworkintravelingdb.com{{ request.path }}?page={{ products.next_page_number }}">
     {% endif %}
     <link rel="canonical" href="https://www.leatherworkintravelingdb.com{{ request.path }}" />
+    {% if products.number != 1 %}
+        <meta name="robots" content="noindex, follow">
+    {% else %}
+        <meta name="robots" content="index, follow">
+    {% endif %}
 {% endblock %}
 {% block content %}
 <main>
