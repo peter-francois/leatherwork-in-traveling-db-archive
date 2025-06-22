@@ -185,8 +185,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const produits = document.querySelectorAll('.produit');
     produits.forEach(produit => {
         const img = produit.querySelector('img'); // Sélectionner l'image principale
+        const clickHint = produit.querySelector('.click-hint');
         if (img) {
             img.addEventListener('click', () => {
+                const articleId = produit.getAttribute('data-product-id');
+                if (!articleId) return;
+                displayProductImages(articleId);
+            });
+            clickHint.addEventListener('click', () => {
                 const articleId = produit.getAttribute('data-product-id');
                 if (!articleId) return;
                 displayProductImages(articleId);

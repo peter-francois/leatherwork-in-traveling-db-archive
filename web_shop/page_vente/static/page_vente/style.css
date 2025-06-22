@@ -495,6 +495,17 @@ body {
     .produit button, #liste-articles button{
         margin-top: 15px;
     }
+    .click-hint{
+        background: rgba(0,0,0,0.4);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 5px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .click-hint:hover{
+        background: rgba(0,0,0,0.6);
+    }
     section.cart-container div.grid-container{
         grid-template-columns: 75% 25%
         
@@ -675,7 +686,7 @@ body {
     }
     .pagination-button{
         display: inline-block;
-        width: 8em;
+        width: 7em;
         text-decoration: none;
         background: transparent; 
         border: 2px solid #8c6b4f; 
@@ -689,6 +700,14 @@ body {
     .pagination-button:hover {
         background-color: #8c6b4f; 
         color: #f8f5e1;
+    }
+    .pagination-button.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+    .pagination-button.disabled:hover {
+        background-color: transparent;
+        color: #8c6b4f;
     }
     #br-pagination{
         display: none;
@@ -1329,6 +1348,10 @@ footer {
         .tous_les_produits, #liste-articles{
             grid-template-columns: repeat(2, 1fr);
             gap: 5px;
+        }
+        .click-hint{
+            padding: 2px 4px;
+            font-size: 10px;
         }
     
         .produit, #liste-articles li{
