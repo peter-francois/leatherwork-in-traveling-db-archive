@@ -25,7 +25,7 @@
             <div class="pagination text-center font-size-17">
                 {% if products.has_previous %}
                     <a class="pagination-button first-button" href="{{ request.path }}">&laquo; {% trans "Premier" %}</a>
-                    <a class="pagination-button prev-button" href="{% if products.number == 2 %}{{ request.path }}{% else %}{{ request.path }}?page={{ products.previous_page_number }}{% endif %}">{% trans "Précédent" %}</a>
+                    <a class="pagination-button prev-button" href="{% if products.previous_page_number == 1 %}{{ request.path }}{% else %}{{ request.path }}?page={{ products.previous_page_number }}{% endif %}">{% trans "Précédent" %}</a>
                 {% else %}
                     <a class="pagination-button first-button disabled" href="{{ request.path }}">&laquo; {% trans "Premier" %}</a>
                     <a class="pagination-button prev-button disabled" href="{{ request.path }}">{% trans "Précédent" %}</a>
