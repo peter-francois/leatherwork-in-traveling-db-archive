@@ -260,7 +260,7 @@ def get_product_images(request, article_id):
             product.image6.url if product.image6 else None,
             ]
         images = [image for image in images if image]
-        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix})
+        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix, 'en_attente_dans_panier': product.en_attente_dans_panier})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
 
