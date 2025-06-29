@@ -1593,8 +1593,8 @@ footer {
             font-size: 18px;
         }
         #modal .grid-container{
-            grid-template-rows: 20% 70%;
-            margin-top: 125px;
+            grid-template-rows: 30% 65%;
+            margin-top: 95px;
         }
         #prev-button, #next-button{
             margin-top: 20px;
