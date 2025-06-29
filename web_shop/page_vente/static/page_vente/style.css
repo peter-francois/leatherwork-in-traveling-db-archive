@@ -51,6 +51,13 @@ body {
     h3, h2.product-name{
         font-size: 21px;
     }
+    .product-info h3{
+        font-size: 18px;
+        margin: 0;
+    }
+    .product-info p{
+        font-size: 16px;
+    }
     h4{
         font-size: 20px;
     }
@@ -755,7 +762,7 @@ body {
         right: 50%;
         transform: translate(50%, -50%);
         padding: 30px;
-        width: 60%;
+        width: 80%;
         height: 90%;
         box-sizing: border-box;
         overflow: hidden;
@@ -788,7 +795,7 @@ body {
         color: var(--color1);
     }
     #modal .grid-container{
-        grid-template-columns: 20% 80%; 
+        grid-template-columns: 35% 65%; 
         gap: 10px; 
         height: calc(100% - 60px);
         margin-top: 60px;
@@ -797,7 +804,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        overflow: hidden;
+
     }
     .image-and-buttons {
         display: flex;
@@ -1200,9 +1207,6 @@ footer {
         .produit button, #liste-articles button, .produit a, .on-order-button{
             margin-top: 10px;
         }
-        #modal{
-            width: 80%;
-        }
         #current-image{
             max-height: 70%;
             margin-top: 50px;
@@ -1232,6 +1236,12 @@ footer {
         }
     h3, h2.product-name{
         font-size: 17px;
+    }
+    .product-info h3{
+        font-size: 16px;
+    }
+    .product-info p{
+        font-size: 15px;
     }
     h4{
         font-size: 15px;
@@ -1391,8 +1401,9 @@ footer {
         .product-info {
             display: grid;
             grid-template-columns: .3fr 1fr;
-            grid-template-rows: 1fr 1fr;
+            grid-template-rows: 1fr .5fr .5fr;
             margin:0 15px;
+            row-gap: 5px;
         }
         #id_add_to_cart_button{
             width: 200px;
@@ -1454,6 +1465,12 @@ footer {
             }
         h3, h2.product-name{
             font-size: 15px;
+        }
+        .product-info h3{
+            font-size: 15px;
+        }
+        .product-info p{
+            font-size: 13px;
         }
         h4{
             font-size: 14px;
@@ -1577,7 +1594,7 @@ footer {
         }
         #modal .grid-container{
             grid-template-rows: 20% 70%;
-            margin-top: 135px;
+            margin-top: 125px;
         }
         #prev-button, #next-button{
             margin-top: 20px;
