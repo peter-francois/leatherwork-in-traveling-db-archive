@@ -28,7 +28,7 @@ def get_cached_images_for_product(product):
     def cache_img_field(image_field, suffix):
         if not image_field:
             return ""
-        filename = f"{product.id}_{suffix}.jpg"
+        filename = f"{product.id}_{suffix}_{int(product.updated_at.timestamp())}.jpg"
         return get_cached_image(image_field.url, filename)
 
     return {

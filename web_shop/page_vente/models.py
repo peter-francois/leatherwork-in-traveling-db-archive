@@ -40,6 +40,7 @@ class AllProducts(models.Model):
     image6 = CloudinaryField(default='', blank=True, null=True)
     disponible = models.BooleanField(default=True)
     en_attente_dans_panier = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.nom
