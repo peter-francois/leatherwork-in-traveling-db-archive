@@ -31,7 +31,7 @@ def image_thumbnail(image_field):
 
 class AllProductsAdmin(admin.ModelAdmin):
     actions = ['rendre_disponible', 'rendre_indisponible','retirer_du_panier']
-    list_display = ('nom','categorie','disponible','en_attente_dans_panier', 'type', 'description', 'prix')
+    list_display = ('nom','categorie','disponible','en_attente_dans_panier','sur_commande', 'type', 'description', 'prix')
     search_fields = ['nom','categorie', 'type']
     list_filter = ['categorie', 'disponible']
     form = AllProductsForm
@@ -39,7 +39,7 @@ class AllProductsAdmin(admin.ModelAdmin):
     readonly_fields = ('image1_thumbnail', 'image2_thumbnail', 'image3_thumbnail', 'image4_thumbnail', 'image5_thumbnail', 'image6_thumbnail')
     fieldsets = (
         (None, {
-            'fields': ('nom', 'categorie', 'type', 'description', 'prix', 'disponible', 'en_attente_dans_panier')
+            'fields': ('nom', 'categorie', 'type', 'description', 'prix', 'disponible', 'en_attente_dans_panier', 'sur_commande')
         }),
         ('Images', {
             'fields': ('image1', 'image1_thumbnail', 'image2', 'image2_thumbnail', 

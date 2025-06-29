@@ -8,7 +8,7 @@
             <p id="description-article"></p>
             <h3>{% trans "Prix: " %}</h3>
             <p id="prix-article"></p>
-            {% if request.resolver_match.url_name != 'panier' or not produit.en_attente_dans_panier %}
+            {% if request.resolver_match.url_name != 'panier'%}
             <button class="align-items-center page-button add_to_cart_button font-size-17" type="button" id="id_add_to_cart_button" >{% trans "Ajouter au panier" %}</button>
             {% endif %}
         </div>

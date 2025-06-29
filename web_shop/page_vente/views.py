@@ -41,7 +41,7 @@ def produits(request):
 
     all_products = [product for product in all_products if product.disponible]
 
-    all_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
+    all_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
 
     all_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_products, is_all_products=True )
 
@@ -61,9 +61,9 @@ def produits(request):
 
 def maroquinerie(request):
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
-    all_leather_products = [product for product in all_leather_products if product.disponible and not product.en_attente_dans_panier]
+    all_leather_products = [product for product in all_leather_products if product.disponible]
 
-    all_leather_products.sort(key=lambda product: product.id, reverse=True)
+    all_leather_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
 
     all_leather_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_leather_products, is_all_products=False)
 
@@ -84,9 +84,9 @@ def maroquinerie(request):
 def macrames(request):
 
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
-    all_macrame_products = [product for product in all_macrame_products if product.disponible and not product.en_attente_dans_panier]
+    all_macrame_products = [product for product in all_macrame_products if product.disponible]
 
-    all_macrame_products.sort(key=lambda product: product.id, reverse=True)
+    all_macrame_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
 
     all_macrame_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_macrame_products, is_all_products=False)
 
@@ -106,9 +106,9 @@ def macrames(request):
 
 def hybride(request):
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
-    all_hybride_products = [product for product in all_hybride_products if product.disponible and not product.en_attente_dans_panier]
+    all_hybride_products = [product for product in all_hybride_products if product.disponible]
 
-    all_hybride_products.sort(key=lambda product: product.id, reverse=True)
+    all_hybride_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
 
     all_hybride_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_hybride_products, is_all_products=False)
 
@@ -260,7 +260,7 @@ def get_product_images(request, article_id):
             product.image6.url if product.image6 else None,
             ]
         images = [image for image in images if image]
-        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix, 'en_attente_dans_panier': product.en_attente_dans_panier})
+        return JsonResponse({'images': images, 'nom': product.nom, 'description': product.description if product.description else None, 'prix': product.prix, 'en_attente_dans_panier': product.en_attente_dans_panier, 'sur_commande': product.sur_commande})
     except AllProducts.DoesNotExist:
         return JsonResponse({'error': 'Product not found'}, status=404)
 

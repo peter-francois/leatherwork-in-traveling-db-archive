@@ -516,7 +516,7 @@ function displayProductImages(articleId) {
             document.getElementById('prix-article').textContent = data.prix.toFixed(2).replace('.', ',') + ' €';
             const addToCartButton = document.getElementById('id_add_to_cart_button');
             if (addToCartButton) {
-                if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart') || data.en_attente_dans_panier) {
+                if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart') || data.en_attente_dans_panier || data.sur_commande) {
                     addToCartButton.style.display = 'none';
                 } else {
                     addToCartButton.style.display = 'block';
