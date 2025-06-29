@@ -41,7 +41,7 @@ def produits(request):
 
     all_products = [product for product in all_products if product.disponible]
 
-    all_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
+    all_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_products, is_all_products=True )
 
@@ -63,7 +63,7 @@ def maroquinerie(request):
     all_leather_products = AllProducts.objects.all().filter(categorie='Maroquinerie')
     all_leather_products = [product for product in all_leather_products if product.disponible]
 
-    all_leather_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
+    all_leather_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_leather_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_leather_products, is_all_products=False)
 
@@ -86,7 +86,7 @@ def macrames(request):
     all_macrame_products = AllProducts.objects.all().filter(categorie='Macrame')
     all_macrame_products = [product for product in all_macrame_products if product.disponible]
 
-    all_macrame_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
+    all_macrame_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_macrame_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_macrame_products, is_all_products=False)
 
@@ -108,7 +108,7 @@ def hybride(request):
     all_hybride_products = AllProducts.objects.all().filter(categorie='Hybride')
     all_hybride_products = [product for product in all_hybride_products if product.disponible]
 
-    all_hybride_products.sort(key=lambda product: (product.en_attente_dans_panier, product.sur_commande, -product.id))
+    all_hybride_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_hybride_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_hybride_products, is_all_products=False)
 
