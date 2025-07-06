@@ -23,7 +23,7 @@ body {
     background-color: #fcf6c8;
     color: #333;
     line-height: 1.6;
-    margin: 0;
+    margin: 0 -2px;
     padding: 0;
 }
 
@@ -116,11 +116,15 @@ body {
 /*header*/
 
     .header {
-        background: var(--color3);
+        background-image: url("/static/page_vente/images/background.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
         color: var(--color1);
         text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
         padding: 20px;
-        width: auto;
+        width: 100%;
+        box-sizing: border-box;
     }
     .header a:hover, .header button:hover{
         color: white;
@@ -161,6 +165,7 @@ body {
             display: inline-block;
             font-family: 'Uncial Antiqua', serif;
             text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
+            background-color: #0000009d;
         }
         #menu-icon{
             display: none;
@@ -322,7 +327,7 @@ body {
 
         .title_and_logo{
             grid-template-columns: .4fr 1fr;
-            margin-top: 55px;
+            padding: 30px 100px;
             gap: 20px;
         }
 
@@ -330,8 +335,8 @@ body {
             justify-self: center;
             padding: 20px;
             border: none;
-            height: 18em;
-            width: 18em;
+            height: 14em;
+            width: 14em;
         }
     
     /*Cart button*/
@@ -1082,6 +1087,15 @@ footer {
 @media only screen and (max-width: 1182px)
 {   
     /*Common*/
+        .title_and_logo{
+            padding: 40px 70px;
+        }
+
+        .logo{
+            height: 13em;
+            width: 13em;
+        }
+    
 
         .display-laptop{
             display: None;
@@ -1252,6 +1266,9 @@ footer {
 
 
     /*Header*/
+        .header {
+            background-image: url("/static/page_vente/images/background_small_screen.png");
+        }
 
         #menu_button{
             width: 100%;
@@ -1290,13 +1307,15 @@ footer {
             width: 40px;
             height: 25px;
         }
+
         .title_and_logo{
             grid-template-columns: 1fr;
             gap: 0px;
+            padding: 80px 40px;
         }
         .logo{
-            height: 15em;
-            width: 15em;
+            height: 11em;
+            width: 11em;
         }
     /*Index*/
         .category{
@@ -1486,8 +1505,8 @@ footer {
             font-size: 13px;
         }
         .logo{
-            height: 11em;
-            width: 11em;
+            height: 9em;
+            width: 9em;
             padding: 5px;
         }
         #contact_link{
@@ -1623,3 +1642,17 @@ footer {
     opacity: 0.8;
 }
 
+@media only screen and (min-width: 1700px){
+    .header {
+        background-image: url("/static/page_vente/images/background_large_screen.png");
+    }
+    .title_and_logo{
+        padding: 40px 100px;
+    }
+
+    .logo{
+        height: 18em;
+        width: 18em;
+    }
+    
+}
