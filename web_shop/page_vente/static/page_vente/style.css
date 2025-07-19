@@ -121,7 +121,6 @@ body {
         background-position: center;
         background-repeat: no-repeat;
         color: var(--color1);
-        text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
         padding: 20px;
         width: 100%;
         box-sizing: border-box;
@@ -164,7 +163,6 @@ body {
             color: var(--color1);
             display: inline-block;
             font-family: 'Uncial Antiqua', serif;
-            text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
             background-color: #0000009d;
         }
         #menu-icon{
@@ -199,7 +197,6 @@ body {
         #contact_button{
             background-color: transparent;
             font-family: 'Uncial Antiqua', serif;
-            text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
         }
         #contact_button:hover{
             color: white;
@@ -887,7 +884,6 @@ footer {
     color: var(--color1);
     padding: 40px 20px;
     text-align: center;
-    text-shadow: rgb(0, 0, 0) 0.15em 0.15em 0.15em;
 }
 
 .footer-container {
