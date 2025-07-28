@@ -16,6 +16,7 @@ urlpatterns = [
     path(_('produits/hybride/'), views.hybride, name="hybride"),
     path(_('produits/'), views.produits, name="produits"),
     path(_('panier/'), views.panier, name="panier"),
+    path(_('contact/'), views.contact, name="contact"),
     # path(_('a_propos/'), views.a_propos, name="a_propos"),
     path(_('cgv/'), views.cgv_view, name="cgv"),
     path(_('cookies/'), views.cookies_view, name="cookies"),

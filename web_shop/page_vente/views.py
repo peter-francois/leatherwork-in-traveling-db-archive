@@ -143,7 +143,8 @@ def panier(request):
         "total": total,
         "latest_cgv": latest_cgv,
     })
-
+def contact(request):
+    return render(request, 'page_vente/contact.html')
 def a_propos(request):
     return render(request, 'page_vente/a_propos.html')
 
