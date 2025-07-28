@@ -43,7 +43,7 @@ body {
         line-height: 2;
     }
     h1{
-        font-size: 30px;
+        font-size: 2rem;
     }
     h2{
         font-size: 25px;
@@ -115,7 +115,7 @@ body {
 
 /*header*/
 
-    .header {
+    header {
         background-image: url("/static/page_vente/images/background.png");
         background-size: cover;
         background-position: center;
@@ -125,111 +125,122 @@ body {
         width: 100%;
         box-sizing: border-box;
     }
-    .header a:hover, .header button:hover{
+    header a:hover, header button:hover{
         color: white;
     }
 
     /*Menu*/
 
         .menu{
-            position: fixed;
-            top: 12px; 
-            left: 32px; 
             z-index: 2;
             font-family: 'Uncial Antiqua', serif;
-        }
-        #arrow-down{
-            width: 25px;
-            height: 25px;
-            margin-left: 25px;
-            margin-bottom: -7px;
-        }
-        #our-works:hover #arrow-down{
-            content: url( "/static/page_vente/icons/arrow-down-solid-hover.svg");
-        }
-
-        #menu_button{
-            width: 100%;
-            height: 62.5px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            padding: 15px 32px;
-            background-color: #00000000;
-            border: none;
-            margin: 0;
-            font-size: 20px;
-            text-align: left;
-            color: var(--color1);
-            display: inline-block;
-            font-family: 'Uncial Antiqua', serif;
-            background-color: #0000009d;
-        }
-        #menu-icon{
-            display: none;
-        }
-        #menu_button:hover #menu-icon{
-            content: url( "/static/page_vente/icons/bars-solid-hover.svg");
-        }
-        #menu_button.scrolled {
-            background-color: #00000080;
-        }
-        #menu_button.active {
-            background-color: #000000cf;
-        }
-        #menu_button:hover{
-            background-color: #000000cf;
-            color: white;
-        }
-        
-        .menu i{
-            margin-left: 10px;
-        }
-        .menu-content, #contact_button{
-
-            min-width: 160px;
-            width: 100%;
-            padding-top: 0;
-            font-size: 18px;
-            border: none;
-            z-index: 2;
-        }
-        #contact_button{
-            background-color: transparent;
-            font-family: 'Uncial Antiqua', serif;
-        }
-        #contact_button:hover{
-            color: white;
         }
         .menu-content{
-            display: none;
             position: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 46px;
+            list-style: none;
             left: 0;
-            top: 60px;
+            top: 0;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-size: 1rem;
+            border: none;
+            z-index: 2;
             background-color: #000000cf;
         }
-
-        
-        .menu-content a, #contact_button {
+        .menu-content a{
             color: var(--color1);
             text-decoration: none;
             display: block;
             text-align: left;
-            padding: 12px 32px;
-            width: 100%;
-        
-        }
-        .menu-content.active, #contact_button.active {
-            display: block;
+            padding: 10px 20px;
         }
         .menu-content-produit{
-            display: none;
+            display: flex;
+            list-style: none;
+            font-size: .9rem;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            pointer-events: none;
+            text-align: center;
+            padding: 0px 10px;
         }
-        .menu-content-produit.active{
-            display: inline-block;
-            width: 100%;
-            padding-left: 32px;
+        #arrow-down{
+            width: 22px;
+            height: 22px;
+            margin-left: 8px;
+            margin-bottom: -6px;
         }
+        #shop{
+            position: relative;
+        }
+        #shop:hover #arrow-down{
+            content: url( "/static/page_vente/icons/arrow-down-solid-hover.svg");
+        }
+        /* burger menu
+            content: url( "/static/page_vente/icons/bars-solid-hover.svg");
+        }
+        */        
+        #shop:hover .menu-content-produit{
+            pointer-events: auto;
+            align-items: center;
+            flex-direction: column;
+            background-color: #000000cf;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /*Cart button*/
+
+            #cart-button{
+                display: flex;
+                padding: 3px 4px;
+
+            }
+            #cart-button:hover{
+                border-color: white;
+            }
+
+            .flex_item_cart_button{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0px 3px;
+                width: 20px;
+                height: 20px;
+                margin: 0px 0px;
+            }
+            #cart-button:hover #cart-icon{
+                content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
+            }
+
+        /*Language selector*/
+
+            .language-selector {
+                display: flex;
+                margin-top: 8px;
+                gap: 10px;
+                z-index: 3;
+            }
+            .flag {
+                width: 45px;
+                height: 27px;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: border 0.3s ease;
+            }
+        
+        
+            .flag.active {
+                border-color: var(--color1);
+                border-radius: 5px;
+                }
 
     /*Contact form*/
 
@@ -294,31 +305,7 @@ body {
             z-index: 4; 
             display: none; 
         }
-    /*Language selector*/
 
-        .language-selector {
-            position: fixed;
-            top: 12px; 
-            right: 1%; 
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 0px;
-            z-index: 3;
-        }
-        .flag {
-            width: 60px;
-            height: 37.5px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border 0.3s ease;
-        }
-    
-    
-        .flag.active {
-            border-color: var(--color1);
-            border-radius: 5px;
-            }
 
     /*Title and logo*/
 
@@ -336,33 +323,7 @@ body {
             width: 14em;
         }
     
-    /*Cart button*/
-        #cart-button{
-            position: fixed;
-            top: 10px;
-            right: 35%;
-            z-index: 3;
-            padding: 5px 15px;
-        }
-        #cart-button:hover{
-            border-color: white;
-        }
-
-        #cart-button i{
-            margin-right: 7px;
-        }
-        .flex_item_cart_button{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0px 3px;
-            width: 20px;
-            height: 20px;
-            margin: 0px 0px;
-        }
-        #cart-button:hover #cart-icon{
-            content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
-        }
+    
         #separator-header{
             border-bottom: 2px solid var(--color1); 
             width: 80%;
@@ -1125,13 +1086,55 @@ footer {
 
     /*header*/
 
-        .header {
+        header {
         padding-top: 1px;
         padding-bottom: 10px;
         padding-left: 0px;
         padding-right: 0px;
 
         }
+        /*Menu*/
+
+        .menu-content{
+            height: 42px;
+            font-size: .95rem;
+        }
+        .menu-content a{
+            padding: 9px 15px;
+        }
+        .menu-content-produit{
+            font-size: .85rem;
+            padding: 0px 7px;
+        }
+        #arrow-down{
+            width: 22px;
+            height: 22px;
+            margin-left: 3px;
+            margin-bottom: -6px;
+        }    
+
+        /*Cart button*/
+
+            #cart-button{
+                padding: 3px 4px;
+            }
+
+            .flex_item_cart_button{
+                width: 16px;
+                height: 16px;
+            }
+            
+        /*Language selector*/
+
+            .language-selector {
+                margin-top: 8px;
+                gap: 4px;
+            }
+            .flag {
+                width: 40px;
+                height: 25px;
+                cursor: pointer;
+            }
 
         /*Contact*/
 
@@ -1262,47 +1265,10 @@ footer {
 
 
     /*Header*/
-        .header {
+        header {
             background-image: url("/static/page_vente/images/background_small_screen.png");
         }
 
-        #menu_button{
-            width: 100%;
-            height: 50px;
-            padding: 7px 20px;
-            font-size: 16px;
-        }
-        #menu-icon{
-            display: block;
-            height: 25px;
-            width: 25px;
-
-            margin-bottom: 0;
-        }
-        #menu-button-text{
-            display: none;
-        }
-        .menu-content, #contact_button{
-            min-width: 100px;
-            top: 50px;
-            font-size: 14px;
-        }
-        #arrow-down{
-            width: 20px;
-            height: 20px;
-            margin-left: 15px;
-            margin-bottom: -5px;
-        }
-
-        #cart-button{
-            border-radius: 10px;
-            padding: 3px 6px;
-            font-size: 12px;      
-        }
-        .flag {
-            width: 40px;
-            height: 25px;
-        }
 
         .title_and_logo{
             grid-template-columns: 1fr;
@@ -1639,7 +1605,7 @@ footer {
 }
 
 @media only screen and (min-width: 1700px){
-    .header {
+    header {
         background-image: url("/static/page_vente/images/background_large_screen.png");
     }
     .title_and_logo{

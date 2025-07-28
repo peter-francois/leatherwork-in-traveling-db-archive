@@ -130,12 +130,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// Fonction pour afficher le sous-menu "Produit"
-function toggleMenuProduit(event){
-    event.preventDefault();
-    const menuContentProduit = document.querySelector('.menu-content-produit');
-    menuContentProduit.classList.toggle('active');
-}
 
 
 // Pour que le menu modifie son style en fonction de la scroll
@@ -749,11 +743,7 @@ if (document.getElementById("menu_button")) {
     });
 }
 
-if (document.getElementById("our-works")) {
-    document.getElementById("our-works").addEventListener("click", function(event) {
-        toggleMenuProduit(event);
-    });
-}
+
 
 if (document.getElementById("contact_button")) {
     document.getElementById("contact_button").addEventListener("click", function() {

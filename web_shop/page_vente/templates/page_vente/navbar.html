@@ -1,8 +1,48 @@
 {% load static %}
 {% load i18n %}
 <!-- navbar.html -->
-<nav>
-    <div class="menu">
+<nav class="menu">
+    <ul class="menu-content">
+        <li><a href="{% url 'boutique:index' %}">{% trans "ACCUEIL" %}</a></li>
+        <li id="shop">
+            <a href="{% url 'boutique:produits' %}">
+                <span>{% trans "BOUTIQUE" %}</span>
+                <img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}" alt="icon arrow down">
+            </a>
+            <ul class="menu-content-produit">
+                <li><a href="{% url 'boutique:maroquinerie' %}">{% trans "MAROQUINERIE" %}</a></li>
+                <li><a href="{% url 'boutique:macrames' %}">{% trans "MACRAMÉ" %}</a></li>
+                <li><a href="{% url 'boutique:hybride' %}">{% trans "HYBRIDE" %}</a></li>
+            </ul>
+        </li>
+        <li><a href="{% url 'boutique:creation-sur-mesure' %}">{% trans "CRÉATION SUR MESURE" %}</a></li>
+        <li>
+            <a class="text-center align-items-center page-button" href="{% url 'boutique:panier' %}" id="cart-button">
+                <img class="flex_item_cart_button" id="cart-icon" alt="cart" src="{% static 'page_vente/icons/cart-shopping-solid.svg' %}">
+                <p id="text-cart-button" class="flex_item_cart_button"></p>
+            </a>
+        </li>
+        <li class="align-items-center language-selector">
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.path }}">
+                <input name="language" type="hidden" value="en">
+                <button type="submit" class="flag-button">
+                    <img src="{% static 'page_vente/images/flag/UK.webp' %}" alt="English" class="flag" data-lang="en">
+                </button>
+            </form>
+            <form action="{% url 'set_language' %}" method="post">
+                {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.path }}">
+                <input name="language" type="hidden" value="fr">
+                <button type="submit" class="flag-button">
+                    <img src="{% static 'page_vente/images/flag/FR.jpeg' %}" alt="French active" class="flag" data-lang="fr">
+                </button>
+            </form>
+        </li>
+    </ul>
+</nav>
+    <!--<div class="menu hidden">
         <button id="menu_button" type="button" class="smooth-transition"><span id="menu-button-text">MENU</span><img id="menu-icon" src="{% static 'page_vente/icons/bars-solid.svg' %}" alt="icon menu"></button>
         <div class="menu-content smooth-transition">
             <a href="{% url 'boutique:index' %}" id="menu_button_home" >{% trans "ACCUEIL" %}</a>
@@ -14,16 +54,12 @@
                     <a href="{% url 'boutique:hybride' %}" id="menu_button_hybride">{% trans "ALLIANCE CUIR & MACRAMÉ" %}</a>
                 </div>
             <a href="{% url 'boutique:creation-sur-mesure' %}" id="menu_button_creation_sur_mesure">{% trans "CRÉATION SUR MESURE" %}</a>
-            <a href="{% url 'boutique:panier' %}" id="menu_button_panier">{% trans "PANIER" %}</a>
-            <!--<a href="/a_propos" id="menu_button_a_propos">A PROPOS</a>-->
+            <a href="/a_propos" id="menu_button_a_propos">A PROPOS</a>
             <button id="contact_button" type="button">CONTACT</button>  
         </div> 
     </div>
-    <a class="text-center align-items-center page-button" href="{% url 'boutique:panier' %}" id="cart-button">
-        <img class="flex_item_cart_button" id="cart-icon" alt="cart" src="{% static 'page_vente/icons/cart-shopping-solid.svg' %}">
-        <p id="text-cart-button" class="flex_item_cart_button"></p>
-    </a>
-    <div class="align-items-center language-selector">
+
+    <div class="align-items-center language-selector hidden">
         <form action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ request.path }}">
@@ -40,5 +76,5 @@
                 <img src="{% static 'page_vente/images/flag/FR.jpeg' %}" alt="French active" class="flag" data-lang="fr">
             </button>
         </form>
-    </div>
-</nav>
+    </div>-->
+
