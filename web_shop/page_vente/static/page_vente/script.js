@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Fonction pour afficher le menu
 function toggleMenu() {
-    const menuContent = document.querySelector('.menu-content');
-    const menuButton = document.querySelector('.menu button');
+    const menuContent = document.querySelector('.display-tablet-laptop');
+    const menuButton = document.querySelector('#menu_button');
     const menuContentProduit = document.querySelector('.menu-content-produit');
     menuContent.classList.toggle('active');
     menuButton.classList.toggle('active');
@@ -115,13 +115,12 @@ function toggleMenu() {
 
 // Fermer le menu si on clique en dehors
 document.addEventListener('click', function(event) {
-    const menuButton = document.querySelector('.menu button');
-    const menuContent = document.querySelector('.menu-content');
+    const menuButton = document.querySelector('#menu_button');
+    const menuContent = document.querySelector('.display-tablet-laptop');
     const menuContentProduit = document.querySelector('.menu-content-produit');
-    const contactButton = document.querySelector('#contact_button');
     
     // Si le clic n'est ni sur le bouton du menu ni sur le contenu du menu et que le menu est actif
-    if (contactButton.contains(event.target) || !menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
+    if (!menuButton.contains(event.target) && !menuContent.contains(event.target) && menuContent.classList.contains('active')) {
         menuContent.classList.remove('active');
         menuButton.classList.remove('active');
         if (menuContentProduit.classList.contains('active')) {
@@ -131,21 +130,6 @@ document.addEventListener('click', function(event) {
 });
 
 
-
-// Pour que le menu modifie son style en fonction de la scroll
-window.addEventListener('scroll', function() {
-    const menuContent = document.querySelector('.menu-content');
-    const menuButton = document.querySelector('.menu button');
-    const headerDiv = document.querySelector('div.header');
-    const headerTop = headerDiv.offsetTop + 40;
-    if (window.scrollY >= headerTop) { // quand on dépasse la div.header
-        menuContent.classList.add('scrolled');
-        menuButton.classList.add('scrolled');
-    } else {
-        menuContent.classList.remove('scrolled');
-        menuButton.classList.remove('scrolled');
-    }
-});
 
 //fonction pour afficher le contact
 function displayContact(event) {
