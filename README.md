@@ -23,7 +23,7 @@ As a beginner developer, this project is particularly challenging, as I am build
 1. Clone the repository:
    ```sh
    git clone https://github.com/Peter-Francois/E-shopping_Mr_Betsch.git
-   cd E-shopping_Mr_Betsch
+   cd Leather-work-in-traveling-DB
    ```
 2. Create a virtual environment and activate it:
    ```sh
