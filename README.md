@@ -48,8 +48,6 @@ As a beginner developer, this project is particularly challenging, as I am build
    ```
 7. Open your browser and go to `http://127.0.0.1:8000/`
 
-## 🔮 Future Improvements
-- ⚡ Performance improvement
 
 ## 🤝 Contributions
 Since this is a personal learning project, contributions are not expected at the moment. However, suggestions and feedback are always welcome!
