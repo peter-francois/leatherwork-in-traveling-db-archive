@@ -34,19 +34,24 @@ As a beginner developer, this project is particularly challenging, as I am build
    ```sh
    pip install -r requirements.txt
    ```
-4. Apply migrations:
+4. Copy and fill the `.env.example` file provided as a configuration template.
+   ``` bash
+   cd web_shop
+   cp .env.example .env
+   ```
+5. Apply migrations:
    ```sh
    python manage.py migrate
    ```
-5. Create a superuser:
+6. Create a superuser:
    ```sh
    python manage.py createsuperuser
    ```
-6. Run the development server:
+7. Run the development server:
    ```sh
    python manage.py runserver
    ```
-7. Open your browser and go to `http://127.0.0.1:8000/`
+8. Open your browser and go to `http://127.0.0.1:8000/`
 
 
 ## 🤝 Contributions
