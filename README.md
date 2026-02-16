@@ -22,8 +22,8 @@ As a beginner developer, this project is particularly challenging, as I am build
 ## 🚀 Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/Peter-Francois/E-shopping_Mr_Betsch.git
-   cd Leather-work-in-traveling-DB
+   git clone https://github.com/peter-francois/leatherwork-in-traveling-db.git
+   cd leatherwork_in_traveling_DB
    ```
 2. Create a virtual environment and activate it:
    ```sh
