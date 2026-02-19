@@ -134,7 +134,7 @@ def panier(request):
     latest_cgv = CGV.objects.latest('created_at')
     cart = Cart.objects.filter(session_id=session_key, paid=False).first()
     items = CartItem.objects.filter(cart=cart)
-    total = sum(item.product.prix * item.quantity for item in items)
+    total = sum((item.product.prix - item.product.discount) * item.quantity for item in items)
     expiration_date = get_session_expiration(request)
 
     return render(request, "page_vente/panier.html", {
