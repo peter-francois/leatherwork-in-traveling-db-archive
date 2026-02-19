@@ -3,6 +3,9 @@
     --color2: #8c6b4f;
     --color3: #5c3b14;
 }
+* {
+  box-sizing: border-box;
+}
 @font-face {
     font-family: 'Uncial Antiqua';
     font-display: swap;
