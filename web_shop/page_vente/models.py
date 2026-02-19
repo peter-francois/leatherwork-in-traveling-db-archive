@@ -32,6 +32,7 @@ class AllProducts(models.Model):
     type = models.CharField(max_length=50, choices=TYPE_CHOICES)
     description = models.CharField(max_length=135, blank=True, null=True)
     prix = models.FloatField(default=0.0)
+    discount = models.FloatField(default=0.0)
     image1 = CloudinaryField(default='', blank=True, null=True)
     image2 = CloudinaryField(default='', blank=True, null=True)
     image3 = CloudinaryField(default='', blank=True, null=True)
@@ -42,6 +43,10 @@ class AllProducts(models.Model):
     en_attente_dans_panier = models.BooleanField(default=False)
     sur_commande = models.BooleanField(default=False)
     updated_at = models.DateTimeField(auto_now=True)
+
+    @property
+    def nouveau_prix(self):
+        return self.prix - self.discount
 
     def __str__(self):
         return self.nom

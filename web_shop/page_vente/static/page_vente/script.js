@@ -483,37 +483,77 @@ function displayProductImages(articleId) {
         })
         .then(data => {
             document.getElementById('nom-article').textContent = data.nom;
-            if (data.description){
-            document.getElementById('description-article').textContent = data.description;
-            }else{
-                if (currentLanguage == 'en')
-                document.getElementById('description-article').textContent = 'No description available';
-                else
-                document.getElementById('description-article').textContent = 'Aucune description disponible';
+
+            const descriptionEl = document.getElementById('description-article');
+            if (data.description) {
+                descriptionEl.textContent = data.description;
+            } else {
+                descriptionEl.textContent =
+                    currentLanguage === 'en'
+                        ? 'No description available'
+                        : 'Aucune description disponible';
             }
-            document.getElementById('prix-article').textContent = data.prix.toFixed(2).replace('.', ',') + ' €';
+            const price = Number(data.prix);
+            const discount = Number(data.discount || 0);
+            const priceEl = document.getElementById('prix-article')
+            const newPriceEl = document.getElementById('new_price');
+            const newPriceH3El = document.getElementById('new_price_h3')
+            
+            
+            priceEl.textContent = price.toFixed(2).replace('.', ',') + ' €';
+
+            const promoWidget = document.getElementById('promo-widget');
+
+            if (discount > 0) {
+                promoWidget.style.display = "block";
+                newPriceH3El.style.display = "INLINE"
+                const newPrice = price - discount;
+                
+                priceEl.style.textDecoration = "line-through";
+                priceEl.style.textDecorationThickness = "3px";
+                priceEl.style.textDecorationColor = "#da0410"
+                newPriceEl.textContent = newPrice.toFixed(2).replace('.', ',') + ' €';
+            } else {
+                newPriceEl.textContent = "";
+                promoWidget.style.display = "none";
+                newPriceH3El.style.display = "none"
+            }
+
+            // --- Bouton panier ---
             const addToCartButton = document.getElementById('id_add_to_cart_button');
             if (addToCartButton) {
-                if (window.location.pathname.includes('panier') || window.location.pathname.includes('cart') || data.en_attente_dans_panier || data.sur_commande) {
+                if (
+                    window.location.pathname.includes('panier') ||
+                    window.location.pathname.includes('cart') ||
+                    data.en_attente_dans_panier ||
+                    data.sur_commande
+                ) {
                     addToCartButton.style.display = 'none';
                 } else {
                     addToCartButton.style.display = 'block';
+                    addToCartButton.style.width = "fit-content"
                     addToCartButton.dataset.productId = articleId;
                 }
             }
-            images = data.images; // Charger les images dans le tableau
-            currentImageIndex = 0; // Réinitialiser l'index
-            document.getElementById('current-image').src = images[currentImageIndex]; // Afficher la première image
-            document.getElementById('zoomImage').src = images[currentImageIndex]; // Afficher la première image dans le zoom
-            const modal = document.getElementById('modal');
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = 'block'; // Affiche l'overlay
-            modal.style.display = 'block'; // Afficher la modale
+
+            // --- Images ---
+            images = data.images || [];
+            currentImageIndex = 0;
+
+            if (images.length > 0) {
+                document.getElementById('current-image').src = images[0];
+                document.getElementById('zoomImage').src = images[0];
+            }
+
+            // --- Modal ---
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('modal').style.display = 'block';
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Fetch error:', error);
         });
 }
+
 // Fonction pour changer d'image
 function changeImage(direction) {
     currentImageIndex += direction; // Changer l'index
