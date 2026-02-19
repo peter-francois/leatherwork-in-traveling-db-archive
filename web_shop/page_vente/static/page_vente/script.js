@@ -219,6 +219,7 @@ function displayCart() {
                     let h3 = document.createElement('h3');
                     let p = document.createElement('p');
                     p.textContent = translations_front.price;
+                    p.style.margin = "0px";
                     let span = document.createElement('span');
                     let span2 = document.createElement('span');
                     span.textContent = formatNumber(article.prix);;
@@ -277,19 +278,20 @@ function displayCart() {
 
                     }
                     if(article.discount > 0.0){
-                        let promoWidget = document.createElement("p")
-                        promoWidget.classList.add("promo-widget")
-                        promoWidget.textContent = "Promo"
-                        li.append(promoWidget)
-                        let new_price = document.createElement("p")
-                        new_price.textContent = `Nouveau prix: ${formatNumber(article.prix - article.discount)}€`
-                        li.appendChild(new_price)
-                        p.style.textDecoration = "line-through"
-                        p.style.textDecorationThickness = "3px"
-                        p.style.textDecorationColor = "#da0410"
+                        let promoWidget = document.createElement("p");
+                        promoWidget.classList.add("promo-widget");
+                        promoWidget.textContent = "Promo";
+                        li.append(promoWidget);
+                        let new_price = document.createElement("p");
+                        new_price.style.margin = "0px";
+                        new_price.textContent = `Nouveau prix: ${formatNumber(article.prix - article.discount)}€`;
+                        li.appendChild(new_price);
+                        p.style.textDecoration = "line-through";
+                        p.style.textDecorationThickness = "3px";
+                        p.style.textDecorationColor = "#da0410";
                     }
                     else{
-                        p.style.textDecoration = 'none'
+                        p.style.textDecoration = 'none';
                     }
                     li.appendChild(p);
                     li.appendChild(button);

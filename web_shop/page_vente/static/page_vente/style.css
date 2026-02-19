@@ -570,6 +570,7 @@ body {
         background-color: #da0410; 
         padding:1px 8px 4px 8px; 
         height: min-content;
+        width: fit-content;
     }
     .intro{
         border-bottom: 3px solid #8b5e3b;
