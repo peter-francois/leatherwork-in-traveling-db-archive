@@ -57,7 +57,7 @@
                 <div id="liste-produits" class="grid-container tous_les_produits">
                     {% if products %}
                     {% for produit in products %}
-                        <div class="produit {% if produit.en_attente_dans_panier or produit.sur_commande %}unavailable{% endif %}" data-product-id="{{ produit.id }}">
+                        <div class="grid-container produit{% if produit.en_attente_dans_panier or produit.sur_commande %} unavailable{% endif %}" data-product-id="{{ produit.id }}">
                             <h2 class="product-name">{{ produit.nom }}</h2>
                                 {% if produit.cached_images.image1 or produit.image1 or produit.cached_images.image2 or produit.image2 or produit.cached_images.image3 or produit.image3 or produit.cached_images.image4 or produit.image4 or produit.cached_images.image5 or produit.image5 or produit.cached_images.image6 or produit.image6 %}
                                     {% if produit.cached_images.image1 %}
