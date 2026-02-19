@@ -562,7 +562,15 @@ body {
         margin: 10px 0;
     }
 /*Tous les produits*/
-
+    .promo-widget{
+        margin-top: 12px; 
+        margin-bottom: 6px; 
+        border-radius: 8px; 
+        color: white; 
+        background-color: #da0410; 
+        padding:1px 8px 4px 8px; 
+        height: min-content;
+    }
     .intro{
         border-bottom: 3px solid #8b5e3b;
         width: 70%;

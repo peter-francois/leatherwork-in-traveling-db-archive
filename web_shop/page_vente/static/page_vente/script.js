@@ -276,6 +276,21 @@ function displayCart() {
                         p.textContent = translations_front.no_image;
 
                     }
+                    if(article.discount > 0.0){
+                        let promoWidget = document.createElement("p")
+                        promoWidget.classList.add("promo-widget")
+                        promoWidget.textContent = "Promo"
+                        li.append(promoWidget)
+                        let new_price = document.createElement("p")
+                        new_price.textContent = `Nouveau prix: ${formatNumber(article.prix - article.discount)}€`
+                        li.appendChild(new_price)
+                        p.style.textDecoration = "line-through"
+                        p.style.textDecorationThickness = "3px"
+                        p.style.textDecorationColor = "#da0410"
+                    }
+                    else{
+                        p.style.textDecoration = 'none'
+                    }
                     li.appendChild(p);
                     li.appendChild(button);
                     listeArticles.appendChild(li);
@@ -514,6 +529,7 @@ function displayProductImages(articleId) {
                 priceEl.style.textDecorationColor = "#da0410"
                 newPriceEl.textContent = newPrice.toFixed(2).replace('.', ',') + ' €';
             } else {
+                priceEl.style.textDecoration = "none"
                 newPriceEl.textContent = "";
                 promoWidget.style.display = "none";
                 newPriceH3El.style.display = "none"

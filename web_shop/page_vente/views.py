@@ -212,7 +212,8 @@ def cart_detail(request):
             'image4': images['image4'],
             'image5': images['image5'],
             'image6': images['image6'],
-            'id': product.id
+            'id': product.id,
+            'discount': product.discount
         })
 
     return JsonResponse({'cart': data})

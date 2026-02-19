@@ -91,7 +91,7 @@
                                 {% endif %}
                             {% if not produit.en_attente_dans_panier and not produit.sur_commande %}
                             {% if produit.discount != 0.0 %} 
-                                <p style="margin-top: 12px; margin-bottom: 6px; border-radius: 8px; color: white; background-color: #da0410; padding:1px 8px 4px 8px; height: min-content;">Promo</p>
+                                <p class="promo-widget">Promo</p>
                                 <p style="margin: 0px; text-align: center;">Nouveau prix: {{ produit.nouveau_prix | floatformat:2 }}€</p> 
                                 <p style="margin-top: 0px; text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: #da0410;">{% trans "Prix: " %} {{ produit.prix | floatformat:2 }}€</p>
                             {% else %}
