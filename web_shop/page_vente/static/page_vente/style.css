@@ -557,6 +557,9 @@ body {
         border-radius: 10px;
         
     }
+    #add-shipping, #add-shipping-label, #accept-cgv, #label-for-accept-cgv {
+        width: 100%;
+    }
     .separator-cart{
         border-bottom: 2px solid var(--color2); 
         margin: 10px 0;
