@@ -39,7 +39,7 @@ class AllProductsAdmin(admin.ModelAdmin):
     readonly_fields = ('image1_thumbnail', 'image2_thumbnail', 'image3_thumbnail', 'image4_thumbnail', 'image5_thumbnail', 'image6_thumbnail')
     fieldsets = (
         (None, {
-            'fields': ('nom', 'categorie', 'type', 'description', 'prix', 'disponible', 'en_attente_dans_panier', 'sur_commande')
+            'fields': ('nom', 'categorie', 'type', 'description', 'prix', 'discount', 'disponible', 'en_attente_dans_panier', 'sur_commande')
         }),
         ('Images', {
             'fields': ('image1', 'image1_thumbnail', 'image2', 'image2_thumbnail', 

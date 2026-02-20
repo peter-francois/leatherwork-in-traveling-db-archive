@@ -90,7 +90,13 @@
                                     <p>{% trans "Aucune image disponible" %}</p>
                                 {% endif %}
                             {% if not produit.en_attente_dans_panier and not produit.sur_commande %}
-                            <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }} €</p>
+                            {% if produit.discount != 0.0 %} 
+                                <p class="promo-widget">Promo</p>
+                                <p style="margin: 0px; text-align: center;">Nouveau prix: {{ produit.nouveau_prix | floatformat:2 }}€</p> 
+                                <p style="margin-top: 0px; text-decoration: line-through; text-decoration-thickness: 3px; text-decoration-color: #da0410;">{% trans "Prix: " %} {{ produit.prix | floatformat:2 }}€</p>
+                            {% else %}
+                                <p>{% trans "Prix: " %} {{ produit.prix | floatformat:2 }}€</p>
+                            {% endif %}
                             <button class="align-items-center page-button add_to_cart_button" data-product-id="{{ produit.id }}">{% trans "Ajouter au panier" %}</button>
                             {%else %}
                             <p class="text-center">{% trans 'Produit indisponible pour le moment' %}</p>
