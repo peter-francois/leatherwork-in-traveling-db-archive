@@ -565,6 +565,15 @@ body {
         margin: 10px 0;
     }
 /*Tous les produits*/
+    .new-price{
+        margin: 0px;
+    }
+    .old-price{
+       margin-top: 0px; 
+       text-decoration: line-through; 
+       text-decoration-thickness: 3px; 
+       text-decoration-color: #da0410; 
+    }
     .promo-widget{
         margin-top: 12px; 
         margin-bottom: 6px; 
@@ -796,6 +805,15 @@ body {
     #close-button:hover{
         background-color: var(--color2);
         color: var(--color1);
+    }
+    .new-price-div{
+        margin: 16px 0px;
+    }
+    .price-div{
+        margin-bottom: 12px;
+    }
+    #new_price_h3, #new_price, #prix-article-h3, #prix-article{
+        display: inline;
     }
     #modal .grid-container{
         grid-template-columns: 35% 65%; 
