@@ -415,6 +415,7 @@ body {
     .produit h3, #liste-articles li h3, 
     .produit p, #liste-articles li p , .product-name {
         word-wrap: break-word; /* Coupe les mots trop longs */
+        height: fit-content;
         overflow-wrap: break-word; 
         hyphens: auto;
         white-space: normal; /* Autorise les retours à la ligne */
@@ -485,11 +486,13 @@ body {
         padding: 15px;
         background: #fff;
         color: var(--color2);
+        align-content: space-between;
     }
 
     .produit button, #liste-articles button{
-        margin-top: 15px;
+        height: fit-content;
     }
+
     .click-hint{
         background: #8c6b4fa7;
         color: white;
@@ -554,12 +557,24 @@ body {
         border-radius: 10px;
         
     }
+    #add-shipping, #add-shipping-label, #accept-cgv, #label-for-accept-cgv {
+        width: 100%;
+    }
     .separator-cart{
         border-bottom: 2px solid var(--color2); 
         margin: 10px 0;
     }
 /*Tous les produits*/
-
+    .promo-widget{
+        margin-top: 12px; 
+        margin-bottom: 6px; 
+        border-radius: 8px; 
+        color: white; 
+        background-color: #da0410; 
+        padding:1px 8px 4px 8px; 
+        height: min-content;
+        width: fit-content;
+    }
     .intro{
         border-bottom: 3px solid #8b5e3b;
         width: 70%;
