@@ -8,14 +8,14 @@
             <p id="description-article"></p>
             <p id="promo-widget" class="promo-widget">Promo</p>
             
-            <div style="margin: 16px 0px;">
-                <h3 id="new_price_h3" style="display: inline">Nouveau prix: </h3>
-                <p id="new_price" style="display: inline; text-align: left;"></p>
+            <div class="new-price-div">
+                <h3 id="new_price_h3" >Nouveau prix: </h3>
+                <p id="new_price"></p>
             </div>
             
-            <div>
-                <h3 style="display: inline" >{% trans "Prix: " %}</h3>
-                <p id="prix-article" style="display: inline-block;"></p>
+            <div class="price-div">
+                <h3 id="prix-article-h3">{% trans "Prix: " %}</h3>
+                <p id="prix-article"></p>
             </div>
             {% if request.resolver_match.url_name != 'panier'%}
             <button class="align-items-center page-button add_to_cart_button font-size-17" type="button" id="id_add_to_cart_button" >{% trans "Ajouter au panier" %}</button>
