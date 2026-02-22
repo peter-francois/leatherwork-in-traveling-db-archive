@@ -8,3 +8,5 @@ __pycache__/
 cache/
 .gitignore
 .env
+/text_documents
+/saved-db
