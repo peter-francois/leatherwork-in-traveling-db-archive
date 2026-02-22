@@ -236,36 +236,36 @@ function displayCart() {
                     button.classList.add('page-button', 'delete_button');
                     li.appendChild(h3);
                     if (article.image1) {
-                        img.src = `${article.image1}`;
+                        img.src = article.image1;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                         li.appendChild(clickHint);
                     }
                     else if (article.image2) {
-                        img.src = `${article.image2}`;
+                        img.src = article.image2;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                     }
                     else if (article.image3) {
-                        img.src = `${article.image3}`;
+                        img.src = article.image3;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                         li.appendChild(clickHint);
                     }
                     else if (article.image4) {
-                        img.src = `${article.image4}`;
+                        img.src = article.image4;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                         li.appendChild(clickHint);
                     }
                     else if (article.image5) {
-                        img.src = `${article.image5}`;
+                        img.src = article.image5;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                         li.appendChild(clickHint);
                     }
                     else if (article.image6) {
-                        img.src = `${article.image6}`;
+                        img.src = article.image6;
                         img.alt = `${article.nom}`;
                         li.appendChild(img);
                         li.appendChild(clickHint);
