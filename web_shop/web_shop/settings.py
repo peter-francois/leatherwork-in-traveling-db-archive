@@ -128,22 +128,6 @@ DATABASES = {
 
 }
 
-CACHES = {
-    'default': {
-         # Config en dev
-        'BACKEND': env('CACHE_BACKEND'), # last config with pymemecache that don't work for pythonanywhere
-        'LOCATION': env('CACHE_LOCATION'), # last config with pymemecache that don't work for pythonanywhere
-
-        # Config en production
-        # 'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        # 'LOCATION': '/home/ton_utilisateur/django_cache',  Remplace par ton dossier sur PythonAnywhere
-        # 'TIMEOUT': 300,  # 5 minutes (ajuste selon tes besoins)
-        # 'OPTIONS': {
-        #     'MAX_ENTRIES': 1000  # Nombre max d'entrées en cache
-        # }
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -278,6 +262,3 @@ SITEMAP_INCLUDE_LASTMOD = True
 SITEMAP_INCLUDE_PRIORITY = True
 SITEMAP_INCLUDE_LOCATION = True
 SITEMAP_URL = '/sitemap.xml'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

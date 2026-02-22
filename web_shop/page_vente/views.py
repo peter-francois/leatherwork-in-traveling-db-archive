@@ -7,7 +7,6 @@ from django.views.decorators.http import require_POST, require_GET
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.utils.timezone import now
 from .utils.sessions import get_session_expiration
-from .utils.cache_images import get_cached_images_for_product
 import stripe
 import json
 import logging
@@ -45,9 +44,6 @@ def produits(request):
 
     all_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_products, is_all_products=True )
 
-    for product in all_products:
-        product.cached_images = get_cached_images_for_product(product)
-
     page_obj = pagination(request,all_products)
 
     context = {
@@ -66,9 +62,6 @@ def maroquinerie(request):
     all_leather_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_leather_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_leather_products, is_all_products=False)
-
-    for product in all_leather_products:
-        product.cached_images = get_cached_images_for_product(product)
 
     page_obj = pagination(request,all_leather_products)
 
@@ -90,9 +83,6 @@ def macrames(request):
 
     all_macrame_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_macrame_products, is_all_products=False)
 
-    for product in all_macrame_products:
-        product.cached_images = get_cached_images_for_product(product)
-
     page_obj = pagination(request,all_macrame_products)
 
     context = {
@@ -111,9 +101,6 @@ def hybride(request):
     all_hybride_products.sort(key=lambda product: (product.en_attente_dans_panier, -product.id))
 
     all_hybride_products, form, number_of_products_in_filter, filter_used = use_filter(request, all_hybride_products, is_all_products=False)
-
-    for product in all_hybride_products:
-        product.cached_images = get_cached_images_for_product(product)
 
     page_obj = pagination(request,all_hybride_products)
 
@@ -201,17 +188,17 @@ def cart_detail(request):
 
     for item in cart_items:
         product = item.product
-        images = get_cached_images_for_product(product)
+        
         data.append({
             'nom': product.nom,
             'prix': product.prix,
             'quantity': item.quantity,
-            'image1': images['image1'],
-            'image2': images['image2'],
-            'image3': images['image3'],
-            'image4': images['image4'],
-            'image5': images['image5'],
-            'image6': images['image6'],
+            'image1': product.image1.url if product.image1 else None,
+            'image2': product.image2.url if product.image2 else None,
+            'image3': product.image3.url if product.image3 else None,
+            'image4': product.image4.url if product.image4 else None,
+            'image5': product.image5.url if product.image5 else None,
+            'image6': product.image6.url if product.image6 else None,
             'id': product.id,
             'discount': product.discount
         })
