@@ -9,14 +9,14 @@
 @font-face {
     font-family: 'Uncial Antiqua';
     font-display: swap;
-    src: url('/static/page_vente/fonts/UncialAntiqua-Regular.woff2') format('woff2');
+    src: url('../page_vente/fonts/UncialAntiqua-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Playfair Display';
     font-display: swap;
-    src: url('/static/page_vente/fonts/PlayfairDisplay-Medium.woff2') format('woff2');
+    src: url('../page_vente/fonts/PlayfairDisplay-Medium.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -125,7 +125,7 @@ body {
 /*header*/
 
     header {
-        background-image: url("/static/page_vente/images/background.png");
+        background-image: url("../page_vente/images/background.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -202,10 +202,10 @@ body {
             position: relative;
         }
         #shop:hover #arrow-down{
-            content: url( "/static/page_vente/icons/arrow-down-solid-hover.svg");
+            content: url( ../page_vente/icons/arrow-down-solid-hover.svg);
         }
         /* burger menu
-            content: url( "/static/page_vente/icons/bars-solid-hover.svg");
+            content: url( ../page_vente/icons/bars-solid-hover.svg);
         }
         */        
         #shop:hover .menu-content-produit{
@@ -238,10 +238,10 @@ body {
                 margin: 0px 0px;
             }
             #cart-button:hover #cart-icon{
-                content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
+                content: url( ../page_vente/icons/cart-shopping-solid-hover.svg);
             }
             #contact_button:hover #phone-icon{
-                content: url( "/static/page_vente/icons/phone-hover.png");
+                content: url( ../page_vente/icons/phone-hover.png);
             }
 
         /*Language selector*/
@@ -701,7 +701,7 @@ body {
         padding-left: 10px;
     }
     #filter_button:hover #filter-icon{
-        content: url( "/static/page_vente/icons/filter-solid-hover.svg");
+        content: url( ../page_vente/icons/filter-solid-hover.svg);
         
     }
     .pagination-button{
@@ -1330,7 +1330,7 @@ footer {
 
     /*Header*/
         header {
-            background-image: url("/static/page_vente/images/background_small_screen.png");
+            background-image: url("../page_vente/images/background_small_screen.png");
         }
         /*Menu*/
 
@@ -1399,11 +1399,12 @@ footer {
         #shop{
             position: relative;
         }
+        
         #shop:hover #arrow-down{
-            content: url( "/static/page_vente/icons/arrow-down-solid-hover.svg");
+            content: url( ../page_vente/icons/arrow-down-solid-hover.svg);
         }
         /* burger menu
-            content: url( "/static/page_vente/icons/bars-solid-hover.svg");
+            content: url( ../page_vente/icons/bars-solid-hover.svg);
         }
         */        
 
@@ -1428,10 +1429,6 @@ footer {
                 height: 20px;
                 margin: 0px 0px;
             }
-            #cart-button:hover #cart-icon{
-                content: url( "/static/page_vente/icons/cart-shopping-solid-hover.svg");
-            }
-
         /*Language selector*/
 
             .language-selector {
@@ -1791,7 +1788,7 @@ footer {
 
 @media only screen and (min-width: 1700px){
     header {
-        background-image: url("/static/page_vente/images/background_large_screen.png");
+        background-image: url("../page_vente/images/background_large_screen.png");
     }
     .title_and_logo{
         padding: 40px 100px;
