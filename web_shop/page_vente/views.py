@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 # Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
 @ensure_csrf_cookie
 def index(request):
-    return render(request, 'page_vente/index.html')
+    return render(request, 'core/index.html')
 
 def produits(request):
     all_products = AllProducts.objects.all()
