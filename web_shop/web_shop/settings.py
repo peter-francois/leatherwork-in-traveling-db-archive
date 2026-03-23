@@ -46,18 +46,24 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 # Application definition
 
 INSTALLED_APPS = [
+    # Native
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'page_vente.apps.PageVenteConfig',
+    'django.contrib.sitemaps',
+
+    # Third-party
     'cloudinary',
     'cloudinary_storage',
     'csp',
-    'django.contrib.sitemaps',
     'django_extensions',
+
+    # My apps
+    'page_vente',
+    'core'
 ]
 
 
