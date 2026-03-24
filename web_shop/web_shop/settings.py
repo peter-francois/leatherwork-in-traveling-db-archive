@@ -169,12 +169,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage" if not DEBUG 
+        else "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django va collecter les fichiers statiques
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'page_vente/static'),  # Dossier où tu mets tes fichiers statiques
+    os.path.join(BASE_DIR, 'page_vente/static'), 
+    os.path.join(BASE_DIR, 'core/static'),
 ]
 
 # Default primary key field type
