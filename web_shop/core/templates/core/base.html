@@ -13,18 +13,18 @@
     {% endblock %}
     <meta property="og:title" content="{% trans 'Créations en maroquinerie et macramé - Leather Work In Traveling DB' %}">
     <meta property="og:description" content="{% trans 'Découvrez des produits authentiques en maroquinerie et macramé faits main.' %}">
-    <meta property="og:image" content="{% static 'page_vente/images/logo2.png' %}">
+    <meta property="og:image" content="{% static 'core/images/logo2.png' %}">
     <meta property="og:url" content="https://leatherworkintravelingdb.com">
     <meta name="twitter:title" content="{% trans 'Créations en maroquinerie et macramé - Leather Work In Traveling DB' %}">
     <meta name="twitter:description" content="{% trans 'Découvrez des produits authentiques en maroquinerie et macramé faits main.' %}">
-    <meta name="twitter:image" content="{% static 'page_vente/images/logo2.png' %}">
+    <meta name="twitter:image" content="{% static 'core/images/logo2.png' %}">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'page_vente/icons/favicon-16x16.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'page_vente/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'core/icons/favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'core/icons/favicon-32x32.png' %}">
     <title>{% block title %}{% trans "Créations en maroquinerie et macramé - Leather Work In Traveling DB" %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'page_vente/style.css'%}">
-    <link rel="preload" href="{% static 'page_vente/fonts/UncialAntiqua-Regular.woff2' %}" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="{% static 'page_vente/fonts/PlayfairDisplay-Medium.woff2' %}" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'core/style.css'%}">
+    <link rel="preload" href="{% static 'core/fonts/UncialAntiqua-Regular.woff2' %}" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="{% static 'core/fonts/PlayfairDisplay-Medium.woff2' %}" as="font" type="font/woff2" crossorigin="anonymous">
     <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 </head>
 <body>
@@ -78,15 +78,15 @@
             <div class="footer-section">
                 <h3 id="footer_social">{% trans "Suivez-nous" %}</h3>
                 <ul>
-                    <li class="footer-link" ><a href="https://www.facebook.com/{{ CLIENT_FACEBOOK }}/" target="_blank"><span class="footer-link-text">Facebook</span><img class="footer-social-icon"  alt="Icon facebook" src="{% static 'page_vente/icons/facebook.svg' %}"></a></li>
-                    <li class="footer-link" ><a href="https://www.instagram.com/{{ CLIENT_INSTAGRAM }}/" target="_blank"><span class="footer-link-text">Instagram</span><img class="footer-social-icon"  alt="icon instagram" src="{% static 'page_vente/icons/instagram.svg' %}"></a></li>
+                    <li class="footer-link" ><a href="https://www.facebook.com/{{ CLIENT_FACEBOOK }}/" target="_blank"><span class="footer-link-text">Facebook</span><img class="footer-social-icon"  alt="Icon facebook" src="{% static 'core/icons/facebook.svg' %}"></a></li>
+                    <li class="footer-link" ><a href="https://www.instagram.com/{{ CLIENT_INSTAGRAM }}/" target="_blank"><span class="footer-link-text">Instagram</span><img class="footer-social-icon"  alt="icon instagram" src="{% static 'core/icons/instagram.svg' %}"></a></li>
                 </ul>
             </div>
     
             <div class="footer-section">
                 <h3 id="footer_payment">{% trans "Paiements sécurisés" %}</h3>
                 <p id="footer_payment_description">{% trans "Transactions sécurisées avec" %} <strong>Stripe</strong>.</p>
-                <img id="stripe_logo" src="{% static 'page_vente/images/Stripe_wordmark-slate.png' %}" alt="Paiement sécurisé via Stripe">
+                <img id="stripe_logo" src="{% static 'core/images/Stripe_wordmark-slate.png' %}" alt="Paiement sécurisé via Stripe">
             </div>
         </div>
     
@@ -94,7 +94,7 @@
             <p id="footer_copyright">© 2025 Leather work in traveling DB. {% trans "Tous droits réservés." %}</p>
         </div>
     </footer>
-    <script type="text/javascript" src="{% static 'page_vente/script.js'%}"></script>
+    <script type="text/javascript" src="{% static 'core/script.js'%}"></script>
 </body>
 <div id="overlay" class="hidden"></div>
 </html>

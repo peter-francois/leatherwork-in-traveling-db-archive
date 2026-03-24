@@ -1,4 +1,4 @@
-{% extends 'page_vente/product_base.html' %}
+{% extends 'core/base.html' %}
 {% load static %}
 {% load i18n %}
 {% block meta-description %}{% trans "Meta description index" %}{% endblock %}
@@ -21,7 +21,7 @@
 {% block content%}
     <section class="category grid-container">
         <a class="linker product-card " href="{% url 'boutique:maroquinerie' %}">
-            <h2 class="product-title text-center"><img  class="index-icon" src="{% static 'page_vente/icons/wallet-solid.svg' %}" alt="icon porte_feuille"><span id="maroquinerie_title">{% trans "Espace Maroquinerie" %}</span></h2>
+            <h2 class="product-title text-center"><img  class="index-icon" src="{% static 'core/icons/wallet-solid.svg' %}" alt="icon porte_feuille"><span id="maroquinerie_title">{% trans "Espace Maroquinerie" %}</span></h2>
             <div class="grid-container align-items-center half-grid-width" >
                 
                 <div class="product-title-and-description align-items-center text-center">
@@ -35,7 +35,7 @@
             <p class="product-description text-center"><strong>{% trans '➤ Découvrez toute la collection de créations en cuir' %}</strong></p>
         </a>
         <a class="linker product-card " href="{% url 'boutique:macrames' %}">
-            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'page_vente/icons/feather-pointed-solid.svg' %}" alt="icon macrames"><span id="macrames_title">{% trans "Espace Macramé" %}</span></h2>
+            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'core/icons/feather-pointed-solid.svg' %}" alt="icon macrames"><span id="macrames_title">{% trans "Espace Macramé" %}</span></h2>
             <div class="grid-container align-items-center half-grid-width" >
                 <div class="product-title-and-description align-items-center text-center">
                     <p class="product-description" id="macrames_description" >{% trans "Création sur une base de " %}<strong>{% trans "tissage de fils" %}</strong>{%trans ', une technique de tissage de fils qui permet de créer des pièces uniques : suspensions murales, porte-plantes, bijoux, et bien plus encore. Des objets déco bohèmes, doux et authentiques.' %}</p>
@@ -48,7 +48,7 @@
             <p class="product-description text-center"><strong>{% trans '➤ Parcourez les bijoux et accessoires en macramé faits main' %}</strong></p>
         </a>
         <a class="linker product-card full-grid-width " href="{% url 'boutique:creation-sur-mesure' %}">
-            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'page_vente/icons/pen-ruler-solid.svg' %}" alt="icon creation sur mesure"><span id="creation_sur_mesure_title">{% trans "Création sur Mesure" %}</span></h2>
+            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'core/icons/pen-ruler-solid.svg' %}" alt="icon creation sur mesure"><span id="creation_sur_mesure_title">{% trans "Création sur Mesure" %}</span></h2>
             <div class="grid-container align-items-center grid-width_2" >
                 <img class="index-img image-full-span display-laptop" src="https://res.cloudinary.com/dalrlwhii/image/upload/f_auto/v1745415188/yifathbbchds82zzzqj0.jpg" alt="Portefeuille en cuir">
                 <div class="product-title-and-description align-items-center text-center">
@@ -62,7 +62,7 @@
             <p class="product-description text-center"><strong>{% trans '➤ Créez votre pièce unique avec une commande personnalisée' %}</strong></p>
             </a>
         <a class="linker product-card full-grid-width" href="{% url 'boutique:hybride' %}">
-            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'page_vente/icons/yin-yang-solid.svg' %}" alt="icon hybride"><span id="hybride_title">{% trans 'Fusion cuir, macramé et pierres décoratives' %}</span></h2>
+            <h2 class="product-title text-center" ><img  class="index-icon" src="{% static 'core/icons/yin-yang-solid.svg' %}" alt="icon hybride"><span id="hybride_title">{% trans 'Fusion cuir, macramé et pierres décoratives' %}</span></h2>
             <div class="grid-container align-items-center grid-width_2" >
                 <img class="index-img image-full-span display-laptop" src="https://res.cloudinary.com/dalrlwhii/image/upload/f_auto/v1745415828/pccr5pkhxx4lnl5fbpi9.jpg" alt="Bracelet hybride">
                 <div class="product-title-and-description align-items-center text-center">
