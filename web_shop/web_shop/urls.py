@@ -19,8 +19,7 @@ from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import gettext_lazy as _
 from page_vente import views
-from core import views
-from django.contrib.sitemaps.views import sitemap as django_sitemap
+from core import views as core_views
 from core.sitemaps import StaticSitemap
 from django.views.i18n import JavaScriptCatalog
 from django.conf import settings
@@ -44,10 +43,10 @@ urlpatterns = i18n_patterns(
 )
 
 urlpatterns += [
-    path('sitemap.xml', views.sitemap_index, name='sitemap-index'),
-    path('sitemap-fr.xml', views.sitemap_lang, {'lang': 'fr'}, name='sitemap-fr'),
-    path('sitemap-en.xml', views.sitemap_lang, {'lang': 'en'}, name='sitemap-en'),
-    path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('sitemap.xml', core_views.sitemap_index, name='sitemap-index'),
+    path('sitemap-fr.xml', core_views.sitemap_lang, {'lang': 'fr'}, name='sitemap-fr'),
+    path('sitemap-en.xml', core_views.sitemap_lang, {'lang': 'en'}, name='sitemap-en'),
+    path('robots.txt', core_views.robots_txt, name='robots_txt'),
     path('api/', include('page_vente.api_urls')),  # Déplacer API dans un autre fichier
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
