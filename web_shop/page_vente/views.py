@@ -15,12 +15,8 @@ from django.conf import settings
 from django.views.decorators.csrf import ensure_csrf_cookie
 from datetime import timedelta
 from django.urls import reverse
-import base64
-import os
 from django.core.mail import send_mail
 from django.utils import translation
-from page_vente.sitemaps import StaticSitemap
-from page_vente.sitemaps_paginated import PaginatedCategorySitemap
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from urllib.parse import urlencode
 
@@ -30,10 +26,6 @@ endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 
 
 logger = logging.getLogger(__name__)
-# Pour Forcer l’envoi du cookie CSRF lors de l’affichage de l’index
-@ensure_csrf_cookie
-def index(request):
-    return render(request, 'page_vente/index.html')
 
 def produits(request):
     all_products = AllProducts.objects.all()
@@ -130,11 +122,6 @@ def panier(request):
         "total": total,
         "latest_cgv": latest_cgv,
     })
-def contact(request):
-    return render(request, 'page_vente/contact.html')
-def a_propos(request):
-    return render(request, 'page_vente/a_propos.html')
-
 def add_to_cart(request, product_id):
     product = get_object_or_404(AllProducts, id=product_id)
 
@@ -738,32 +725,3 @@ def get_document_content(request, document_type, lang):
 
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
-
-def sitemap_lang(request, lang):
-    sitemaps = {
-        'static': StaticSitemap(lang),
-        'paginated_categories': PaginatedCategorySitemap(lang),
-    }
-    return django_sitemap(request, sitemaps)
-
-def sitemap_index(request):
-    # Tu peux aussi automatiser cette liste si tu as beaucoup de langues
-    base_url = request.build_absolute_uri('/')
-    sitemap_urls = [
-        f'{base_url}sitemap-fr.xml',
-        f'{base_url}sitemap-en.xml',
-    ]
-
-    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    for url in sitemap_urls:
-        xml += f'  <sitemap>\n    <loc>{url}</loc>\n  </sitemap>\n'
-    xml += '</sitemapindex>'
-
-    return HttpResponse(xml, content_type='application/xml')
-
-def robots_txt(request):
-    return HttpResponse(
-    "User-agent: *\nDisallow: /admin/\nDisallow: /private/\nSitemap: https://www.leatherworkintravelingdb.com/sitemap.xml",
-    content_type='text/plain'
-)

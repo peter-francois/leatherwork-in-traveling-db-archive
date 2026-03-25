@@ -9,11 +9,11 @@
         </li>
         <li class="display-tablet-laptop">
             <ul class="menu-content2">
-                <li><a href="{% url 'boutique:index' %}">{% trans "ACCUEIL" %}</a></li>
+                <li><a href="{% url 'core:index' %}">{% trans "ACCUEIL" %}</a></li>
                 <li id="shop">
                     <a href="{% url 'boutique:produits' %}">
                         <span>{% trans "BOUTIQUE" %}</span>
-                        <img id="arrow-down" src="{% static 'page_vente/icons/arrow-down-solid.svg' %}" alt="icon arrow down">
+                        <img id="arrow-down" src="{% static 'core/icons/arrow-down-solid.svg' %}" alt="icon arrow down">
                     </a>
                     <ul class="menu-content-produit">
                         <li><a href="{% url 'boutique:maroquinerie' %}">{% trans "MAROQUINERIE" %}</a></li>
@@ -26,12 +26,12 @@
         </li>
         <li>
             <button class="text-center align-items-center page-button" id="contact_button">
-                <img class="flex_item_cart_button" id="phone-icon" alt="phone" src="{% static 'page_vente/icons/phone.png' %}">
+                <img class="flex_item_cart_button" id="phone-icon" alt="phone" src="{% static 'core/icons/phone.png' %}">
             </button>
         </li>
         <li>
             <a class="text-center align-items-center page-button" href="{% url 'boutique:panier' %}" id="cart-button">
-                <img class="flex_item_cart_button" id="cart-icon" alt="cart" src="{% static 'page_vente/icons/cart-shopping-solid.svg' %}">
+                <img class="flex_item_cart_button" id="cart-icon" alt="cart" src="{% static 'core/icons/cart-shopping-solid.svg' %}">
                 <p id="text-cart-button" class="flex_item_cart_button"></p>
             </a>
         </li>
@@ -41,7 +41,7 @@
                 <input name="next" type="hidden" value="{{ request.path }}">
                 <input name="language" type="hidden" value="en">
                 <button type="submit" class="flag-button">
-                    <img src="{% static 'page_vente/images/flag/UK.webp' %}" alt="English" class="flag" data-lang="en">
+                    <img src="{% static 'core/images/flag/UK.webp' %}" alt="English" class="flag" data-lang="en">
                 </button>
             </form>
             <form action="{% url 'set_language' %}" method="post">
@@ -49,7 +49,7 @@
                 <input name="next" type="hidden" value="{{ request.path }}">
                 <input name="language" type="hidden" value="fr">
                 <button type="submit" class="flag-button">
-                    <img src="{% static 'page_vente/images/flag/FR.jpeg' %}" alt="French active" class="flag" data-lang="fr">
+                    <img src="{% static 'core/images/flag/FR.jpeg' %}" alt="French active" class="flag" data-lang="fr">
                 </button>
             </form>
         </li>

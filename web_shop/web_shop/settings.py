@@ -46,18 +46,25 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 # Application definition
 
 INSTALLED_APPS = [
+    # Native
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'page_vente.apps.PageVenteConfig',
+    'django.contrib.sitemaps',
+
+    # Third-party
     'cloudinary',
     'cloudinary_storage',
     'csp',
-    'django.contrib.sitemaps',
     'django_extensions',
+
+    # My apps
+    'page_vente',
+    'core',
+    'legal',
 ]
 
 
@@ -163,12 +170,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage" if not DEBUG 
+        else "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django va collecter les fichiers statiques
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'page_vente/static'),  # Dossier où tu mets tes fichiers statiques
+    os.path.join(BASE_DIR, 'page_vente/static'), 
+    os.path.join(BASE_DIR, 'core/static'),
 ]
 
 # Default primary key field type
