@@ -2,7 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 from django.utils import translation
 from django.core.paginator import Paginator
-from .models import AllProducts
+from page_vente.models import AllProducts
 
 class PaginatedCategorySitemap(Sitemap):
     changefreq = "weekly"
