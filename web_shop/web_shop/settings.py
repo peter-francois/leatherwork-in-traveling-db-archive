@@ -63,7 +63,8 @@ INSTALLED_APPS = [
 
     # My apps
     'page_vente',
-    'core'
+    'core',
+    'legal',
 ]
 
 
