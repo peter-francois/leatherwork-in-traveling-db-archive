@@ -31,9 +31,21 @@ As a beginner developer, this project is particularly challenging, as I am build
    source venv/bin/activate  # On Windows use: venv\Scripts\activate
    ```
 3. Install dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
+
+   The project uses separate requirement files:
+   - `requirements/base.txt` — core dependencies
+   - `requirements/dev.txt` — includes base + development tools (pytest)
+   - `requirements/lock.txt` — exact versions snapshot of the full environment
+
+   For local development, install dev dependencies:
+```sh
+   pip install -r requirements/dev.txt
+```
+   To reproduce the exact environment used during development:
+```sh
+   pip install -r requirements/lock.txt
+```
+
 4. Copy and fill the `.env.example` file provided as a configuration template.
    ``` bash
    cd web_shop
@@ -52,6 +64,60 @@ As a beginner developer, this project is particularly challenging, as I am build
    python manage.py runserver
    ```
 8. Open your browser and go to `http://127.0.0.1:8000/`
+
+## 🧪 Tests
+ 
+The project uses [pytest](https://pytest.org) with [pytest-django](https://pytest-django.readthedocs.io) and [pytest-sugar](https://github.com/Teemu/pytest-sugar) for a clean test output.
+ 
+### Setup
+ 
+Make sure you have installed the dev dependencies:
+```sh
+pip install -r requirements/dev.txt
+```
+ 
+### Configuration
+ 
+A `pytest.ini` file is already configured at the root of the project:
+```ini
+[pytest]
+DJANGO_SETTINGS_MODULE = web_shop.settings
+python_files = tests.py
+```
+ 
+### Running tests
+ 
+Run all tests:
+```sh
+pytest -v
+```
+ 
+Run tests for a specific app:
+```sh
+pytest core/tests.py -v
+```
+ 
+Run a specific test class:
+```sh
+pytest core/tests.py::IndexViewTest -v
+```
+ 
+Run a specific test:
+```sh
+pytest core/tests.py::IndexViewTest::test_returns_200 -v
+```
+ 
+### Test structure
+ 
+Each app has its own `tests.py` file. Tests are organized by view/feature:
+ 
+```
+core/tests.py        ← homepage, contact, about, sitemaps, robots.txt
+catalogue/tests.py   ← products, filters, pagination
+panier/tests.py      ← cart, checkout, payment
+legal/tests.py       ← cgv, cookies, legal mentions, privacy policy
+```
+
 
 
 ## 🤝 Contributions
