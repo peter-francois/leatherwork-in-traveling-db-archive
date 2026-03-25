@@ -17,9 +17,10 @@ async function getDocumentContent(documentType, lang) {
   }
 }
 
-function getLanguageFromCookie() {
-  const match = document.cookie.match(/(?:^|;\s*)django_language=([^;]+)/);
-  return match ? match[1] : null;
+function getCurrentLanguage() {
+  const path = window.location.pathname;
+  if (path.startsWith("/en/")) return "en";
+  return "fr";
 }
 // Fonction pour changer la langue
 
@@ -35,10 +36,10 @@ async function changeLanguage(lang, event = null, initial = false) {
     const documentPromises = [];
 
     const documents = {
-      cgv_content: "CGV",
-      cookies_content: "Cookies",
-      legal_mentions_content: "LegalMentions",
-      privacy_policy_content: "PrivacyPolicy",
+      cgv_content: "terms",
+      cookies_content: "cookies",
+      legal_mentions_content: "legal_mentions",
+      privacy_policy_content: "privacy_policy",
     };
 
     for (const [elementId, docType] of Object.entries(documents)) {
@@ -94,7 +95,7 @@ function updateFlags(lang) {
 }
 document.addEventListener("DOMContentLoaded", () => {
   // Langue déjà définie par Django via cookie
-  const lang = getLanguageFromCookie() || "fr"; // fallback au cas où
+  const lang = getCurrentLanguage() || "fr"; // fallback au cas où
 
   // Lancer la logique JS avec cette langue (mais sans reload, ni changement d'URL)
   changeLanguage(lang, null, true); // Le paramètre `initial = true` empêche le pushState
