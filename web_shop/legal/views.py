@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from django.urls import reverse
+from web_shop.legal.services import get_legal_document_content
 from .models import LegalDocument
 from .choices import DocumentType
 
@@ -26,11 +26,7 @@ def get_document_content(request, document_type, lang):
         return JsonResponse({'error': 'Invalid document type'}, status=400)
 
     try:
-        latest = LegalDocument.objects.filter(
-            document_type=document_type
-        ).latest('created_at')
-
-        content = latest.content_fr if lang == 'fr' else latest.content_en
+        content = get_legal_document_content(document_type, lang)
 
         return HttpResponse(content, content_type="text/html")
     
