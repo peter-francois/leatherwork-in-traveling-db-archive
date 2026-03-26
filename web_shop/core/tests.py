@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
+from .services import generate_sitemap_index
 
 
 class IndexViewTest(TestCase):
@@ -40,3 +41,39 @@ class RobotsTxtTest(TestCase):
         """Should disallow admin crawling"""
         response = self.client.get(reverse('robots_txt'))
         self.assertIn(b'Disallow: /admin/', response.content)
+
+class GenerateSitemapIndexTest(TestCase):
+    """Tests for the sitemap index XML generation service"""
+
+    def test_returns_string(self):
+        """Should return a string"""
+        result = generate_sitemap_index('https://example.com/', ['fr', 'en'])
+        self.assertIsInstance(result, str)
+
+    def test_contains_xml_declaration(self):
+        """Should start with XML declaration"""
+        result = generate_sitemap_index('https://example.com/', ['fr', 'en'])
+        self.assertIn('<?xml version="1.0" encoding="UTF-8"?>', result)
+
+    def test_contains_sitemapindex_tag(self):
+        """Should contain sitemapindex root tag"""
+        result = generate_sitemap_index('https://example.com/', ['fr', 'en'])
+        self.assertIn('<sitemapindex', result)
+
+    def test_generates_correct_urls(self):
+        """Should generate one sitemap URL per language"""
+        result = generate_sitemap_index('https://example.com/', ['fr', 'en'])
+        self.assertIn('https://example.com/sitemap-fr.xml', result)
+        self.assertIn('https://example.com/sitemap-en.xml', result)
+
+    def test_single_language(self):
+        """Should work with a single language"""
+        result = generate_sitemap_index('https://example.com/', ['fr'])
+        self.assertIn('sitemap-fr.xml', result)
+        self.assertNotIn('sitemap-en.xml', result)
+
+    def test_empty_langs(self):
+        """Should return valid XML with no sitemaps for empty lang list"""
+        result = generate_sitemap_index('https://example.com/', [])
+        self.assertIn('<sitemapindex', result)
+        self.assertNotIn('<sitemap>', result)
