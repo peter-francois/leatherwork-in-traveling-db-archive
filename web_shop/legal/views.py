@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from web_shop.legal.services import get_legal_document_content
+from .services import get_legal_document_content
 from .models import LegalDocument
 from .choices import DocumentType
 
