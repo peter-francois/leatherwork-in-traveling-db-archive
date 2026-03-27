@@ -8,7 +8,11 @@ on:
     
 env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
-
+  SQLITE_URL: ${{ secrets.SQLITE_URL }}
+  DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
+  DEBUG: ${{ secrets.DEBUG }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
 jobs:
   build:
 
