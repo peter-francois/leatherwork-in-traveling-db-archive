@@ -15,42 +15,32 @@ import os
 from django.utils.translation import gettext_lazy as _
 
 
-
-
 env = environ.Env(
-    DEBUG=(bool, False)  # Par défaut, DEBUG sera False
+    DEBUG=(bool, False)
 )
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Path(__file__).resolve().parent.parent
 
-# Lisez le fichier .env
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
 DJANGO_ENV = env('DJANGO_ENV')
 
 IS_PROD = DJANGO_ENV == 'production'
 
+IS_DEVELOPMENT = DJANGO_ENV == 'development'
+
 IS_TEST = DJANGO_ENV == 'test'
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
 
 # Application definition
 
-INSTALLED_APPS = [
-    # Native
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,31 +48,26 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+]
 
-    # Third-party
+# Third-party apps
+THIRD_PARTY_APPS = [
     'csp',
     'django_extensions',
+]
 
-    # My apps
+# Local apps
+LOCAL_APPS = [
     'page_vente',
     'core',
     'legal',
 ]
 
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
 if not IS_TEST:
     INSTALLED_APPS += ['cloudinary', 'cloudinary_storage']
 
-
-LANGUAGES = [
-    ('fr', _('Français')),
-    ('en', _('English')),
-]
-
-LANGUAGE_CODE = 'fr'  # Langue par défaut
-
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -99,10 +84,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'web_shop.urls'
 
-CLIENT_PHONE_NUMBER = env('CLIENT_PHONE_NUMBER', default='Non disponible')
-CLIENT_EMAIL=env('CLIENT_EMAIL',default='Non disponible')
-CLIENT_INSTAGRAM = env('CLIENT_INSTAGRAM', default='Non disponible')
-CLIENT_FACEBOOK = env('CLIENT_FACEBOOK', default='Non disponible')
+# Global template variables
+
+CLIENT_PHONE_NUMBER = os.environ.get('CLIENT_PHONE_NUMBER', 'Non disponible')
+CLIENT_EMAIL        = os.environ.get('CLIENT_EMAIL', 'Non disponible')
+CLIENT_INSTAGRAM    = os.environ.get('CLIENT_INSTAGRAM', 'Non disponible')
+CLIENT_FACEBOOK     = os.environ.get('CLIENT_FACEBOOK', 'Non disponible')
 
 def global_variables(request):
     return {
@@ -111,6 +98,7 @@ def global_variables(request):
         'CLIENT_INSTAGRAM': CLIENT_INSTAGRAM,
         'CLIENT_FACEBOOK': CLIENT_FACEBOOK,
     }
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -122,7 +110,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'web_shop.settings.global_variables', # rendre les variables de .env disponibles dans les templates
+                'web_shop.settings.global_variables',
             ],
         },
     },
@@ -166,6 +154,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('fr', _('Français')),
+    ('en', _('English')),
+]
+
+LANGUAGE_CODE = 'fr'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -182,7 +180,8 @@ STORAGES = {
     },
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django va collecter les fichiers statiques
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'page_vente/static'), 
     os.path.join(BASE_DIR, 'core/static'),
@@ -193,11 +192,9 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'  # Peut permettre certaines interactions externes
-SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'  # Permet de charger des ressources locales
-
-
-# ── Sécurité ────────────────────────────────────────────────────────────────
+# Security
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
+SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'
 SESSION_COOKIE_SECURE = IS_PROD
 CSRF_COOKIE_SECURE    = IS_PROD
 SECURE_SSL_REDIRECT   = IS_PROD
@@ -216,12 +213,14 @@ if IS_PROD:
     CSP_DEFAULT_SRC = ("'self'",)
     CSP_SCRIPT_SRC  = ("'self'",)
     CSP_IMG_SRC     = ("'self'", "https://res.cloudinary.com", "https://www.leatherworkintravelingdb.com")
-elif not IS_TEST:  # development
-    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "http://localhost:*", "ws://localhost:*", "http://127.0.0.1")
+
+elif IS_DEVELOPMENT:
+    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "http://localhost:*", "http://127.0.0.1")
     CSP_IMG_SRC     = ("'self'", "https://res.cloudinary.com")
 
-# ── Services externes (inutiles en test) ────────────────────────────────────
+# Third-party
 if not IS_TEST:
+    # Cloudinary
     import cloudinary
 
     cloudinary.config(
@@ -237,10 +236,12 @@ if not IS_TEST:
 
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+    # Stripe
     STRIPE_PUBLIC_KEY    = env('STRIPE_PUBLIC_KEY')
     STRIPE_SECRET_KEY    = env('STRIPE_SECRET_KEY')
     STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
 
+    # Mailer
     EMAIL_BACKEND     = env("EMAIL_BACKEND")
     EMAIL_HOST        = env("EMAIL_HOST")
     EMAIL_PORT        = env.int("EMAIL_PORT")
@@ -256,7 +257,7 @@ else:
     STRIPE_SECRET_KEY = 'sk_test_dummy'
     STRIPE_WEBHOOK_SECRET = 'whsec_dummy'
 
-# ── Sitemap ──────────────────────────────────────────────────────────────────
+# Sitemap
 SITEMAP_CACHE_TIMEOUT       = 60 * 60 * 24 * 30
 SITEMAP_INCLUDE_ROOT        = True
 SITEMAP_INCLUDE_SITEMAP_TAG = True
