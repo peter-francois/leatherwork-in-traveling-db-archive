@@ -10,10 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-from pathlib import Path
 import environ
 import os
-from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 
@@ -40,6 +38,12 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
+DJANGO_ENV = env('DJANGO_ENV')
+
+IS_PROD = DJANGO_ENV == 'production'
+
+IS_TEST = DJANGO_ENV == 'test'
+
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
@@ -56,8 +60,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 
     # Third-party
-    'cloudinary',
-    'cloudinary_storage',
     'csp',
     'django_extensions',
 
@@ -66,6 +68,9 @@ INSTALLED_APPS = [
     'core',
     'legal',
 ]
+
+if not IS_TEST:
+    INSTALLED_APPS += ['cloudinary', 'cloudinary_storage']
 
 
 LANGUAGES = [
@@ -101,10 +106,10 @@ CLIENT_FACEBOOK = env('CLIENT_FACEBOOK', default='Non disponible')
 
 def global_variables(request):
     return {
-        'CLIENT_PHONE_NUMBER': settings.CLIENT_PHONE_NUMBER,
-        'CLIENT_EMAIL': settings.CLIENT_EMAIL,
-        'CLIENT_INSTAGRAM': settings.CLIENT_INSTAGRAM,
-        'CLIENT_FACEBOOK': settings.CLIENT_FACEBOOK,
+        'CLIENT_PHONE_NUMBER': CLIENT_PHONE_NUMBER,
+        'CLIENT_EMAIL': CLIENT_EMAIL,
+        'CLIENT_INSTAGRAM': CLIENT_INSTAGRAM,
+        'CLIENT_FACEBOOK': CLIENT_FACEBOOK,
     }
 TEMPLATES = [
     {
@@ -131,8 +136,6 @@ WSGI_APPLICATION = 'web_shop.wsgi.application'
 
 DATABASES = {
     'default': env.db(),
-
-
 }
 
 # Password validation
@@ -168,11 +171,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+        "BACKEND": (
+            "django.contrib.staticfiles.storage.StaticFilesStorage"
+            if IS_TEST else
+            "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+        )
     },
 }
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django va collecter les fichiers statiques
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'page_vente/static'), 
@@ -187,86 +196,71 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'  # Peut permettre certaines interactions externes
 SECURE_CROSS_ORIGIN_RESOURCE_POLICY = 'same-origin'  # Permet de charger des ressources locales
 
-if env('DJANGO_ENV') == 'development':
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_SECURE = False
-    SECURE_SSL_REDIRECT = False
-    SECURE_HSTS_SECONDS = 0
-    SESSION_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
-    CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
-    SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
-    SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
-    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'","http://localhost:*", "ws://localhost:*", "http://127.0.0.1")
-    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
-else:
-    # Pour la production (avec HTTPS)
-    SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
-    CSRF_COOKIE_SECURE = True     # Assure que le cookie CSRF est aussi sécurisé
-    SESSION_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
-    CSRF_COOKIE_SAMESITE = 'Lax' #ne permet pas les cookies cross-site
-    SECURE_SSL_REDIRECT = True
-    SECURE_HSTS_SECONDS = 31536000    # Active HTTP Strict Transport Security (1 an)
+
+# ── Sécurité ────────────────────────────────────────────────────────────────
+SESSION_COOKIE_SECURE = IS_PROD
+CSRF_COOKIE_SECURE    = IS_PROD
+SECURE_SSL_REDIRECT   = IS_PROD
+SECURE_HSTS_SECONDS   = 31536000 if IS_PROD else 0
+SECURE_BROWSER_XSS_FILTER      = True
+CSRF_COOKIE_HTTPONLY            = True
+X_FRAME_OPTIONS                 = 'DENY'
+SESSION_COOKIE_SAMESITE         = 'Lax'
+CSRF_COOKIE_SAMESITE            = 'Lax'
+SECURE_REFERRER_POLICY          = 'strict-origin'
+SECURE_CONTENT_TYPE_NOSNIFF     = IS_PROD
+
+if IS_PROD:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
-    SECURE_REFERRER_POLICY = 'strict-origin'  # Envoie uniquement l'origine du site pour les requêtes sécurisées
-    SECURE_CONTENT_TYPE_NOSNIFF = True  # Empêche la détection incorrecte des types MIME
+    SECURE_HSTS_PRELOAD            = True
     CSP_DEFAULT_SRC = ("'self'",)
-    CSP_SCRIPT_SRC = ("'self'",)
-    CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com", "https://www.leatherworkintravelingdb.com")
+    CSP_SCRIPT_SRC  = ("'self'",)
+    CSP_IMG_SRC     = ("'self'", "https://res.cloudinary.com", "https://www.leatherworkintravelingdb.com")
+elif not IS_TEST:  # development
+    CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'", "http://localhost:*", "ws://localhost:*", "http://127.0.0.1")
+    CSP_IMG_SRC     = ("'self'", "https://res.cloudinary.com")
 
-SECURE_BROWSER_XSS_FILTER = True  # Protège contre les attaques XSS
-CSRF_COOKIE_HTTPONLY = True  # Empêche l'accès au cookie CSRF depuis le client
-X_FRAME_OPTIONS = 'DENY'
+# ── Services externes (inutiles en test) ────────────────────────────────────
+if not IS_TEST:
+    import cloudinary
 
+    cloudinary.config(
+        cloud_name    = env('CLOUDINARY_CLOUD_NAME'),
+        api_key       = env('CLOUDINARY_API_KEY'),
+        api_secret    = env('CLOUDINARY_API_SECRET'),
+        secure        = True,
+        upload_preset = env('CLOUDINARY_UPLOAD_PRESET'),
+        analytics     = False,
+    )
+    if 'PYTHONANYWHERE_DOMAIN' in os.environ:
+        cloudinary.config(api_proxy='http://proxy.server:3128')
 
-import cloudinary
-# Cloudinary configuration
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-cloudinary.config(
-    cloud_name = env('CLOUDINARY_CLOUD_NAME'),
-    api_key = env('CLOUDINARY_API_KEY'),
-    api_secret = env('CLOUDINARY_API_SECRET'),
-    secure = True,
-    upload_preset=env('CLOUDINARY_UPLOAD_PRESET'),
-    analytics=False,
-)
+    STRIPE_PUBLIC_KEY    = env('STRIPE_PUBLIC_KEY')
+    STRIPE_SECRET_KEY    = env('STRIPE_SECRET_KEY')
+    STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
 
-# Configurer le proxy sur PythonAnywhere uniquement
-if 'PYTHONANYWHERE_DOMAIN' in os.environ:
-    cloudinary.config(api_proxy='http://proxy.server:3128')
+    EMAIL_BACKEND     = env("EMAIL_BACKEND")
+    EMAIL_HOST        = env("EMAIL_HOST")
+    EMAIL_PORT        = env.int("EMAIL_PORT")
+    EMAIL_USE_SSL     = env.bool("EMAIL_USE_SSL")
+    EMAIL_USE_TLS     = env.bool("EMAIL_USE_TLS")
+    EMAIL_HOST_USER   = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+    DEFAULT_FROM_EMAIL  = env("EMAIL_HOST_USER")
+
 else:
-    pass
+    EMAIL_BACKEND     = 'django.core.mail.backends.locmem.EmailBackend'
+    STRIPE_PUBLIC_KEY = 'pk_test_dummy'
+    STRIPE_SECRET_KEY = 'sk_test_dummy'
+    STRIPE_WEBHOOK_SECRET = 'whsec_dummy'
 
-import cloudinary.uploader
-import cloudinary.api
-
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-
-# Stripe configuration
-STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
-STRIPE_WEBHOOK_SECRET = env('STRIPE_WEBHOOK_SECRET')
-
-# Mail configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Configuration SMTP
-EMAIL_BACKEND = env("EMAIL_BACKEND")
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_PORT = env.int("EMAIL_PORT")
-EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS")
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")
-
-# Sitemap configuration
-SITEMAP_CACHE_TIMEOUT = 60 * 60 * 24 * 30  # 30 jours
-SITEMAP_INCLUDE_ROOT = True
+# ── Sitemap ──────────────────────────────────────────────────────────────────
+SITEMAP_CACHE_TIMEOUT       = 60 * 60 * 24 * 30
+SITEMAP_INCLUDE_ROOT        = True
 SITEMAP_INCLUDE_SITEMAP_TAG = True
-SITEMAP_INCLUDE_LASTMOD = True
-SITEMAP_INCLUDE_PRIORITY = True
-SITEMAP_INCLUDE_LOCATION = True
-SITEMAP_URL = '/sitemap.xml'
+SITEMAP_INCLUDE_LASTMOD     = True
+SITEMAP_INCLUDE_PRIORITY    = True
+SITEMAP_INCLUDE_LOCATION    = True
+SITEMAP_URL                 = '/sitemap.xml'
