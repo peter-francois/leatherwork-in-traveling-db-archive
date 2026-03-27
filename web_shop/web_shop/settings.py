@@ -168,11 +168,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STORAGES = {
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    },
-}
+if env('DJANGO_ENV') == 'test':
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        },
+    }
+else:
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+        },
+    }
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Dossier où Django va collecter les fichiers statiques
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'page_vente/static'), 
@@ -198,6 +205,12 @@ if env('DJANGO_ENV') == 'development':
     SECURE_CONTENT_TYPE_NOSNIFF = False  # Moins restrictif pendant le développement pour faciliter les tests
     CSP_DEFAULT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'","http://localhost:*", "ws://localhost:*", "http://127.0.0.1")
     CSP_IMG_SRC = ("'self'", "https://res.cloudinary.com")
+    
+elif env('DJANGO_ENV') == 'test':
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_SECONDS = 0
 else:
     # Pour la production (avec HTTPS)
     SESSION_COOKIE_SECURE = True  # Assure que les cookies de session ne sont envoyés qu'en HTTPS
