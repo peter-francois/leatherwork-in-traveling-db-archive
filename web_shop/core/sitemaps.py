@@ -9,7 +9,7 @@ class StaticSitemap(Sitemap):
     def __init__(self, language = None):
         self.language = language
         self.static_urls = {
-            'index': 'boutique:index',
+            'index': 'core:index',
             'creation-sur-mesure': 'boutique:creation-sur-mesure',
             # 'a_propos': 'boutique:a_propos',
         }
