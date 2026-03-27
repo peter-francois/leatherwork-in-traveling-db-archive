@@ -48,4 +48,5 @@ jobs:
         pip install -r web_shop/requirements/dev.txt
     - name: Run Tests
       run: |
+        cd .\web_shop\
         pytest -v
