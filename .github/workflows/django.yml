@@ -27,4 +27,4 @@ jobs:
         pip install -r web_shop/requirements/dev.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python web_shop/manage.py test
